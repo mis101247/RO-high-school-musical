@@ -1,0 +1,36 @@
+nomemo                   不能用/memo設點
+noteleport               不能瞬移
+nosave                   不能儲存
+nobranch                 不能使用枯樹枝
+nopenalty                死亡不會扣exp
+nozenypenalty            死亡不會扣zeny
+pvp                      設定該地圖為PVP地圖
+pvp_noparty              PVP不能打隊友
+pvp_noguild              PVP不能打隊友
+gvg                      設定該地圖為GVG地圖
+gvg_noparty              GVG不能打隊友
+notrade                  設定該地圖不能交易
+noskill                  設定該地圖不能使用任何技能(我試過這個mapflag無效的 = =)
+nowarp                   不能傳送
+nopvp                    不能PVP
+noicewall                不能使用冰牆
+snow                     下雪
+fog                      霧
+sakura                   落櫻花
+leaves                   落葉
+rain                     下雨
+indoors                  以室內設置,像xxx_in的地圖
+nogo                     不能用@go指令
+clouds                   有雲 = =??? 應該是陰天
+fireworks                不能使用火牆
+gvg_castle               攻城戰地圖
+gvg_dungeon              忘了 XD
+nightenabled             可設定為晚上(畫面比較暗的,即@night)
+nobaseexp                地圖上打怪只有Job而沒有Base的經驗值
+nojobexp                 地圖上打怪只有Base而沒有Job的經驗值
+nobloot                  地圖上的MVP及其他怪物不掉落任何東西
+nomobloot                地圖上的MVP以外的怪物不掉落任何東西
+nomvploot                地圖上的MVP不掉落任何東西
+noreturn                 不能使用回城工具(蝴蝶翅膀)
+nowarpto                 正確不太清楚,跟nowarp大致相同
+nonightmaredrop          PVP的夢魘模式,死亡不會掉落裝備 

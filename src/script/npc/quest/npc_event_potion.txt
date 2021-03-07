@@ -1,0 +1,455 @@
+//----------------------------------------------------------------------
+// ЗヱэкЬ : Event_Potion v1.1
+// 漢化:LKM
+// http://coolro.cnnb.net
+//----------------------------------------------------------------------
+
+prontera.gat,73,140,0	script	牛奶批發商	86,{
+		mes "[牛奶批發商]";
+		mes "如果你有空瓶子的話，再花15Z我可以為你裝一瓶新鮮的牛奶！";
+		next;
+		menu "全部換取.",-,"指定數量",L_MENU_1,"取消.",L_MENU_2;
+			set @CHANGE_NUM,countitem(713);
+			if (countitem(713)>=1) goto L_ROOT_1;
+				mes "[牛奶批發商]";
+				mes "不，我需要一個空瓶子!!";
+				mes "....我要一個空瓶子給你裝牛奶";
+				close;
+	L_MENU_1:
+			mes "[牛奶批發商]";
+			mes "你打算裝幾瓶牛奶？";
+			next;
+			input @CHANGE_NUM;
+			if (@CHANGE_NUM <= 0) goto L_MENU_2;
+	L_ROOT_1:
+			set @CHANGE_ZENY,@CHANGE_NUM;
+			set @CHANGE_ZENY,@CHANGE_ZENY*15;
+			if (countitem(713)>=@CHANGE_NUM) goto L_ROOT_2;
+				mes "[牛奶批發商]";
+				mes "對不起，你沒有足夠的瓶子.";
+				close;
+	L_ROOT_2:
+			if (Zeny >= @CHANGE_ZENY) goto L_ROOT_3;
+				mes "[牛奶批發商]";
+				mes "你的錢好像不夠哦！";
+				mes "你最少要有 " + @CHANGE_ZENY + " Zeny.";
+				close;
+	L_ROOT_3:
+			if (checkweight(519,@CHANGE_NUM)) goto L_ROOT_4;
+				mes "[牛奶批發商]";
+				mes "對不起，你身上東西太多.";
+				close;
+	L_ROOT_4:
+			delitem 713,@CHANGE_NUM;
+			set Zeny,Zeny-@CHANGE_ZENY;
+			getitem 519,@CHANGE_NUM;
+			mes "[牛奶批發商]";
+			mes "歡迎下次光臨.";
+	L_MENU_2:
+			close;
+}
+
+prt_in.gat,49,172,3	script	瑪麗安妮	53,{
+		if (MORISON_MEAT != 15) goto L_START_1;
+			mes "[家庭主婦 瑪麗安妮]";
+			mes "啊呦 沒有肉就不吃飯...要怎麼樣他才吃水果...";
+			mes "舉個例子...抹成泥狀...";
+			next;
+			set MOTHER_MARIENU,2;
+			mes "[家庭主婦 瑪麗安妮]";
+			mes "啊!好像有一個城市會把水果抹成泥狀.";
+			mes "那是裴揚? 夢羅克";
+			close;
+	L_START_1:
+		if (MOTHER_MARIENU != 1) goto L_START_2;
+			mes "[家庭主婦 瑪麗安妮]";
+			mes "莫利孫!! 叫你吃水果!!你長大會變成怎樣.";
+			mes "你不會想變成一隻大肥豬吧?";
+			next;
+			menu "對話",-,"結束",L_MENU_1;
+				mes "[家庭主婦 瑪麗安妮]";
+				mes "哼… 啊! 就是你!把肉給莫利孫吃的人?!";
+				mes "你以為我不知道還敢來我們家?哼真是厚臉皮.";
+				mes "過分…當我是傻瓜.";
+				next;
+				mes "[家庭主婦 瑪麗安妮]";
+				mes "請你離開!!";
+				close;
+	L_MENU_1:
+				mes "[家庭主婦 瑪麗安妮]";
+				mes "莫利孫!! 你再這樣我要發火了!";
+				close;
+	L_START_2:
+		if (MORISON_MEAT <= 0) goto L_START_3;
+			set MOTHER_MARIENU,1;
+			mes "[家庭主婦 瑪麗安妮]";
+			mes "不!! 這…這到底";
+			mes "世界上怎麼會發生這種事情!!你不要把奇怪的食物給我兒子吃!";
+			mes "哎呀~~真煩!! 快滾出去!";
+			close;
+	L_START_3:
+		mes "[家庭主婦 瑪麗安妮]";
+		mes "莫利孫!!求你吃一點水果~!啊呦~!!活不下去了!";
+		mes "這個壞習慣真像你爸...";
+		next;
+		menu "對話",-,"結束",L_MENU_3;
+			mes "[家庭主婦 瑪麗安妮]";
+			mes "嗯…這個小孩叫莫利孫是我的兒子。";
+			mes "這個傢伙最近不太敢吃水果.已經很久沒吃了 臉色都變不好一直想吃肉...";
+			mes "哎…無論如何想個辦法讓他吃青菜和水果....";
+			close;
+	L_MENU_3:
+			mes "[家庭主婦 瑪麗安妮]";
+			mes "莫利孫!!你再這樣我生氣了!";
+			close;
+}
+
+prt_in.gat,47,173,3	script	莫利孫	97,{
+		if (MORISON_MEAT != 15) goto L_START_1;
+			mes "[小孩子 莫利孫]";
+			mes "好夠了.以後我吃不吃水果不要您管.";
+			close;
+	L_START_1:
+		if (MORISON_MEAT <= 9) goto L_START_2;
+			mes "[小孩子 莫利孫]";
+			mes "阿…吃飽了. 鬆了一口氣";
+			mes "不用再給我吃肉了. 我已經吃不下了.";
+			if (MORISON_MEAT != 10) goto L_ROOT_1;
+				next;
+				set MORISON_MEAT,MORISON_MEAT+1;
+				mes "[小孩子 莫利孫]";
+				mes "還有… 嗯…請您收下";
+				mes "這是上次別人給我的糖果. 我本來要自己偷偷留著吃, 你給我肉吃 我 就送你糖果。";
+				getitem 529,3;
+				getitem 530,1;
+	L_ROOT_1:
+			close;
+	L_START_2:
+		mes "[小孩子 莫利孫]";
+		mes "啊… 啊啊啊啊!!! 不.. 不吃";
+		mes "哼…不吃水果!!";
+		next;
+		if (countitem(517)<1) goto L_START_3;
+			menu "對話",-,"給他看肉",L_MENU_2_1,"關閉",L_MENU_2_2;
+				mes "[小孩子 莫利孫]";
+				mes "啊啊啊啊!!受夠了!!已經不能在吃水果了!";
+				mes "講實話,水果呢~先要撥皮還有很多的水份.吃的時候感覺不舒服";
+				mes "而且會酸酸黏黏的…還吃不飽.啊啊啊啊!給我肉吧~";
+				close;
+	L_MENU_2_1:
+				mes "[小孩子 莫利孫]";
+				mes "啊啊! 肉.肉.噢";
+				mes "啊 肚 肚子餓了 真香  這  給我1塊肉行不行?";
+				next;
+				menu "給他肉",-,"不給他肉",L_MENU_2_3;
+					delitem 517,1;
+					set MORISON_MEAT,MORISON_MEAT+1;
+					mes "[小孩子 莫利孫]";
+					mes "哇哇~!!!肉.肉! 好香.";
+					mes "謝謝. 現在才鬆了一口氣....";
+					close;
+	L_MENU_2_3:
+					set MORISON_MEAT,15;
+					mes "[小孩子 莫利孫]";
+					mes "噢噢… 那…就瞭解了. 大人都… 都一樣!";
+					close;
+	L_MENU_2_2:
+				mes "[小孩子 莫利孫]";
+				mes "啊啊啊!!! 我不能再吃青菜和水果了!";
+				close;
+	L_START_3:
+		menu "對話",-,"關閉",L_MENU_4;
+			mes "[小孩子 莫利孫]";
+			mes "啊啊啊啊!!受夠了!!已經不能在吃水果了!";
+				mes "先要撥皮還有很多的水份.吃的時候感覺不舒服";
+				mes "而且會酸酸黏黏的…還吃不飽.啊啊啊啊!給我肉吧~";
+			close;
+	L_MENU_4:
+			mes "[小孩子 莫利孫]";
+			mes "啊啊啊!!!我不能再吃青菜和水果了!";
+			close;
+}
+
+payon_in03.gat,188,146,4	script	馬雷克漢森	86,{
+		if (MOTHER_MARIENU != 2) goto L_START_0;
+			mes "[商人 馬雷克漢森]";
+			mes "歡迎光臨 您需要加工水果嗎?";
+			next;
+			menu "加工水果",-,"對話並介紹果汁加工",L_MENU_2,"取消",L_MENU_3;
+				mes "[商人 馬雷克漢森]";
+				mes "您需要什麼果汁?";
+				next;
+				menu "蘋果汁",L_MENU_1_1,"香蕉汁",L_MENU_1_2,"紅蘿蔔汁",L_MENU_1_3,"葡萄汁",L_MENU_1_4,"取消",L_MENU_1_5;
+	L_MENU_1_1:
+				set @BUY_ID,512;
+				set @GET_ID,531;
+				goto L_SUB_1_1;
+	L_MENU_1_2:
+				set @BUY_ID,513;
+				set @GET_ID,532;
+				goto L_SUB_1_1;
+	L_MENU_1_3:
+				set @BUY_ID,515;
+				set @GET_ID,534;
+				goto L_SUB_1_1;
+	L_MENU_1_4:
+				set @BUY_ID,514;
+				set @GET_ID,533;
+	L_SUB_1_1:
+				set @FRUIT,countitem(@BUY_ID);
+				set @BOTTLE,countitem(713);
+				set @BUY_NUM,@FRUIT;
+				if (@BUY_NUM <= @BOTTLE) goto L_SUB_1_2;
+				set @BUY_NUM,@BOTTLE;
+	L_SUB_1_2:
+				if (@BUY_NUM <= 0) goto L_ROOT_1_1;
+				mes "[商人 馬雷克漢森]";
+				mes "需要多少?";
+				next;
+				menu "把所有的全部給我組合",L_SUB_1_3,"定購",-,"我不要",L_MENU_1_5;
+				mes "[商人 馬雷克漢森]";
+				mes "你定100個一下試試看,如果覺得不行就寫";
+				mes "你現在所擁有的材料最多可以做 " + @BUY_NUM + " 個";
+				next;
+				input @BUY_NUM;
+				if (@BUY_NUM <= 0) goto L_MENU_1_5;
+	L_SUB_1_3:
+				set @BUY_ZENY,@BUY_NUM;
+				set @BUY_ZENY,@BUY_ZENY*3;
+				if (countitem(@BUY_ID)<@BUY_NUM) goto L_ROOT_1_1;
+				if (countitem(713)<@BUY_NUM) goto L_ROOT_1_1;
+				if (!(checkweight(@GET_ID,@BUY_NUM))) goto L_ROOT_1_2;
+				if (Zeny < @BUY_ZENY) goto L_ROOT_1_3;
+				delitem @BUY_ID,@BUY_NUM;
+				delitem 713,@BUY_NUM;
+				set Zeny,Zeny-@BUY_ZENY;
+				getitem @GET_ID,@BUY_NUM;
+				goto L_START_2;
+	L_ROOT_1_1:
+				mes "[商人 馬雷克漢森]";
+				mes "這個,這個...材料不夠啊";
+				close;
+	L_ROOT_1_2:
+				mes "[商人 馬雷克漢森]";
+				mes "你已經超過最大負重極限了! 請整理您的物品後再來!";
+				close;
+	L_ROOT_1_3:
+				mes "[商人 馬雷克漢森]";
+				mes "您沒有足夠的錢來做果汁了!";
+				close;
+	L_MENU_1_5:
+				mes "[商人 馬雷克漢森]";
+				mes "那麼...下次再來...";
+				close;
+	L_START_2:
+				mes "[商人 馬雷克漢森]";
+				mes "這是您要的果汁,味道一定很不錯.";
+				mes "那麼...下次再來吧.";
+				close;
+	L_MENU_2:
+				mes "[商人 馬雷克漢森]";
+				mes "人類還沒有具備豐富的知識前,每個人都是吃水果過生活.";
+				mes "水果是讓人類活著的原動力之一,有著大自然的祝福.";
+				next;
+				mes "[商人 馬雷克漢森]";
+				mes "現在生活條件好了,最近的年輕人反而不喜歡吃水果.";
+				mes "所以想個辦法讓他們願意吃水果.";
+				mes "結果是將水果打成果汁讓他們方便食用而且味道更好.";
+				next;
+				mes "# 果汁介紹 #";
+				mes "蘋果果汁 -";
+				mes "-蘋果 x1, 空瓶 x1, 3 金幣.";
+				mes "";
+				mes "香蕉果汁 -";
+				mes "香蕉 x1, 空瓶 x1, 3 金幣.";
+				mes "";
+				mes "蘿蔔果汁 -";
+				mes "蘿蔔 x1, 空瓶 x1, 3 金幣.";
+				mes "";
+				mes "葡萄果汁 -";
+				mes "葡萄 x1, 空瓶 x1, 3 金幣.";
+				close;
+	L_MENU_3:
+				mes "[商人 馬雷克漢森]";
+				mes "既然來找人,是不是應該說點什麼呢.";
+				close;
+	L_START_0:
+		mes "[商人 馬雷克漢森]";
+		mes "請進.找我有什麼事嗎??";
+		next;
+		menu "對話",-,"結束",L_MENU_4;
+			mes "[商人 馬雷克漢森]";
+			mes "人類還沒有具備豐富的知識前,每個人都是吃水果過生活.";
+			mes "水果是讓人類活著的原動力之一,有著大自然的祝福.";
+			next;
+			mes "[商人 馬雷克漢森]";
+			mes "現在生活條件好了,最近的年輕人反而不喜歡吃水果.";
+			mes "所以想個辦法讓他們願意吃水果.";
+			mes "結果是將水果打成果汁讓他們方便食用而且味道更好.";
+			close;
+	L_MENU_4:
+			mes "[商人 馬雷克漢森]";
+			mes "既然來找人,是不是應該說點什麼呢?.";
+			close;
+}
+
+alberta_in.gat,16,28,4	script	藥劑師爺爺	61,{
+		mes "[藥劑師爺爺]";
+		mes "是.....客人嗎...?";
+		next;
+		menu "組合藥水.",-,"對話.",L_MENU_2,"聽取組合藥水的告示.",L_MENU_3,"取消.",L_MENU_4;
+			mes "[藥劑師爺爺]";
+			mes "物品都齊全了嗎?您要組合哪一種藥水?";
+			next;
+			menu "紅色藥水.",L_MENU_1_1,"赤色藥水.",L_MENU_1_2,"黃色藥水.",L_MENU_1_3,"白色藥水.",L_MENU_1_4,"藍色藥水.",L_MENU_1_5,"綠色藥水.",L_MENU_1_6,"放棄.",L_MENU_1_7;
+	L_MENU_1_1:
+			set @BUY_ID1,507;
+			set @BUY_NEED1,2;
+			set @BUY_ID2,0;
+			set @BUY_NEED2,0;
+			set @GET_ID,501;
+			set @BUY_PRICE,3;
+			goto L_SUB_1_1;
+	L_MENU_1_2:
+			set @BUY_ID1,507;
+			set @BUY_NEED1,1;
+			set @BUY_ID2,508;
+			set @BUY_NEED2,1;
+			set @GET_ID,502;
+			set @BUY_PRICE,5;
+			goto L_SUB_1_1;
+	L_MENU_1_3:
+			set @BUY_ID1,508;
+			set @BUY_NEED1,2;
+			set @BUY_ID2,0;
+			set @BUY_NEED2,0;
+			set @GET_ID,503;
+			set @BUY_PRICE,10;
+			goto L_SUB_1_1;
+	L_MENU_1_4:
+			set @BUY_ID1,509;
+			set @BUY_NEED1,2;
+			set @BUY_ID2,0;
+			set @BUY_NEED2,0;
+			set @GET_ID,504;
+			set @BUY_PRICE,20;
+			goto L_SUB_1_1;
+	L_MENU_1_5:
+			set @BUY_ID1,510;
+			set @BUY_NEED1,2;
+			set @BUY_ID2,0;
+			set @BUY_NEED2,0;
+			set @GET_ID,505;
+			set @BUY_PRICE,30;
+			goto L_SUB_1_1;
+	L_MENU_1_6:
+			set @BUY_ID1,511;
+			set @BUY_NEED1,2;
+			set @BUY_ID2,0;
+			set @BUY_NEED2,0;
+			set @GET_ID,506;
+			set @BUY_PRICE,3;
+	L_SUB_1_1:
+			set @POTION1,countitem(@BUY_ID1);
+			set @POTION1,@POTION1/@BUY_NEED1;
+			if (@BUY_ID2 <= 0) goto L_SUB_1_2;
+			set @POTION2,countitem(@BUY_ID2);
+			set @POTION2,@POTION2/@BUY_NEED2;
+	L_SUB_1_2:
+			set @BOTTLE,countitem(713);
+			set @BUY_NUM,@POTION1;
+			if (@BUY_ID2 <= 0) goto L_SUB_1_3;
+			if (@BUY_NUM <= @POTION2) goto L_SUB_1_3;
+			set @BUY_NUM,@POTION2;
+			if (@BUY_NUM <= @BOTTLE) goto L_SUB_1_3;
+			set @BUY_NUM,@BOTTLE;
+	L_SUB_1_3:
+			if (@BUY_NUM <= 0) goto L_ROOT_1_1;
+			mes "[藥劑師爺爺]";
+			mes "要多少?";
+			next;
+			menu "全部組合.",L_SUB_1_4,"限定數量.",-,"放棄.",L_MENU_1_7;
+			mes "[藥劑師爺爺]";
+			mes "那請您填寫 100 以下.若不願意就填寫 1 .";
+			mes "看您收集的材料可能組合" + @BUY_NUM + " 瓶.";
+			next;
+			input @BUY_NUM;
+			if (@BUY_NUM <= 0) goto L_MENU_1_7;
+	L_SUB_1_4:
+			set @BUY_ZENY,@BUY_NUM;
+			set @BUY_ZENY,@BUY_ZENY*@BUY_PRICE;
+			set @BUY_NUM1,@BUY_NUM;
+			set @BUY_NUM1,@BUY_NUM1*@BUY_NEED1;
+			if (countitem(@BUY_ID1)<@BUY_NUM1) goto L_ROOT_1_1;
+			if (@BUY_ID2 <= 0) goto L_SUB_1_5;
+			set @BUY_NUM2,@BUY_NUM;
+			set @BUY_NUM2,@BUY_NUM2*@BUY_NEED2;
+			if (countitem(@BUY_ID2)<@BUY_NUM2) goto L_ROOT_1_1;
+	L_SUB_1_5:
+			if (countitem(713)<@BUY_NUM) goto L_ROOT_1_1;
+			if (!(checkweight(@GET_ID,@BUY_NUM))) goto L_ROOT_1_3;
+			if (Zeny < @BUY_ZENY) goto L_ROOT_1_2;
+			delitem @BUY_ID1,@BUY_NUM1;
+			if (@BUY_ID2 <= 0) goto L_SUB_1_6;
+			delitem @BUY_ID2,@BUY_NUM2;
+	L_SUB_1_6:
+			delitem 713,@BUY_NUM;
+			set Zeny,Zeny-@BUY_ZENY;
+			getitem @GET_ID,@BUY_NUM;
+			goto L_START_2;
+	L_ROOT_1_1:
+			mes "[藥劑師爺爺]";
+			mes "做藥水至少要帶來一個空瓶!您空手來要 幹嗎! 真是傻瓜!";
+			mes "滾出去!";
+			close;
+	L_ROOT_1_2:
+			mes "[藥劑師爺爺]";
+			mes "做藥水還要帶來一些錢!您空手來要 幹嗎! 真是傻瓜!";
+			mes "滾出去!";
+			close;
+	L_ROOT_1_3:
+			mes "[藥劑師爺爺]";
+			mes "你已經超過最大負重極限了!";
+			mes "滾出去!";
+			close;
+	L_START_2:
+			mes "[藥劑師爺爺]";
+			mes "做好了.拿回去吧.";
+			mes "記住! 光靠藥物不是辦法!";
+			close;
+	L_MENU_1_7:
+			mes "[藥劑師爺爺]";
+			mes "滾出去!";
+			close;
+	L_MENU_2:
+			mes "[藥劑師爺爺]";
+			mes "藥水可以提高人類的恢復力.不過只是幫助而已...";
+			mes "哎呦...年紀大了會回憶以前的事情.";
+			mes "藥水只是藥的一種...只是這樣而已.";
+			close;
+	L_MENU_3:
+			mes "[藥劑師爺爺]";
+			mes "嗯...您們這些小傢伙真是煩人... 好,我會仔細告訴您們.";
+			next;
+			mes "[藥劑師爺爺]";
+			mes "藥草是可以直接使用的,不過我個人的秘方是做成藥水,效果會更好.";
+			next;
+			mes "[藥劑師爺爺]";
+			mes "如果您們求我,我就會做藥水給您們,不過不是免費的,我要收一點費用,當作我的零用錢,數目不會很多.";
+			next;
+			mes "[藥劑師爺爺]";
+			mes "紅色藥水 - ^0098E5 紅色藥草 x2, 空瓶 x1, 3 金幣.^000000";
+			mes "赤色藥水 - ^0098E5 紅色藥草 x1, 黃色藥草 x1, 空瓶 x1, 5 金幣.^000000";
+			mes "黃色藥水 - ^0098E5 黃色藥草 x2, 空瓶 x1, 10 金幣.^000000";
+			next;
+			mes "[藥劑師爺爺]";
+			mes "白色藥水 - ^0098E5 白色藥草 x2, 空瓶 x1, 20 金幣.^000000";
+			mes "藍色藥水 - ^0098E5 藍色藥草 x2, 空瓶 x1, 30 金幣.^000000";
+			mes "綠色藥水 - ^0098E5 綠色藥草 x2, 空瓶 x1, 3 金幣.^000000";
+			close;
+	L_MENU_4:
+			mes "[藥劑師爺爺]";
+			mes "真是奇怪的人,有話要說出來,幹嘛什麼也沒說就走過去了!";
+			close;
+}
+

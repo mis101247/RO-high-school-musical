@@ -1,0 +1,432 @@
+//==============================================================================
+//Ragnarok Online EP1.5  Player vs Player(PVP) Script
+// 漢化:LKM
+// http://coolro.cnnb.net
+//==============================================================================
+
+//====================================================================
+// PVP解說員全部
+//	Йみйрユ⑦Ьゎ違よクんスソザduplicate
+//--------------------------------------------------------------------
+
+-	script	PvPguide	-1,{
+	mes "[PVP解說員]";
+	mes "你好！";
+	mes "我是擔任PVP";
+	mes "解說的";
+	mes "PVP 解說員！";
+	next;
+	switch (select("^3355ff「PVP模式」^000000是什麼？","PVP模式的參加方法？","PVP模式的規則是什麼？","存儲現在位置","結束對話")) {
+	case 1:
+		mes "[PVP解說員]";
+		mes "PVP模式就是";
+		mes "「Player VS Player Mode」";
+		mes "的簡寫..";
+		mes "也就是一種在假想的世界裡，";
+		mes "享受玩家間大戰的特別戰鬥";
+		next;
+		mes "[PVP解說員]";
+		mes "簡單的說就是與其他玩家打鬥的模式";
+		mes "只要向我身邊這位^3355ff守門人^000000說一聲";
+		mes "表示願意嘗試的話。";
+		mes "他便會";
+		mes "引導你進入為PVP模式所準備的打鬥場";
+		next;
+		mes "[PVP解說員]";
+		mes "請你一定要小心";
+		mes "也請好好享受戰鬥的樂趣吧。";
+		mes "要進入PVP模式";
+		mes "玩家等級要達到31級以上。";
+		next;
+		mes "[PVP解說員]";
+		mes "擁有參加資格以後";
+		mes "選擇下列模式中任意一個";
+		mes "夢魘模式";
+		mes "溜溜猴模式";
+		mes "即可。";
+		next;
+		mes "[PVP解說員]";
+		mes "夢魘模式：";
+		mes "其規則與實戰";
+		mes "是一樣的";
+		mes "戰死後經驗值會損失";
+		mes "身上道具也會掉落。";
+		next;
+		mes "[PVP解說員]";
+		mes "請考慮清楚後";
+		mes "再選擇進入。";
+		close;
+	case 2:
+		mes "[PVP解說員]";
+		mes "看見我身邊這位PVP守門人了？";
+		mes "與之對話，並交納";
+		mes "500 Zeny";
+		mes "便可以";
+		mes "移動到PVP打鬥場。";
+		next;
+		mes "[PVP解說員]";
+		mes "打鬥模式分為";
+		mes "溜溜猴模式和";
+		mes "夢魘模式";
+		mes "請一定小心選擇自己的模式";
+		mes "這2種";
+		mes "模式的打鬥場裡。";
+		next;
+		mes "[PVP解說員]";
+		mes "各有數名解說員";
+		mes "他們會將31級以上的參加者";
+		mes "每10等級";
+		mes "再做細分。";
+		next;
+		mes "[PVP解說員]";
+		mes "有5個PVP專用房間可供選擇";
+		mes "選擇你所想去的那個房間";
+		mes "便可移動到那裡";
+		mes "從解說員頭上的窗口。";
+		next;
+		mes "[PVP解說員]";
+		mes "可以知道等級的限制";
+		mes "以及此地圖正在進行打鬥的人數";
+		mes "這點請你要注意。";
+		next;
+		mes "[PVP解說員]";
+		mes "解說員頭上的窗口";
+		mes "會出現【參加人數/總人數】這樣的數據。";
+		next;
+		mes "[PVP解說員]";
+		mes "另一點請注意。";
+		mes "PVP專用地圖";
+		mes "是無法";
+		mes "儲存位置的。";
+		mes "請注意以上這點。";
+		close;
+	case 3:
+		mes "[PVP解說員]";
+		mes "進入PVP模式後";
+		mes "畫面右下角";
+		mes "出現的是";
+		mes "該地圖";
+		mes "玩家自己的排行 / 地圖玩家人數";
+		next;
+		mes "[PVP解說員]";
+		mes "相信會對你有幫助。";
+		mes "在PVP模式中的經驗?";
+		mes "只有在PVP模式中適用";
+		mes "這點要注意";
+		mes "一開始每位玩家的經驗?";
+		next;
+		mes "[PVP解說員]";
+		mes "基本上都是' 5 '。";
+		mes "在途中若是";
+		mes "贏得勝利的話";
+		mes "可增加經驗 1";
+		mes "若是失敗的話。";
+		next;
+		mes "[PVP解說員]";
+		mes "則經驗會減少 5";
+		mes "如果經驗減到0以下";
+		next;
+		mes "[PVP解說員]";
+		mes "則會被踢出PVP模式";
+		mes "不得繼續參與。";
+		mes "但是如果經驗大於0";
+		mes "卻被殺死的話";
+		mes "可以藉由同伴";
+		next;
+		mes "[PVP解說員]";
+		mes "回復體力，繼續參與遊戲";
+		mes "這樣你懂了吧。";
+		next;
+		mes "[PVP解說員]";
+		mes "打鬥的規則";
+		mes "與外面戰鬥的規則";
+		mes "是一樣的。";
+		close;
+	case 4:
+		set '@num,strnpcinfo(2);	//NPC名ソ#以降ソ文字列メ參照ウサ數值ズ變換
+		switch('@num) {
+			case 0: savepoint "alberta_in.gat",61,143; 	break;
+			case 1: savepoint "geffen_in.gat",69,59; 	break;
+			case 2: savepoint "morocc_in.gat",142,140; 	break;
+			case 3: savepoint "payon_in01.gat",166,107; 	break;
+			case 4: savepoint "prt_in.gat",54,136; 		break;
+		}
+		mes "[PVP解說員]";
+		mes "已經成功存儲位置。";
+		mes "非常感謝您的使用。";
+		close;
+	case 5:
+		mes "[PVP解說員]";
+		mes "這是一個玩家與玩家間的大戰";
+		mes "能讓玩家在戰鬥中找到樂趣";
+		mes "期待各位";
+		mes "勇於前來挑戰！";
+		close;
+	}
+}
+
+alberta_in.gat,62,145,4	duplicate(PvPguide)	PVP解說員#0	84
+geffen_in.gat,67,63,4	duplicate(PvPguide)	PVP解說員#1	84
+morocc_in.gat,144,138,4	duplicate(PvPguide)	PVP解說員#2	84
+payon_in01.gat,142,50,4	duplicate(PvPguide)	PVP解說員#3	84
+prt_in.gat,56,140,4	duplicate(PvPguide)	PVP解說員#4	84
+
+
+//====================================================================
+// PVP守門人全部
+//	duplicateザ使よ
+//--------------------------------------------------------------------
+
+-	script	PvPdoor	-1,{
+	mes "[正服PVP守門人]";
+	mes "我是為您打開PVP打鬥場之門";
+	mes "的PVP守門人。";
+	mes "有關PVP模式的說明";
+	mes "請你去向旁邊那位解說員";
+	mes "詢問。";
+	next;
+	set '@ret,select("^ff3355PVP 夢魘模式^000000 打鬥場","^3355FFPVP 溜溜猴模式^000000 打鬥場","結束對話");
+	switch('@ret) {
+	case 1:
+		mes "[PVP守門人]";
+		mes "夢魘模式：";
+		mes "其規則與實戰";
+		mes "是一樣的";
+		mes "戰死後經驗值會損失";
+		mes "身上道具也會掉落。";
+		next;
+		//fall through
+	case 2:
+		mes "[PVP守門人]";
+		mes "參加費是500 Zeny 您要移動到。";
+		if('@ret==1)
+			mes "夢魘模式";
+		else
+			mes "溜溜猴模式";
+		mes "移動到PVP打鬥場嗎？";
+		next;
+		if(select("移動","取消")==2)
+			break;
+		if(Zeny<500 || BaseLevel<31) {
+			mes "[PVP Эヤс⑦]";
+			mes "對不起！";
+			mes "您的 Zeny 不夠 ，或者";
+			mes "您的等級不到31級。";
+			close;
+		}
+		set Zeny,Zeny-500;
+		if('@ret==1)
+			warp "pvp_n_room",51,23;
+		else
+			warp "pvp_y_room",51,23;
+		end;
+	}
+	//case3ソシわゾfall through
+	mes "[PVP守門人]";
+	mes "這是一個玩家與玩家間的大戰";
+	mes "能讓玩家在戰鬥中找到樂趣";
+	mes "期待各位";
+	mes "勇於前來挑戰！";
+	close;
+}
+
+morocc_in.gat,162,153,4	duplicate(PvPdoor)	PVP守門人	83
+geffen_in.gat,162,153,4	duplicate(PvPdoor)	PVP守門人	83
+morocc_in.gat,1162,153,4	duplicate(PvPdoor)	PVP守門人	83
+morocc_in.gat,162,153,4	duplicate(PvPdoor)	PVP守門人	83
+morocc_in,162,153,4	duplicate(PvPdoor)	PVP守門人	83
+
+
+//====================================================================
+// PvP受付（ыみыみ）
+//	callfunc "PvPreceptY",LvNum,LowLv,HighLv;
+//--------------------------------------------------------------------
+
+function	script	PvPreceptY	{
+	if( getarg(0)!=8 && (BaseLevel < getarg(1) || BaseLevel > getarg(2)) ) {
+		mes "[打鬥場接待員]";
+		mes "我是申請員。";
+		if(getarg(0)<7) {
+			mes "Lv" +getarg(1)+ " Lv" +getarg(2)+ "進入";
+		}
+		else
+			mes "Lv91以上才能進入。";
+		return;
+	}
+	set @menu,select(	"普隆德拉　[" +getmapusers("pvp_y_"+getarg(0)+"-1.gat")+ " / 128]",
+				"依斯魯得　[" +getmapusers("pvp_y_"+getarg(0)+"-2.gat")+ " / 128]",
+				"裴揚　[" +getmapusers("pvp_y_"+getarg(0)+"-3.gat")+ " / 128]",
+				"艾爾貝塔　[" +getmapusers("pvp_y_"+getarg(0)+"-4.gat")+ " / 128]",
+				"夢洛克　[" 	+getmapusers("pvp_y_"+getarg(0)+"-5.gat")+ " / 128]","取消");
+	if(@menu==6)
+		return;
+	if(getmapusers("pvp_y_"+getarg(0)+"-"+@menu+".gat") >= 128) {
+		mes "[打鬥場接待員]";
+		mes "人滿了。";
+		return;
+	}
+	warp "pvp_y_"+getarg(0)+"-"+@menu+".gat",0,0;
+	end;
+}
+
+pvp_y_room.gat,30,85,4	script	打鬥場接待員#y-1pvp	105,{
+	callfunc "PvPreceptY",1,31,40;
+	close;
+OnInit:
+	waitingroom "LV 31 ~ LV 40",0;
+	end;
+}
+
+pvp_y_room.gat,38,85,4	script	打鬥場接待員#y-2pvp	105,{
+	callfunc "PvPreceptY",2,41,50;
+	close;
+OnInit:
+	waitingroom "LV 41 ~ LV 50",0;
+	end;
+}
+
+pvp_y_room.gat,46,85,4	script	打鬥場接待員#y-3pvp	105,{
+	callfunc "PvPreceptY",3,51,60;
+	close;
+OnInit:
+	waitingroom "LV 51 ~ LV 60",0;
+	end;
+}
+
+pvp_y_room.gat,54,85,4	script	打鬥場接待員#y-4pvp	105,{
+	callfunc "PvPreceptY",4,61,70;
+	close;
+OnInit:
+	waitingroom "LV 61 ~ LV 70",0;
+	end;
+}
+
+pvp_y_room.gat,62,85,4	script	打鬥場接待員#y-5pvp	105,{
+	callfunc "PvPreceptY",5,71,80;
+	close;
+OnInit:
+	waitingroom "LV 71 ~ LV 80",0;
+	end;
+}
+
+pvp_y_room.gat,70,85,4	script	打鬥場接待員#y-6pvp	105,{
+	callfunc "PvPreceptY",6,81,90;
+	close;
+OnInit:
+	waitingroom "LV 81 ~ LV 90",0;
+	end;
+}
+
+pvp_y_room.gat,78,85,4	script	打鬥場接待員#y-7pvp	105,{
+	callfunc "PvPreceptY",7,91,255;
+	close;
+OnInit:
+	waitingroom "LV 91 ~",0;
+	end;
+}
+
+pvp_y_room.gat,86,85,4	script	打鬥場接待員#y-8pvp	105,{
+	callfunc "PvPreceptY",8,0,0;
+	close;
+OnInit:
+	waitingroom "無限制",0;
+	end;
+}
+
+
+//====================================================================
+// PvP受付（ЮユЬфヤ）
+//	callfunc "PvPreceptN",LvNum,LowLv,HighLv;
+//--------------------------------------------------------------------
+
+function	script	PvPreceptN	{
+	if( getarg(0)!=8 && (BaseLevel < getarg(1) || BaseLevel > getarg(2)) ) {
+		mes "[打鬥場接待員]";
+		mes "我是申請員。";
+		if(getarg(0)<7) {
+			mes "Lv" +getarg(1)+ " Lv" +getarg(2)+ "進入";
+		}
+		else
+			mes "Lv91以上才能進入。";
+		return;
+	}
+	set @menu,select(	"三明治 房間　[" 		+getmapusers("pvp_n_"+getarg(0)+"-1.gat")+ " / 64]",
+				"雷達鎖定 房間　["  	+getmapusers("pvp_n_"+getarg(0)+"-2.gat")+ " / 32]",
+				"四通道 房間　[" 	+getmapusers("pvp_n_"+getarg(0)+"-3.gat")+ " / 32]",
+				"反十字 房間　[" 	+getmapusers("pvp_n_"+getarg(0)+"-4.gat")+ " / 32]",
+				"羅盤 房間　[" 	+getmapusers("pvp_n_"+getarg(0)+"-5.gat")+ " / 32]","取消");
+	if(@menu==6)
+		return;
+	if((@menu==1 && getmapusers("pvp_n_"+getarg(0)+"-1.gat") >= 64) ||
+			(@menu>1 && getmapusers("pvp_n_"+getarg(0)+"-"+@menu+".gat") >= 32)) {
+		mes "[打鬥場接待員]";
+		mes "人滿了。";
+		return;
+	}
+	warp "pvp_n_"+getarg(0)+"-"+@menu+".gat",0,0;
+	end;
+}
+
+pvp_n_room.gat,30,85,4	script	打鬥場接待員#n-1pvp	105,{
+	callfunc "PvPreceptN",1,31,40;
+	close;
+OnInit:
+	waitingroom "LV 31 ~ LV 40",0;
+	end;
+}
+
+pvp_n_room.gat,38,85,4	script	打鬥場接待員#n-2pvp	105,{
+	callfunc "PvPreceptN",2,41,50;
+	close;
+OnInit:
+	waitingroom "LV 41 ~ LV 50",0;
+	end;
+}
+
+pvp_n_room.gat,46,85,4	script	打鬥場接待員#n-3pvp	105,{
+	callfunc "PvPreceptN",3,51,60;
+	close;
+OnInit:
+	waitingroom "LV 51 ~ LV 60",0;
+	end;
+}
+
+pvp_n_room.gat,54,85,4	script	打鬥場接待員#n-4pvp	105,{
+	callfunc "PvPreceptN",4,61,70;
+	close;
+OnInit:
+	waitingroom "LV 61 ~ LV 70",0;
+	end;
+}
+
+pvp_n_room.gat,62,85,4	script	打鬥場接待員#n-5pvp	105,{
+	callfunc "PvPreceptN",5,71,80;
+	close;
+OnInit:
+	waitingroom "LV 71 ~ LV 80",0;
+	end;
+}
+
+pvp_n_room.gat,70,85,4	script	打鬥場接待員#n-6pvp	105,{
+	callfunc "PvPreceptN",6,81,90;
+	close;
+OnInit:
+	waitingroom "LV 81 ~ LV 90",0;
+	end;
+}
+
+pvp_n_room.gat,78,85,4	script	打鬥場接待員#n-7pvp	105,{
+	callfunc "PvPreceptN",7,91,255;
+	close;
+OnInit:
+	waitingroom "LV 91 ~",0;
+	end;
+}
+
+pvp_n_room.gat,86,85,4	script	打鬥場接待員#n-8pvp	105,{
+	callfunc "PvPreceptN",8,0,0;
+	close;
+OnInit:
+	waitingroom "無限制",0;
+	end;
+}

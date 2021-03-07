@@ -1,0 +1,435 @@
+jawaii.gat,171,252,4	script	釣魚場	46,10,10{
+if ($st==0){
+set $zy$,$zy$+"■■■■■";
+setarray $jy$[0],"新來報道","低級漁人","低級漁人","低級漁人","中級漁人","中級漁人","中級漁人","高級漁人","高級漁人","高級漁人","頂級漁人";   //如果需要改變等級的名字,就在這裡修改
+setarray $wp$[0],getitemname(544),getitemname(579),getitemname(624),getitemname(950),getitemname(1023),getitemname(1053),getitemname(1144),getitemname(5065),getitemname(7083),getitemname(12069),getitemname(12087),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929),getitemname(929);  //如果想修改獲得的獎品,可在這裡修改,建議別改變數組的數量(物品的數量不要超過30個)
+setarray $wp1[0],544,579,624,950,1023,1053,1144,5065,7083,12069,12087,929,929,929,929,929,929,929,929,929,929,929,929,929,929,929,929,929,929,929;  //如果改了上面獲得物品的數字,這裡也必須跟上面的數字同步
+setarray $xp[0],50,50,50,50,50,50,50,50,50,50,50;  //這裡可以改獲得物品的經驗,這裡的數組就只有11個變量,但上面的數組的數量有30個,少了是因為在ITEM-DB裡,代碼為1100是的物品是一袋垃圾,垃圾不計算經驗.如果上面1100改了其他數字,這裡也要繼續寫進去
+setarray $zxp[1],500,1500,3500,7500,15000,35000,60000,100000,140000,200000;  //這裡可以改1-10級的經驗
+setarray $bz[0],5,5,5,5,5,5,5,5,5,5,5; //這裡是釣到有經驗的物品消耗的數量,總資源為1000,每少200就減少一格資源
+set $zy1,1000;  //這裡是總資源的數量,建議別改
+set $szzdz,0;
+deletearray $th5$,@szcd;
+deletearray $th4$,@szcd;
+deletearray $th3$,@szcd;
+deletearray $th2$,@szcd;
+deletearray $th1$,@szcd;
+}
+set $st,1;
+set sd,sd+1;
+if(sd==1){
+set sd,2;
+set sz,0;
+set sxjy,1;
+}
+if ($szzdz==0){
+set $szzdz,1;
+set $zdz,30;
+}
+if (@dys==5){
+mes "你正在釣魚，請等待釣魚後，再釣第2次";
+close;
+}
+mes "[釣魚場]";
+mes "此漁場資源為: "+$zy$+"("+$zy1/10+"%)" ;
+mes "你需要釣魚嗎?";
+callfunc "GM設定";
+next;
+switch(select("我要釣魚","不用了,無聊","查看個人資料",@lsz$))
+{
+case 1:
+next;
+set st,1;
+mes "請別動,可以關閉窗口，如果動了，就會釣魚失敗";
+set @map$,getpcxy(getcharid(0),1);
+set @mapx,getpcxy(getcharid(0),2);
+set @mapy,getpcxy(getcharid(0),3);
+set @dys,5;
+cutin "dy00",1;
+callfunc "釣魚設計時";
+break;
+
+case 2:
+close;
+break;
+
+case 3:
+mes "你現在是一個 ^FF0000" +$jy$[(sz)]+"^000000";
+mes "你現在的經驗是 ^80FF00" +jy+"^000000";
+close;
+break;
+
+case 4:
+next;
+set $jssj,5000;
+mes "你好,GM";
+mes "請問你想做什麼呢?";
+switch(select("修改等級名字","修改物品","修改釣到物品的經驗","修改每個物品消耗的資源","修改每級需要的經驗","完整初始化(選這項時請謹慎,或者點擊進入看說明)","查看現在狀況","修改每次抽取物品的範圍","修改單個物品經驗消耗的資源",)){
+case 1:
+next;
+for(set @djxg,0;@djxg<11;set @djxg,@djxg+1){
+mes "請輸入" +@djxg+"級名字";
+input $jy$[(@djxg)];
+mes "你剛才輸入了"+$jy$[(@djxg)];
+}
+close;
+break;
+
+case 2:
+next;
+for(set @wp2,0;@wp2<$zdz+131;set @wp2,@wp2+1){
+mes "請輸入第"+@wp2+"個物品的代碼";
+input @sjwp;
+set $wp1[(@wp2)],@sjwp;
+set $wp$[(@wp2)],getitemname(@sjwp);
+mes "你剛才寫了"+$wp1[(@wp2)]+"("+$wp$[(@wp2)]+")";
+}
+close;
+break;
+
+case 3:
+next;
+for(set @xgjy,0;@xgjy<$zdz+1;set @xgjy,@xgjy+1){
+mes "請輸入物品第"+@xgjy1+"個的經驗";
+input @xgjy1;
+set $xp[(@xgjy)],@xgjy1;
+mes "你剛輸入的經驗為"+$xp[(@xgjy)];
+}
+close;
+break;
+
+case 4:
+next;
+for(set @bz2,0;@bz2<$zdz+1;set @bz2,@bz2+1){
+mes "請輸入第"+@xp2+"個物品消耗的千分比";
+input @xp3;
+set $bz[(@bz2)],@xp3;
+mes "你剛才輸入的消耗千分比為:"+$bz[(@bz2)];
+}
+close;
+break;
+
+case 5:
+next;
+for(set @szjy,1;@szjy<11;set @szjy,@szjy+1){
+mes "請輸入第"+@szjy+"級的經驗";
+input @szjy1;
+set $zxp[(@szjy)],@szjy1;
+mes "你剛才輸入的經驗為"+$zxp[(@szjy)];
+}
+close;
+break;
+
+case 6:
+next;
+mes "說明:";
+mes "使用這項時,是把腳本中的所有數據按照腳本上面的數據去操作";
+mes "所以,如果你改變某些東西時,可以先去改腳本上面的數據,再去操作";
+mes "這項包括了所有人物初始化,資源初始化,以及其他數據初始化";
+mes "那你要執行嗎?";
+switch(select("不用了","需要"))
+{
+case 1:
+close;
+break;
+
+case 2:
+set $st,0;
+mes "OK了";
+mes "初始化成功!";
+close;
+break;
+}
+
+case 7:
+next;
+mes "物品:";
+for(set @wp2,0;@wp2<$zdz+1;set @wp2,@wp2+1){
+mes "第"+@wp2+"個物品:"+$wp1[(@wp2)]+"("+$wp$[(@wp2)]+")";
+}
+next;
+mes "每個物品的經驗:";
+for(set @xgjy,0;@xgjy<$zdz+1;set @xgjy,@xgjy+1){
+mes "第"+@xgjy+"個的經驗為"+$xp[(@xgjy)];
+}
+next;
+mes "每級需要的經驗:";
+for(set @szjy,1;@szjy<11;set @szjy,@szjy+1){
+mes "第"+@szjy+"級的經驗為"+$zxp[(@szjy)];
+}
+next;
+mes "每個物品消耗的千分比:";
+for(set @bz2,0;@bz2<$zdz+1;set @bz2,@bz2+1){
+mes "第"+@bz2+"個物品的消耗千分比為:"+$bz[(@bz2)];
+}
+next;
+mes "每個級數的名字:";
+for(set @djxg,0;@djxg<11;set @djxg,@djxg+1){
+mes @djxg+"級"+$jy$[(@djxg)];
+}
+close;
+break;
+
+case 8:
+mes "現在抽取物品的範圍為：";
+mes "0-"+$zdz;
+mes "請輸入你想修改的最大範圍（0為固定，只需修改範圍的右邊那個數值）";
+next;
+input $zdz;
+mes "修改成功";
+mes "現在範圍為: 0-"+$zdz;
+close;
+break;
+
+case 9:
+next;
+mes "請問你需要修改什麼東西？";
+next;
+switch(select("單個物品","單個物品的經驗","單個物品消耗的千分比","某級所需的經驗","某個級的名字")){
+case 1:
+mes "請問你要修改哪個物品？";
+mes "物品表：";
+for(set @wp2,0;@wp2<$zdz+1;set @wp2,@wp2+1){
+mes "第"+@wp2+"個物品:"+$wp1[(@wp2)]+"("+$wp$[(@wp2)]+")";
+}
+next;
+mes "請輸入你想修改的物品序號";
+input @wp2;
+next;
+mes "請輸入此物品的ITEM代碼";
+input @sjwp;
+set $wp1[(@wp2)],@sjwp;
+set $wp$[(@wp2)],getitemname(@sjwp);
+next;
+mes "你剛才寫的是"+$wp1[(@wp2)]+"("+$wp$[(@wp2)]+")";
+mes "修改成功";
+close;
+break;
+case 2:
+mes "請問你要修改哪個物品經驗？";
+mes "物品經驗表：";
+for(set @xgjy,0;@xgjy<$zdz+1;set @xgjy,@xgjy+1){
+mes "第"+@xgjy+"個的經驗為"+$xp[(@xgjy)];
+}
+next;
+mes "請輸入你想修改的物品序號";
+input @xgjy;
+next;
+mes "請輸入此物品的經驗";
+input @xgjy1;
+set $xp[(@xgjy)],@xgjy1;
+next;
+mes "你剛輸入的經驗為"+$xp[(@xgjy)];
+mes "修改成功";
+close;
+break;
+case 3:
+mes "請問你要修改哪個物品消耗的千分比？";
+mes "物品消耗的千分比表：";
+for(set @bz2,0;@bz2<$zdz+1;set @bz2,@bz2+1){
+mes "第"+@bz2+"個物品的消耗千分比為:"+$bz[(@bz2)];
+}
+next;
+mes "請輸入你想修改的物品序號";
+input @bz2;
+next;
+mes "請輸入此物品消耗的千分比";
+input @xp3;
+set $bz[(@bz2)],@xp3;
+next;
+mes "你剛才輸入的消耗千分比為:"+$bz[(@bz2)];
+mes "修改成功";
+close;
+break;
+case 4:
+mes "請問你要修改哪個級的經驗？";
+mes "每級的經驗表:";
+for(set @szjy,1;@szjy<11;set @szjy,@szjy+1){
+mes "第"+@szjy+"級的經驗為"+$zxp[(@szjy)];
+}
+next;
+mes "請輸入你想修改的級值";
+input @szjy;
+next;
+mes "請輸入你想修改的經驗";
+input @szjy1;
+set $zxp[(@szjy)],@szjy1;
+next;
+mes "你剛才輸入的經驗為"+$zxp[(@szjy)];
+mes "修改成功";
+close;
+break;
+case 5:
+mes "請問你要修改哪個級的名字？";
+mes "每級的名字表:";
+for(set @djxg,0;@djxg<11;set @djxg,@djxg+1){
+mes @djxg+"級的名字是："+$jy$[(@djxg)];
+}
+next;
+mes "請輸入你想修改的級值";
+input @djxg;
+next;
+mes "請輸入你想修改的名字";
+input $jy$[(@djxg)];
+next;
+mes "你剛才輸入的名字是"+$jy$[(@djxg)];
+mes "修改成功";
+close;
+break;
+}
+}
+}}
+
+function	script	釣魚設計時	-1,{
+addtimer (15-sz)*1000,"釣魚計時::Ondc1";
+addtimer (30-2*sz)*1000,"釣魚計時::Ondc2";
+addtimer (45-3*sz)*1000,"釣魚計時::Ondc3";
+addtimer (60-4*sz)*1000,"釣魚計時::Ondc4";
+addtimer (75-5*sz)*1000,"釣魚計時::Ondc5";
+addtimer (90-6*sz)*1000,"釣魚計時::Ondc6";
+addtimer (105-7*sz)*1000,"釣魚計時::Ondc7";
+addtimer (120-8*sz)*1000,"釣魚計時::Ondc8";
+addtimer (135-9*sz)*1000,"釣魚計時::Ondc9";
+addtimer (150-10*sz)*1000,"釣魚計時::Ondc10";
+close;
+}
+jawaii.gat,0,0,0	script	釣魚計時	-1,{
+Ondc1:
+cutin "dy00",255;
+callfunc "檢察位置";
+cutin "dy10",1;
+end;
+
+Ondc2:
+cutin "dy10",255;
+callfunc "檢察位置";
+cutin "dy20",1;
+end;
+
+Ondc3:
+cutin "dy20",255;
+callfunc "檢察位置";
+cutin "dy30",1;
+end;
+
+Ondc4:
+cutin "dy30",255;
+callfunc "檢察位置";
+cutin "dy40",1;
+end;
+
+Ondc5:
+cutin "dy40",255;
+callfunc "檢察位置";
+cutin "dy50",1;
+end;
+
+Ondc6:
+cutin "dy50",255;
+callfunc "檢察位置";
+cutin "dy60",1;
+end;
+
+Ondc7:
+cutin "dy60",255;
+callfunc "檢察位置";
+cutin "dy70",1;
+end;
+
+Ondc8:
+cutin "dy70",255;
+callfunc "檢察位置";
+cutin "dy80",1;
+end;
+
+Ondc9:
+cutin "dy80",255;
+callfunc "檢察位置";
+cutin "dy90",1;
+end;
+
+Ondc10:
+cutin "dy90",255;
+callfunc "檢察位置";
+cutin "dy100",1;
+callfunc "釣魚";
+end;
+
+}
+
+function	script	釣魚	-1,{
+mes "請按下一步";
+callfunc "檢察位置";
+next;
+cutin "dy100",255;
+mes "恭喜你,你已經完成了釣魚過程";
+mes "你這次獲得的獎品有:";
+set @ls,rand(0,$zdz-($zy1/20*sz)^2/200);
+getitem $wp1[(@ls)],1;
+mes "^80FF00"+getitemname(($wp1[(@ls)]))+"(經驗增加"+$xp[(@ls)]+")^000000";
+set jy,jy+$xp[(@ls)];
+set $zy1,$zy1-$bz[(@ls)];
+if ($zy1<=1000)set $zy$,"■■■■■";
+if ($zy1<=800)set $zy$,"■■■■□";
+if ($zy1<=600)set $zy$,"■■■□□";
+if ($zy1<=400)set $zy$,"■■□□□";
+if ($zy1<=200)set $zy$,"■□□□□";
+next;
+if(jy>=$zxp[(sxjy)]){ 
+	if (sz<10){
+	set sz,sz+1;
+	set sxjy,sxjy+1;
+	mes "恭喜你,你已經升級";
+	mes "已經升為^80FF00" +$jy$[(sz)]+"^000000";
+}
+mes "你的等級以達到最高...";
+}
+mes "你還有^00FFFF"+ ($zxp[(sxjy)]-jy) +"^000000經驗才能升級";
+set @dys,1;
+close;
+}
+jawaii.gat,0,0,0	script	資源恢復	-1,{
+OnTimer5000:
+if ($zy1<1000){
+set $zy1,$zy1+2;
+if ($zy1<=1000)set $zy$,"■■■■■";
+if ($zy1<=800)set $zy$,"■■■■□";
+if ($zy1<=600)set $zy$,"■■■□□";
+if ($zy1<=400)set $zy$,"■■□□□";
+if ($zy1<=200)set $zy$,"■□□□□";
+}
+setnpctimer 0;
+end;
+OnInit:
+initnpctimer;
+end;
+}
+
+function	script	GM設定	-1,{
+if (getgmlevel(getcharid(0))==99){
+set @lsz$,"GM設定";
+return;
+}
+return;
+}
+
+function	script	檢察位置	-1,{
+set @map1$,getpcxy(getcharid(0),1);
+set @map1x,getpcxy(getcharid(0),2);
+set @map1y,getpcxy(getcharid(0),3);
+if ((@map1$!=@map$)||(@map1x!=@mapx)||(@map1y!=@mapy)){
+deltimer "釣魚計時::Ondc1";
+deltimer "釣魚計時::Ondc2";
+deltimer "釣魚計時::Ondc3";
+deltimer "釣魚計時::Ondc4";
+deltimer "釣魚計時::Ondc5";
+deltimer "釣魚計時::Ondc6";
+deltimer "釣魚計時::Ondc7";
+deltimer "釣魚計時::Ondc8";
+deltimer "釣魚計時::Ondc9";
+deltimer "釣魚計時::Ondc10";
+mes "因你已經離開原來位置,所以釣魚不能完成";
+close;
+}
+return;
+}

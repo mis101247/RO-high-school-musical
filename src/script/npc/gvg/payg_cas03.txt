@@ -1,0 +1,73 @@
+//===================================================================
+//Ragnarok Online EP2.5 GVG Script	payg_cas03         by kalen
+//===================================================================
+-	script	gfpayC	722,{
+callfunc "flagsc","payg_cas03.gat",2,0,0,0;
+OnRecvCastleF03:
+	FlagEmblem getcastledata("payg_cas03.gat",1);
+	end;
+}
+pay_gld.gat,321,298,2	duplicate(gfpayC)	竹林岐#f3-1	722
+pay_gld.gat,321,289,2	duplicate(gfpayC)	竹林岐#f3-2	722
+pay_gld.gat,327,304,1	duplicate(gfpayC)	竹林岐#f3-3	722
+pay_gld.gat,333,254,4	duplicate(gfpayC)	竹林岐#f3-4	722
+payg_cas03.gat,236,54,2	duplicate(gfpayC)	竹林岐#f3-5	722
+payg_cas03.gat,236,45,2	duplicate(gfpayC)	竹林岐#f3-6	722
+payg_cas03.gat,259,66,4	duplicate(gfpayC)	竹林岐#f3-7	722
+payg_cas03.gat,266,66,4	duplicate(gfpayC)	竹林岐#f3-8	722
+payg_cas03.gat,34,31,4	duplicate(gfpayC)	竹林岐#f3-9	722
+payg_cas03.gat,43,31,4	duplicate(gfpayC)	竹林岐#f3-10	722
+//------------------------------ロкь--------------------------------
+payg_cas03.gat,9,263,5	script	卡普拉 職員::kapra_payg03	117,{
+	callfunc "gkfmenu","payg_cas03.gat";
+	menu "使用倉庫服務",L2,"使用空間移動服務",L3,"使用手推車服務",L4,"結束",L7;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "gkfwarp","斐揚","payon.gat",158,88;
+L4:
+	callfunc "kfcart",800;
+L7:
+	callfunc "kfend";
+}
+//-------------------------------管理人---------------------------------
+payg_cas03.gat,50,261,3	script	凱利娥	55,{
+	callfunc "Steward_menu0","payg_cas03.gat","凱利娥";
+	menu "查看秘密基地狀況",L1,"投資商業發展度",L2,"投資防禦度",L3,"設定監護人",L4,"僱用 / 解雇 倉庫職員",L5,"進入主人房間",L6,"讓出秘密基地",L7;
+L1:
+	callfunc "Steward_menu1","payg_cas03.gat","凱利娥";
+L2:
+	callfunc "Steward_menu2","payg_cas03.gat","凱利娥";
+L3:
+	callfunc "Steward_menu3","payg_cas03.gat","凱利娥";
+L4:
+	callfunc "Steward_menu4","payg_cas03.gat","凱利娥";
+	if (@GDnum == 10) monster "payg_cas03.gat",245,37,"--ja--",1285,1,"Agit_C03::On_GDf31";
+	if (@GDnum == 11) monster "payg_cas03.gat",269,51,"--ja--",1285,1,"Agit_C03::On_GDf32";
+	if (@GDnum == 12) monster "payg_cas03.gat",36,39,"--ja--",1285,1,"Agit_C03::On_GDf33";
+	if (@GDnum == 13) monster "payg_cas03.gat",41,39,"--ja--",1285,1,"Agit_C03::On_GDf34";
+	if (@GDnum == 14) monster "payg_cas03.gat",39,65,"--ja--",1285,1,"Agit_C03::On_GDf35";
+	if (@GDnum == 15) monster "payg_cas03.gat",19,276,"--ja--",1285,1,"Agit_C03::On_GDf36";
+	if (@GDnum == 16) monster "payg_cas03.gat",37,277,"--ja--",1285,1,"Agit_C03::On_GDf37";
+	if (@GDnum == 17) monster "payg_cas03.gat",268,244,"--ja--",1286,1,"Agit_C03::On_GDf38";
+	mes "[管理人凱利娥]";
+	mes "監護人已經設定完畢。";
+	mes "監護人能守護我們的城";
+	mes "防止敵人的進攻。";
+	close;
+L5:
+	callfunc "Steward_menu5","payg_cas03.gat","凱利娥","kapra_payg03";
+L6:
+	callfunc "Steward_menu6","payg_cas03.gat","凱利娥",155,165;
+L7:
+	callfunc "Steward_menu7","payg_cas03.gat","凱利娥";
+	callfunc "resetcastledata","payg_cas03.gat","::OnRecvCastleF03","kapra_payg03",@GID,"::OnGDEMPSetF03";
+}
+//-----------------------------開關-------------------------------
+payg_cas03.gat,163,167,0	script	　	111,{
+callfunc "gdswitch","payg_cas03.gat",50,262;
+}
+//-----------------------------開關2------------------------------
+payg_cas03.gat,38,42,0	script	　	111,{
+callfunc "gdswitch2","payg_cas03.gat","gld_dun01.gat",54,39;
+}

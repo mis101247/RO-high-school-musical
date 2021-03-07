@@ -1,0 +1,459 @@
+prontera.gat,156,186,6	script	魔物之塔傳送員	806,{
+mes "[魔物之塔傳送員]";
+mes "我是魔物之塔傳送員,有沒有膽量去挑戰,哇哈哈!";
+mes "費用是100元";
+mes "要或不要,一句話??";
+next;
+menu"要",L_OK,"不要",L_NO;
+
+L_OK:
+if (Zeny<100) goto NeedZenys;
+set Zeny,Zeny-100;
+goto L_YES;
+
+L_YES: warp "wizard_2-1",93,59; close;
+
+L_NO:
+mes "[魔物之塔傳送員]";
+mes "真沒種,還想當什麼英雄";
+close;
+
+
+NeedZenys:
+mes "[魔物之塔傳送員]";
+mes "沒錢還想我幫你傳送,別笑死人";
+close;
+}
+
+//----------------------------------------------------------------
+
+wizard_2-1.gat,108,61,4	script	回城傳送員	806,{
+mes "[回城傳送員]";
+mes "想要回去,除非你有蝴蝶翅膀,否則是回不去,別想用登出大法(登出一樣回不去)";
+mes "如果沒有蝴蝶翅膀,也沒關係,只要付費,我可以幫你傳回去";
+mes "費用是100元,要或不要,一句話??";
+next;
+menu"要",L_koko1,"不要",L_koko2;
+
+L_koko1:
+if (Zeny<10000) goto NeedZenys;
+set Zeny,Zeny-10000;
+goto L_koko3;
+
+L_koko3: warp "prontera",155,167; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+
+//---------------------------------------------------------------------
+
+wizard_2-1.gat,104,95,4	script	魔物之塔傳送員	806,{
+mes "[魔物之塔傳送員]";
+mes "你要去二樓嗎??費用一樣是1000元";
+next;
+menu"要",L_OK1,"不要",L_NO2;
+
+L_OK1:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_YES1;
+
+L_YES1: warp "wizard_3-1",93,59; close;
+
+L_NO2:
+mes "[魔物之塔傳送員]";
+mes "不敢上去,真沒膽量";
+close;
+}
+//---------------------------------------------------------------------
+
+wizard_3-1.gat,108,61,4	script	回城傳送員	806,{
+mes "[回城傳送員]";
+mes "想要回去,除非你有蝴蝶翅膀,否則是回不去,別想用登出大法(登出一樣回不去)";
+mes "如果沒有蝴蝶翅膀,也沒關係,只要付費,我可以幫你傳回去";
+mes "費用是1000元,要或不要,一句話??";
+next;
+menu"要",L_koko1,"不要",L_koko2;
+
+L_koko1:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_koko3;
+
+L_koko3: warp "prontera",155,167; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+
+//---------------------------------------------------------------------
+
+wizard_3-1.gat,104,95,4	script	魔物之塔傳送員	806,{
+mes "[魔物之塔傳送員]";
+mes "你要去三樓嗎??費用一樣是1000元";
+mes "若要回一樓也是找我,我不收費的";
+next;
+menu"要",L_OK2,"不要",L_NO2,"回到1樓",L_Y1;
+
+
+L_OK2:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_YES2;
+
+L_YES2: warp "wizard_1-1",93,59; close;
+
+L_Y1: warp "wizard_2-1",93,59; close;
+
+L_NO2:
+mes "[魔物之塔傳送員]";
+mes "不敢上去,真沒膽量";
+close;
+}
+
+//-----------------------------------------------------------------------------
+
+wizard_1-1.gat,108,61,4	script	回城傳送員	806,{
+mes "[回城傳送員]";
+mes "想要回去,除非你有蝴蝶翅膀,否則是回不去,別想用登出大法(登出一樣回不去)";
+mes "如果沒有蝴蝶翅膀,也沒關係,只要付費,我可以幫你傳回去";
+mes "費用是1000元,要或不要,一句話??";
+next;
+menu"要",L_koko1,"不要",L_koko2;
+
+L_koko1:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_koko3;
+
+L_koko3: warp "prontera",155,167; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+
+//---------------------------------------------------------------------
+
+wizard_1-1.gat,104,95,4	script	魔物之塔傳送員	806,{
+mes "[魔物之塔傳送員]";
+mes "你要去四樓嗎??費用一樣是1000元";
+mes "若要回二樓也是找我,我不收費的";
+next;
+menu"要",L_OK2,"不要",L_NO2,"回到2樓",L_Y1;
+
+
+L_OK2:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_YES2;
+
+L_YES2: warp "knight_1-1",95,65; close;
+
+L_Y1: warp "wizard_3-1",93,59; close;
+
+L_NO2:
+mes "[魔物之塔傳送員]";
+mes "不敢上去,真沒膽量";
+close;
+}
+
+//-----------------------------------------------------------------------------------
+
+knight_1-1.gat,111,111,4	script	回城傳送員	806,{
+mes "[回城傳送員]";
+mes "想要回去,除非你有蝴蝶翅膀,否則是回不去,別想用登出大法(登出一樣回不去)";
+mes "如果沒有蝴蝶翅膀,也沒關係,只要付費,我可以幫你傳回去";
+mes "費用是1000元,要或不要,一句話??";
+next;
+menu"要",L_koko1,"不要",L_koko2;
+
+L_koko1:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_koko3;
+
+L_koko3: warp "prontera",155,167; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+
+//---------------------------------------------------------------------
+
+knight_1-1.gat,88,111,4	script	魔物之塔傳送員	806,{
+mes "[飯堂之塔五樓傳送員]";
+mes "你要去五樓嗎??費用一樣是1000元";
+mes "若要回三樓也是找我,我不收費的";
+next;
+menu"要",L_OK2,"不要",L_NO2,"回到3樓",L_Y1;
+
+
+L_OK2:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_YES2;
+
+L_YES2: warp "knight_2-1",95,65; close;
+
+L_Y1: warp "wizard_1-1",93,59; close;
+
+L_NO2:
+mes "[魔物之塔傳送員]";
+mes "不敢上去,真沒膽量";
+close;
+}
+
+//----------------------------------------------------------------------
+
+knight_2-1.gat,111,111,4 script	回城傳送員	806,{
+mes "[回城傳送員]";
+mes "想要回去,除非你有蝴蝶翅膀,否則是回不去,別想用登出大法(登出一樣回不去)";
+mes "如果沒有蝴蝶翅膀,也沒關係,只要付費,我可以幫你傳回去";
+mes "費用是1000元,要或不要,一句話??";
+next;
+menu"要",L_koko1,"不要",L_koko2;
+
+L_koko1:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_koko3;
+
+L_koko3: warp "prontera",155,167; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+
+//---------------------------------------------------------------------
+
+knight_2-1.gat,88,111,5 script 魔物之塔傳送員	806,{
+mes "[魔物之塔傳送員]";
+mes "你要去六樓嗎??費用一樣是1000元";
+mes "若要回四樓也是找我,我不收費的";
+next;
+menu"要",L_OK2,"不要",L_NO2,"回到4樓",L_Y1;
+
+
+L_OK2:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_YES2;
+
+L_YES2: warp "knight_3-1",95,65; close;
+
+L_Y1: warp "knight_1-1",95,65; close;
+
+L_NO2:
+mes "[魔物之塔傳送員]";
+mes "不敢上去,真沒膽量";
+close;
+}
+
+//---------------------------------------------------------------------------
+
+knight_3-1.gat,111,111,4 script 回城傳送員	806,{
+mes "[回城傳送員]";
+mes "想要回去,除非你有蝴蝶翅膀,否則是回不去,別想用登出大法(登出一樣回不去)";
+mes "如果沒有蝴蝶翅膀,也沒關係,只要付費,我可以幫你傳回去";
+mes "費用是1000元,要或不要,一句話??";
+next;
+menu"要",L_koko1,"不要",L_koko2;
+
+L_koko1:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_koko3;
+
+L_koko3: warp "prontera",155,167; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+
+//---------------------------------------------------------------------
+
+knight_3-1.gat,88,111,5 script 魔物之塔傳送員	806,{
+mes "[魔物之塔傳送員]";
+mes "你要去七樓嗎??費用一樣是1000元";
+mes "若要回五樓也是找我,我不收費的";
+next;
+menu"要",L_OK2,"不要",L_NO2,"回到5樓",L_Y1;
+
+
+L_OK2:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_YES2;
+
+L_YES2: warp "prt_are01",148,150; close;
+
+L_Y1: warp "knight_2-1",95,65; close;
+
+L_NO2:
+mes "[魔物之塔傳送員]";
+mes "不敢上去,真沒膽量";
+close;
+}
+
+//----------------------------------------------------------------
+
+prt_are01.gat,163,163,4 script 回城傳送員	806,{
+mes "[回城傳送員]";
+mes "這層樓是無法使用蝴蝶翅膀和蒼蠅翅膀的,登出大法也是(登出一樣回不去)";
+mes "要回去,只要付費,我可以幫你傳回去";
+mes "費用是1000元,要或不要,一句話??";
+next;
+menu"要",L_koko1,"不要",L_koko2;
+
+L_koko1:
+if (Zeny<1000) goto NeedZenys;
+set Zeny,Zeny-1000;
+goto L_koko3;
+
+L_koko3: warp "prontera",155,167; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+
+
+怪物:
+//魔物之塔
+//-------------------------------------------------------------------
+//魔物之塔1樓 (wizard_2-1)
+wizard_2-1.gat,0,0,0,0      monster      波利      1002,10,0,0,0
+wizard_2-1.gat,0,0,0,0      monster      土波利      1113,10,0,0,0
+wizard_2-1.gat,0,0,0,0      monster      波波利      1031,10,0,0,0
+wizard_2-1.gat,0,0,0,0      monster      冰波利      1242,10,0,0,0
+wizard_2-1.gat,0,0,0,0      monster      聖誕波利      1062,5,0,0,0
+
+
+//-------------------------------------------------------------------
+//魔物之塔2樓 (wizard_3-1)
+wizard_3-1.gat,0,0,0,0      monster      克瑞米      1018,7,0,0,0
+wizard_3-1.gat,0,0,0,0      monster      大嘴鳥      1019,7,0,0,0
+wizard_3-1.gat,0,0,0,0      monster      獸人戰士      1023,7,0,0,0
+wizard_3-1.gat,0,0,0,0      monster      森靈      1024,7,0,0,0
+wizard_3-1.gat,0,0,0,0      monster      青蛇      1025 ,7,0,0,0
+
+
+//--------------------------------------------------------------------
+//魔物之塔3樓 (wizard_1-1)
+wizard_1-1.gat,0,0,0,0      monster      邪骸戰士      1076,15,0,0,0
+wizard_1-1.gat,0,0,0,0      monster      殭屍      1026,10,0,0,0
+wizard_1-1.gat,0,0,0,0      monster      泥人      1165,10,0,0,0
+
+
+//--------------------------------------------------------------------
+//魔物之塔4樓 (knight_1-1)
+knight_1-1.gat,0,0,0,0      monster      邪骸弓箭手      1016,5,0,0,0
+knight_1-1.gat,0,0,0,0      monster      獸人弓箭手      1189,5,0,0,0
+knight_1-1.gat,0,0,0,0      monster      玩具士兵      1248,5,0,0,0
+knight_1-1.gat,0,0,0,0      monster      蝙蝠弓箭手      1253,5,0,0,0
+knight_1-1.gat,0,0,0,0      monster      哥布靈弓箭手      1258,5,0,0,0
+knight_1-1.gat,0,0,0,0      monster      幽靈弓箭手      1276,5,0,0,0
+knight_1-1.gat,0,0,0,0      monster      犬妖弓箭手      1282,5,0,0,0
+knight_1-1.gat,0,0,0,0      monster      惡魔侍者      1374,1,0,0,0
+
+
+//--------------------------------------------------------------------
+//魔物之塔5樓 (knight_2-1)
+knight_2-1.gat,0,0,0,0      monster      小惡魔      1109,5,0,0,0
+knight_2-1.gat,0,0,0,0      monster      惡靈      1192,5,0,0,0
+knight_2-1.gat,0,0,0,0      monster      幽靈劍士      1163,10,0,0,0
+knight_2-1.gat,0,0,0,0      monster      邪骸戰俘      1196,10,0,0,0
+knight_2-1.gat,0,0,0,0      monster      腐屍戰俘      1197,10,0,0,0
+knight_2-1.gat,0,0,0,0      monster      闇神官      1117,5,0,0,0
+knight_2-1.gat,0,0,0,0      monster      卡利斯格      1132,5,0,0,0
+knight_2-1.gat,0,0,0,0      monster      惡魔女僕      1370,1,0,0,0
+
+
+//---------------------------------------------------------------------
+//魔物之塔6樓 (knight_3-1)
+knight_3-1.gat,0,0,0,0      monster      邪骸浪人      1208,5,0,0,0
+knight_3-1.gat,0,0,0,0      monster      史汀      1207,5,0,0,0
+knight_3-1.gat,0,0,0,0      monster      虎蜥人      1206,5,0,0,0
+knight_3-1.gat,0,0,0,0      monster      裘卡      1131,3,0,0,0
+knight_3-1.gat,0,0,0,0      monster      艾吉歐蜈蚣      1099,5,0,0,0
+knight_3-1.gat,0,0,0,0      monster      飛行魔書      1195,5,0,0,0
+knight_3-1.gat,0,0,0,0      monster      邪惡箱      1191,3,0,0,0
+knight_3-1.gat,0,0,0,0      monster      赤蒼蠅      1035,3,0,0,0
+knight_3-1.gat,0,0,0,0      monster      狂暴月夜貓      1307,1,0,0,0
+
+
+//----------------------------------------------------------------------
+//魔物之塔7樓 (prt_are01) {MVP級和小王級之樓}
+
+prt_are01.gat,0,0,0,0      monster      獸人酋長      1190,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      黑暗之王      1272,2,0,0,0
+prt_are01.gat,0,0,0,0      monster      死靈騎士      1373,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      冰暴騎士      1251,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      烏龜將軍      1312,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      黑暗之蛇      1418,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      怨靈武士      1492,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      皮裡恩      1159,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      月夜貓      1150,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      蟻後      1147,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      虎王      1115,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      海盜之王      1112,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      獸人英雄      1087,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      黃金蟲      1086,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      蜂后      1059,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      死靈      1046,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      巴風特      1039,5,0,0,0
+prt_are01.gat,0,0,0,0      monster      俄賽裡斯      1038,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      卡侖      1252,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      德古拉男爵      1389,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      搖滾蝗蟲      1088,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      蛙王      1089,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      波利之王      1090,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      蒼蠅王      1091,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      狼王      1092,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      瘋兔王      1093,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      天使波利      1096,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      幽靈波利      1120,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      凱美拉      1283,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      血腥騎士      1268,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      半龍人      1262,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      獅鷲獸      1259,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      深淵騎士      1219,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      鴞裊男爵      1295,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      行刑者      1205,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      獸牙怪      1204,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      弒神者      1203,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      艾斯恩魔女      1200,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      法老王      1157,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      巴風特     1039,1,0,0,0
+prt_are01.gat,0,0,0,0      monster      巴風特     1039,1,0,0,0
+
+
+//----------------------------------------------------------------------
+
+//怪物可自行變更
+//要開的MAP
+//wizard_2-1
+//wizard_3-1
+//wizard_1-1
+//knight_1-1
+//knight_2-1
+//knight_3-1
+//prt_are01
+//gef_dun03
+//arena_room
+//guild_vs1
+//guild_vs3

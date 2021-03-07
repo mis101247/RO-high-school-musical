@@ -1,0 +1,82 @@
+//==============================================================================
+//Ragnarok Online EPx Gefenia Script(From ASB ЛみЗ信賴度：極低)	by Kalen
+// 漢化:LKM
+// http://coolro.cnnb.net
+//==============================================================================
+//--------------------------------------Mob-------------------------------------
+
+//--------------------------------------Mapflag---------------------------------
+gefenia01.gat	mapflag	nomemo	dummy
+gefenia02.gat	mapflag	nomemo	dummy
+gefenia03.gat	mapflag	nomemo	dummy
+gefenia04.gat	mapflag	nomemo	dummy
+
+//--------------------------------------Warp------------------------------------
+//gefenia01-04
+gefenia01.gat,38,103,0	warp	gef01-gef04	3,3,gefenia04.gat,279,93
+gefenia04.gat,287,93,0	warp	gef04-gef01	3,3,gefenia01.gat,44,103
+
+//gefenia04-03
+gefenia04.gat,35,273,0	warp	gef04-gef03-l	3,3,gefenia03.gat,58,23
+gefenia04.gat,131,275,0	warp	gef04-gef03-r	3,3,gefenia03.gat,145,34
+gefenia03.gat,58,26,0	warp	gef03-gef04-l	3,3,gefenia04.gat,35,266
+gefenia03.gat,145,28,0	warp	gef03-gef04-r	3,3,gefenia04.gat,130,271
+
+//gefenia03-02
+gefenia03.gat,269,235,0	warp	gef03-gef02-t	3,3,gefenia02.gat,22,236
+gefenia03.gat,258,170,0	warp	gef03-gef02-b	3,3,gefenia02.gat,24,173
+gefenia02.gat,18,239,0	warp	gef02-gef03-t	3,3,gefenia03.gat,263,235
+gefenia02.gat,17,174,0	warp	gef02-gef03-b	3,3,gefenia03.gat,252,170
+
+//gefenia02-01
+gefenia02.gat,241,19,0	warp	gef02-gef01-r	3,3,gefenia01.gat,236,251
+gefenia02.gat,204,29,0	warp	gef02-gef01-l	3,3,gefenia01.gat,199,261
+gefenia01.gat,236,259,0	warp	gef01-gef02-r	3,3,gefenia02.gat,242,24
+gefenia01.gat,199,269,0	warp	gef01-gef02-l	3,3,gefenia02.gat,204,35
+
+//--------------------------------------NPC-------------------------------------
+gefenia01.gat,61,169,5	script	探險家	702,{
+	mes "[探險家]";
+	mes "要回去了嗎？";
+	next;
+	if(select("是的","不")==1) {
+		warp "gef_dun03.gat",138,117;
+		end;
+	}
+	close;
+}
+
+//超腦內
+gef_dun03.gat,131,118,6	script	探險家	702,{
+	mes "[探險家]";
+	mes "你好啊";
+	mes "我是從中央精神王國國王的";
+	mes "委託調查葛帔尼亞的";
+	mes "詳細情況。";
+	next;
+	mes "[探險家]";
+	mes "在最近";
+	mes "這裡發現了一些東西。";
+	mes "那是在傳說中的東西";
+	mes "在^3355ff葛帔尼亞^000000。";
+	next;
+	mes "[探險家]";
+	mes "根據國王的指示";
+	mes "我在這裡";
+	mes "隨著調查的事情是、";
+	mes "正在尋找";
+	mes "一起去的冒險者";
+	next;
+	if(select("去看看","我去睡覺先")==1) {
+		mes "[探險家]";
+		mes "一起去嗎！";
+		mes "謝謝了～";
+		mes "我們快走吧";
+		close2;
+		warp "gefenia01.gat",58,169;
+		end;
+	}
+	mes "[探險家]";
+	mes "-_-";
+	close;
+}

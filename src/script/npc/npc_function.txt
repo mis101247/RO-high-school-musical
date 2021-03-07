@@ -1,0 +1,1446 @@
+//=============================================================================
+// Ragnarok Online NPC Function script
+//==============================================================================
+// 卡普拉「傳送服務」
+// callfunc "kftransport",Place,Price[,Place,Price...],0;
+//------------------------------------------------------------------------------
+//  1	首都 普隆德拉
+//  2	衛星都市 依斯魯得島
+//  3	魔法之都 吉芬
+//  4	山岳之都 斐揚
+//  5	沙漠之都 夢羅克
+//  6	運河之都 艾爾帕蘭
+//  7	獸人村落
+//  8	港口之都 艾爾貝塔
+//  9	妙勒尼 廢礦
+// 10	海邊之都 克魔島
+// 11	發樂斯 燈塔島
+// 12	克魔島發樂斯 燈塔島
+// 13	朱諾
+// 14	予備1
+// 15	予備2
+// 16	予備3
+//==============================================================================
+function	script	kftransport	{
+	setarray @placename$,"普隆德拉","依斯魯得島","吉芬","斐揚"
+	,"夢羅克","艾爾帕蘭","東邊 獸人村落","艾爾貝塔"
+	,"妙勒尼 廢礦","克魔島","發樂斯 燈塔島","發樂斯 燈塔島"
+	,"朱諾","予備1","予備2","予備3";
+	cleararray @place$,"",16;
+	for ( set @i,0; @i<16; set @i,@i+1 ) {
+		if ( getarg(@i*2)==0 ) break;
+		set @price[@i],getarg(@i*2+1);
+		set @place$[@i],@placename$[getarg(@i*2)-1] + " -> " + @price[@i] + " z";
+	}
+	//set @max,@i;
+	mes "[卡普拉服務人員]";
+	mes "請說你想要去的地方";
+	next;
+	set @i,select(@place$[0],@place$[1],@place$[2],@place$[3],@place$[4],@place$[5],@place$[6],@place$[7]
+	,@place$[8],@place$[9],@place$[10],@place$[11],@place$[12],@place$[13],@place$[14],@place$[15],"取消")-1;
+	if ( @i==16 ) {
+		mes "[卡普拉服務人員]";
+		mes "謝謝。";
+		mes "歡迎再來。";
+		goto L_kafraclose;
+	}
+	if ( Zeny<@price[@i] ) {
+		mes "[卡普拉服務人員]";
+		mes "你的金錢不足啊。";
+		goto L_kafraclose;
+	}
+	set Zeny,Zeny-@price[@i];
+	set KF_PIT,KF_PIT+(@price[@i]/10);
+	switch ( getarg(@i*2) ) {
+	case 1:
+		warp "prontera.gat",116,72;
+		break;
+	case 2:
+		warp "izlude.gat",91,105;
+		break;
+	case 3:
+		warp "geffen.gat",120,39;
+		break;
+	case 4:
+		warp "payon.gat",160,58;
+		break;
+	case 5:
+		warp "morocc.gat",156,46;
+		break;
+	case 6:
+		warp "alberta.gat",117,56;
+		break;
+	case 7:
+		warp "gef_fild10.gat",52,326;
+		break;
+	case 8:
+		warp "aldebaran.gat",143,110;
+		break;
+	case 9:
+		warp "mjolnir_02.gat",99,351;
+		break;
+	case 10:
+		warp "comodo.gat",209,143;
+		break;
+	case 11:
+	case 12:
+		warp "cmd_fild07.gat",127,134;
+		break;
+	case 13:
+		warp "yuno.gat",158,124;
+		break;
+	case 14:
+		warp "prontera.gat",116,72;
+		break;
+	case 15:
+		warp "prontera.gat",116,72;
+		break;
+	case 16:
+		warp "prontera.gat",116,72;
+	}
+	end;
+L_kafraclose:
+	close2;
+	cutin "kafra_01",255;
+	end;
+	return;
+}
+//==============================================================================
+// 卡普拉「倉庫服務」
+// callfunc "kfstorage",Price;
+//==============================================================================
+function	script	kfstorage	{
+	if ( basicskillcheck(0) && getskilllv(1)<6 ) {
+		mes "[卡普拉服務人員]";
+		mes "你的基本技能要6級以上";
+		mes "才能使用倉庫服務";
+		goto L_kafraclose;
+	}
+	if ( Zeny<getarg(0) ) {
+		mes "[卡普拉服務人員]";
+		mes "很抱歉,您的金錢不足";
+		mes "這至少需要"+getarg(0)+"Zeny。";
+		goto L_kafraclose;
+	}
+	set Zeny,Zeny-getarg(0);
+	openstorage;
+	cutin "kafra_01",255;
+	close;
+L_kafraclose:
+	close2;
+	cutin "kafra_01",255;
+	end;
+	return;
+}
+//==============================================================================
+// 卡普拉「租手推車」
+// callfunc "kfcart",Price;
+//==============================================================================
+function	script	kfcart	{
+	if ( Class!=5 && Class!=10 && Class!=18 ) {
+		mes "[卡普拉服務人員]";
+		mes "很抱歉，";
+		mes "手推車是商人和鐵匠、鍊金術師專用的服務";
+		goto L_kafraclose;
+	}
+	if ( Cart ) {
+		mes "[卡普拉服務人員]";
+		mes "你已經租過手推車了。";
+		goto L_kafraclose;
+	}
+	mes "[卡普拉服務人員]";
+	mes "手推車租金未"+getarg(0)+"Zeny。";
+	mes "如果沒學相關技能的話";
+	mes "是沒有手推車的。";
+	mes "還要租嗎？";
+	next;
+	if ( select("租用手推車","取消")==2 ) {
+		mes "[卡普拉服務人員]";
+		mes "謝謝。";
+		mes "歡迎再來。";
+		goto L_kafraclose;
+	}
+	if (Zeny<getarg(0)) {
+		mes "[卡普拉服務人員]";
+		mes "你的金錢不足啊。";
+		mes "需要"+getarg(0)+"Zeny。";
+		goto L_kafraclose;
+	}
+	set Zeny,Zeny-getarg(0);
+	setcart;
+L_kafraclose:
+	close2;
+	cutin "kafra_01",255;
+	end;
+	return;
+}
+//==============================================================================
+// 卡普拉「點數查詢」
+// callfunc "kfpoint";
+//==============================================================================
+function	script	kfpoint	{
+	mes "[卡普拉服務人員]";
+	mes ""+strcharinfo(0)+" 顧客的點數累積是";
+	mes "" + KF_PIT + " 點。";
+	next;
+	mes "[卡普拉服務人員]";
+  	mes "您可以用這些累積的點數";
+  	mes "在艾爾帕蘭的卡普拉總公";
+	mes "司兌換遊戲中的物品，.";
+  	mes "累積的點數越多，";
+	mes "可兌換的物品越多~";
+	close2;
+	cutin "kafra_01",255;
+	end;
+	return;
+}
+//==============================================================================
+// 卡普拉「總結」
+// callfunc "kfend";
+//==============================================================================
+function	script	kfend	{
+	mes "[卡普拉服務人員]";
+	mes "我們卡普拉公司";
+	mes "的服務是為了讓";
+	mes "顧客們放心和方";
+	mes "便使用.";
+	mes "我們會盡我們最";
+	mes "大的努力做到更.";
+	mes "好的服務與嚴格";
+	mes "的營業管理.";
+	mes "謝謝您們使用我們";
+	mes "卡普拉公司的服務.";
+	close2;
+	cutin "kafra_01",255;
+	end;
+	return;
+}
+//==============================================================================
+// PVP解說員全部
+// callfunc "pvpguide","SAVEMAP",X,Y;
+//==============================================================================
+function	script	pvpguide	{
+	mes "[PVP解說員]";
+	mes "你好！";
+	mes "我是擔任PVP";
+	mes "解說的";
+	mes "PVP 解說員！";
+	next;
+	switch ( select("^3355ff?PVP模式?^000000是什麼？","PVP模式的參加方法？","PVP模式的規則是什麼？","存儲現在位置","結束對話") ) {
+	case 1:	mes "[PVP解說員]";
+	mes "[PVP解說員]";
+	mes "PVP模式就是";
+	mes "?Player VS Player Mode?";
+	mes "的簡寫..";
+	mes "也就是一種在假想的世界裡，";
+	mes "享受玩家間大戰的特別戰鬥";
+	next;
+	mes "[PVP解說員]";
+	mes "簡單的說就是與其他玩家打鬥的模式";
+	mes "只要向我身邊這位^3355ff守門人^000000說一聲";
+	mes "表示願意嘗試的話。";
+	mes "他便會";
+	mes "引導你進入為PVP模式所準備的打鬥場";
+	next;
+	mes "[PVP解說員]";
+	mes "請你一定要小心";
+	mes "也請好好享受戰鬥的樂趣吧。";
+	mes "要進入PVP模式";
+	mes "玩家等級要達到31級以上。";
+	next;
+	mes "[PVP解說員]";
+	mes "擁有參加資格以後";
+	mes "選擇下列模式中任意一個";
+	mes "夢魘模式";
+	mes "溜溜猴模式";
+	mes "即可。";
+	next;
+	mes "[PVP解說員]";
+	mes "夢魘模式：";
+	mes "其規則與實戰";
+	mes "是一樣的";
+	mes "戰死後經驗值會損失";
+	mes "身上道具也會掉落。";
+	next;
+	mes "[PVP解說員]";
+	mes "請考慮清楚後";
+	mes "再選擇進入。";
+	close;
+	case 2:	mes "[PVP解說員]";
+	mes "[PVP解說員]";
+	mes "看見我身邊這位PVP守門人了？";
+	mes "與之對話，並交納";
+	mes "500 Zeny";
+	mes "便可以";
+	mes "移動到PVP打鬥場。";
+	next;
+	mes "[PVP解說員]";
+	mes "打鬥模式分為";
+	mes "溜溜猴模式和";
+	mes "夢魘模式";
+	mes "請一定小心選擇自己的模式";
+	mes "這2種";
+	mes "模式的打鬥場裡。";
+	next;
+	mes "[PVP解說員]";
+	mes "各有數名解說員";
+	mes "他們會將31級以上的參加者";
+	mes "每10等級";
+	mes "再做細分。";
+	next;
+	mes "[PVP解說員]";
+	mes "有5個PVP專用房間可供選擇";
+	mes "選擇你所想去的那個房間";
+	mes "便可移動到那裡";
+	mes "從解說員頭上的窗口。";
+	next;
+	mes "[PVP解說員]";
+	mes "可以知道等級的限制";
+	mes "以及此地圖正在進行打鬥的人數";
+	mes "這點請你要注意。";
+	next;
+	mes "[PVP解說員]";
+	mes "解說員頭上的窗口";
+	mes "會出現【參加人數/總人數】這樣的數據。";
+	next;
+	mes "[PVP解說員]";
+	mes "另一點請注意。";
+	mes "PVP專用地圖";
+	mes "是無法";
+	mes "儲存位置的。";
+	mes "請注意以上這點。";
+	close;
+	case 3:	mes "[PVP解說員]";
+	mes "[PVP解說員]";
+	mes "進入PVP模式後";
+	mes "畫面右下角";
+	mes "出現的是";
+	mes "該地圖";
+	mes "玩家自己的排行 / 地圖玩家人數";
+	next;
+	mes "[PVP解說員]";
+	mes "相信會對你有幫助。";
+	mes "在PVP模式中的經驗?";
+	mes "只有在PVP模式中適用";
+	mes "這點要注意";
+	mes "一開始每位玩家的經驗?";
+	next;
+	mes "[PVP解說員]";
+	mes "基本上都是' 5 '。";
+	mes "在途中若是";
+	mes "贏得勝利的話";
+	mes "可增加經驗 1";
+	mes "若是失敗的話。";
+	next;
+	mes "[PVP解說員]";
+	mes "則經驗會減少 5";
+	mes "如果經驗減到0以下";
+	next;
+	mes "[PVP解說員]";
+	mes "則會被踢出PVP模式";
+	mes "不得繼續參與。";
+	mes "但是如果經驗大於0";
+	mes "卻被殺死的話";
+	mes "可以藉由同伴";
+	next;
+	mes "[PVP解說員]";
+	mes "回復體力，繼續參與遊戲";
+	mes "這樣你懂了吧。";
+	next;
+	mes "[PVP解說員]";
+	mes "打鬥的規則";
+	mes "與外面戰鬥的規則";
+	mes "是一樣的。";
+	close;
+	case 4:	savepoint getarg(0),getarg(1),getarg(2);
+		mes "[PVP解說員]";
+	mes "已經成功存儲位置。";
+	mes "非常感謝您的使用。";
+		close;
+	case 5:	mes "[PVP解說員]";
+	mes "這是一個玩家與玩家間的大戰";
+	mes "能讓玩家在戰鬥中找到樂趣";
+	mes "期待各位";
+	mes "勇於前來挑戰！";
+		close;
+	}
+	return;
+}
+//==============================================================================
+// PVP守門人
+// callfunc "pvpdoor";
+//==============================================================================
+function	script	pvpdoor	{
+	mes "[PVP守門人]";
+	mes "我是為您打開PVP打鬥場之門";
+	mes "的PVP守門人。";
+	mes "有關PVP模式的說明";
+	mes "請你去向旁邊那位解說員";
+	mes "詢問。";
+	next;
+	switch ( select("^ff3355PVP 夢魘模式^000000","^3355FFPVP 溜溜猴^000000","結束對話") ) {
+	case 1:	mes "[PVP守門人]";
+		mes "夢魘模式：";
+		mes "其規則與實戰";
+		mes "是一樣的";
+		mes "戰死後經驗值會損失";
+		mes "身上道具也會掉落。";
+		next;
+		mes "[PVP守門人]";
+		mes "參加費是500 Zeny 您要移動到。";
+		mes "夢魘模式打鬥場";
+		mes "移動到PVP打鬥場嗎？";
+		next;
+		if ( select("移動","取消")==2 ) break;
+		if ( Zeny<500 || BaseLevel<31 ) goto LError;
+		set Zeny,Zeny-500;
+		warp "pvp_n_room",51,23;
+		end;
+	case 2:	mes "[PVP守門人]";
+		mes "參加費是500 Zeny 您要移動到。";
+		mes "溜溜猴打鬥場";
+		mes "移動到PVP打鬥場嗎？";
+		next;
+		if ( select("移動","取消")==2 ) break;
+		if ( Zeny<500 || BaseLevel<31 ) goto LError;
+		set Zeny,Zeny-500;
+		warp "pvp_y_room",51,23;
+		end;
+	}
+	mes "[PVP守門人]";
+	mes "對不起！";
+	mes "您的 Zeny 不夠 ，或者";
+	mes "您的等級不到31級。";
+	close;
+LError:
+	mes "[PVP守門人]";
+	mes "這是一個玩家與玩家間的大戰";
+	mes "能讓玩家在戰鬥中找到樂趣";
+	mes "期待各位";
+	mes "勇於前來挑戰！";
+	close;
+	return;
+}
+//==============================================================================
+// 城鎮內廣播
+// callfunc "townannounce","內容",op;
+//==============================================================================
+function	script	townannounce	{
+	mapannounce "prontera.gat",getarg(0),getarg(1);
+	mapannounce "payon.gat",getarg(0),getarg(1);
+	mapannounce "alberta.gat",getarg(0),getarg(1);
+	mapannounce "geffen.gat",getarg(0),getarg(1);
+	mapannounce "morocc.gat",getarg(0),getarg(1);
+	mapannounce "aldebaran.gat",getarg(0),getarg(1);
+	mapannounce "izlude.gat",getarg(0),getarg(1);
+	mapannounce "yuno.gat",getarg(0),getarg(1);
+	mapannounce "comodo.gat",getarg(0),getarg(1);
+	mapannounce "amatsu.gat",getarg(0),getarg(1);
+	mapannounce "gonryun.gat",getarg(0),getarg(1);
+	mapannounce "umbala.gat",getarg(0),getarg(1);
+	mapannounce "niflheim.gat",getarg(0),getarg(1);
+	mapannounce "louyang.gat",getarg(0),getarg(1);
+	mapannounce "jawaii.gat",getarg(0),getarg(1);
+	mapannounce "einbech.gat",getarg(0),getarg(1);
+	mapannounce "einbroch.gat",getarg(0),getarg(1);
+	mapannounce "lighthalzen.gat",getarg(0),getarg(1);
+	return;
+}
+//==============================================================================
+// 轉職共通Script
+// callfunc "jobchanger3","JOBNAME",JOBID,oJobID;
+//==============================================================================
+
+function	script	jobchanger3	{
+	mes "["+getarg(0)+"工會工作人員]";
+	mes "你好";
+	mes "需要什麼服務呢？";
+	next;
+	switch ( select(getarg(0)+"轉職",getarg(0)+"的轉職條件？","沒事。") ) {
+	case 1:	if ( Upper==1 ) {
+			mes "["+getarg(0)+"工會工作人員]";
+			mes "你已經轉生了。";
+			close;
+		}
+		if ( Class==getarg(1) ) {
+			mes "["+getarg(0)+"工會工作人員]";
+			mes "你已經是+getarg(0)了。";
+			close;
+		}
+		if ( Class!=getarg(2) ) {
+			mes "["+getarg(0)+"工會工作人員]";
+			mes "你不能轉職。";
+			close;
+		}
+		if ( JobLevel<40 ) {
+			mes "["+getarg(0)+"工會工作人員]";
+			mes "你的職業等級不足";
+			close;
+		}
+		if ( SkillPoint>0 ) {
+			mes "["+getarg(0)+"工會工作人員]";
+			mes "你的技能點數未加完。";
+			close;
+		}
+		mes "["+getarg(0)+"工會工作人員]";
+		mes "你需要轉職為getarg(0)嗎？";
+		next;
+		if ( select("是的","不是")==1 ) {
+			unequip;
+			jobchange getarg(1);
+			mes "["+getarg(0)+"工會工作人員]";
+		mes getarg(0)+"轉職完成";
+		mes "恭喜！";
+		mes "請今後也為"+getarg(0)+"團體";
+		mes "的榮譽而努力！";
+			close;
+		}
+	case 3:	mes "["+getarg(0)+"工會工作人員]";
+		mes "............";
+		close;
+	case 2:	mes "["+getarg(0)+"工會工作人員]";
+		mes getarg(0)+"的轉職條件";
+		mes "職業等級需要40級以上";
+		mes "完成轉職任務";
+		next;
+		mes "["+getarg(0)+"工會工作人員]";
+		mes "還有需要加完技能點數。";
+		close;
+	}
+	return;
+}
+//==============================================================================
+// 進階一轉 共通腳本
+// 用法：callfunc "jobchanger","NPC名字",JOBID;
+//==============================================================================
+function	script	jobchanger	{
+	if ( Upper!=1 ) return;
+	if ( Class!=0 ) {
+		mes "["+getarg(0)+"]";
+		mes "你已經轉生了。";
+		close;
+	}
+	if ( getskilllv(1)<9 ) {
+		mes "["+getarg(0)+"]";
+		mes "你的技能等級必須要到9。";
+		close;
+	}
+	switch ( oldjob ) {
+	case 7:
+	case 14:
+		set @chkjob,1;
+		break;
+	case 8:
+	case 15:
+		set @chkjob,4;
+		break;
+	case 9:
+	case 16:
+		set @chkjob,2;
+		break;
+	case 10:
+	case 18:
+		set @chkjob,5;
+		break;
+	case 11:
+	case 19:
+	case 20:
+		set @chkjob,3;
+		break;
+	case 12:
+	case 17:
+		set @chkjob,6;
+	}
+	if ( getarg(1)!=@chkjob ) {
+		mes "["+getarg(0)+"]";
+	mes "你的職業無法轉職";
+		close;
+	}
+	mes "["+getarg(0)+"]";
+	mes "你已經轉生了";
+	mes "已經無需轉職考試了";
+	next;
+	unequip;
+	jobchange getarg(1),1;
+	mes "["+getarg(0)+"]";
+	mes "轉職完成！";
+	mes "請今後也為團體的榮譽而努力！";
+	close;
+	return;
+}
+//==============================================================================
+// 進接二轉 共用腳本
+// callfunc "jobchanger2","JOBNAME",JOBID,oJobID;
+//==============================================================================
+function	script	jobchanger2	{
+	mes "["+getarg(0)+"]";
+	mes "找回你榮譽的樣子";
+	mes "照亮時代的時機又回來了";
+	mes "以新的模樣走向那英雄的路吧!";
+	next;
+	mes "["+getarg(0)+"]";
+	mes "要轉職為"+getarg(0)+"嗎?";
+	next;
+	switch ( select("是的","不了。") ) {
+	case 1:	if ( Upper==1 && Class>=7 ) {
+			mes "["+getarg(0)+"]";
+			mes "可以看出，你現在是一名...";
+			mes "你必須接受巴奇利賦予的生命輪迴的考驗，才能夠成為出色的...";
+			close;
+		}
+		if ( Upper!=1 || Class!=getarg(2) || JobLevel<40 ) {
+			mes "["+getarg(0)+"]";
+			mes "職業等級需要40級以上";
+			close;
+		}
+		if ( oldjob!=getarg(1) ) {
+			mes "["+getarg(0)+"]";
+			mes "你不能轉職。";
+			close;
+		}
+		if ( SkillPoint>0 ) {
+			mes "["+getarg(0)+"]";
+			mes "不能有剩餘的技能點數";
+			close;
+		}
+		mes "["+getarg(0)+"]";
+		mes "要轉職為getarg(0)嗎？";
+		next;
+		if ( select("是的","不了")==1 ) {
+			unequip;
+			jobchange getarg(1),1;
+			mes "["+getarg(0)+"]";
+			mes "恭喜你，回到世上之後，";
+			mes "希望能成為用你的能力";
+			mes "領導全部的人";
+			close;
+		}
+	case 3:	mes "["+getarg(0)+"]";
+		mes "............";
+		close;
+	}
+	return;
+}
+//==============================================================================
+// 強化金屬販賣NPC
+// 用法：callfunc "buystone","NPC名字";
+//==============================================================================
+function	script	buystone	{
+	mes "["+getarg(0)+"]";
+	mes "這裡有賣鐵或是鋼鐵製武品鍛治時所需要的金屬！";
+	mes "這裡有賣鍛治武器等級1的^007777強化武器用金屬-強化級數一^000000";
+	mes "與...鍛治武器等級2的^007777強化武器用金屬-強化級數二^000000等金屬。";
+	next;
+	mes "["+getarg(0)+"]";
+	mes "強化武器用金屬-強化級數一- 200金幣";
+	mes "強化武器用金屬-強化級數二- 1000金幣";
+	next;
+	switch ( select("購買強化武器用金屬-強化級數一","購買強化武器用金屬-強化級數二","詢問有沒有其他金屬") ) {
+	case 1:	set @buyid,1010;
+		set @buypri,200;
+		break;
+	case 2:	set @buyid,1011;
+		set @buypri,1000;
+		break;
+	case 3:	mes "["+getarg(0)+"]";
+		mes "你問的是製作武器等級1與2以上所需要的金屬吧！";
+		mes "我想你應該也知道，神之金屬和鋁...原來就比較難取得...";
+		close;
+	}
+	mes "["+getarg(0)+"]";
+	mes "想買多少呢？";
+	mes "如果想中止交易";
+	mes "請輸入「0」。";
+	next;
+Linput:
+	input @num;
+	if ( @num<=0 ) {
+		mes "["+getarg(0)+"]";
+		mes "中止交易。";
+		close;
+	}
+	if ( @num<=500 ) {
+		set @sprice,@buypri*@num;
+		if ( Zeny<@sprice ) {
+			mes "["+getarg(0)+"]";
+			mes "你的金錢不足。";
+			close;
+		}
+		if ( !(checkweight(@buyid,@num)) ) {
+			mes "["+getarg(0)+"]";
+			mes "你的負重不夠了。";
+			close;
+		}
+		set Zeny,Zeny-@sprice;
+		getitem @buyid,@num;
+		mes "["+getarg(0)+"]";
+		mes "感謝購買。";
+		close;
+	}
+	mes "["+getarg(0)+"]";
+	mes "請購買500個以下。";
+	next;
+	goto Linput;
+	return;
+}
+//==============================================================================
+// 神之金屬、鋁交換NPC
+// 用法：callfunc "chgstone","NPC名字";
+//==============================================================================
+function	script	chgstone	{
+	mes "["+getarg(0)+"]";
+	mes "只要你將^FF0000神之金屬原石^000000或^FF0000鋁原石^000000拿來給我，我馬上就可以為你提煉神之金屬以及鋁。我需要5個原石我才有辦法幫你。";
+	next;
+	switch ( select("提煉神之金屬","提煉鋁","詢問有關屬性石相關事項") ) {
+	case 1:	if ( countitem(756)<5 ) {
+			mes "["+getarg(0)+"]";
+			mes "哈哈哈...你真愛開玩笑。我不是跟你說過，要是沒有5個神之金屬原石的話，是無法製作神之金屬的嗎？";
+			close;
+		}
+		delitem 756,5;
+		getitem 984,1;
+		mes "["+getarg(0)+"]";
+		mes "這是你要的神之金屬，歡迎下次再來。";
+		close;
+		
+	case 2:	if ( countitem(757)<5 ) {
+			mes "["+getarg(0)+"]";
+			mes "哈哈哈...你真愛開玩笑。";
+			mes "我不是跟你說過，要是沒有5個鋁原石的話，是無法製作鋁的嗎?";
+			close;
+		}
+		delitem 757,5;
+		getitem 985,1;
+		mes "["+getarg(0)+"]";
+		mes "這是你要的鋁，歡迎下次再來。";
+		close;
+	case 3:	mes "["+getarg(0)+"]";
+		mes "屬性石ろ…";
+		mes "所謂屬性石...";
+		mes "我做鍛冶金屬這行已經做了二十年，聽過很多這類的傳說...但還沒實際見過呢!";
+		mes "我聽說金屬都各自擁有水、地、火、風等屬性。";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "聽說在鍛冶武器時加入屬性時的話...所製作出來的武器將擁有那屬性時的超強力量。";
+		mes "哈哈..不過話說回來，能做出這種武器的人想必一定擁有極高的鍛冶技術。";
+		close;
+	}
+	return;
+}
+//==============================================================================
+// 武器修理NPC
+// 用法：callfunc "repairer";
+//==============================================================================
+function	script	repairer	{
+	mes "[修理工]";
+	mes "我可以幫你修理壞掉的裝備及武器";
+	next;
+	if ( select("幫我修理","不需要")==2 ) {
+		mes "[修理工]";
+		mes "好的";
+		mes "有需要再來找我。";
+		close;
+	}
+	set @breaknum,getrepairableitemcount(0);
+	if ( @breaknum==0 ) {
+		mes "[修理工]";
+		mes "看來你並沒有任何壞掉的東西需要修理吶...";
+		close;
+	}
+	set @repair,@breaknum*5000;
+	mes "[修理工]";
+		mes "好的";
+		mes "你有帶損壞的東西";
+		mes "損壞的東西是";
+		mes ""+ @breaknum +"。";
+		mes "修理一個需要 5000 Zeny";
+		mes "全部修理需要"+@Repair+"Zeny。";
+		mes "修理嗎？";
+	next;
+	if ( select("修理","不了")==2 ) {
+		mes "[修理工]";
+		mes "好吧, 不過別期待他會自己修理自己...";
+		close;
+	}
+	if ( Zeny<@repair ) {
+		mes "[修理工]";
+		mes "你的金錢不足";
+		close;
+	}
+	set Zeny,Zeny-@repair;
+	repairitem;
+	mes "[修理工]";
+			mes "OK！";
+			mes "修好了。";
+	close;
+	return;
+}
+//==============================================================================
+// 武器精練NPC 對話類型1 (普隆德拉、艾爾貝塔、艾音布羅克)
+// 用法：callfunc "refine1","NPC名字",成功的表情,失敗的表情;
+//==============================================================================
+function	script	refine1	{
+	mes "["+getarg(0)+"]";
+	mes "我是專門鍛治武器與防御具的鐵匠，我可以為你鍛治裝置專案中的物品。";
+	mes "你想要鍛治裝置專案中的哪一項物品呢？";
+	next;
+	set @part,select(getequipname(1),getequipname(2),getequipname(3),getequipname(4),getequipname(5),getequipname(6),getequipname(7),getequipname(8),getequipname(9),getequipname(10));
+	if ( getequipisequiped(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		switch ( @part ) {
+		case 1:
+			mes "要不要我把你的頭腦鍛治得聰明一點啊？";
+			close;
+		case 2:
+			mes "來吧！我會用我熱情的身體來鍛治你的全身。";
+			close;
+		case 3:
+			mes "很抱歉現在還沒有哪種技術能在你的左手裝上火箭拳耶..";
+			close;
+		case 4:
+			mes "很抱歉現在還沒有哪種技術能在你的右手裝上火箭拳耶！";
+			close;
+		case 5:
+			mes "你擁有的裝置項目中沒有外袍不是嗎?";
+			close;
+		case 6:
+			mes "你的腳真不是普通的臭耶！";
+			close;
+		case 7:
+		case 8:
+			mes "你說的是哪種裝飾品?";
+			close;
+		case 9:
+		case 10:
+			mes "你指的該不會是頭部的其他部位吧?";
+			close;
+		}
+	}
+	if ( getequipisenableref(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		mes "你說的這個項目是無法鍛治的項目喔！";
+		close;
+	}
+	if ( getequipisidentify(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		mes "這項武器還沒通過鑑定，無法鍛治..";
+		close;
+	}
+	if ( getequiprefinerycnt(@part)>=10 ) {
+		mes "["+getarg(0)+"]";
+		mes "這項武器已經鍛治到最高等級，無法再鍛治了..";
+		close;
+	}
+	switch ( getequipweaponlv(@part) ) {
+	case 0:
+		mes "["+getarg(0)+"]";
+		mes "要鍛治你所選擇的這項裝備需要^ff9999鋁^000000以及費用2000金幣。";
+		mes "你確定要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) {
+			mes "["+getarg(0)+"]";
+			mes "看來這裝備已經鍛治很多次了的樣子...要是再繼續鍛治的話，可能會造成損壞喔！";
+			next;
+			mes "["+getarg(0)+"]";
+			mes "要是損壞的話可就不能繼續使用了！！插在裡面的卡片和特徵也^ff0000全部都被消失了^000000！！";
+			next;
+			mes "["+getarg(0)+"]";
+			mes "而且，裝備也會消失掉哦，你確定要繼續嗎？";
+			next;
+			if ( select("繼續","取消")==2 ) goto L_CANCEL_1;
+		}
+		if ( countitem(985)<1 || Zeny<2000 ) goto L_CANCEL_2;
+		delitem 985,1;
+		set Zeny,Zeny-2000;
+		break;
+	case 1:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級1的武器啊！";
+		mes "要鍛治的話需要^ff9999強化武器用金屬-強化級數一^000000以及費用500金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(1010)<1 || Zeny<500 ) goto L_CANCEL_2;
+		delitem 1010,1;
+		set Zeny,Zeny-500;
+		break;
+	case 2:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級2的武器啊！";
+		mes "要鍛治的話需要^ff9999強化武器用金屬-強化級數二^000000以及費用2000金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(1011)<1 || Zeny<2000 ) goto L_CANCEL_2;
+		delitem 1011,1;
+		set Zeny,Zeny-2000;
+		break;
+	case 3:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級3的武器啊！";
+		mes "要鍛治的話需要^ff9999神之金屬^000000以及費用2500金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(984)<1 || Zeny<2500 ) goto L_CANCEL_2;
+		delitem 984,1;
+		set Zeny,Zeny-2500;
+		break;
+	case 4:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級4的武器啊！";
+		mes "要鍛治的話需要^ff9999神之金屬^000000以及費用5000金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(984)<1 || Zeny<5000 ) goto L_CANCEL_2;
+		delitem 984,1;
+		set Zeny,Zeny-5000;
+	}
+	mes "["+getarg(0)+"]";
+	mes "鏘！鏘！鏘！！";
+	if ( getequippercentrefinery(@part)<=rand(100) ) {
+		failedrefitem @part;
+		next;
+		emotion getarg(2);
+		mes "["+getarg(0)+"]";
+		mes "………";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "真...丟臉。";
+		mes "武器在鍛治的過程中損壞了。";
+		mes "我...我...早就告訴過你會這樣的嘛！";
+		close;
+	}
+	successrefitem @part;
+	next;
+	emotion getarg(1);
+	mes "["+getarg(0)+"]";
+	mes "拿去吧！已經做好了。好久沒鍛治出那麼優質的武器了，武器變強了你一定也很高興吧！";
+	close;
+L_OverRefine:
+	mes "["+getarg(0)+"]";
+	mes "看來這裝備已經鍛治很多次了的樣子...要是再繼續鍛治的話，可能會造成損壞喔！";
+	mes "還要精練嗎？";
+	next;
+	if ( select("繼續","取消")==1 ) return;
+L_CANCEL_1:
+	mes "["+getarg(0)+"]";
+	mes "很好。";
+	mes "如果太過無理的鍛治武器，而造成損壞，我心情也會跟著變壞的。";
+	close;
+L_CANCEL_2:
+	mes "["+getarg(0)+"]";
+	mes "這些就是你所擁有的所有物品嗎？";
+	mes "雖然很可惜，但是你的材料不足，我也實在愛莫能助，再說，我付出也應該得要有所收穫嘛！";
+	close;
+L_CANCEL_3:
+	mes "["+getarg(0)+"]";
+	mes "那好吧，歡迎下次再來！";
+	close;
+}
+//==============================================================================
+// 武器精練NPC 對話類型2 (朱諾、斐楊)
+// 用法：callfunc "refine2","NPC名字",成功的表情,失敗的表情;
+//==============================================================================
+function	script	refine2	{
+	mes "["+getarg(0)+"]";
+	mes "來了嗎。想精練裝備的話";
+	mes "就等一會。";
+	next;
+	set @part,select(getequipname(1),getequipname(2),getequipname(3),getequipname(4),getequipname(5),getequipname(6),getequipname(7),getequipname(8),getequipname(9),getequipname(10));
+	if ( getequipisequiped(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		switch ( @part ) {
+		case 1:
+			mes "我很忙，請不要浪費我的時間";
+			close;
+		case 2:
+			mes "我說我很忙！";
+			close;
+		case 3:
+			mes "別開玩笑了！";
+			close;
+		case 4:
+			mes "你想精練空氣？";
+			close;
+		case 5:
+			mes "換！";
+			close;
+		case 6:
+			mes "不要惡作劇！";
+			close;
+		case 7:
+			mes "不能精練？";
+			close;
+		case 8:
+			mes "俺很忙的！";
+			close;
+		case 9:
+			mes "精練那裡？";
+			close;
+		case 10:
+			mes "快回家吧？";
+			close;
+		}
+	}
+	if ( getequipisenableref(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		mes "這個不能精練。";
+		close;
+	}
+	if ( getequipisidentify(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		mes "這項武器還沒通過鑑定，無法鍛治";
+		close;
+	}
+	if ( getequiprefinerycnt(@part)>=10 ) {
+		mes "["+getarg(0)+"]";
+		mes "這項武器已經鍛治到最高等級，無法再鍛治";
+		close;
+	}
+	switch ( getequipweaponlv(@part) ) {
+	case 0:
+		mes "["+getarg(0)+"]";
+		mes "要鍛治你所選擇的這項裝備需要^ff9999鋁^000000以及費用2000金幣。";
+		mes "你確定要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(985)<1 || Zeny<2000 ) goto L_CANCEL_2;
+		delitem 985,1;
+		set Zeny,Zeny-2000;
+		break;
+	case 1:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級1的武器啊！";
+		mes "要鍛治的話需要^ff9999強化武器用金屬-強化級數一^000000以及費用500金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(1010)<1 || Zeny<500 ) goto L_CANCEL_2;
+		delitem 1010,1;
+		set Zeny,Zeny-500;
+		break;
+	case 2:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級2的武器啊！";
+		mes "要鍛治的話需要^ff9999強化武器用金屬-強化級數二^000000以及費用2000金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(1011)<1 || Zeny<2000 ) goto L_CANCEL_2;
+		delitem 1011,1;
+		set Zeny,Zeny-2000;
+		break;
+	case 3:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級3的武器啊！";
+		mes "要鍛治的話需要^ff9999神之金屬^000000以及費用2500金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(984)<1 || Zeny<2500 ) goto L_CANCEL_2;
+		delitem 984,1;
+		set Zeny,Zeny-2500;
+		break;
+	case 4:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級4的武器啊！";
+		mes "要鍛治的話需要^ff9999神之金屬^000000以及費用5000金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(984)<1 || Zeny<5000 ) goto L_CANCEL_2;
+		delitem 984,1;
+		set Zeny,Zeny-5000;
+	}
+	mes "["+getarg(0)+"]";
+	mes "鏘！鏘！鏘！！";
+	if ( getequippercentrefinery(@part)<=rand(100) ) {
+		failedrefitem @part;
+		next;
+		emotion getarg(2);
+		mes "["+getarg(0)+"]";
+		mes "ツ…";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "真...丟臉。";
+		mes "武器在鍛治的過程中損壞了。";
+		mes "我...我...早就告訴過你會這樣的嘛！";
+		close;
+	}
+	successrefitem @part;
+	next;
+	emotion getarg(1);
+	mes "["+getarg(0)+"]";
+	mes "拿去吧！已經做好了。好久沒鍛治出那麼優質的武器了，武器變強了你一定也很高興吧！";
+	close;
+L_OverRefine:
+	mes "["+getarg(0)+"]";
+	mes "看來這裝備已經鍛治很多次了的樣子...要是再繼續鍛治的話，可能會造成損壞喔！";
+	mes "還要精練嗎？";
+	next;
+	if ( select("繼續","取消")==1 ) return;
+L_CANCEL_1:
+	mes "["+getarg(0)+"]";
+	mes "很好。";
+	mes "如果太過無理的鍛治武器，而造成損壞，我心情也會跟著變壞的。";
+	close;
+L_CANCEL_2:
+	mes "["+getarg(0)+"]";
+	mes "這些就是你所擁有的所有物品嗎？";
+	mes "雖然很可惜，但是你的材料不足，我也實在愛莫能助，再說，我付出也應該得要有所收穫嘛！";
+	close;
+L_CANCEL_3:
+	mes "["+getarg(0)+"]";
+	mes "那好吧，歡迎下次再來！";
+	close;
+}
+//==============================================================================
+// 武器精練NPC 對話類型3 (夢羅克)
+// 用法：callfunc "refine3","NPC名字",成功的表情,失敗的表情;
+//==============================================================================
+function	script	refine3	{
+	mes "["+getarg(0)+"]";
+	mes "我是專門鍛治武器與防御具的鐵匠，我可以為你鍛治裝置專案中的物品。";
+	mes "你想要鍛治裝置專案中的哪一項物品呢？";
+	next;
+	set @part,select(getequipname(1),getequipname(2),getequipname(3),getequipname(4),getequipname(5),getequipname(6),getequipname(7),getequipname(8),getequipname(9),getequipname(10));
+	if ( getequipisequiped(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		switch ( @part ) {
+		case 1:
+			mes "要不要我把你的頭腦鍛治得聰明一點啊？";
+			close;
+		case 2:
+			mes "來吧！我會用我熱情的身體來鍛治你的全身。";
+			close;
+		case 3:
+			mes "很抱歉現在還沒有哪種技術能在你的左手裝上火箭拳耶..";
+			close;
+		case 4:
+			mes "很抱歉現在還沒有哪種技術能在你的右手裝上火箭拳耶！";
+			close;
+		case 5:
+			mes "你擁有的裝置項目中沒有外袍不是嗎?";
+			close;
+		case 6:
+			mes "你的腳真不是普通的臭耶！";
+			close;
+		case 7:
+		case 8:
+			mes "你說的是哪種裝飾品?";
+			close;
+		case 9:
+		case 10:
+			mes "你說的是哪種裝飾品? 你指的該不會是頭部的其他部位吧?";
+			close;
+		}
+	}
+	if ( getequipisenableref(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		mes "你說的這個項目是無法鍛治的項目喔！";
+		close;
+	}
+	if ( getequipisidentify(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		mes "這項武器還沒通過鑑定，無法鍛治..";
+		close;
+	}
+	if ( getequiprefinerycnt(@part)>=10 ) {
+		mes "["+getarg(0)+"]";
+		mes "這項武器已經鍛治到最高等級，無法再鍛治了..";
+		close;
+	}
+	switch ( getequipweaponlv(@part) ) {
+	case 0:
+		mes "["+getarg(0)+"]";
+		mes "要鍛治你所選擇的這項裝備需要^ff9999鋁^000000以及費用2000金幣。";
+		mes "你確定要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) {
+			mes "["+getarg(0)+"]";
+			mes "看來這裝備已經鍛治很多次了的樣子...要是再繼續鍛治的話，可能會造成損壞喔！";
+			next;
+			mes "["+getarg(0)+"]";
+			mes "要是損壞的話可就不能繼續使用了！！插在裡面的卡片和特徵也^ff0000全部都被消失了^000000！！";
+			next;
+			mes "["+getarg(0)+"]";
+			mes "而且，裝備也會消失掉哦，你確定要繼續嗎？";
+			next;
+			if ( select("繼續","取消")==2 ) goto L_CANCEL_1;
+		}
+		if ( countitem(985)<1 || Zeny<2000 ) goto L_CANCEL_2;
+		delitem 985,1;
+		set Zeny,Zeny-2000;
+		break;
+	case 1:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級1的武器啊！";
+		mes "要鍛治的話需要^ff9999強化武器用金屬-強化級數一^000000以及費用500金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(1010)<1 || Zeny<500 ) goto L_CANCEL_2;
+		delitem 1010,1;
+		set Zeny,Zeny-500;
+		break;
+	case 2:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級2的武器啊！";
+		mes "要鍛治的話需要^ff9999強化武器用金屬-強化級數二^000000以及費用2000金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(1011)<1 || Zeny<2000 ) goto L_CANCEL_2;
+		delitem 1011,1;
+		set Zeny,Zeny-2000;
+		break;
+	case 3:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級3的武器啊！";
+		mes "要鍛治的話需要^ff9999神之金屬^000000以及費用2500金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(984)<1 || Zeny<2500 ) goto L_CANCEL_2;
+		delitem 984,1;
+		set Zeny,Zeny-2500;
+		break;
+	case 4:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級4的武器啊！";
+		mes "要鍛治的話需要^ff9999神之金屬^000000以及費用5000金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(984)<1 || Zeny<5000 ) goto L_CANCEL_2;
+		delitem 984,1;
+		set Zeny,Zeny-5000;
+	}
+	mes "["+getarg(0)+"]";
+	mes "鏘！鏘！鏘！！";
+	if ( getequippercentrefinery(@part)<=rand(100) ) {
+		failedrefitem @part;
+		next;
+		emotion getarg(2);
+		mes "["+getarg(0)+"]";
+		mes "………";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "真...丟臉。";
+		mes "武器在鍛治的過程中損壞了。";
+		mes "我...我...早就告訴過你會這樣的嘛！";
+		close;
+	}
+	successrefitem @part;
+	next;
+	emotion getarg(1);
+	mes "["+getarg(0)+"]";
+	mes "拿去吧！已經做好了。好久沒鍛治出那麼優質的武器了，武器變強了你一定也很高興吧！";
+	close;
+L_OverRefine:
+	mes "["+getarg(0)+"]";
+	mes "看來這裝備已經鍛治很多次了的樣子...要是再繼續鍛治的話，可能會造成損壞喔！";
+	mes "還要精練嗎？";
+	next;
+	if ( select("繼續","取消")==1 ) return;
+L_CANCEL_1:
+	mes "["+getarg(0)+"]";
+	mes "如果太過無理的鍛治武器，而造成損壞，我心情也會跟著變壞的。";
+	close;
+L_CANCEL_2:
+	mes "["+getarg(0)+"]";
+	mes "這些就是你所擁有的所有物品嗎？";
+	mes "雖然很可惜，但是你的材料不足，我也實在愛莫能助，再說，我付出也應該得要有所收穫嘛！";
+	close;
+L_CANCEL_3:
+	mes "["+getarg(0)+"]";
+	mes "那好吧，歡迎下次再來！";
+	close;
+}
+//==============================================================================
+// 武器精練NPC 對話類型4 (里希塔樂鎮)
+// 用法：callfunc "refine4","NPC名字",成功的表情,失敗的表情;
+//==============================================================================
+function	script	refine4	{
+	mes "["+getarg(0)+"]";
+	mes " 哈哈... 你想要鍛冶啊?";
+ 	mes " 哈哈.. 我可以幫你鍛冶所有的物品，";
+ 	mes " 哈哈....";
+	next;
+	set @part,select(getequipname(1),getequipname(2),getequipname(3),getequipname(4),getequipname(5),getequipname(6),getequipname(7),getequipname(8),getequipname(9),getequipname(10));
+	if ( getequipisequiped(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		switch ( @part ) {
+		case 1:
+			mes "哈哈.. 您跟其他的部位錯亂囉";
+			close;
+		case 2:
+			mes "如果把身體鍛治中失敗了，也不是我的責任啊";
+			close;
+		case 3:
+			mes "唉喲，這麼硬的胳臂根本鍛治不了";
+			close;
+		case 4:
+			mes "哈哈... 怎麼把手做成刀";
+			close;
+		case 5:
+			mes "唉喲..";
+			mes "在背上只有頭髮囉?";
+			close;
+		case 6:
+			mes "唉喲，你的腳這麼多肌肉...有點難啦";
+			close;
+		case 7:
+		case 8:
+			mes "你說的是哪種裝飾品?";
+			close;
+		case 9:
+		case 10:
+			mes "你說的是哪種裝飾品? 你指的該不會是頭部的其他部位吧?";
+			close;
+		}
+	}
+	if ( getequipisenableref(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		mes "你說的這個項目是無法鍛治的項目喔！";
+		close;
+	}
+	if ( getequipisidentify(@part)==0 ) {
+		mes "["+getarg(0)+"]";
+		mes "這項武器還沒通過鑑定，無法鍛治..";
+		close;
+	}
+	if ( getequiprefinerycnt(@part)>=10 ) {
+		mes "["+getarg(0)+"]";
+		mes "這項武器已經鍛治到最高等級，無法再鍛治了..";
+		close;
+	}
+	switch ( getequipweaponlv(@part) ) {
+	case 0:
+		mes "["+getarg(0)+"]";
+		mes "要鍛治你所選擇的這項裝備需要^ff9999鋁^000000以及費用2000金幣。";
+		mes "你確定要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) {
+			mes "["+getarg(0)+"]";
+			mes "看來這裝備已經鍛治很多次了的樣子...要是再繼續鍛治的話，可能會造成損壞喔！";
+			next;
+			mes "["+getarg(0)+"]";
+			mes "要是損壞的話可就不能繼續使用了！！插在裡面的卡片和特徵也^ff0000全部都被消失了^000000！！";
+			next;
+			mes "["+getarg(0)+"]";
+			mes "而且，裝備也會消失掉哦，你確定要繼續嗎？";
+			next;
+			if ( select("繼續","取消")==2 ) goto L_CANCEL_1;
+		}
+		if ( countitem(985)<1 || Zeny<2000 ) goto L_CANCEL_2;
+		delitem 985,1;
+		set Zeny,Zeny-2000;
+		break;
+	case 1:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級1的武器啊！";
+		mes "要鍛治的話需要^ff9999強化武器用金屬-強化級數一^000000以及費用500金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(1010)<1 || Zeny<500 ) goto L_CANCEL_2;
+		delitem 1010,1;
+		set Zeny,Zeny-500;
+		break;
+	case 2:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級2的武器啊！";
+		mes "要鍛治的話需要^ff9999強化武器用金屬-強化級數二^000000以及費用2000金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(1011)<1 || Zeny<2000 ) goto L_CANCEL_2;
+		delitem 1011,1;
+		set Zeny,Zeny-2000;
+		break;
+	case 3:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級3的武器啊！";
+		mes "要鍛治的話需要^ff9999神之金屬^000000以及費用2500金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(984)<1 || Zeny<2500 ) goto L_CANCEL_2;
+		delitem 984,1;
+		set Zeny,Zeny-2500;
+		break;
+	case 4:
+		mes "["+getarg(0)+"]";
+		mes "你想要鍛治武器等級4的武器啊！";
+		mes "要鍛治的話需要^ff9999神之金屬^000000以及費用5000金幣。";
+		mes "你要繼續嗎？";
+		next;
+		if ( select("繼續","取消")==2 ) goto L_CANCEL_3;
+		if ( getequippercentrefinery(@part)<100 ) callsub L_OverRefine,getarg(0);
+		if ( countitem(984)<1 || Zeny<5000 ) goto L_CANCEL_2;
+		delitem 984,1;
+		set Zeny,Zeny-5000;
+	}
+	mes "["+getarg(0)+"]";
+	mes "鏘！鏘！鏘！！";
+	if ( getequippercentrefinery(@part)<=rand(100) ) {
+		failedrefitem @part;
+		next;
+		emotion getarg(2);
+		mes "["+getarg(0)+"]";
+		mes "………";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "真...丟臉。";
+		mes "武器在鍛治的過程中損壞了。";
+		mes "我...我...早就告訴過你會這樣的嘛！";
+		close;
+	}
+	successrefitem @part;
+	next;
+	emotion getarg(1);
+	mes "["+getarg(0)+"]";
+	mes "拿去吧！已經做好了。好久沒鍛治出那麼優質的武器了，武器變強了你一定也很高興吧！";
+	close;
+L_OverRefine:
+	mes "["+getarg(0)+"]";
+	mes "看來這裝備已經鍛治很多次了的樣子...要是再繼續鍛治的話，可能會造成損壞喔！";
+	mes "還要精練嗎？";
+	next;
+	if ( select("繼續","取消")==1 ) return;
+L_CANCEL_1:
+	mes "["+getarg(0)+"]";
+	mes "如果太過無理的鍛治武器，而造成損壞，我心情也會跟著變壞的。";
+	close;
+L_CANCEL_2:
+	mes "["+getarg(0)+"]";
+	mes "這些就是你所擁有的所有物品嗎？";
+	mes "雖然很可惜，但是你的材料不足，我也實在愛莫能助，再說，我付出也應該得要有所收穫嘛！";
+	close;
+L_CANCEL_3:
+	mes "["+getarg(0)+"]";
+	mes "那好吧，歡迎下次再來！";
+	close;
+}

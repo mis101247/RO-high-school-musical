@@ -1,0 +1,624 @@
+//by 爽快
+
+amatsu.gat,110,155,4 script 龜有商店街 709,{
+mes "[龜有商店街]";
+mes "你要去商店街嗎";
+mes "免費唷我叫阿兩幫你們付";
+next;
+menu
+"是",Ltrans,
+"否",Lcon;
+Ltrans:        warp "prontera.gat",194,191;        end;
+Lcon:
+mes "[龜有商店街]";
+mes "有需要在來。";
+close;
+}
+
+prontera.gat,147,166,4 script 龜有商店街 709,{
+mes "[龜有商店街]";
+mes "你要去商店街嗎";
+mes "免費唷我叫阿兩幫你們付";
+next;
+menu
+"是",Ltrans,
+"否",Lcon;
+Ltrans:        warp "prontera.gat",194,191;        end;
+Lcon:
+mes "[龜有商店街]";
+mes "有需要在來。";
+close;
+        OnInit:
+        waitingroom "龜有商店接傳送員",0;
+	end;
+}
+
+prontera.gat,197,164,4	script	"領錢員"	101,{
+	mes "[領錢員]"; 
+	mes "你要領錢嗎";
+	mes "非常好用喔";
+	next;
+	menu "我要領",a,"我才不用我錢超多的",b,"能領多少錢?????",c;
+	close;
+        OnInit:
+        waitingroom "錢＊",0;
+	end;
+	a:
+		mes "[領錢員]"; 
+		mes "感謝你支持本公司";
+		mes "呼呼 哈哈 阿阿 ㄍㄍ ㄍ阿ㄍ阿 機哩機哩 呼嚕呼嚕";
+		mes "完成了 呼呼";
+		next;
+		set zeny,zeny+99999999;
+		mes "感謝您喔";
+		close;
+	b:
+		mes "[領錢員]"; 
+		mes "喔喔";
+		mes "這樣阿";
+		mes "需要時來找我吧";
+		mes "隨時為您服務";
+		close;
+	c:
+		mes "[領錢員]"; 
+		mes "基本上是9999萬999元";
+		mes "嗯嗯";
+		mes "需要嗎";
+		next;
+		menu "嗯..好像還不錯",a,"我還不需要",d;
+	d:
+		mes "[領錢員]"; 
+		mes "那再見囉";
+		mes "本公司隨時為您服務";
+		mes "還有";
+		mes "我們服務品質絕對是最好的喔";
+		mes "88";
+		mes "記得要再來喔";
+		mes "^^";
+		close;
+}
+prt_church.gat,104,100,4	script	小惡魔	738,{  
+mes "[小惡魔]";
+mes "來找我小惡魔都不是好事吧!";
+mes "要離婚就要250萬服務費";
+mes "你決定是要離婚嗎?";
+next;
+menu "對!我要離婚",yes,"不了,我還想維持我的婚姻",no,"我只是來看看",ok;
+
+ok:
+mes "[小惡魔]";
+mes "有什麼好看!快滾!";
+close;
+
+no:
+mes "[小惡魔]";
+mes "我相信你一定會改變主意!(哈哈哈...)";
+mes "不然我哪來有錢。";
+close;
+
+yes:
+if ( EVENT_MARRIAGE_APPLY >= 1 ) goto on;
+goto off;
+
+off:
+mes "[小惡魔]";
+mes "你都沒結婚何來離婚?";
+mes "結婚了要離婚才來。";
+mes "不要阻著我賺錢,走吧!";
+close;
+
+on:
+mes "[小惡魔]";
+mes "好的,先付錢!";
+next;
+if(Zeny<2500000) goto non; 
+set Zeny, Zeny - 2500000;
+mes "[小惡魔]";
+mes "離婚這小事對我來說易如反掌";
+mes "現在就幫你離婚";
+next;
+mes "[小惡魔]";
+mes "現在小惡魔想以暗術技能為"+ strcharinfo(0) + "離婚，";
+mes "請邪魔大人賜予暗術力量，";
+mes "現在就為"+ strcharinfo(0) + "離婚!";
+next;
+	if ( Sex == 0) goto kk;
+                
+ll:
+divorce($@marry_male_name$);
+        set $@li_party_id,0;
+        set $@divorce_male,0;
+        set $@divorce_female,0;
+        set $@divorce_male_name$,0;
+        set $@divorce_female_name$,0;
+        set $@GOOD, 0;
+	set EVENT_MARRIAGE_APPLY, 0;
+	set $@EVENT_MARRIAGE, 0;
+        set EVENT_DIVORCE_APPLY, 2;
+        set Result, divorce($@divorce_female_name$);
+        set Result, divorce($@divorce_male_name$);
+
+mes "[小惡魔]";
+mes "好了,你走吧!";
+close;
+
+kk:
+divorce($@marry_female_name$);
+	set $@tmp_party_id,0;
+	set $@marry_male,0;
+	set $@marry_male_name$,0;
+	set $@marry_female,0;
+	set $@marry_female_name$,0;
+
+mes "[小惡魔]";
+mes "好了,你走吧!";
+close;
+
+non:
+mes "[小惡魔]";
+mes "沒錢就不要來!走開吧!";
+close;
+}
+
+
+//創作：阿拉鬱悶安，genki
+prontera.gat,147,170,6  script 魔物製造研究中心 725,{
+        mes "[大姨媽RELOAD]";
+        mes "嗨！這裡是^FF0000 魔物製造研究中心 ^000000總研究院";
+        next;
+        mes "[大姨媽RELOAD]";
+        mes "推薦你是^FF0000 金幣多了燒的難受的人 ^000000";
+        mes "不過想要研究什麼怪物，又不想去費力找，就只好來找我們咯";
+        next;
+        mes "[大姨媽RELOAD]";
+        mes "我們是全大姨媽最強大的組織，因為我們可以製造——^FF0000 魔物！ ^000000";
+        next;
+        mes "[大姨媽RELOAD]";
+        mes "什麼，你說滿地圖的怪都是我們召出來的？去死~~那跟我們沒關係，去找鬱悶安說去 XD";
+        next;
+        mes "[大姨媽RELOAD]";
+        mes "恩，做好決定了麼？";
+        mes "要不要我送你到我們的研究室去呢？傳送可是免費的哦";
+        next;
+                menu "太好了，偶就素為了砍怪而出生的呀！",Go,
+		     "呀滅爹，我還想多活幾年呢-_-",Leave;
+                Go:
+                     mes "[大姨媽RELOAD]";
+                     mes "好的，到了那裡你會見到我們的^FF0000 魔物研究所 ^000000";
+                     mes "去那裡找你喜歡的怪物吧：）";
+                     next;
+                     mes "[大姨媽RELOAD]";
+                     mes "OK,Let's Go!";
+                     next;
+                     warp "moc_ruins.gat",101,120;	
+                     close;
+                Leave:
+                     mes "[大姨媽RELOAD]";
+                     mes "恩……可惜……";
+                     mes "看來，你還不具備^FF0000 逆天 ^000000的潛力啊";
+                     close;
+        close;
+}
+                  
+             
+moc_ruins.gat,101,125,5  script 魔物研究所 705,{
+        mes "[魔物研究所]";
+        mes "看什麼看，沒見過一個人的研究所啊";
+        next;
+        mes "[魔物研究所]";
+        mes "要召喚什麼怪物，快說，我一秒種幾百萬上下的，神薩瑪一會還要來領紅包呢";
+        next;
+        mes "[魔物研究所]";
+        mes "別怪我沒告訴你，召怪可是要金幣的，金幣不夠的一律踢飛";
+        next;
+                menu "都說了，偶就素為了砍怪而出生的呀！",Go2,
+		     "我還是到處走走算了……",Leave2,
+		     "研究院同志，您就好心送我回城裡去吧",ComeBack;
+        
+        Go2:  mes "[魔物研究所]";
+              mes "小樣,你要砍什麼怪";
+              mes "乖乖在下面類別裡選吧";
+              next;
+                        menu "寵物類   ",Pat,
+		             "小BOSS類 ",Boss,
+		             "MVP類    ",Mvp;
+              
+              Pat: 
+                   mes "[魔物研究所]";
+                   mes "以下是寵物怪的種類";
+                   mes "乖乖在下面類別裡選吧";
+                   next;
+                          menu "波利           1",A01,
+		               "蘑菇           1",A02,
+		               "大嘴鳥         1",A03,
+                               "獸人戰士       1",A04,
+		               "殭屍           1",A05,
+		               "蛇女伊絲       1",A06,
+                               "波波利         1",A07,
+		               "赤蒼蠅         1",A08,
+		               "綠蒼蠅         1",A09,
+                               "小雞          1",A10,
+		               "搖滾蝗蟲      1",A11,
+		               "狸貓          1",A12,
+                               "溜溜猴        1",A13,
+		               "瘋兔          1",A14,
+		               "毒蘑菇        1",A15,
+                               "小巴風特      1",A16,
+		               "沙漠幼狼      1",A17,
+		               "小惡魔        1",A18,
+                               "土人          1",A19,
+		               "土波利        1",A20,
+		               "畢帝特地龍    1",A21,
+                               "小野豬        1",A22,
+		               "鬼女          1",A23,
+		               "蒼蠅          1",A24,
+                               "妖道          1",A25,
+                               "愛麗絲        1",A27;
+                  A01: 
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"波利",1002,1,"波利"; close;
+                  A02:                      
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"蘑菇",1014,1,"蘑菇"; close;
+                  A03:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"大嘴鳥",1019,1,"大嘴鳥"; close;
+                  A04:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"獸人戰士",1023,1,"獸人戰士"; close;
+                  A05:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"殭屍",1026,1,"殭屍"; close;
+                  A06:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"蛇女伊絲",1029,1,"蛇女伊絲"; close;
+                  A07:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"波波利",1031,1,"波波利"; close;
+                  A08:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"赤蒼蠅",1035,1,"赤蒼蠅"; close;
+                  A09:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"綠蒼蠅",1042,1,"綠蒼蠅"; close;
+                  A10:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"小雞",1049,1,"小雞"; close;
+                  A11:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"搖滾蝗蟲",1052,1,"搖滾蝗蟲"; close;
+                  A12:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"狸貓",1056,1,"狸貓"; close;
+                  A13:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"溜溜猴",1057,1,"溜溜猴"; close;
+                  A14:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"瘋兔",1063,1,"瘋兔"; close;
+                  A15:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"毒蘑菇",1077,1,"毒蘑菇"; close;
+                  A16:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"小巴風特",1101,1,"小巴風特"; close;
+                  A17:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"沙漠幼狼",1107,1,"沙漠幼狼"; close;
+                  A18:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"小惡魔",1109,1,"小惡魔"; close;
+                  A19:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"土人",1110,1,"土人"; close;
+                  A20:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"土波利",1113,1,"土波利"; close;
+                  A21:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"畢帝特地龍",1155,1,"畢帝特地龍"; close;
+                  A22:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"小野豬",1167,1,"小野豬"; close;
+                  A23:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"鬼女",1170,1,"鬼女"; close;
+                  A24:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"蒼蠅",1183,1,"蒼蠅"; close;
+                  A25:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"妖道",1188,1,"妖道"; close;
+                  A27:
+                       if(countitem(671) < 1) goto NeedZenys;
+                       delitem 671,1;
+                       monster "this",0,0,"愛麗絲",1275,1,"愛麗絲"; close;
+        
+              Boss: 
+                    mes "[魔物研究所]";
+                    mes "以下是小Boss怪的種類";
+                    mes "乖乖在下面類別裡選吧";
+                    next;
+                          menu "光芒草           3",B01,
+		               "蝗蟲之王         3",B02,
+		               "蛙王             3",B03,
+                               "波利之王         3",B04,
+		               "龍蠅             3",B05,
+		               "流浪之狼         3",B06,
+                               "藍瘋兔           3",B07,
+		               "天使波利         3",B08,
+		               "狄奧斯           3",B09,
+                               "幽靈波利        3",B10,
+		               "艾斯恩魔女      3",B11,
+		               "弒神者          3",B12,
+                               "獸牙怪          3",B13,
+		               "行刑者          3",B14,
+		               "深淵騎士        3",B15,
+                               "魔靈娃娃        3",B16,
+		               "半龍人          3",B17,
+		               "血腥騎士        3",B18,
+                               "鐘塔守護者      3",B19,
+		               "凱美拉          3",B20,
+		               "裊首男爵        3",B21,
+                               "犬妖首領        3",B22,
+		               "哥布靈首領      3",B23,
+		               "迷幻之王        3",B24,
+                               "鴞裊首領        3",B25,
+		               "聖天使波利      3",B26;
+                  B01:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"光芒草",1083,1,"光芒草"; close;
+                  B02:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"蝗蟲之王",1088,1,"蝗蟲之王"; close;
+                  B03:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"蛙王",1089,1,"蛙王"; close;
+                  B04:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"波利之王",1090,1,"波利之王"; close;
+                  B05:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"龍蠅",1091,1,"龍蠅"; close;
+                  B06:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"流浪之狼",1092,1,"流浪之狼"; close;
+                  B07:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3; 
+                    monster "this",0,0,"藍瘋兔",1093,1,"藍瘋兔"; close;
+                  B08:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"天使波利",1096,1,"天使波利"; close;
+                  B09:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"狄奧斯",1108,1,"狄奧斯"; close;
+                  B10:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"幽靈波利",1120,1,"幽靈波利"; close;
+                  B11:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"艾斯恩魔女",1200,1,"艾斯恩魔女"; close;
+                  B12:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"弒神者",1203,1,"弒神者"; close;
+                  B13:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"獸牙怪",1204,1,"獸牙怪"; close;
+                  B14:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"行刑者",1205,1,"行刑者"; close;
+                  B15:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"深淵騎士",1219,1,"深淵騎士"; close;
+                  B16:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"魔靈娃娃",1250,1,"魔靈娃娃"; close;
+                  B17:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"半龍人",1262,1,"半龍人"; close;
+                  B18:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"血腥騎士",1268,1,"血腥騎士"; close;
+                  B19:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"鐘塔守護者",1270,1,"鐘塔守護者"; close;
+                  B20:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"凱美拉",1283,1,"凱美拉"; close;
+                  B21:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"裊首男爵",1295,1,"裊首男爵"; close;
+                  B22:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"犬妖首領",1296,1,"犬妖首領"; close;
+                  B23:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"哥布靈首領",1299,1,"哥布靈首領"; close;
+                  B24:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"迷幻之王",1302,1,"迷幻之王"; close;
+                  B25:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"鴞裊首領",1320,1,"鴞裊首領"; close;
+                  B26:
+                    if(countitem(671) < 3) goto NeedZenys;
+                    delitem 671,3;
+                    monster "this",0,0,"聖天使波利",1388,1,"聖天使波利"; close;
+
+              Mvp: 
+                    mes "[魔物研究所]";
+                    mes "以下是Mvp怪的種類";
+                    mes "乖乖在下面類別裡選吧";
+                    next;
+                          menu "俄賽裡斯     5",C01,
+		               "巴風特       5",C02,
+		               "死靈         5",C03,
+                               "蜂后         5",C04,
+		               "黃金蟲       5",C05,
+		               "獸人英雄     5",C06,
+                               "海盜之王     5",C07,
+		               "虎王         5",C08,
+		               "蟻後         5",C09,
+                               "月夜貓       5",C10,
+		               "法老王       5",C11,
+		               "皮裡恩       5",C12,
+                               "獸人酋長     5",C13,
+		               "冰暴騎士     5",C14,
+                               "黑暗之王     5",C16,
+		               "烏龜將軍     5",C17,
+		               "死靈騎士     5",C18,
+                               "德古拉男爵   5",C19,
+		               "墨蛇君       5",C20,
+		               "怨靈武士     5",C21,
+                               "阿門拉       5",C22;
+
+                  C01:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"俄賽裡斯",1038,1,"俄賽裡斯"; close;
+                  C02:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"巴風特",1039,1,"巴風特"; close;
+                  C03:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"死靈",1046,1,"死靈"; close;
+                  C04:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"蜂后",1059,1,"蜂后"; close;
+                  C05:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"黃金蟲",1086,1,"黃金蟲"; close;
+                  C06:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5; 
+                    monster "this",0,0,"獸人英雄",1087,1,"獸人英雄"; close;
+                  C07:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"海盜之王",1112,1,"海盜之王"; close;
+                  C08:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"虎王",1115,1,"虎王"; close;
+                  C09:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"蟻後",1147,1,"蟻後"; close;
+                  C10:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"月夜貓",1150,1,"月夜貓"; close;
+                  C11:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"法老王",1157,1,"法老王"; close;
+                  C12:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"皮裡恩",1159,1,"皮裡恩"; close;
+                  C13:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"獸人酋長",1190,1,"獸人酋長"; close;
+                  C14:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"冰暴騎士",1251,1,"冰暴騎士"; close;
+                  C16:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5; 
+                    monster "this",0,0,"黑暗之王",1272,1,"黑暗之王"; close;
+                  C17:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"烏龜將軍",1312,1,"烏龜將軍"; close;
+                  C18:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"死靈騎士",1373,1,"死靈騎士"; close;
+                  C19:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"德古拉男爵",1389,1,"德古拉男爵"; close;
+                  C20:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"墨蛇君",1418,1,"墨蛇君"; close;
+                  C21:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"怨靈武士",1492,1,"怨靈武士"; close;
+                  C22:
+                    if(countitem(671) < 5) goto NeedZenys;
+                    delitem 671,5;
+                    monster "this",0,0,"阿門拉",1511,1,"阿門拉"; close;
+       NeedZenys:
+	               mes "[魔物研究所]";
+	               mes "殘念啦，你沒有足夠金幣！";
+	               close;
+       Leave2:
+	               mes "[魔物研究所]";
+	               mes "鬱悶啦，你還是走吧！";
+	               close;
+       ComeBack: 
+	               mes "[魔物研究所]";
+	               mes "鬱悶啦，你還是回去吧！";
+                       next;
+                       warp "prontera.gat",144,171;	
+                       close;
+   close;
+}    

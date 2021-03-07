@@ -1,0 +1,110 @@
+prontera.gat,194,191,4	script	神秘人	52,{
+	mes"[神秘人]";
+	mes"想鍛治裝備？";
+	mes"每次10元";
+	mes"說吧！你想要鍛治裝置專案";
+	mes"中的哪一項物品呢？";
+	next;
+	menu getequipname(1),L_MENU_1,getequipname(2),L_MENU_2,getequipname(3),L_MENU_3,getequipname(4),L_MENU_4,getequipname(5),L_MENU_5,getequipname(6),L_MENU_6,getequipname(7),L_MENU_7,getequipname(8),L_MENU_8,getequipname(9),L_MENU_9,getequipname(10),L_MENU_10;
+	L_MENU_1:
+		set @part,1;
+		if (getequipisequiped(1)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_2:
+		set @part,2;
+		if (getequipisequiped(2)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_3:
+		set @part,3;
+		if (getequipisequiped(3)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_4:
+		set @part,4;
+		if (getequipisequiped(4)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_5:
+		set @part,5;
+		if (getequipisequiped(5)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_6:
+		set @part,6;
+		if (getequipisequiped(6)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_7:
+		set @part,7;
+		if (getequipisequiped(7)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_8:
+		set @part,8;
+		if (getequipisequiped(8)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_9:
+		set @part,9;
+		if (getequipisequiped(9)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+	L_MENU_10:
+		set @part,10;
+		if (getequipisequiped(10)) goto L_START_1;
+			mes"[神秘人]";
+			mes"有毛病啊!";
+			goto L_CLOSE;
+L_START_1:
+L_START_2:
+	if (getequipisidentify(@part)) goto L_START_3;
+		mes"[神秘人]";
+		mes"這個還沒通過鑒定，無法鍛治。";
+		goto L_CLOSE;
+L_START_3:
+	if (getequiprefinerycnt(@part) < 10) goto L_REFINE_0;
+		mes"[ 神秘人]";
+		mes"還想煉？你有毛病啊！";
+		goto L_CLOSE;
+L_REFINE_0:
+	L_0_SUB:
+L_REFINE_1:
+		if (Zeny < 10) goto L_CANCEL_2;
+			set Zeny,Zeny-10;
+	L_1_SUB:
+L_REFINE_2:
+	L_2_SUB:
+L_REFINE_3:
+	L_3_SUB:
+L_REFINE_4:
+	L_4_SUB:
+L_REFINE_5:
+		mes"[神秘人]";
+		mes" 鏘！鏘！鏘！";
+		successrefitem @part;
+		successrefitem @part;
+		mes" 輕鬆搞定！";
+		goto L_CLOSE;
+L_REFINE_6:
+L_CANCEL_1:
+L_CANCEL_2:
+	mes"[神秘人]";
+	mes" 你沒有足夠的金額哦！";
+	goto L_CLOSE;
+L_CANCEL_3:
+	mes"[神秘人]";
+	mes" ......";
+L_CLOSE:
+	close;
+}

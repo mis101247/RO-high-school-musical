@@ -1,0 +1,58 @@
+//==============================================================================
+// Ragnarok Online The Sign Script     by Blaze
+// 漢化:LKM
+// http://coolro.cnnb.net
+//==============================================================================
+geffen.gat,119,56,0	script	#gefeniagate	139,{
+OnInit:
+	disablenpc "gefeniawarp";
+	end;
+On_Start:
+	misceffect 247;
+	initnpctimer;
+	end;
+OnTimer10000:
+	misceffect 247;
+	donpcevent "噴水池::On_Effect";
+	end;
+OnTimer20000:
+	misceffect 247;
+	donpcevent "噴水池::On_Effect";
+	end;
+OnTimer30000:
+	disablenpc "gefeniawarp";
+	mapannounce "geffen.gat","葛帔尼亞的大門已經關閉",0;
+	stopnpctimer;
+	end;
+}
+
+geffen.gat,119,56,0	script	gefeniawarp	45,1,1{
+	set @warp,rand(4);
+	if (@warp==0) warp "gefenia01.gat",58,169;
+	if (@warp==1) warp "gefenia02.gat",116,15;
+	if (@warp==2) warp "gefenia03.gat",130,206;
+	if (@warp==3) warp "gefenia04.gat",133,88;
+	end;
+}
+
+geffen.gat,119,48,0	script	噴水池	111,{
+	mes "你來幹嗎。";
+	if (countitem(7025)>=1) goto L_1;
+	close;
+L_1:
+	mes "「魔王之悲」？";
+	next;
+	menu "給他",L_2,"取消",-;
+	close;
+L_2:
+	enablenpc "gefeniawarp";
+	donpcevent "#gefeniagate::On_Start";
+	misceffect 247;
+	gmcommand "@misceffect 200";
+	mapannounce "geffen.gat","在光芒的照耀下葛帔尼亞的大門打開了",0;
+	mes "「魔王之悲」有著不可思議的光芒";
+	close;
+On_Effect:
+	misceffect 247;
+	end;
+}

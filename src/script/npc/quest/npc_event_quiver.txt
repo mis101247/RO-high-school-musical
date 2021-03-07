@@ -1,0 +1,148 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 箭矢筒 製作任務 -
+//========================================================================================
+
+payon_in01.gat,5,134,4	script	發明家 欽斯	89,{
+	set @Weighttest,(Weight*100/MaxWeight);
+	if (@Weighttest >= 90) goto L_ERROR;
+	mes "[發明家 欽斯]";
+	mes "我是天才發明家 欽斯，"
+	mes "我這一次發明了一個，名留千史的物品!";
+	mes "就是 ^FF0000魔法箭矢筒^000000 !!";
+	next;
+	mes "[發明家 欽斯]";
+	mes "我想了好幾十年，4天3夜不管是下大雨還是下大雪，為了研究出我想得到的結果 !!";
+	mes "我已經發現如何利用魔力把箭矢濃縮，再製作成可攜帶的魔法箭矢筒的秘訣了! 呵哈哈哈 !!";
+	next;
+	emotion 21;
+	mes "[發明家 欽斯]";
+	mes "這對拿弓的玩家來說，是一項大革命性的物品啊!";
+	mes "能製作出那個東西的我，才真的是天天天天天才發明家，欽斯!!!";
+	next;
+	mes "[發明家 欽斯]";
+	mes "你! 有想要的箭矢筒嘛?";
+	mes "我猜那個物品對你來說，是讓你心中非常滿意的物品的，嘻嘻";
+	next;
+	menu "箭矢筒",L_MENU_1,"鐵箭矢筒",L_MENU_2,"鋼鐵箭矢筒",L_MENU_3,"神之金屬箭矢筒",L_MENU_4,"火箭矢筒",L_MENU_5,"銀箭矢筒",L_MENU_6,"風靈箭矢筒",L_MENU_7,"地靈箭矢筒",L_MENU_8,"水靈箭矢筒",L_MENU_9,"影子箭矢筒",L_MENU_10,"無形箭矢筒",L_MENU_11,"鐵銹箭矢筒",L_MENU_12;
+L_MENU_1:
+	set @ARROW_TYPE,1750;	//箭矢
+	set @QUIVER_TYPE,12004;	//箭矢筒
+	goto L_MAKE;
+L_MENU_2:
+	set @ARROW_TYPE,1770;	//鐵箭矢
+	set @QUIVER_TYPE,12005;	//鐵箭矢筒
+	goto L_MAKE;
+L_MENU_3:
+	set @ARROW_TYPE,1753;	//鋼鐵箭矢
+	set @QUIVER_TYPE,12006;	//鋼鐵箭矢筒
+	goto L_MAKE;
+L_MENU_4:
+	set @ARROW_TYPE,1765;	//神之金屬箭矢
+	set @QUIVER_TYPE,12007;	//神之金屬箭矢筒
+	goto L_MAKE;
+L_MENU_5:
+	set @ARROW_TYPE,1752;	//火箭矢
+	set @QUIVER_TYPE,12008;	//火箭矢筒
+	goto L_MAKE;
+L_MENU_6:
+	set @ARROW_TYPE,1751;	//銀箭矢
+	set @QUIVER_TYPE,12009;	//銀箭矢筒
+	goto L_MAKE;
+L_MENU_7:
+	set @ARROW_TYPE,1755;	//風靈箭矢
+	set @QUIVER_TYPE,12010;	//風靈箭矢筒
+	goto L_MAKE;
+L_MENU_8:
+	set @ARROW_TYPE,1756;	//地靈箭矢
+	set @QUIVER_TYPE,12011;	//地靈箭矢筒
+	goto L_MAKE;
+L_MENU_9:
+	set @ARROW_TYPE,1754;	//水靈箭矢
+	set @QUIVER_TYPE,12012;	//水靈箭矢筒
+	goto L_MAKE;
+L_MENU_10:
+	set @ARROW_TYPE,1767;	//影子箭矢
+	set @QUIVER_TYPE,12013;	//影子箭矢筒
+	goto L_MAKE;
+L_MENU_11:
+	set @ARROW_TYPE,1757;	//無形箭矢
+	set @QUIVER_TYPE,12014;	//無形箭矢筒
+	goto L_MAKE;
+L_MENU_12:
+	set @ARROW_TYPE,1762;	//鐵銹箭矢
+	set @QUIVER_TYPE,12015;	//鐵銹箭矢筒
+	goto L_MAKE;
+L_MAKE:
+	if ((countitem(@ARROW_TYPE)>=500) && (Zeny>=500)) goto L_MAKE_OK;
+	mes "[發明家 欽斯]";
+	mes "這是"+getitemname(@ARROW_TYPE)+"可以";
+	mes "放入500枝箭矢的大箭矢筒喔。";
+	mes "因為用我自己特殊的秘方處理";
+	mes "比直接拿500枝箭矢";
+	mes "還要更加輕便";
+	next;
+	mes "[發明家 欽斯]";
+	mes "怎樣?這是不是一件了不起的物品呢!";
+	mes "我這也算是做出了一個寶石呀!";
+	mes "像閃爍寶石頭一樣神秘的物!這就是我的寶物!";
+	mes "假如需要這個箭矢筒的話"+getitemname(@ARROW_TYPE)+"請帶500枝箭矢";
+	mes "和500金幣來吧";
+	mes "我會把它放在箭矢筒裡和你交換的。";
+	close;
+L_MAKE_OK:
+	mes "[發明家 欽斯]";
+	mes "奧奧，你! 剛好攜帶著一個適合的物品啊，";
+	mes "要不要直接拿500支試試看呢?";
+	mes "給我500金幣的話，我會把500個箭矢放在箭矢筒裡和你交換的";
+	next;
+	menu "把材料都交換",L_MAKE_ALL,"只做一筒",L_MAKE_ONE,"我不想交換耶",L_CLOSE;
+L_MAKE_ALL:
+	set @ARROW_HAVE,countitem(@ARROW_TYPE);	//擁有的箭矢數量
+	set @QUIVER_MAKE,@ARROW_HAVE / 500;	//可以組合的箭矢筒數量
+	set @ZENY_PRICE,@QUIVER_MAKE * 500;	//組合時需要的金幣
+	mes "[發明家 欽斯]";
+	mes "擁有的箭矢數量"+getitemname(@ARROW_TYPE)+" :";
+	mes "^0000FF"+@ARROW_HAVE+" 個^000000";
+	mes "可以組合的箭矢筒數量"+getitemname(@QUIVER_TYPE)+" :";
+	mes "^0000FF"+@QUIVER_MAKE+" 個^000000";
+	mes "組合時需要的金幣:";
+	mes "^0000FF"+@ZENY_PRICE+" Zeny^000000";
+	next;
+	mes "請問你要交換嘛?";
+	next;
+	menu "我要交換",-,"我不想交換耶",L_CLOSE;
+	delitem @ARROW_TYPE,@QUIVER_MAKE*500;
+	set Zeny,Zeny-@ZENY_PRICE;
+	getitem @QUIVER_TYPE,@QUIVER_MAKE;
+	mes "[發明家 欽斯]";
+	mes "來，這個物品請你收下吧。";
+	mes "另外^0000FF有一點注意事項^000000請你記住";
+	mes "^FF0000重量超過90%的話，這箭矢筒就不能使用的";
+	mes "記得請小心不要掉了，掉了會很糟糕的。^000000";
+	close;
+L_MAKE_ONE:
+	delitem @ARROW_TYPE,500;
+	set Zeny,Zeny-500;
+	getitem @QUIVER_TYPE,1;
+	mes "[發明家 欽斯]";
+	mes "來，這個物品請你收下吧。";
+	mes "另外^0000FF有一點注意事項^000000請你記住";
+	mes "^FF0000重量超過90%的話，這箭矢筒就不能使用的";
+	mes "記得請小心不要掉了，掉了會很糟糕的。^000000";
+	close;
+L_CLOSE:
+	mes "[發明家 欽斯]";
+	mes "相信我試用看看吧……";
+	mes "這真是一個偉大的發明以及偉大的發現……";
+	close;
+L_ERROR:
+	mes "[發明家 欽斯]";
+	mes "你現在負重太重了，連身體都站不穩";
+	mes "把東西清理過後再來的話";
+	mes "我會講一個讓你聽了";
+	mes "耳朵會豎起來的故事給你聽。";
+	close;
+}

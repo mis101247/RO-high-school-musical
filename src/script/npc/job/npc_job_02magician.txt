@@ -1,0 +1,547 @@
+//====================================================================
+// Ragnarok Online Magician jobchange script
+// 漢化:chiho
+// http://coolro.cnnb.net
+//====================================================================
+geffen_in.gat,164,124,4	script	魔法公會 服務人員	123,{
+	mes "[魔法公會 服務人員]";
+	mes "你好，請問有什麼事情嗎?";
+	next;
+	menu "轉職成為魔法師",L1,"詢問有關轉職成為魔法師所需要的條件",-,"放棄",Lend;
+		mes "[魔法公會 服務人員]";
+		mes "詢問有關轉職成為魔法師所需要的條件";
+         if (Sex == 0) mes "像妳這樣可愛的姊姊";
+         if (Sex == 1) mes "像你這樣可愛的哥哥";
+		mes "加入我們魔法公會，我們當然很歡迎~";
+		next;
+		mes "[魔法公會 服務人員]";
+		mes "首先，初學者技能等級須達９級以上";
+		mes "再來做出魔法師轉職要求的混合液。";
+		next;
+		mes "[魔法公會 服務人員]";
+		mes "你要做什麼樣的混合液?";
+		mes "要等你填寫完魔法師轉職申請書後，";
+		mes "我才能告訴你。";
+		next;
+		mes "[魔法公會 服務人員]";
+		mes "已經符合這兩項轉職條件後，";
+		mes "再來向我詢問其它的事項吧!";
+		close;
+L1:
+	if (Class == 2) goto Ltwice;
+	if (Class != 0) goto LError;
+	if (change_magic >= 1) goto Lcheck;
+	mes "[魔法公會 服務人員]";
+	mes "想轉職為魔法師?";
+	mes "嗯……。";
+	next;
+	mes "[魔法公會 服務人員]";
+	if (Sex == 0) mes "……仔細看起來，姊姊，你真可愛!";
+	if (Sex == 0) mes "我最喜歡像姊姊這種類型的人了。";
+	if (Sex == 1) mes "……仔細看起來，你還真可愛!";
+	if (Sex == 1) mes "不過不是我喜歡的類型……。";
+	mes "啊~偏離主題了!";
+	mes "想轉職成為魔法師呀?";
+	mes "那麼請在魔法師轉職申請書上簽個名。";
+	next;
+	menu "申請轉職成為魔法師",-,"放棄",Lend2;
+//轉生成長處理
+	if (Upper == 1) goto LUpper1;
+	//callfunc "jobchanger","魔法公會 服務人員",2;
+		mes "[魔法公會 服務人員]";
+		mes "對…在那邊簽名……";
+		mes "哇~寫得真好看!";
+		mes "好了，好了…";
+		mes "名字叫……" + strcharinfo(0) + "啊!";
+		next;
+		set @magerand,rand(4);
+		set change_magic,@magerand+1;
+		mes "[魔法公會 服務人員]";
+		mes "要成為魔法師轉職考試……";
+		mes "轉職考試用的是";
+		if (change_magic == 1) mes "做出要求的混合液<１>號。";
+		if (change_magic == 2) mes "做出要求的混合液<２>號。";
+		if (change_magic == 3) mes "做出要求的混合液<３>號。";
+		if (change_magic == 4) mes "做出要求的混合液<４>號。";
+		next;
+		getitem 1092,1;
+		mes "[魔法公會 服務人員]";
+		mes "做混合液的方法，書籍上都有寫，";
+		mes "請你自己去找!";
+		mes "要調製混合液的話，請利用中央的機器，";
+		mes "那~加油唄~。";
+		close;
+Lcheck:
+	if (getskilllv(1) < 9) goto Llowlv;
+		mes "[魔法公會 服務人員]";
+		mes "啊!終於完成了嗎?";
+		mes "" + strcharinfo(0) + "魔法師轉職考試是要求……";
+		if (change_magic == 1) mes "做出混合液<１>嗎?";
+		if (change_magic == 2) mes "做出混合液<２>嗎?";
+		if (change_magic == 3) mes "做出混合液<３>嗎?";
+		if (change_magic == 4) mes "做出混合液<４>嗎?";
+		mes "呃…確定是這個嗎?";
+		next;
+	if (countitem(1090)>=1) goto Lwrong;
+	if ((countitem(1071)>=1) && (change_magic == 1)) goto Lsucsess;
+	if ((countitem(1085)>=1) && (change_magic == 2)) goto Lsucsess;
+	if ((countitem(1086)>=1) && (change_magic == 3)) goto Lsucsess;
+	if ((countitem(1087)>=1) && (change_magic == 4)) goto Lsucsess;
+		mes "[魔法公會 服務人員]";
+		mes "那裝有混合液的那根試管在哪?";
+		mes "你要帶來我才能檢查啊!";
+		close;
+Lsucsess:
+	if (countitem(1071)>=1) delitem 1071,1;
+	if (countitem(1085)>=1) delitem 1085,1;
+	if (countitem(1086)>=1) delitem 1086,1;
+	if (countitem(1087)>=1) delitem 1087,1;
+	mes "[魔法公會 服務人員]";
+	mes "……嗯!真的很努力呀!";
+	mes "呃…雖然做的不是頂好的，";
+	mes "這樣的話……暫且……好吧!";
+	mes "魔法師轉職考試，合格了。";
+	mes "依你的意願將你轉職成為魔法師吧!";
+	next;
+	set change_magic,0;
+	unequip;
+	jobchange 2;
+	mes "[魔法公會 服務人員]";
+	mes "歡迎來到魔術師公會!";
+	mes "啊~只是打個招呼所以別那麼害羞。";
+	mes "別不說話啊!";
+	next;
+	mes "[魔法公會 服務人員]";
+	mes "恭喜你成為我們魔法公會的一員!";
+	mes "以後還請多多指教!";
+	mes "嘿嘿嘿~";
+	close;
+Lwrong:
+	if (countitem(1090)>=1) delitem 1090,1;
+	if (countitem(1071)>=1) delitem 1071,1;
+	if (countitem(1085)>=1) delitem 1085,1;
+	if (countitem(1086)>=1) delitem 1086,1;
+	if (countitem(1087)>=1) delitem 1087,1;
+	mes "[魔法公會 服務人員]";
+	mes "……談話之後做出這個";
+	mes "您的考試是……";
+	if (change_magic == 1) mes "做出魔法師轉職考試用的混合液<１>號。";
+	if (change_magic == 2) mes "做出魔法師轉職考試用的混合液<２>號。";
+	if (change_magic == 3) mes "做出魔法師轉職考試用的混合液<３>號。";
+	if (change_magic == 4) mes "做出魔法師轉職考試用的混合液<４>號。";
+	close;
+Llowlv:
+	mes "[魔法公會 服務人員]";
+	mes "好像……終於完成了嗎?";
+	mes "……什麼!";
+	mes "雖然準備妥當但初學者技能等級不夠。";
+	mes "等提升初學者技能等級後再來吧!";
+	close;
+Lend:
+	mes "[魔法公會 服務人員]";
+	mes "嗯……?什麼?";
+	close;
+Lend2:
+	mes "[魔法公會 服務人員]";
+	mes "什麼!剛才說想成為魔法師啊?";
+	mes "噗噗!";
+	close;
+Ltwice:
+	mes "[魔法公會 服務人員]";
+	mes "咦?你已經是魔法師了。";
+	mes "自己的事也不曉得呀?";
+	mes "哎~難不成要能空手變出火焰時，";
+	mes "你才知道自己是魔法師嗎?";
+	close;
+LError:
+	mes "[魔法公會 服務人員]";
+	mes "咦?你不能轉職為魔法師喔!";
+	mes "已經轉職為其他職業了。";
+	close;
+LUpper1:
+	if (( Class == 0 ) && ((oldjob ==9) || (oldjob ==16))) goto LUpper2;
+	mes "[魔法公會 服務人員]";
+	mes "您這個職業不能轉職。";
+	mes "只能轉生前同一系列的職業才允許。";
+	close;
+LUpper2:
+	if (getskilllv(1) < 9) goto Llowlv;
+	if (SkillPoint != 0) goto Llowlv;
+	mes "[魔法公會 服務人員]";
+	mes "你已經轉生過了呀!";
+	mes "怎麼還沒去轉職?";
+	next;
+	unequip;
+	jobchange 2,1;
+	skill 157,1,0;
+	mes "[魔法公會 服務人員]";
+	mes "恭喜轉職了!";
+	mes "今後也要為了提升公會的聲望";
+	mes "請努力!";
+	close;
+
+
+}
+//==============================================================================
+geffen_in.gat,177,112,0	script	書櫃	111,{
+	mes "[物品合成書]";
+	mes "本書為吉芬魔法協會的所有財產。";
+	next;
+	menu "混合液<１>號",L1,"混合液<２>號",L2,"混合液<３>號",L3,"混合液<４>號",L4,"放棄",Lend;
+L1:
+	mes "[魔法師轉職考試要求混合液<１>號]";
+	mes "* 材料細節 *";
+	mes " - 傑勒比結晶 2個";
+	mes " - 毛 3個";
+	mes " - 牛奶 1瓶";
+	next;
+	mes "[魔法師轉職考試要求混合液<１>號]";
+	mes "* 溶劑 *";
+	mes "斐揚水溶液";
+	mes "所在地:";
+	mes "斐揚弓箭手村莊的小泉";
+	next;
+	mes "[魔法師轉職考試要求混合液<１>號]";
+	mes "* 化學粉末 *";
+	mes " - 8472";
+	next;
+	mes "[魔法師轉職考試要求混合液<１>號]";
+	mes "* 催化物 *";
+	mes " - 黃色魔力礦石";
+	mes "(內藏在物品調和機中)";
+	close;
+L2:
+	mes "[魔法師轉職考試要求混合液<２>號]";
+	mes "* 材料細節 *";
+	mes " - 傑勒比結晶 3個";
+	mes " - 毛 1個";
+	mes " - 牛奶 1瓶";
+	next;
+	mes "[魔法師轉職考試要求混合液<２>號]";
+	mes "* 溶劑 *";
+	mes " - 不使用";
+	next;
+	mes "[魔法師轉職考試要求混合液<２>號]";
+	mes "* 化學粉末 *";
+	mes " - 3735";
+	next;
+	mes "[魔法師轉職考試要求混合液<２>號]";
+	mes "* 催化物 *";
+	mes " - 紅色魔力礦石";
+	mes "(內藏在物品調和機中)";
+	close;
+L3:
+	mes "[魔法師轉職考試要求混合液<３>號]";
+	mes "* 材料細節 *";
+	mes " - 傑勒比結晶 6個";
+	mes " - 毛 1個";
+	next;
+	mes "[魔法師轉職考試要求混合液<３>號]";
+	mes "* 溶劑 *";
+	mes "斐揚水溶液";
+	mes "所在地:";
+	mes "斐揚弓箭手村莊的小泉";
+	next;
+	mes "[魔法師轉職考試要求混合液<３>號]";
+	mes "* 化學粉末 *";
+	mes " - 2750";
+	next;
+	mes "[魔法師轉職考試要求混合液<３>號]";
+	mes "* 催化物 *";
+	mes " - 藍色魔力礦石";
+	mes "(內藏在物品調和機中)";
+	close;
+L4:
+	mes "[魔法師轉職考試要求混合液<４>號]";
+	mes "* 材料細節 *";
+	mes " - 傑勒比結晶 2個";
+	mes " - 毛 3個";
+	next;
+	mes "[魔法師轉職考試要求混合液<４>號]";
+	mes "* 溶劑 *";
+	mes "夢羅克水溶液";
+	mes "所在地:";
+	mes "夢羅克金字塔入口附近的小泉";
+	next;
+	mes "[魔法師轉職考試要求混合液<４>號]";
+	mes "* 化學粉末 *";
+	mes " - 5429";
+	next;
+	mes "[魔法師轉職考試要求混合液<４>號]";
+	mes "* 催化物 *";
+	mes " - 透明的寶石";
+	mes "(內藏在物品調和機中)";
+Lend:
+	close;
+}
+//==============================================================================
+geffen_in.gat,164,109,2	script	魔導師	64,{
+	mes "[魔導師]";
+	mes "魔法的強弱會因為因果循的環影響而有所改變…";
+	next;
+	mes "[魔導師]";
+	mes "也就是說，當你傷害別人或是";
+	mes "違反自然法則時，";
+	mes "所施展的魔法也必定會";
+	mes "反作用到施法者身上。";
+	next;
+	mes "[魔導師]";
+	mes "有一種物體可以代替施法者承受反作用力";
+	mes "那就是魔力礦石，一但有了魔力礦石，";
+	mes "施法者就大可以放心的施展法術了。";
+	close;
+}
+//==============================================================================
+geffen_in.gat,164,112,0	script	物品 調和機	111,{
+	mes "[物品 調和機]";
+	mes "魔法師轉職考試專用物品調合機。";
+	mes "本器材是由吉芬魔法協會提供的。";
+	next;
+	menu "使用物品調配機機器",-,"放棄",Lend;
+	set @water,0;set @zeronum,0;set @mennnum,0;set @milknum,0;
+		mes "[物品 調和機]";
+		mes "請選擇要調和的水溶液";
+		next;
+		menu "斐揚水溶液",Lpay,"夢羅克水溶液",Lmoc,"略過",Litem;
+			Lpay: if (countitem(1089) < 1) goto LError2;set @water,1;goto Litem;
+			Lmoc: if (countitem(1088) < 1) goto LError2;set @water,2;goto Litem;
+	Litem:
+		mes "[物品 調和機]";
+		mes "請選擇要調和的物品";
+		next;
+	Lchooseitem:
+		menu "傑勒比結晶",Lzero,"毛",Lmenn,"牛奶",Lmilk,"檢視所設定的物品細節",Ltasc;
+			Lzero: set @choose,1;input @zeronum;if (@zeronum > 10000) goto LError;goto Lchooseitem;
+			Lmenn: set @choose,2;input @mennnum;if (@menonum > 10000) goto LError;goto Lchooseitem;
+			Lmilk: set @choose,3;input @milknum;if (@milknum > 10000) goto LError;goto Lchooseitem;
+Ltasc:
+		next;
+		mes "[物品 調和機]";
+		if (@zeronum >= 1) mes "傑勒比結晶: " + @zeronum + " 個";
+		if (@mennnum >= 1) mes "毛: " + @mennnum + " 個";
+		if (@milknum >= 1) mes "牛奶: " + @milknum + " 個";
+		if (@water == 0) mes "溶劑 : 無";
+		if (@water == 1) mes "溶劑 : 斐揚水溶液";
+		if (@water == 2) mes "溶劑 : 夢羅克水溶液";
+		next;
+		mes "[物品 調和機]";
+		mes "現在調和物品嗎?或繼續物品設定?";
+		next;
+		menu "調和物品",Lgousei,"繼續物品設定",Litem,"重新設定",Lreset;
+	Lreset:
+			set @zeronum,0;set @mennnum,0;set @milknum,0;
+			mes "[物品 調和機]";
+			mes "物品設定被重新設定了。";
+			mes "繼續使用調和機嗎?";
+			next;
+			menu "是的",Litem,"否",Lend2;
+	Lgousei:
+			mes "[物品 調和機]";
+			mes "請你將設定好的物品放入調和桶中";
+			mes "一旦將物品放進去後，";
+			mes "就不能再加減數量，";
+			mes "所以請注意。";
+			next;
+			mes "[物品 調和機]";
+			mes "請再仔細確認，確認完成後請按";
+			mes "<調和開始>的按鈕，";
+			mes "不確定的話請按<終了>的按鈕。";
+			next;
+			menu "<調和開始>",Ldelitem,"<終了>",Lend;
+		Ldelitem:
+			mes "[物品 調和機]";
+			mes "將設定好的物品放入調和機";
+			mes "請稍等一下。";
+			next;
+			if (countitem(909) < @zeronum) goto LError3;
+			if (countitem(914) < @mennnum) goto LError4;
+			if (countitem(519) < @milknum) goto LError5;
+			if (@water == 1) delitem 1089,1;
+			if (@water == 2) delitem 1088,1;
+			delitem 909,@zeronum;
+			delitem 914,@mennnum;
+			delitem 519,@milknum;
+			mes "[物品 調和機]";
+			mes "確定設定好的物品放入調和機";
+			mes "並關閉調合機。";
+			next;
+			mes "[物品 調和機]";
+			mes "請再輸入調和的魔法粉末號碼。";
+			next;
+		Lmagicinput:
+			input @magic;
+			if (@magic == 0) goto Lmagicskip;
+			if ((@magic > 1000) && (@magic < 10000)) goto Lmagicask;
+			if ((@magic < 1000) || (@magic > 10000)) goto LError6;
+		Lmagicskip:
+				mes "[物品 調和機]";
+				mes "不放進魔法粉末略過嗎?";
+				next;
+				menu "是的",Lchoosestone,"否",Lmagicinput;
+		Lmagicask:
+				mes "[物品 調和機]";
+				mes "號碼為 #" + @magic + " 魔法粉末，對嗎?";
+				next;
+				menu "對",-,"不對",Lmagicinput;
+		Lchoosestone:
+					mes "[物品 調和機]";
+					mes "最後，請你選擇催化石。";
+					next;
+					menu "紅色魔力礦石",Lred,"黃色魔力礦石",Lyel,"藍色魔力礦石",Lblu,"透明的寶石",Lcle,"略過",Lnostone;
+						Lred: set @stone,1;goto Lnostone;
+						Lyel: set @stone,2;goto Lnostone;
+						Lblu: set @stone,3;goto Lnostone;
+						Lcle: set @stone,4;goto Lnostone;
+						Lnostone:
+							mes "[物品 調和機]";
+							mes "已經準備好了，";
+							mes "現在可以開始調和了。";
+							mes "請稍候!";
+							next;
+							mes "[物品 調和機]";
+							mes "- 今天的諺語 -";
+							set @kotowaza,rand(3);
+							if (@kotowaza == 1) goto Lkotowaza2;
+							if (@kotowaza == 2) goto Lkotowaza3;
+								mes "從中作梗";
+								mes "意味著";
+								mes "”在中間干擾破壞，使事情難以進行”";
+								goto Lkotowazaend;
+							Lkotowaza2:
+								mes "得寸進尺";
+								mes "意味著";
+								mes "”得到一些利益，即想進而獲得更多利益 ”";
+								goto Lkotowazaend;
+							Lkotowaza3:
+								mes "世事難料";
+                                                                mes "意味著";
+								mes "”未來的事情，完全不能預料的”";
+							Lkotowazaend:
+								next;
+								if ((@water == 1) && (@zeronum == 2) && (@mennnum == 3) && (@milknum == 1) && (@magic == 8472) && (@stone == 2)) goto Lsucsess1;
+								if ((@zeronum == 3) && (@mennnum == 1) && (@milknum == 1) && (@magic == 3735) && (@stone == 1)) goto Lsucsess2;
+								if ((@water == 1) && (@zeronum == 6) && (@mennnum == 1) && (@magic == 2750) && (@stone == 3)) goto Lsucsess3;
+								if ((@water == 2) && (@zeronum == 2) && (@mennnum == 3) && (@magic == 5429) && (@stone == 4)) goto Lsucsess4;
+									getitem 1090,1;
+									mes "魔法師轉職考試混合液發生某些問題。";
+									goto Lfinale;
+								Lsucsess1:
+									getitem 1071,1;
+									mes "魔法師轉職考試";
+									mes "要求混合液 <１>號";
+									goto Lfinale;
+								Lsucsess2:
+									getitem 1085,1;
+									mes "魔法師轉職考試";
+									mes "要求混合液 <２>號";
+									goto Lfinale;
+								Lsucsess3:
+									getitem 1086,1;
+									mes "魔法師轉職考試";
+									mes "要求混合液 <３>號";
+									goto Lfinale;
+								Lsucsess4:
+									getitem 1087,1;
+									mes "魔法師轉職考試";
+									mes "要求混合液 <４>號";
+								Lfinale:
+									next;
+									mes "[物品 調和機]";
+									mes "調和終了。";
+									mes "調和機作業終了，感謝你的使用。";
+									close;
+LError:
+		mes "[物品 調和機]";
+		mes "超過使用限度，請設定在10000個以下。";
+		next;
+		if (@choose == 1) goto Lzero;
+		if (@choose == 2) goto Lmenn;
+		if (@choose == 3) goto Lmilk;
+LError2:
+	mes "[物品 調和機]";
+	mes "沒有發現任何物品，";
+	mes "請檢查試管確認裝置。";
+	goto LErrorend;
+LError3:
+	mes "[物品 調和機]";
+	mes "設定的物品<傑勒比結晶>數量不夠，";
+	mes "請再確認。";
+	goto LErrorend;
+LError4:
+	mes "[物品 調和機]";
+	mes "設定的物品<毛>數量不夠，";
+	mes "請再確認。";
+	goto LErrorend;
+LError5:
+	mes "[物品 調和機]";
+	mes "設定的物品<牛奶>數量不夠，";
+	mes "請再確認。";
+LErrorend:
+	mes "調和終了。";
+	mes "感謝你的使用。";
+	close;
+LError6:
+	mes "[物品 調和機]";
+	mes "超過連號的輸入範圍。";
+	mes "請再一次輸入。";
+	next;
+	goto Lmagicinput;
+Lend2:
+	mes "[物品 調和機]";
+	mes "調和終了。";
+	mes "調和機作業終了，感謝你的使用。";
+Lend:
+	close;
+}
+//==============================================================================
+pay_arche.gat,121,100,0	script	水溶液工作人員	88,{
+	mes "[魔法公會 服務人員]";
+	mes "買水溶液嗎?";
+	mes "需要50 Zeny和空試管1隻喔!";
+	next;
+	menu "買水溶液",-,"取消",Lclose;
+	if (countitem(1092) >= 1) goto Lok;
+		mes "[魔法公會 服務人員]";
+		mes "空著手的話物品要怎麼攜帶呢?";
+		mes "帶一個空試管裝來吧!";
+		close;
+Lok:
+	if (Zeny >= 50) goto Lok2;
+		mes "[魔法公會 服務人員]";
+		mes "你的錢不夠唷!";
+		close;
+Lok2:
+	set Zeny,Zeny-50;
+	delitem 1092,1;
+	getitem 1089,1;
+	mes "[魔法公會 服務人員]";
+	mes "謝謝您。";
+Lclose:
+	close;
+}
+//==============================================================================
+moc_ruins.gat,91,150,0	script	水溶液工作人員	93,{
+	mes "[魔法公會 服務人員]";
+	mes "買水溶液嗎?";
+	mes "需要50 Zeny和空試管1隻喔!";
+	next;
+	menu "買水溶液",-,"取消",Lclose;
+	if (countitem(1092) >= 1) goto Lok;
+		mes "[魔法公會 服務人員]";
+		mes "空著手的話物品要怎麼攜帶呢?";
+		mes "帶一個空試管裝來吧!";
+		close;
+Lok:
+	if (Zeny >= 50) goto Lok2;
+		mes "[魔法公會 服務人員]";
+		mes "您的金額不夠。";
+		close;
+Lok2:
+	set Zeny,Zeny-50;
+	delitem 1092,1;
+	getitem 1088,1;
+	mes "[魔法公會 服務人員]";
+	mes "謝謝您!";
+Lclose:
+	close;
+}

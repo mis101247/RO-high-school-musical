@@ -1,0 +1,73 @@
+//===================================================================
+//Ragnarok Online EP2.5 GVG Script	payg_cas05         by kalen
+//===================================================================
+-	script	gfpayE	722,{
+callfunc "flagsc","payg_cas05.gat",2,0,0,0;
+OnRecvCastleF05:
+	FlagEmblem getcastledata("payg_cas05.gat",1);
+	end;
+}
+pay_gld.gat,208,268,4	duplicate(gfpayE)	佛影#f5-1	722
+pay_gld.gat,199,268,4	duplicate(gfpayE)	佛影#f5-2	722
+pay_gld.gat,190,277,3	duplicate(gfpayE)	佛影#f5-3	722
+pay_gld.gat,187,294,2	duplicate(gfpayE)	佛影#f5-4	722
+payg_cas05.gat,32,249,4	duplicate(gfpayE)	佛影#f5-5	722
+payg_cas05.gat,24,249,4	duplicate(gfpayE)	佛影#f5-6	722
+payg_cas05.gat,62,271,0	duplicate(gfpayE)	佛影#f5-7	722
+payg_cas05.gat,57,271,0	duplicate(gfpayE)	佛影#f5-8	722
+payg_cas05.gat,55,252,2	duplicate(gfpayE)	佛影#f5-9	722
+payg_cas05.gat,55,260,2	duplicate(gfpayE)	佛影#f5-10	722
+//------------------------------ロкь--------------------------------
+payg_cas05.gat,276,227,1	script	卡普拉 職員::kapra_payg05	117,{
+	callfunc "gkfmenu","payg_cas05.gat";
+	menu "使用倉庫服務",L2,"使用空間移動服務",L3,"使用手推車服務",L4,"結束",L7;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "gkfwarp","斐揚","payon.gat",158,88;
+L4:
+	callfunc "kfcart",800;
+L7:
+	callfunc "kfend";
+}
+//-------------------------------管理人---------------------------------
+payg_cas05.gat,277,249,3	script	納加布	55,{
+	callfunc "Steward_menu0","payg_cas05.gat","納加布";
+	menu "查看秘密基地狀況",L1,"投資商業發展度",L2,"投資防禦度",L3,"設定監護人",L4,"僱用 / 解雇 倉庫職員",L5,"進入主人房間",L6,"讓出秘密基地",L7;
+L1:
+	callfunc "Steward_menu1","payg_cas05.gat","納加布";
+L2:
+	callfunc "Steward_menu2","payg_cas05.gat","納加布";
+L3:
+	callfunc "Steward_menu3","payg_cas05.gat","納加布";
+L4:
+	callfunc "Steward_menu4","payg_cas05.gat","納加布";
+	if (@GDnum == 10) monster "payg_cas05.gat",19,279,"--ja--",1285,1,"Agit_C05::On_GDf51";
+	if (@GDnum == 11) monster "payg_cas05.gat",33,260,"--ja--",1285,1,"Agit_C05::On_GDf52";
+	if (@GDnum == 12) monster "payg_cas05.gat",266,234,"--ja--",1285,1,"Agit_C05::On_GDf53";
+	if (@GDnum == 13) monster "payg_cas05.gat",266,279,"--ja--",1285,1,"Agit_C05::On_GDf54";
+	if (@GDnum == 14) monster "payg_cas05.gat",263,37,"--ja--",1285,1,"Agit_C05::On_GDf55";
+	if (@GDnum == 15) monster "payg_cas05.gat",263,21,"--ja--",1285,1,"Agit_C05::On_GDf56";
+	if (@GDnum == 16) monster "payg_cas05.gat",250,22,"--ja--",1285,1,"Agit_C05::On_GDf57";
+	if (@GDnum == 17) monster "payg_cas05.gat",36,36,"--ja--",1286,1,"Agit_C05::On_GDf58";
+	mes "[管理人納加布]";
+	mes "監護人已經設定完畢。";
+	mes "監護人能守護我們的城";
+	mes "防止敵人的進攻。";
+	close;
+L5:
+	callfunc "Steward_menu5","payg_cas05.gat","納加布","kapra_payg05";
+L6:
+	callfunc "Steward_menu6","payg_cas05.gat","納加布",153,129;
+L7:
+	callfunc "Steward_menu7","payg_cas05.gat","納加布";
+	callfunc "resetcastledata","payg_cas05.gat","::OnRecvCastleF05","kapra_payg05",@GID,"::OnGDEMPSetF05";
+}
+//-----------------------------開關-------------------------------
+payg_cas05.gat,161,137,0	script	　	111,{
+callfunc "gdswitch","payg_cas05.gat",277,250;
+}
+//-----------------------------開關2------------------------------
+payg_cas05.gat,238,11,0	script	　	111,{
+callfunc "gdswitch2","payg_cas05.gat","gld_dun01.gat",223,202;
+}

@@ -1,0 +1,103 @@
+prontera.gat,144,170,5 script 推車老闆 085,{
+mes "[推車老闆]";
+mes "這裡承租的推車是全職的，而且還有5種款式造型，所以你必須花費較高的摳摳唷。";
+mes "^3355FF騎士^000000、^3355FF十字軍^000000及^3355FF獵人^000000因為座騎跟老鷹的關係，就僅能選擇鐵皮車造型。";
+next;
+if(Class == 7 || Class == 14 || Class == 11) goto dinocar;
+mes "[推車老闆]";
+mes "手推車的造型不同，費用也不一樣。";
+mes "^3355FF造型1_6萬Z^000000，^3355FF造型2_7萬Z^000000";
+mes "^3355FF造型3_8萬Z^000000，^3355FF造型4_9萬Z^000000，^3355FF造型5_10萬Z^000000";
+mes "請選擇你要的推車造型:";
+next;
+	menu "手推車_造型1",dino1,"手推車_造型2",dino2,"手推車_造型3",dino3,"手推車_造型4",dino4,"手推車_造型5",dino5,"老鷹",dino6,"騎鳥",dino7,"取消",dinodel;
+	dino1:
+                if(Zeny<60000) goto dinonoZ;		
+                setoption (8);
+                set zeny,zeny-60000;
+		mes "[推車老闆]";
+		mes "您已經可以使用手推車了，歡迎下次再來！";
+		close;
+	dino2:
+                if(Zeny<70000) goto dinonoZ;		
+                setoption (128);
+                set zeny,zeny-70000;
+		mes "[推車老闆]";
+		mes "您已經可以使用手推車了，歡迎下次再來！";
+		close;
+	dino3:
+                if(Zeny<80000) goto dinonoZ;		
+                setoption (256);
+                set zeny,zeny-80000;
+		mes "[推車老闆]";
+		mes "您已經可以使用手推車了，歡迎下次再來！";
+		close;
+	dino4:
+                if(Zeny<90000) goto dinonoZ;		
+                setoption (512);
+                set zeny,zeny-90000;
+		mes "[推車老闆]";
+		mes "您已經可以使用手推車了，歡迎下次再來！";
+		close;
+	dino5:
+                if(Zeny<100000) goto dinonoZ;		
+                setoption (1024);
+                set zeny,zeny-100000;
+		mes "[推車老闆]";
+		mes "您已經可以使用手推車了，歡迎下次再來！";
+		close;
+	dino6:
+                if(Zeny<100000) goto dinonoZ;		
+                setoption (16);
+                set zeny,zeny-100000;
+		mes "[推車老闆]";
+		mes "您已經可以使用老鷹了，歡迎下次再來！";
+		close;
+	dino7:
+                if(Zeny<100000) goto dinonoZ;		
+                setoption (40);
+                set zeny,zeny-1000000;
+		mes "[推車老闆]";
+		mes "您已經可以使用騎鳥了，歡迎下次再來！";
+		close;
+	dinodel:
+		mes "[推車老闆]";
+		mes "歡迎下次再來!=_=|||";
+		close;
+
+dinocar:
+mes "[推車老闆]";
+mes "因為無法選擇造型，算您5萬z就好。";
+mes "您確定要使用鐵皮造型推車了嗎?";
+next;
+	menu "是的，我要使用推車",dino1_1,"我想還是不了",dinodel;
+
+//以下為騎士、十字軍專用
+
+	dino1_1:
+                if(Class == 11) goto dino2_1;
+                if(Zeny<50000) goto dinonoZ;		
+                setoption (40);
+                set zeny,zeny-50000;
+		mes "[推車老闆]";
+		mes "您已經可以使用手推車了，歡迎下次再來！";
+		close;
+
+//以下為獵人專用
+
+	dino2_1:
+                if(Zeny<50000) goto dinonoZ;		
+                setoption (24);
+                set zeny,zeny-50000;
+		mes "[推車老闆]";
+		mes "您已經可以使用手推車了，歡迎下次再來！";
+		close;
+
+//以下為金錢不足
+
+        dinonoZ:
+
+                mes "[推車老闆]";
+                mes "對不起，你沒有足夠金錢。";
+                close;
+}

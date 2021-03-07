@@ -1,0 +1,175 @@
+//====================================================================
+//Ragnarok Online Archer jobchange script
+// 漢化:LKM
+// http://coolro.cnnb.net
+//====================================================================
+payon_in02.gat,64,71,4	script	公會工作人員	85,{
+	mes "[弓箭手 公會工作人員]";
+	mes "您好";
+	mes "請問你要什麼服務嗎?";
+	next;
+	menu "轉職為弓箭手",L1,"詢問有關轉職為弓箭手的條件",L2,"沒有事",Lend;
+L1:
+	if (Class == 3) goto Ltwice;
+	if (Class != 0) goto LError;
+	if (change_archer == 1) goto Lcheck;
+	mes "[弓箭手 公會工作人員]";
+	mes "你想要轉職成為弓箭手嗎?";
+	mes "那請你填一份弓箭手轉職申請書。";
+	next;
+	menu "申請弓箭手轉職申請書",-,"放棄",Lend2;
+		set change_archer,1;
+		mes "[弓箭手 公會工作人員]";
+		mes "請在申請書上簽名…";
+		mes "好。這樣就OK了。";
+		mes "接下來若你具備好所有轉職條件的話，就馬上給你轉職。";
+		mes "你已經準備好轉職的物品了嗎?!";
+		mes "現在讓我來確認一下…好嗎?";
+		next;
+		menu "好",L1_1,"不好",L1_2;
+L1_1:
+			mes "[弓箭手 公會工作人員]";
+			mes "確認。";
+			next;
+			goto Lcheck;
+L1_2:
+			mes "[弓箭手 公會工作人員]";
+			mes "知道了。";
+			mes "關於轉職弓箭手的事情有不懂部份的話，請再來問我";
+			close;
+L2:
+	mes "[弓箭手 公會工作人員]";
+	mes "那麼，讓我來為你說明關於轉職為弓箭手的條件。";
+	if (Class == 0) goto L2_1;
+		if (Class == 3) mes "可是，你已經是弓箭手了…";
+		if (Class != 3)	mes "可是，你已經為其它的職業了，";
+		if (Class != 3)	mes "你是不是搞錯了…";
+		mes "……哎呀!好吧。";
+L2_1:
+	next;
+	mes "[弓箭手 公會工作人員]";
+	mes "首先，初學者基本技能等級到達9級以上。";
+	mes "另外，要成為弓箭手必備的條鑒是高度的集中力，所以我們弓箭手動會不收行事迷迷糊糊、搞不請楚狀況的人。";
+	next;
+	mes "[弓箭手 公會工作人員]";
+	mes "弓箭手的轉職條件是必須";
+	mes "帶來製作弓所需^ff0000樹枝^000000。";
+	mes "樹枝有四種分別是天地樹枝、智慧樹枝、世界樹枝和瑪哪樹枝。";
+	mes "取得這四種樹枝後，";
+	mes "我們會幫你計算你的點數。";
+	next;
+	mes "[弓箭手 公會工作人員]";
+	mes "在40點滿點中要^0000ff25點以上^000000";
+	mes "才可以轉職為弓箭手。";
+	mes "樹枝是打贏了「樹精」可以取得，";
+	mes "雖然它不是很強的敵手，";
+	mes "但你也不要掉以輕心。";
+	close;
+Lcheck:
+	mes "[弓箭手 公會工作人員]";
+	mes "你的名字是… " + strcharinfo(0) + "。是嗎?";
+	next;
+//轉生成長處理
+	//callfunc "jobchanger","弓箭手 公會工作人員",3;
+	if (Upper == 1) goto LUpper1;
+	if (getskilllv(1) < 9) goto Llowlv;
+		mes "[弓箭手 公會工作人員]";
+		mes "初心者技能達到要求…";
+		mes "那麼開始評估弓製作的必須的樹枝。";
+		next;
+		set @gradeS,countitem(1066)*5;
+		set @gradeA,countitem(1067)*3;
+		set @gradeB,countitem(1068)*2;
+		set @gradeC,countitem(1019)*1;
+		set @total,@gradeS+@gradeA+@gradeB+@gradeC;
+		if (@total == 0) goto Lnoitem;
+			mes "[弓箭手 公會工作人員]";
+			if (countitem(1066) > 0) mes "GRADE S : " + countitem(1066) + " 個 / 點數 : " + @gradeS + "。";
+			if (countitem(1067) > 0) mes "GRADE A : " + countitem(1067) + " 個 / 點數 : " + @gradeA + "。";
+			if (countitem(1068) > 0) mes "GRADE B : " + countitem(1068) + " 個 / 點數 : " + @gradeB + "。";
+			if (countitem(1019) > 0) mes "GRADE C : " + countitem(1019) + " 個 / 點數 : " + @gradeC + "。";
+			if (@total >= 25) mes "總點: ^0000ff" + @total + "^000000 / 40";
+			if (@total < 25) mes "總點: ^ff0000" + @total + "^000000 / 40";
+			next;
+				if (@total > 25) goto Lgoukaku;
+					mes "[弓箭手 公會工作人員]";
+					mes "25點以下?";
+					mes "沒25點以上的話";
+					mes "是不合格的!";
+					mes "請更加努力!";
+					close;
+			Lgoukaku:
+					delitem 1066,countitem(1066);
+					delitem 1067,countitem(1067);
+					delitem 1068,countitem(1068);
+					delitem 1019,countitem(1019);
+					mes "[弓箭手 公會工作人員]";
+					if ((@total >= 25) && (@total < 30)) mes "25點以上!喔~";
+					if ((@total >= 25) && (@total < 30)) mes "差強人意，不過還是合格。";
+					if ((@total >= 30) && (@total < 40)) mes "30點以上!合格了!";
+					if ((@total >= 30) && (@total < 40)) mes "辛苦你了";
+					if (@total >= 40) mes "哇!40點以上!";
+					if (@total >= 40) mes "真厲害!合格了!";
+					mes "把樹枝交給製作人員。";
+					mes "這樣符合弓箭手轉職的條件了";
+					mes "馬上幫你轉職。";
+					next;
+					unequip;
+					jobchange 3;
+					getitem 1702,1;
+					getitem 1750,rand(100);
+					set change_archer,0;
+					mes "[弓箭手 公會工作人員]";
+					mes "衷心地祝賀你轉職成為弓箭手，";
+					mes "今後為了發揚公會請努力!";
+					mes "製作部門已經將東西送來了，";
+					mes "請你點收。";
+					next;
+					mes "[弓箭手工會工作人員]";
+					mes "有了弓和箭後，";
+					mes "即成為名符其實的弓箭手了。";
+					mes "請努力唷!";
+					close;
+		Lnoitem:
+			mes "[弓箭手 公會工作人員]";
+			mes "……。";
+			mes "你沒有將我們指定的四種樹枝都帶來!!";
+			close;
+Llowlv:
+	mes "[弓箭手 公會工作人員]";
+	mes "初學者技能等級不夠。";
+	mes "請再確認已達到轉職條件";
+	mes "初學者基本技能等級到達9級以上。";
+	close;
+Ltwice:
+	mes "[弓箭手 公會工作人員]";
+	mes "你已經轉職為弓箭手了。";
+	close;
+LError:
+	mes "[弓箭手 公會工作人員]";
+	mes "呃…";
+	mes "你的樣子看來不像是初學者…";
+	mes "已經選擇了其它的職業";
+	mes "無法轉職為弓箭手。";
+Lend:
+	close;
+Lend2:
+	mes "[弓箭手 公會工作人員]";
+	mes "嗯…再見。";
+	close;
+LUpper1:
+	if (getskilllv(1) < 9) goto Llowlv;
+	mes "[弓箭手 公會工作人員]";
+	mes "你已經轉生過了呀!";
+	mes "怎麼還沒去轉職?";
+	next;
+	unequip;
+	jobchange 3,1;
+	skill 147,1,0;
+	skill 148,1,0;
+	mes "[弓箭手 公會工作人員]";
+	mes "恭喜轉職!";
+	mes "今後為了發揚公會";
+	mes "請努力!";
+	close;
+}

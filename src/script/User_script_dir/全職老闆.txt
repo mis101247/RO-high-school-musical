@@ -1,0 +1,78 @@
+//By GeisHa
+prontera.gat,159,190,4	script	釣魚阿伯	52,{
+	mes "[金大福]";
+	mes "年輕人，不要吵啊，我的魚都跑了啦。";
+	next;
+	menu "對不起，我走開",LEnd,"我有事找你。",Lstart;
+Lstart:
+	mes "[金大福]";
+	mes "哦？有什麼事？";
+	mes "已經很久沒人找我了，有事儘管說";
+	menu "你能幫我釣出海的主人嗎？",Lseamaster,"聽說你有一種特殊能力",Lstart2;
+Lseamaster:
+	mes "[金大福]";
+	mes "呵呵,這個很簡單";
+	mes "不過你要給我特別的魚餌";
+	mes "....";
+	close;	
+Lstart2:
+	mes "[金大福]";
+	mes "呵呵,你也知道?";
+	mes "我祖傳獨門秘技，就是可以幫人重置點數";
+	mes "你想重置什麼呢？";
+	next;
+	menu "^FF3355技能點(費用80w)^000000",L1,"^FF3355屬性點(費用80w)^000000",L2,"^FF3355技能點和屬性點(費用150w)^000000",L3,"取消",LEnd;
+	
+	L1:
+		if (Zeny<800000) goto NeedZenys;
+		mes "[金大福]";
+		mes "已經重置好了";
+		mes "^FF3355請好好分配^000000";
+		set Zeny,Zeny-800000;
+		resetskill;
+		close;
+	L2:
+		if (Zeny<800000) goto NeedZenys;
+		mes "[金大福]";
+		mes "已經重置好了";
+		mes "^FF3355請好好分配^000000";
+		set Zeny,Zeny-800000;
+		resetstatus;
+		close;
+	L3:
+		if (Zeny<1500000) goto NeedZenys;
+		mes "[金大福]";
+		mes "已經重置好了";
+		mes "^FF3355請好好分配^000000";
+		set Zeny,Zeny-1500000;
+		resetstatus;
+		resetskill;
+		close;
+
+		NeedZenys:
+			mes "[金大福]";
+			mes "窮人不要來湊熱鬧！影響我釣魚";
+			close;
+	LEnd:
+		mes "[金大福]";
+		mes "…………";
+		close;	
+}
+prontera.gat,162,167,4        script        道館傳送員        757,{
+mes "[道館傳送員]";
+mes "你要讓你的刀染血了嗎？";
+next;
+menu
+"是",Ltrans,
+"否",Lcon;
+Ltrans:        
+		savepoint "izlude.gat",127,86;
+warp "izlude.gat",127,86;        end;
+Lcon:
+mes "[道館傳送員]";
+mes "有需要在來。";
+close;
+OnInit:
+	waitingroom "道館傳送員",0;
+	end;
+}

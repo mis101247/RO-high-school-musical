@@ -1,0 +1,735 @@
+amatsu.gat,107,155,4	script	ALL+500卡換取人員	46,{ 
+	mes " [ALL+500卡換取人員]";
+	mes " 我可以幫你換取all+500卡";
+        mes " 只要你有str int dex agi+500卡";
+	next;
+	mes " [ALL+500卡換取人員]";
+	mes " str int dex agi+500卡各1張等於all+500卡";
+	next; 
+	menu	" 我要換取",hhhbbb,
+        	" 我不要服務",cccccc;
+
+	hhhbbb:
+	if (countitem(8055)<1) goto nnnnnn;
+if (countitem(8056)<1) goto nnnnnn;
+if (countitem(8057)<1) goto nnnnnn;
+if (countitem(8058)<1) goto nnnnnn;
+	mes " []";
+	mes " 你真的要換嗎";
+	menu	"換",-,"我不要服務",cccccc;
+	delitem 8055,1;
+        delitem 8056,1; 
+        delitem 8057,1;
+        delitem 8058,1;  
+	getitem 8054,1;
+	mes "[ALL+300卡換取人員]";
+	mes "謝謝您的使用";
+	close;
+
+	bbbhhh:
+	if (countitem(7042)<1) goto nnnnnn;
+	mes " [ALL+300卡換取人員]";
+	mes " 你真的要換嗎";
+	menu	" 換",-,"我不要服務",cccccc;
+	delitem 7042,1;
+	getitem 7005,10;
+	mes "[ALL+500卡換取人員]";
+	mes "謝謝您的使用";
+	close;
+	
+	cccccc:
+	mes " [ALL+500卡換取人員]";
+	mes " 那再見啦";
+	close;
+
+	nnnnnn:
+	mes " [ALL+500卡換取人員]";
+	mes " 你沒有充足的物品";
+	close;
+}
+amatsu.gat,101,158,4	script	技能卡換領人員	711,{
+			mes "[阿達]";
+			mes "哈哈!你想要又強又帥的技能卡嘛?";
+			mes "技能要四葉幸運草x20 裝死卡要四葉幸運草x100";
+			next;
+			mes "[阿達]";
+			mes "你想要換取哪項技能卡?";
+			next;
+
+menu "四大法卡",buy_1,"阿修羅卡",buy_2,"拆除卡",buy_3,"商店卡",buy_4,"護被卡",buy_5,"雷嗚卡",buy_6,"音投卡",buy_7,"心震卡",buy_8,"天怒卡",buy_9,"塗毒卡",buy_10,"螺旋卡",buy_11,"生命體卡",buy_12,"技師卡",buy_13,"鐵匠卡",buy_14,"審判卡",buy_15,"裝死",buy_16;
+
+//錢不足-------------------------------------------------------
+NotEnough:
+			mes "[阿達]";
+			mes "什麼!? 我要的東西都沒找好!!!";
+			mes "要耍我嗎?!去吃B吧!!";
+close;
+//去收集-------------------------------------------------------			
+bye:
+			mes "[阿達]";
+			mes "加油喔!!你一定行的!";
+close;
+//-----------------------------------------------------			
+buy_1:
+			if(countitem(706) < 20) goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7604,1;
+			mes "[阿達]";
+			mes "做好了!!!試看看威力吧!!";
+			mes "掰掰";
+close;
+//-------------------------------------------------------
+buy_2:
+			if(countitem(706) < 20) goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7600,1;
+			mes "[阿達]";
+			mes "做好了!!!真是傑作阿!!";
+			mes "掰掰";
+close;
+//--------------------------------------------------
+buy_3:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7601,1;
+			mes "[阿達]";
+			mes "做好了!!!哈哈哈!!!我真是天才阿!你說是不是?";
+			mes "掰掰";
+close;
+//----------------------------------------------------
+buy_4:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7609,1;
+			mes "[阿達]";
+			mes "快看!!!我發覺我自己真是個天才!!";
+			mes "掰掰";
+close;
+//-----------------------------------------------------
+buy_5:
+			if(countitem(706) < 20) goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7602,1;
+			mes "[阿達]";
+			mes "做好了!!!這把,足以穿透鎧甲(認真)!!";
+			mes "掰掰";
+close;
+//----------------------------------------------------
+buy_6:
+			if(countitem(706) < 20) goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7603,1;
+			mes "[阿達]";
+			mes "做好了!!!多美麗的小刀阿!!";
+			mes "掰掰";
+close;
+
+//---------------------------------------------------
+buy_7:
+			if(countitem(706) < 20) goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7606,1;
+			mes "[阿達]";
+			mes "這可是神器呢!!我製作出來的!所以我是神!";
+			mes "掰掰";
+close;
+
+//---------------------------------------------------
+buy_8:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7607,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//---------------------------------------------------
+buy_9:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7611,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//---------------------------------------------------
+buy_10:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7612,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//---------------------------------------------------
+buy_11:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7610,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//---------------------------------------------------
+buy_12:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 7608,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//---------------------------------------------------
+buy_13:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 17001,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//---------------------------------------------------
+buy_14:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 17002,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//---------------------------------------------------
+buy_15:
+			if(countitem(706) < 20)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,20;
+			getitem 17003,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//---------------------------------------------------
+buy_16:
+			if(countitem(706) < 100)goto NotEnough;
+			mes "[阿達]";
+			mes "好現在就給你製作!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 706,100;
+			getitem 7605,1;
+			mes "[阿達]";
+			mes "做好了!!!快試看看!!";
+			mes "掰掰";
+close;
+
+}
+
+
+prontera.gat,141,170,6	script	1轉轉職分配員	790,{
+
+	mes "[轉職分配員]";
+	mes "請選擇下列的的職業";
+        mes "1轉低";
+next;
+menu	"劍士",LLordkingho,"法師",LLordkinght,"服侍",LPaladin,"商人",LHighWizard,"盜賊",LProfessor,"弓箭手",LHighPriest,"不轉了.",LCancel;
+LCancel:
+	mes "[轉職分配員]";
+	mes "恩,好的,好好想想吧,決定要轉了隨時歡迎回來找我!";
+	mes "祝你玩得愉快!";
+	close;
+	OnInit:
+        	waitingroom "找我轉職(1轉低)",0;
+        	end;
+
+LLordkingho:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 劍士 ^000000了";
+	mes "祝你玩得愉快!";
+        jobchange 1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	set SkillPoint,500;
+	
+        close;
+LLordkinght:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 法師 ^000000了";
+	mes "祝你玩得愉快!";
+	jobchange 2;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	set SkillPoint,500;	
+        close;
+
+LPaladin:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 服侍 ^000000了";
+	mes "祝你玩得愉快!";
+	jobchange 4;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	set SkillPoint,500;	
+        close;
+LHighWizard:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 商人 ^000000了";
+	mes "祝你玩得愉快!";
+	jobchange 5;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	set SkillPoint,500;	
+        close;
+
+//超級初心者
+    LProfessor:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!"; 
+	mes "快看看,你現在是^0000FF 盜賊 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 6;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	set SkillPoint,500;
+	close;
+
+//騎士領主
+    LHighPriest:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 弓箭手 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 3;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	set SkillPoint,500;
+	close;
+}
+//		NPC：留言板
+//		說明：可供玩家進行留言
+//		好處：可留下高達600則留言 且 每則留言可輸入最多175個全型字元
+//		壞處：未設置防洗版的措施 以及 需要最高權限GM進行留言刪除 (否則留言永久保留 至 伺服器資料更動)
+//		腳本來源：完全由︴流浪者×夜∥大ｇ自創之腳本.
+//		日期：上午 11:34 2007/2/8
+//		※注意※如要轉載,請勿刪除以上的說明,並且說明出處.
+//
+//		留言卷itme_db內置
+//		18143,Messeng,讀取留言卷,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{set @change_pg,0; doevent "留言板::OnLook";},{},{}
+
+prontera.gat,155,176,4	script	留言板	837,{
+OnMsgStart:
+set @msg_gm_lv,99;	//設定可清除留言的GM權限
+set @look_msg_money,500;	//設定每張讀取卷需多少金額
+set @msg_money,5000;	//設定每則留言需多少金額
+if($msg_nub_==0)	set $msg_nub_,1;
+set @msg_val,0;
+set @times,0;
+set @change_pg,0;
+
+for(set @check_val,1;@check_val<=6;set @check_val,@check_val+1)
+{
+set @msg_val,@msg_val+$msg_nub2[@check_val];
+}
+
+
+
+mes "[留言板]";
+mes "歡迎使用^12F060﹢歌舞∮青春‥δ^000000專用留言板";
+mes "本留言板可容許600則留言";
+mes "每一頁可察看100則留言";
+mes "留一則留言需花費5000元";
+mes "目前留言板內有^FF0000"+@msg_val+"^000000則留言";
+next;
+if(getgmlevel(3)==@msg_gm_lv)
+	{
+		menu "查看留言..",OnLook,"進行留言..",Send,"購買查看留言卷..",Buy,"清除留言..",Clean,"離開..",No;
+	}
+else
+	{
+		menu "查看留言..",OnLook,"購買查看留言卷..",Buy,"進行留言..",Send,"離開",No;
+	}
+
+
+//------------------------------------------------------------查看留言-------------------------------------------------------
+
+OnLook:
+mes "[留言板]";
+set @check,0;
+set @change_pg,@change_pg+1;
+
+if(@change_pg>6)
+	{
+		mes "內容以讀取完畢";
+		close;
+		end;
+	}
+mes "以下是第"+@change_pg+"頁的留言";
+mes "^FF0000第"+ @change_pg +"頁共有"+ $msg_nub2[@change_pg] +"則留言^000000";
+
+for(set @check_val,1;@check_val<=$msg_nub2[@change_pg];set @check_val,@check_val+1)
+	{
+		switch(@change_pg)
+			{
+				case 1: set @msg_time$,$msg_time1$[@check_val]; if($msg1$[@check_val] == "") set @check_pas,1; break;
+				case 2: set @msg_time$,$msg_time2$[@check_val]; if($msg2$[@check_val] == "") set @check_pas,1; break;
+				case 3: set @msg_time$,$msg_time3$[@check_val]; if($msg3$[@check_val] == "") set @check_pas,1; break;
+				case 4: set @msg_time$,$msg_time4$[@check_val]; if($msg4$[@check_val] == "") set @check_pas,1; break;
+				case 5: set @msg_time$,$msg_time5$[@check_val]; if($msg5$[@check_val] == "") set @check_pas,1; break;
+				case 6: set @msg_time$,$msg_time6$[@check_val]; if($msg6$[@check_val] == "") set @check_pas,1; break;
+			}
+		if(@check_pas==1)
+			{
+				
+				set @check_pas,0;
+			}
+		else
+			{
+				mes "^00FF00----------------------------------^000000";
+				mes "^FF0000留言"+ (@check_val+(@change_pg-1)*100) +"^000000  "+@msg_time$;
+
+				switch(@change_pg)
+					{
+						set @check,@check+1;
+						case 1: mes $msg1$[@check_val]; break;
+						case 2: mes $msg2$[@check_val]; break;
+						case 3: mes $msg3$[@check_val]; break;
+						case 4: mes $msg4$[@check_val]; break;
+						case 5: mes $msg5$[@check_val]; break;
+						case 6: mes $msg6$[@check_val]; break;
+					}
+			}
+	}
+
+
+next;
+menu "下一頁..",OnLook,"離開..",No;
+
+//------------------------------------------------------------發送留言-------------------------------------------------------
+
+Send:
+mes "[留言板]";
+mes "每一則留言需要"+@msg_money+"元";
+mes "確定要使用留言功能嗎?";
+next;
+menu "是",Send_;
+
+Send_:
+
+if($msg_nub_==6 && $msg_nub2[$msg_nub_]==100)
+	{
+		mes "[留言板]";
+		mes "此留言板容許留言量已滿";
+		close;
+		end;
+	}
+if(@times >= 5)
+	{
+		mes "[留言板]";
+		mes "你已經使用了剩餘的加長次數";
+		mes "留言已發送出去";
+		close;
+		end;
+	}
+else
+	{
+		mes "[留言板]";
+		mes "請輸入你要留的內容";
+	}
+
+next;
+
+input @msg_main$;
+
+if(zeny<@msg_money)
+	{
+		mes "[留言板]";
+		mes "你身上金額不足";
+		close;
+		end;
+	}
+else
+	{
+		set zeny,zeny-@msg_money;
+		set @times,@times+1;
+	}
+if(@times == 1)
+	{
+		set $msg_nub2[$msg_nub_],$msg_nub2[$msg_nub_]+1;
+
+		if($msg_nub2[$msg_nub_]==100 && $msg_nub_<6)
+			{
+				set $msg_nub_,$msg_nub_+1;
+				set $msg_nub2[$msg_nub_],$msg_nub2[$msg_nub_]+1;
+			}
+
+		switch($msg_nub_)
+			{
+				case 1:
+					{
+						set $msg1$[$msg_nub2[$msg_nub_]],"^0000FF"+strcharinfo(0)+":^000000"+@msg_main$;
+						set $msg_time1$[$msg_nub2[$msg_nub_]],"^F122FF"+gettimestr("%Y/%m/%d %H:%M:%S",28)+"^000000";
+						break;						
+					}
+				case 2:
+					{
+						set $msg2$[$msg_nub2[$msg_nub_]],"^0000FF"+strcharinfo(0)+":^000000"+@msg_main$;
+						set $msg_time2$[$msg_nub2[$msg_nub_]],"^F122FF"+gettimestr("%Y/%m/%d %H:%M:%S",28)+"^000000";
+						break;						
+					}
+				case 3:
+					{
+						set $msg3$[$msg_nub2[$msg_nub_]],"^0000FF"+strcharinfo(0)+":^000000"+@msg_main$;
+						set $msg_time3$[$msg_nub2[$msg_nub_]],"^F122FF"+gettimestr("%Y/%m/%d %H:%M:%S",28)+"^000000";
+						break;						
+					}
+				case 4:
+					{
+						set $msg4$[$msg_nub2[$msg_nub_]],"^0000FF"+strcharinfo(0)+":^000000"+@msg_main$;
+						set $msg_time4$[$msg_nub2[$msg_nub_]],"^F122FF"+gettimestr("%Y/%m/%d %H:%M:%S",28)+"^000000";
+						break;						
+					}
+				case 5:
+					{
+						set $msg5$[$msg_nub2[$msg_nub_]],"^0000FF"+strcharinfo(0)+":^000000"+@msg_main$;
+						set $msg_time5$[$msg_nub2[$msg_nub_]],"^F122FF"+gettimestr("%Y/%m/%d %H:%M:%S",28)+"^000000";
+						break;						
+					}
+				case 6:
+					{
+						set $msg6$[$msg_nub2[$msg_nub_]],"^0000FF"+strcharinfo(0)+":^000000"+@msg_main$;
+						set $msg_time6$[$msg_nub2[$msg_nub_]],"^F122FF"+gettimestr("%Y/%m/%d %H:%M:%S",28)+"^000000";
+						break;						
+					}
+			}
+	}
+else
+	{
+
+		switch($msg_nub_)
+			{
+				case 1: set $msg1$[$msg_nub2[$msg_nub_]],$msg1$[$msg_nub2[$msg_nub_]]+@msg_main$; break;
+				case 2: set $msg2$[$msg_nub2[$msg_nub_]],$msg2$[$msg_nub2[$msg_nub_]]+@msg_main$; break;
+				case 3: set $msg3$[$msg_nub2[$msg_nub_]],$msg3$[$msg_nub2[$msg_nub_]]+@msg_main$; break;
+				case 4: set $msg4$[$msg_nub2[$msg_nub_]],$msg4$[$msg_nub2[$msg_nub_]]+@msg_main$; break;
+				case 5: set $msg5$[$msg_nub2[$msg_nub_]],$msg5$[$msg_nub2[$msg_nub_]]+@msg_main$; break;
+				case 6: set $msg6$[$msg_nub2[$msg_nub_]],$msg6$[$msg_nub2[$msg_nub_]]+@msg_main$; break;
+			}
+	}
+
+mes "[留言板]";
+mes "你現在已經完成留言";
+mes "是否加長內容的字數";
+mes "若加長內容則需外加5000元";
+mes "可將五則連續內容合而為一";
+next;
+mes "[留言板]";
+set @times_,5-@times;
+mes "你目前尚有^FF0000 "+@times_+" ^000000次可以加長";
+
+switch($msg_nub_)
+	{
+		case 1: mes "目前留言內容為:^0000FF"+$msg1$[$msg_nub2[$msg_nub_]]+"^000000"; break;
+		case 2: mes "目前留言內容為:^0000FF"+$msg2$[$msg_nub2[$msg_nub_]]+"^000000"; break;
+		case 3: mes "目前留言內容為:^0000FF"+$msg3$[$msg_nub2[$msg_nub_]]+"^000000"; break;
+		case 4: mes "目前留言內容為:^0000FF"+$msg4$[$msg_nub2[$msg_nub_]]+"^000000"; break;
+		case 5: mes "目前留言內容為:^0000FF"+$msg5$[$msg_nub2[$msg_nub_]]+"^000000"; break;
+		case 6: mes "目前留言內容為:^0000FF"+$msg6$[$msg_nub2[$msg_nub_]]+"^000000"; break;
+	}
+
+next;
+menu "是",Send_,"否",-;
+mes "[留言板]";
+mes "留言完成";
+close;
+end;
+
+//-------------------------------------------------------購買查看留言卷留言--------------------------------------------------
+
+
+Buy:
+mes "[留言板]";
+mes "你購買讀取留言卷嗎?";
+mes "一張是"+@look_msg_money+"元 身上最多可放3萬張";
+next;
+menu "是...",-;
+mes "留言板";
+mes "那你需要幾張呢?";
+mes "請輸入你需要的數量";
+next;
+input @look_msg_val;
+if((countitem(18144)+@look_msg_val)>30000)
+	{
+		mes "[留言板]";
+		mes "購買的數量超過";
+		close;
+		end;
+	}
+if(zeny<(@look_msg_val*@look_msg_money))
+	{
+		mes "[留言板]";
+		mes "身上金額不足";
+		close;
+		end;
+	}
+set zeny,zeny-(@look_msg_val*@look_msg_money);
+getitem 18143,@look_msg_val;
+mes "[留言板]";
+mes "謝謝使用本服務";
+close;
+end;
+
+
+//------------------------------------------------------------清除留言-------------------------------------------------------
+
+
+Clean:
+mes "[留言板]";
+mes "歡迎使用清除留言";
+mes "是否清除所有留言?";
+next;
+menu "是",-,"否",No;
+
+for(set @check_val,1;@check_val<=100;set @check_val,@check_val+1)
+	{
+		set $msg1$[@check_val],$@clean$;
+		set $msg2$[@check_val],$@clean$;
+		set $msg3$[@check_val],$@clean$;
+		set $msg4$[@check_val],$@clean$;
+		set $msg5$[@check_val],$@clean$;
+		set $msg6$[@check_val],$@clean$;
+		set $msg_time1$[@check_val],$@clean$;
+		set $msg_time2$[@check_val],$@clean$;
+		set $msg_time3$[@check_val],$@clean$;
+		set $msg_time4$[@check_val],$@clean$;
+		set $msg_time5$[@check_val],$@clean$;
+		set $msg_time6$[@check_val],$@clean$;
+	}
+
+for(set @check_val1,1;@check_val1<=10;set @check_val1,@check_val1+1)
+	{
+		set $msg_nub2[@check_val1],0;
+	}
+
+set $msg_nub_,1;
+
+mes "[留言板]";
+mes "已清除所有留言";
+close;
+end;
+
+No:
+mes "[留言板]";
+mes "歡迎下次使用本服務";
+close;
+end;
+}
+prontera.gat,155,176,4	script	留言板 ::msg	111,{
+doevent "留言板::OnMsgStart";
+
+OnInit:
+	waitingroom "留言板",0;
+	end;
+}

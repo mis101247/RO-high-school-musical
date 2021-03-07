@@ -1,0 +1,117 @@
+amatsu.gat,115,150,4	script	波利變身服務	784,{
+ 	mes "[波利變身服務]";
+	mes "您好~我是波利變身服務";
+	mes "我可以用我的法力把你變成波利系列的怪物!";
+	mes "如果要變回去~~請登出!!";
+	next;
+	mes "[波利變身服務]";
+	mes "--以下為價目表--";
+	mes "波利 要 1500萬";
+	mes "土波利 要 1500萬";
+	mes "聖誕波利 要 1500萬";
+	mes "金屬波利 要 1500萬";
+	mes "冰波利 要 3000萬";
+	mes "波波利 要 3000萬";
+	mes "天使波利 要 8000萬";
+	mes "幽靈波利 要 8000萬";
+	mes "惡魔波利 要 8000萬";
+	mes "聖天使波利 要 8000萬";
+	next;
+	menu "我要變身!! ",A1,"好貴..還是算了",A2;
+	A1:
+	menu "波利",OK1,"土波利",OK2,"聖誕波利",OK3,"金屬波利",OK4,"冰波利",OK5,"波波利",OK6,"天使波利",OK7,"幽靈波利",OK8,"惡魔波利",OK9,"聖天使波利",OK10;
+	A2:
+	好吧~那再見囉!!
+	close;
+//	---價錢審核---
+//	---第一階段---
+	OK1:
+	if (Zeny<15000000) goto NM;
+	set Zeny,Zeny-15000000;
+	goto 01;
+	OK2:
+	if (Zeny<15000000) goto NM;
+	set Zeny,Zeny-15000000;
+	goto 02;
+	OK3:
+	if (Zeny<15000000) goto NM;
+	set Zeny,Zeny-15000000;
+	goto 03;
+	OK4:
+	if (Zeny<15000000) goto NM;
+	set Zeny,Zeny-15000000;
+	goto 04;
+//	---第二階段---
+	OK5:
+	if (Zeny<30000000) goto NM;
+	set Zeny,Zeny-30000000;
+	goto 05;
+	OK6:
+	if (Zeny<30000000) goto NM;
+	set Zeny,Zeny-30000000;
+	goto 06;
+//	---第三階段---
+	OK7:
+	if (Zeny<80000000) goto NM;
+	set Zeny,Zeny-80000000;
+	goto 07;
+	OK8:
+	if (Zeny<80000000) goto NM;
+	set Zeny,Zeny-80000000;
+	goto 08;
+	OK09:
+	if (Zeny<80000000) goto NM;
+	set Zeny,Zeny-80000000;
+	goto 09;
+	OK10:
+	if (Zeny<80000000) goto NM;
+	set Zeny,Zeny-80000000;
+	goto 10;
+//	---變身---
+	01:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1002;
+	close;
+	02:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1113;
+	close;
+	03:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1062;
+	close;
+	04:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1613;
+	close;
+	05:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1242;
+	close;	
+	06:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1031;
+	close;	
+	07:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1096;
+	close;	
+	08:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1120;
+	close;	
+	09:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1582;
+	close;	
+	10:
+	set $inde, rand(1,1);
+	if ($inde == 1) atcommand strcharinfo(0)+":@disguise "+1338;
+	close;
+//	---沒錢---
+	NM:
+	mes "[波利變身服務]";
+	mes "再去賺點錢來!!";
+	close;
+}
+

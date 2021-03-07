@@ -1,0 +1,859 @@
+//===================================================================
+//Ragnarok Online EP2.5 GVG Script	ev_agit_common      by kalen
+//曜日每設定修正 by Deme
+// 漢化:LKM
+// http://coolro.cnnb.net
+//===================================================================
+
+//=========================================================================
+// 攻城戰ソ開始和結束
+//	const.txtプベ設定時間メ取得
+//	（GvGWeekDay, GvGTimeST, GvGTimeST, GvGTime*ST, GvGTime*ED）
+//
+// ■MAP啟動60秒後開始判斷
+//-------------------------------------------------------------------------
+
+-	script	#AgitConfig	-1,{
+	end;
+OnInit:
+	if(GvGWeekDay == 0)
+		end;
+	//開催曜日ソжЧЬиьヲゎやホタ1メЙЧЬ
+	for(set '@i,0; '@i<7; set '@i,'@i+1) {
+		set '@mask,1<<'@i;
+		set 'open['@i],(GvGWeekDay & '@mask)? 1: 0;
+	}
+	//曜日ザ時間メ變りペ場合
+	if(GvGTimeST == GvGTimeED) {
+		setarray 'dbt,GvGTime0ST,GvGTime1ST,GvGTime2ST,GvGTime3ST,GvGTime4ST,GvGTime5ST,GvGTime6ST;
+		setarray 'fin,GvGTime0ED,GvGTime1ED,GvGTime2ED,GvGTime3ED,GvGTime4ED,GvGTime5ED,GvGTime6ED;
+	}
+	//每日同ェ時間ソ場合
+	else {
+		cleararray 'dbt,GvGTimeST,7;
+		cleararray 'fin,GvGTimeED,7;
+	}
+	set 'flag,1;
+	initnpctimer;
+	end;
+
+OnTimer60000:
+	//起動後60sec經過ウギソザ判定メ行よ
+	if('flag) {
+		set '@day,gettime(4);
+		set '@min,gettime(3)*100+gettime(2);
+		//今日ゎ開催日ザ且コ既ズ開催時間中スヘ
+		if('open['@day] && '@min>='dbt['@day] && '@min<'fin['@day]) {
+			//announce "攻城戰進行中",8;
+			debugmes "攻城戰進行中 [ " +gettimestr("%H:%M",6)+ " ]";
+			agitstart;
+		}
+		set 'flag,0;
+		setnpctimer gettime(1)*1000;	//現在時刻ソ秒針ゎ0ズスペプよ補正
+		end;
+	}
+	if(gettime(1) > 0)	//1sec以上ォホゎ生ェギヘ補正
+		setnpctimer gettime(1)*1000;
+	else
+		initnpctimer;
+	//24時終了ソ例外處理
+	set '@day,gettime(4);
+	set '@min,gettime(3)*100+gettime(2);
+	if('@min == 0) {
+		set '@prev,('@day>0)? '@day-1: 6;
+		if('open['@prev] && 'fin['@prev]==2400) {
+			if('open['@day]==0 || 'dbt['@day]>0) {
+				//announce "攻城戰結束了",8;
+				debugmes "攻城戰結束了 [ " +gettimestr("%H:%M",6)+ " ]";
+				agitend;
+			}
+			end;
+		}
+	}
+	if('open['@day]==0)
+		end;
+	if('@min == 'dbt['@day]) {
+		//announce "攻城戰開始",8;
+		debugmes "攻城戰開始 [ " +gettimestr("%H:%M",6)+ " ]";
+		agitstart;
+	}
+	else if('@min == 'fin['@day]) {
+		//announce "攻城戰結束了",8;
+		debugmes "攻城戰結束了 [ " +gettimestr("%H:%M",6)+ " ]";
+		agitend;
+	}
+	end;
+}
+
+
+//-----GM專用ЫдЧヲхみЭ-----
+//===========================================================
+//prontera.gat,152,208,0	script	GVG 管理員	111,{
+//	if(getgmlevel(0)==0)
+//		end;
+//	mes "[GVG 管理員^ff0000(GM專用)^000000]";
+//	mes "攻城戰模式設定";
+//	next;
+//	switch (select("開始","停止","DEBUG模式","取消")) {
+//	case 1:
+//		announce "攻城戰開始",0;
+//		agitstart;
+//		break;
+//	case 2:
+//		announce "攻城戰結束",0;
+//		agitend;
+//		break;
+//	case 3:
+//		setarray '@chr$,"天","一","二","三","四","五","六";
+//		for(set '@i,0; '@i<7; set '@i,'@i+1)
+//			mes "星期　" +'@chr$['@i]+ " ： " +(getelementofarray( getvariableofnpc('open,"#AgitConfig"),'@i ))? "○": "×";
+//		next;
+//		if(GvGTimeST != GvGTimeED) {
+//			mes "每次　" +GvGTimeST+ " ～ " +GvGTimeED;
+//			break;
+//		}
+//		for(set '@i,0; '@i<7; set '@i,'@i+1) {
+//			mes "星期　" +'@chr$['@i]+ " ： " +getelementofarray( getvariableofnpc('dbt,"#AgitConfig"),'@i )+
+//						" ～ " +getelementofarray( getvariableofnpc('fin,"#AgitConfig"),'@i );
+//		}
+//		break;
+//	}
+//	close;
+//}
+//===========================================================
+
+//--------------------------------------------------------------------
+prontera.gat,159,208,0	script	TBOX 管理員	111,{
+	if ( !(getgmlevel(0)) ) close;
+	mes "[TBOX 管理員^ff0000(GM專用)^000000]";
+	mes "生成寶箱？";
+	next;
+	if ( select("是","否") == 2 ) close;
+	callsub Ltbox;
+	mes "[TBOX Control^ff0000(GM專用)^000000]";
+	mes "寶箱生成完畢。";
+	close;
+OnClock0000:
+	callsub Ltbox;
+	end;
+Ltbox:
+	callfunc "make_t_box","aldeg_cas01.gat",114,218,123,227,1324,1325;
+	callfunc "make_t_box","aldeg_cas02.gat",130,226,139,235,1326,1327;
+	callfunc "make_t_box","aldeg_cas03.gat",220,264,229,273,1328,1329;
+	callfunc "make_t_box","aldeg_cas04.gat",80,8,89,17,1330,1331;
+	callfunc "make_t_box","aldeg_cas05.gat",58,8,67,17,1332,1333;
+	callfunc "make_t_box","gefg_cas01.gat",150,108,157,115,1334,1335;
+	callfunc "make_t_box","gefg_cas02.gat",136,112,145,118,1336,1337;
+	callfunc "make_t_box","gefg_cas03.gat",266,286,273,293,1338,1339;
+	callfunc "make_t_box","gefg_cas04.gat",112,114,119,123,1340,1341;
+	callfunc "make_t_box","gefg_cas05.gat",140,106,147,113,1342,1343;
+	callfunc "make_t_box","payg_cas01.gat",286,4,295,7,1344,1345;
+	callfunc "make_t_box","payg_cas02.gat",140,140,149,143,1346,1347;
+	callfunc "make_t_box","payg_cas03.gat",154,164,162,172,1348,1349;
+	callfunc "make_t_box","payg_cas04.gat",142,44,151,51,1350,1351;
+	callfunc "make_t_box","payg_cas05.gat",152,128,161,131,1352,1353;
+	callfunc "make_t_box","prtg_cas01.gat",7,205,15,212,1354,1355;
+	callfunc "make_t_box","prtg_cas02.gat",198,224,205,231,1356,1357;
+	callfunc "make_t_box","prtg_cas03.gat",184,128,192,135,1358,1359;
+	callfunc "make_t_box","prtg_cas04.gat",266,158,273,165,1360,1361;
+	callfunc "make_t_box","prtg_cas05.gat",272,174,279,181,1362,1363;
+	return;
+}
+
+//====================================================================
+//Function
+//====================================================================
+//---------------------------------------------------------------
+//執事與城資料消去和Mob召回
+//callfunc "resetcastledata",MAP名,"::OnRecvCastleYYY","kapra_XXXgYY",@GIDXX,"::OnGDEMPSetYYY";
+function	script	resetcastledata	{
+	killmonsterall getarg(0);
+	disablenpc getarg(2);
+	SetCastleData getarg(0),1,0;
+	SetCastleData getarg(0),2,1;
+	SetCastleData getarg(0),3,1;
+	SetCastleData getarg(0),4,0;
+	SetCastleData getarg(0),5,0;
+	SetCastleData getarg(0),6,0;
+	SetCastleData getarg(0),7,0;
+	SetCastleData getarg(0),8,0;
+	SetCastleData getarg(0),9,0;
+	SetCastleData getarg(0),10,0;
+	SetCastleData getarg(0),11,0;
+	SetCastleData getarg(0),12,0;
+	SetCastleData getarg(0),13,0;
+	SetCastleData getarg(0),14,0;
+	SetCastleData getarg(0),15,0;
+	SetCastleData getarg(0),16,0;
+	SetCastleData getarg(0),17,0;
+	GetCastleData getarg(0),0,getarg(1);
+	Announce "秘密基地 [" + GetCastleName(getarg(0)) + "] 被 [" + GetGuildName(getarg(3)) + "] 工會佔領了。",0;
+	MapRespawnGuildID getarg(0),GetCastleData(getarg(0),1),7;
+	if (agitcheck(0)) donpcevent getarg(4);
+	end;
+	return;
+}
+//---------------------------------------------------------------
+//華麗金屬被破壞與城資料更新
+//callfunc "resetcastledata2","MAP","::OnRecvCastleYYY";
+function	script	resetcastledata2	{
+	killmonsterall getarg(0);
+	set @WinGuildID,getcharid(2);
+	if (@WinGuildID <= 0) end;
+	SetCastleData getarg(0),1,@WinGuildID;
+	set @Economy,GetCastleData(getarg(0),2)-5;
+	if (@Economy<1) set @Economy,1;
+	SetCastleData getarg(0),2,@Economy;
+	set @Deffence,GetCastleData(getarg(0),3)-5;
+	if (@Deffence<1) set @Deffence,1;
+	SetCastleData getarg(0),3,@Deffence;
+	SetCastleData getarg(0),4,0;
+	SetCastleData getarg(0),5,0;
+	SetCastleData getarg(0),6,0;
+	SetCastleData getarg(0),7,0;
+	SetCastleData getarg(0),8,0;
+	SetCastleData getarg(0),9,0;
+	SetCastleData getarg(0),10,0;
+	SetCastleData getarg(0),11,0;
+	SetCastleData getarg(0),12,0;
+	SetCastleData getarg(0),13,0;
+	SetCastleData getarg(0),14,0;
+	SetCastleData getarg(0),15,0;
+	SetCastleData getarg(0),16,0;
+	SetCastleData getarg(0),17,0;
+	Announce "秘密基地 [" + GetCastleName(getarg(0)) + "] 被 [" + GetGuildName(@WinGuildID) + "] 工會佔領了。",0;
+	MapAnnounce getarg(0),"華麗金屬被破壞了",17;
+	GetCastleData getarg(0),0,getarg(1);
+	return;
+}
+//---------------------------------------------------------------
+//公會解體與城資料更新
+//callfunc "resetcastledata3","MAP","::OnRecvCastleYYY","::OnGDEMPSetYYY";
+function	script	resetcastledata3	{
+	killmonsterall getarg(0);
+	SetCastleData getarg(0),1,0;
+	SetCastleData getarg(0),2,1;
+	SetCastleData getarg(0),3,1;
+	SetCastleData getarg(0),4,0;
+	SetCastleData getarg(0),5,0;
+	SetCastleData getarg(0),6,0;
+	SetCastleData getarg(0),7,0;
+	SetCastleData getarg(0),8,0;
+	SetCastleData getarg(0),9,0;
+	SetCastleData getarg(0),10,0;
+	SetCastleData getarg(0),11,0;
+	SetCastleData getarg(0),12,0;
+	SetCastleData getarg(0),13,0;
+	SetCastleData getarg(0),14,0;
+	SetCastleData getarg(0),15,0;
+	SetCastleData getarg(0),16,0;
+	SetCastleData getarg(0),17,0;
+	GetCastleData getarg(0),0,getarg(1);
+	MapRespawnGuildID getarg(0),GetCastleData(getarg(0),1),7;
+	if (agitcheck(0)) donpcevent getarg(2);
+	end;
+	return;
+}
+//---------------------------------------------------------------
+//寶箱發生處理
+//callfunc "make_t_box","MAP",x0,y0,x1,y1,MobID1,MobID2;
+function	script	make_t_box	{
+	SetCastleData getarg(0),2,GetCastleData(getarg(0),2)+GetCastleData(getarg(0),4);
+	SetCastleData getarg(0),3,GetCastleData(getarg(0),3)+GetCastleData(getarg(0),5);
+	SetCastleData getarg(0),4,0;//商業投資重置次數
+	SetCastleData getarg(0),5,0;//防衛投資重置次數
+	killmonster getarg(0),"TresureBox";
+	set $@boxnum1,2+(getcastledata(getarg(0),2)+5)/10;
+	set $@boxnum2,2+getcastledata(getarg(0),2)/10;
+	if ($@boxnum1 > 12)	set $@boxnum1,12;
+	if ($@boxnum2 > 12)	set $@boxnum2,12;
+	areamonster getarg(0),getarg(1),getarg(2),getarg(3),getarg(4),"寶箱",getarg(5),$@boxnum1,"TresureBox";
+	areamonster getarg(0),getarg(1),getarg(2),getarg(3),getarg(4),"寶箱",getarg(6),$@boxnum2,"TresureBox";
+	return;
+}
+//---------------------------------------------------------------
+//攻城戰開始處理
+//callfunc "agitstarting","MAP","OnGDEMPSetYYY";
+function	script	agitstarting	{
+	MapRespawnGuildID getarg(0),GetCastleData(getarg(0),1),2;
+	donpcevent getarg(1);
+	GvgOn getarg(0);
+	return;
+}
+//---------------------------------------------------------------
+//旗
+//callfunc "flagsc","MAP",AreaFlag,ReturnFlag,X,Y;
+//*AreaFlag 1=Aldebaran,2=Other
+//*ReturnFlag 1=Allow,2=Deny
+function	script	flagsc	{
+	set @GID,getcastledata(getarg(0),1);
+	if (@GID != 0) goto LStartg;
+		mes "[ 普隆德拉王國  公告令 ]";
+		mes " ";
+		mes "1.";
+		switch ( getarg(1) ) {
+		case 1:	mes "普隆德拉王國令";
+			mes "普隆德拉共和國協議";
+			break;
+		case 2:	mes "根據這裡的";
+			mes "普隆德拉王國令";
+		}
+		mes "把這裡公佈為，沒有正式所有權的";
+		mes "秘密基地。";
+		next;
+		mes " ";
+		mes "2.";
+		mes "如果想得到這個秘密基地";
+		mes "你必須戰勝守在這裡的監護人之後";
+		mes "國王會賜予破壞華麗金屬的人";
+		mes "經國王認證的秘密基地所有權";
+		close;
+LStartg:
+		if ((getcharid(2) == @GID) && (getarg(2) == 1)) goto LStartg2;
+		mes "[ 普隆德拉王國  公告令 ]";
+		mes " ";
+		mes "1.";
+		switch ( getarg(1) ) {
+		case 1:	mes "普隆德拉王國令";
+			mes "普隆德拉共和國協議";
+			break;
+		case 2:	mes "根據這裡的";
+			mes "普隆德拉王國令";
+		}
+		mes "這裡被認定為 ^ff0000 " + GetGuildName(@GID) + " ^000000 工會";
+		mes "私有物。";
+		next;
+		mes " ";
+		mes "2.";
+		mes "^ff0000 " + GetGuildName(@GID) + " ^000000 工會的主人是";
+		mes "^ff0000 " + getguildmaster(@GID) + " ^000000。";
+		mes "無論是誰對這件事情有意見者";
+		mes "請你舉起您的劍，提高自己的名譽吧。";
+Lclose:
+		close;
+LStartg2:
+		mes "[ 聲音 ]";
+		mes "勇者";
+		mes "要回去了嗎？";
+		next;
+		menu "是的",-,"不",Lclose;
+			warp getarg(0),getarg(3),getarg(4);end;
+		return;
+}
+//==============================================================================
+//-------------------------------------------------------
+//執事目錄
+//callfunc "Steward_menu0","MAP","NAME";
+function	script	Steward_menu0	{
+	set @GID,getcastledata(getarg(0),1);
+	if (@GID == 0) goto LStart;
+	if (getcharid(2) != @GID) goto LStart2;
+	if (getcharid(0) == getguildmasterid(@GID)) goto LStart3;
+	goto LStart2;
+LStart:
+	mes "[管理人"+getarg(1)+"]";
+	mes "我將依據我的命運、";
+	mes "在等待我的主人。";
+	mes "勇士啊...";
+	mes "試驗一下你的命運吧。";
+	close;
+LStart2:
+	mes "[管理人"+getarg(1)+"]";
+	mes "不管你們怎麼威脅我、";
+	mes "我只願意追隨我的主人";
+	mes "^ff0000" + getguildmaster(@GID) + "^000000";
+	mes "監護人你們在那裡呀!";
+	mes "趕快把這些無理的傢伙們趕走吧!";
+	close;
+LStart3:
+	mes "[管理人"+getarg(1)+"]";
+	mes "歡迎光臨 ， 我的主人 ^ff0000"+getguildmaster(@GID)+"^000000 先生/小姐。";
+	mes "請儘管吩咐 ，我將忠誠地為你完成任務。";
+	next;
+	return;
+}
+//-------------------------------------------------------
+//執事目錄1「砦情報」(完全) 台詞2004/08/05jRO
+//callfunc "Steward_menu1","MAP","NAME";
+function	script	Steward_menu1	{
+	mes "[管理人"+getarg(1)+"]";
+	mes "現在向你報告秘密基地的狀況。";
+	mes " ";
+	mes "^0000ff現在商業發展度是"+GetCastleData(getarg(0),2)+" 。";
+	if (GetCastleData(getarg(0),4) != 0) mes " - 在過去一天之內，投資了 "+GetCastleData(getarg(0),4)+" 次。";
+	mes "現在的防禦度是"+GetCastleData(getarg(0),3)+" 。^000000";
+	if (GetCastleData(getarg(0),5) != 0) mes "^0000ff - 在過去一天之內，投資了 "+GetCastleData(getarg(0),5)+" 次。^000000";
+	mes " ";
+	mes "報告完畢。";
+	close;
+	return;
+}
+//-------------------------------------------------------
+//執事目錄2「商業投資」(完全) 台詞2004/08/25jRO
+//callfunc "Steward_menu2","MAP","NAME";
+function	script	Steward_menu2	{
+	mes "[管理人"+getarg(1)+"]";
+	mes "提高商業發展度的話、";
+	mes "在工會裡生產的物品數量會增加";
+	mes "為了以後著想的話";
+	mes "不能不投資啊。";
+	next;
+	mes "[管理人"+getarg(1)+"]";
+	mes "照原先的方式，一天只能投資一次";
+	mes "假如多付一點金錢的話";
+	mes "一天可以投資兩次。";
+	next;
+	set @TriggerE,GetCastleData(getarg(0),4);
+	set @Economy,GetCastleData(getarg(0),2);
+	if(@Economy == 100) goto L2_error2;
+	set @tmp,(@Economy-@TriggerE)/5;
+	set @InvestE,5000*(1+(1+@tmp)*@tmp/2)*(1+3*@TriggerE);
+	if (@TriggerE == 0) goto L2_1;
+	if (@TriggerE == 1) goto L2_2;
+		mes "[管理人"+getarg(1)+"]";
+		mes "^ff0000可是你已經，";
+		mes "在今天之內投資了兩次";
+		mes "再不能投資了。";
+		mes "^000000讓發展度趕快上升";
+		mes "期待著富貴的日子囉。";
+		close;
+L2_1:
+	mes "[管理人"+getarg(1)+"]";
+	mes "現在需要的投資金額是";
+	mes "^ff0000"+ @InvestE +"^000000 Zeny。";
+	mes "請問你要投資嗎？";
+	next;
+	menu "對商業發展度投資",L2_1_1,"取消",L2_1_0;
+L2_2:
+	mes "[管理人"+getarg(1)+"]";
+	mes "已經投資一次了";
+	mes "需要追加投資嗎？";
+	mes "需要 ^ff0000"+ @InvestE +"^000000 Zeny";
+	next;
+	menu "對商業發展度投資",L2_1_1,"取消",L2_1_0;
+	L2_1_0:
+		mes "[管理人"+getarg(1)+"]";
+		mes "我將依照你的吩咐去執行。";
+		mes "是我的主人 ... 不須要太著急。";
+		mes "我們會做得很好。";
+		close;
+	L2_1_1:
+		if(Zeny < @InvestE) goto L2_error;
+		set Zeny,Zeny-@InvestE;
+		SetCastleData getarg(0),4,@TriggerE+1;
+		mes "[管理人"+getarg(1)+"]";
+		mes "順利地完成投資了!";
+		mes "期待著我們往後要面臨的未來。";
+		mes "明天的話發展度會上升。";
+		close;
+L2_error:/*適當*/
+	mes "[管理人"+getarg(1)+"]";
+	mes "主人真可惜啊！";
+	mes "工會內儲蓄的錢，達不到足以投資的金額。";
+	mes "所以投資失敗了。";
+	close;
+L2_error2:/*適當*/
+	mes "[管理人"+getarg(1)+"]";
+	mes "^ff0000商業發展值";
+	mes "已經是最高了。";
+	mes "所以沒有投資的必要了。^000000";
+ 	close;
+	return;
+}
+
+//-------------------------------------------------------
+//執事目錄3「防衛投資」(完全) 台詞2004/08/25jRO
+//callfunc "Steward_menu3","MAP","NAME";
+function	script	Steward_menu3	{
+	mes "[管理人"+getarg(1)+"]";
+	mes "提高防禦力的話、";
+	mes "監護人和華麗金屬";
+	mes "的耐久度會增加。";
+	mes "考慮到往後的戰爭";
+	mes "不得不投資啊。";
+	next;
+	mes "[管理人"+getarg(1)+"]";
+	mes "照原先的方式，一天只能投資一次";
+	mes "假如多付一點金錢的話";
+	mes "一天可以投資兩次。";
+	next;
+	set @TriggerD,GetCastleData(getarg(0),5);
+	set @Deffence,GetCastleData(getarg(0),3);
+	if(@Deffence == 100) goto L3_error2;
+	set @tmp,(@Deffence-@TriggerD)/5;
+	set @InvestD,10000*(1+(1+@tmp)*@tmp/2)*(1+3*@TriggerD);
+	if (@TriggerD == 0) goto L3_1;
+	if (@TriggerD == 1) goto L3_2;
+		mes "[管理人"+getarg(1)+"]";
+		mes "^ff0000可是你已經，";
+		mes "在今天之內投資了兩次";
+		mes "再不能投資了。";
+		mes "^000000讓發展度趕快上升";
+		mes "期待著富貴的日子囉。";
+		close;
+L3_1:
+	mes "[管理人"+getarg(1)+"]";
+	mes "現在需要的投資金額是";
+	mes "^ff0000"+ @InvestD +"^000000 Zeny。";
+	mes "請問你要投資嗎？";
+	next;
+	menu "對防禦度投資",L3_1_1,"取消",L3_1_0;
+L3_2:
+	mes "[管理人"+getarg(1)+"]";
+	mes "已經投資一次了";
+	mes "需要追加投資嗎？";
+	mes "需要 ^ff0000"+ @InvestD +"^000000 Zeny";
+	next;
+	menu "對防禦度投資",L3_1_1,"取消",L3_1_0;
+	L3_1_0:
+		mes "[管理人"+getarg(1)+"]";
+		mes "我將依照你的吩咐去執行。";
+		mes "是我的主人 ... 不須要太著急。";
+		mes "我們會做得很好。";
+		close;
+	L3_1_1:
+		if(Zeny < @InvestD) goto L3_error;
+		set Zeny,Zeny-@InvestD;
+		SetCastleData getarg(0),5,@TriggerD+1;
+		mes "[管理人"+getarg(1)+"]";
+		mes "順利地完成投資了!";
+		mes "期待著我們往後要面臨的未來。";
+		mes "明天的話發展度會上升。";
+		close;
+L3_error:/*適當*/
+	mes "[管理人"+getarg(1)+"]";
+	mes "主人真可惜啊！";
+	mes "工會內儲蓄的錢，達不到足以投資的金額。";
+	mes "所以投資失敗了。";
+	close;
+L3_error2:/*適當*/
+	mes "[管理人"+getarg(1)+"]";
+	mes "^ff0000防禦值現在是100%了。";
+	mes "所以沒有投資的必要了。^000000";
+	close;
+	return;
+}
+//-------------------------------------------------------
+//執事目錄4「監護人配置」(補助)
+//callfunc "Steward_menu4","MAP","NAME";
+function	script	Steward_menu4	{
+	mes "[管理人"+getarg(1)+"]";
+	mes "請問你要設置監護人嗎？";
+	mes "監護人即將成為，";
+	mes "我們秘密基地的忠誠守護者。";
+	mes "請選擇要設置的監護人";
+	next;
+	menu "衛兵 1",L4_1,"衛兵 2",L4_2,"弓箭手 3",L4_3,"弓箭手 4",L4_4,"弓箭手 5",L4_5,"騎士手 6",L4_6,"騎士 7",L4_7,"騎士 8",L4_8;
+
+//實際的Menu(B5參考)
+//menu "弓箭手監護人設置",L_MENU_1,"弓箭手監護人設置",L_MENU_2,"士兵監護人設置",L_MENU_3,"士兵監護人設置",L_MENU_4,"騎士監護人設置",L_MENU_5,"士兵監護人設置",L_MENU_6,"騎士監護人設置",L_MENU_7,"BOSS監護人不設置(31214 / 31214)",L_MENU_8;
+//
+//設置出來不會表示，有的情況 HP 被表示。
+//而且依據設立運作情況能把那個情況 HP 恢復的事情顯示出現。
+		L4_1:
+			if (GetCastleData(getarg(0),10) == 1) goto L4Error2;
+			set @GDnum,10;goto L4_9;
+		L4_2:
+			if (GetCastleData(getarg(0),11) == 1) goto L4Error2;
+			set @GDnum,11;goto L4_9;
+		L4_3:
+			if (GetCastleData(getarg(0),12) == 1) goto L4Error2;
+			set @GDnum,12;goto L4_9;
+		L4_4:
+			if (GetCastleData(getarg(0),13) == 1) goto L4Error2;
+			set @GDnum,13;goto L4_9;
+		L4_5:
+			if (GetCastleData(getarg(0),14) == 1) goto L4Error2;
+			set @GDnum,14;goto L4_9;
+		L4_6:
+			if (GetCastleData(getarg(0),15) == 1) goto L4Error2;
+			set @GDnum,15;goto L4_9;
+		L4_7:
+			if (GetCastleData(getarg(0),16) == 1) goto L4Error2;
+			set @GDnum,16;goto L4_9;
+		L4_8:
+			if (GetCastleData(getarg(0),17) == 1) goto L4Error2;
+			set @GDnum,17;goto L4_9;
+L4Error:
+	mes "[管理人"+getarg(1)+"]";
+	mes "主人 ，有關設定監護人";
+	mes "的研究知識我們全然不知道。";
+	mes "想要累積設定監護人知識的話";
+	mes "必須要學習工會技能中的";
+	mes "^ff0000監護人製作研究^000000";
+	mes "要不然就是 ，監護人設定失敗。";
+	close;
+L4Error2:/*適當*/
+	mes "[管理人"+getarg(1)+"]";
+	mes "主人！";
+	mes "那監護人已經是主人設定的監護人了。";
+	mes " ";
+	mes "不能再設定了。";
+	close;
+L4Error3:/*適當*/
+	mes "[管理人"+getarg(1)+"]";
+	mes "主人！";
+	mes "設定監護人的資金不足啊。";
+	mes "很抱歉... 設定監護人失敗了。";
+	close;
+	L4_9:
+		mes "[管理人"+getarg(1)+"]";
+		mes "確定要設定已選擇的監護人嗎";
+		mes "設定時需要";
+		mes "^ff000010000^000000Zeny。";
+		next;
+		menu "設定",L4_9_1,"取消",-;
+			mes "[管理人"+getarg(1)+"]";
+			mes "我已經按照你的吩咐做了。";
+			mes "假如有點資金上寬裕的話、";
+			mes "一定要設定監護人";
+			mes "是較好的方案。";
+			close;
+		L4_9_1:
+		if (getgdskilllv(@GID,GD_GUARDIANRESEARCH) == 0) goto L4Error;
+		if (Zeny < 10000) goto L4Error3;
+		set Zeny,Zeny-10000;
+		setcastledata getarg(0),@GDnum,1;
+	return;
+}
+//-------------------------------------------------------
+執事目錄5「卡普拉契約」(完全)
+//callfunc "Steward_menu5","MAP","NAME","Kapra_xxx";
+function	script	Steward_menu5	{
+	if (GetCastleData(getarg(0),9) == 1) goto Lkafra_dimi;
+//(When Karfa off) Employment
+	mes "[管理人"+getarg(1)+"]";
+	mes "和卡普拉總公司訂契約、";
+	mes "想要在秘密基地裡面 ，僱用卡普拉職員嗎？";
+	mes "僱用費 ^ff000010000^000000Zeny";
+	next;
+	menu "僱用",-,"取消",L_k_e;
+		if (getgdskilllv(@GID,GD_KAFRACONTACT) != 0) goto L_k_0;
+		mes "[管理人"+getarg(1)+"]";
+		mes "主人，和卡普拉總公司的";
+		mes "契約沒有訂城。";
+		mes "如果不訂契約的話、";
+		mes "是沒有卡普拉職員的。";
+		next;
+		mes "[管理人"+getarg(1)+"]";
+		mes "如果希望訂契約的話、";
+		mes "工會技能";
+		mes " ^ff0000和卡普拉訂契約^000000";
+		mes "是一定要學會的。";
+		close;
+	L_k_0:/*適當*/
+		if (Zeny > 10000) goto L_k_1;
+		mes "[管理人"+getarg(1)+"]";
+		mes "主人！錢不夠啊！";
+		close;
+	L_k_1:/*適當*/
+		set Zeny,Zeny-10000;
+		enablenpc getarg(2);
+		setcastledata getarg(0),9,1;
+		mes "[管理人"+getarg(1)+"]";
+		mes "契約簽訂完成";
+		next;
+		cutin "kafra_01",2;
+		mes "[卡普拉 職員]";
+		mes "您好 ，";
+		mes "我是總公司派來的卡普拉職員^^。";
+		mes "我不會讓工會的名譽沾上污點 ，所以我會努力的工作！";
+		next;
+		cutin "kafra_01",255;
+		mes "[管理人"+getarg(1)+"]";
+		mes "契約維持金";
+		mes "將會每月定時扣除。";
+		mes "(未實裝)";
+		close;
+L_k_e:
+		mes "[管理人"+getarg(1)+"]";
+		mes "我已經按照你的吩咐做了";
+		mes "不過也要為了辛苦的會員著想";
+		mes "早日僱用卡普拉職員為上策啊";
+		close;
+//(When karfa ON) Dismissal
+Lkafra_dimi:
+	mes "[管理人"+getarg(1)+"]";
+	mes "你要解雇卡普拉職員嗎？";
+	next;
+	menu "解雇",-,"取消",L_D_1;
+		cutin "kafra_01",2;
+		mes "[卡普拉 職員]";
+		mes "過去我那麼用心的工作了";
+		mes "你真的要把我解雇嗎?";
+		next;
+		menu "解雇",-,"取消",L_D_2;
+				mes "[卡普拉 職員]";
+				mes "嗚哇啊! 太過份了! 怎麼可以這樣啊";
+				next;
+				disablenpc getarg(2);
+				setcastledata getarg(0),9,0;
+				cutin "kafra_01",255;
+				mes "[管理人"+getarg(1)+"]";
+				mes "…";
+				mes "已經把卡普拉職員解雇了。";
+				close;
+			L_D_2:
+				mes "[卡普拉 職員]";
+				mes "我會努力的... 謝謝！";
+				close2;
+				cutin "kafra_01",255;
+				end;
+		L_D_1:
+			mes "[管理人"+getarg(1)+"]";
+			mes "知道了。";
+			close;
+	return;
+}
+//-------------------------------------------------------
+//執事目錄6「去會長房間」(完全) 台詞2004/08/25jRO
+//callfunc "Steward_menu6","MAP","Name",x,y;
+function	script	Steward_menu6	{
+	mes "[管理人"+getarg(1)+"]";
+	mes "要到我們生產品囤積的，";
+	mes "真貴物品房間嗎";
+	mes "那個地方是專屬於你的地方";
+	mes "除了你之外，";
+	mes "其它人都不能其門而入。";
+	next;
+	menu "進入主人房間",-,"取消",L6_1;
+		mes "[管理人"+getarg(1)+"]";
+		mes "我將為你服務到秘密通道那裡。";
+		mes "請跟我來。";
+		mes "回來的時候，";
+		mes "按下秘密按鈕即可。";
+		close2;
+		warp getarg(0),getarg(2),getarg(3);
+		end;
+	L6_1:
+		mes "[管理人"+getarg(1)+"]";
+		mes "生產品一天只生產一次、";
+		mes "假如沒有即時收走的話";
+		mes "下一次就不能進來了、";
+		mes "所以說為了我們工會的發展";
+		mes "盡量花點時間去收取啊。";
+		close;
+		return;
+}
+//-------------------------------------------------------
+//執事фЯшみ7「砦解體」(補助)
+//callfunc "Steward_menu7","MAP","NAME";
+function	script	Steward_menu7	{
+	mes "[管理人"+getarg(1)+"]";
+	mes "主人！";
+	mes "真的要讓出秘密基地嗎！？";
+	mes " ";
+	mes "請再做考慮考慮吧! 主人！";
+	next;
+	menu "讓出秘密基地",L7_1,"取消",L7_2;
+	L7_1:
+		mes "[管理人"+getarg(1)+"]";
+		mes "主人！";
+		mes "請三思而後行啊 ，主人";
+		mes "這期間所流的血!! 想到那些犧牲你不能這樣做啊!!";
+		next;
+		menu "取消",L7_2,"讓出秘密基地",-;
+		mes "[管理人"+getarg(1)+"]";
+		mes "主人!!.....";
+		mes "......主 .....主人 ......";
+		next;
+		return;
+	L7_2:
+		mes "[管理人"+getarg(1)+"]";
+		mes "我就知道你會這樣做的 ，主人^^!";
+		mes "拜託你了  ，即時是開玩笑，請你下一次不要講這種話^^.";
+		close;
+}
+//-------------------------------------------------------
+//ヰюЭЗユЧХ
+//callfunc "gdswitch","MAP",x,y;
+function	script	gdswitch	{
+	mes "有小的拉桿。";
+	mes "你要往下拉嗎？";
+	next;
+	menu "是的",-,"不拉",L2;
+	warp getarg(0),getarg(1),getarg(2);
+	end;
+L2:
+	close;
+	return;
+}
+//-------------------------------------------------------
+//ヰюЭЗユЧХ
+//callfunc "gdswitch2","MAP1","MAP2",x,y;
+function	script	gdswitch2	{
+	mes "[聲音]";
+	mes "通過考驗成為勇氣的主人 ... 再去尋找其它考驗的路";
+	next;
+	mes " ";
+	mes "有小的拉桿。";
+	mes "你要往下拉嗎？";
+	next;
+	menu "是的",-,"不拉",L2;
+	set @GID,getcastledata(getarg(0),1);
+	if (getcharid(2) != @GID) goto L1n;
+	if (0 == @GID) goto L1n;
+	warp getarg(1),getarg(2),getarg(3);
+	end;
+L1n:
+	mes " ";
+	mes "沒有發生任何事情。";
+L2:
+	close;
+	return;
+}
+//==============================================================================
+//-------------------------------------------------------
+//公會卡普拉「目錄 」
+//callfunc "gkfmenu","MAP";
+function	script	gkfmenu	{
+	cutin "kafra_01",2;
+	set @GID,getcastledata(getarg(0),1);
+	if (getcharid(2) == @GID) goto LStartg;
+	mes "[卡普拉 職員]";
+	mes "我已簽訂契約專為";
+	mes "^ff0000" + GetGuildName(@GID) + "^000000";
+	mes "會員服務";
+	mes "請使用我們其它地方的卡普拉職員。";
+	mes "如有不便之處敬請見諒。";
+	close2;
+	cutin "kafra_01",255;
+	end;
+LStartg:
+	mes "[卡普拉 職員]";
+	mes "歡迎光臨 ^ff0000" + GetGuildName(@GID) + "^000000 會員們";
+	mes "卡普拉服務(有限公司)";
+	mes "永遠在各位身邊為您服務。";
+	next;
+	return;
+}
+//-------------------------------------------------------
+//公會卡普拉「瞬間移動」
+//callfunc "gkfwarp","JMAPNAME","MAP",x,y;
+function	script	gkfwarp	{
+	mes "[卡普拉 職員]";
+	mes "請說出目的地吧。";
+	next;
+	menu ""+getarg(0)+" -> 200 z",L3_1,"取消",L3_2;
+		L3_1:
+			if (Zeny < 200) goto Lerror3;
+			set Zeny,Zeny-200;set KF_PIT,KF_PIT+20;
+			warp getarg(1),getarg(2),getarg(3);
+			end;
+		L3_2:
+				mes "[卡普拉 職員]";
+				mes "謝謝。";
+				mes "歡迎再來。";
+				close2;
+				cutin "kafra_01",255;
+				end;
+		Lerror3:
+				mes "[卡普拉 職員]";
+  				mes "會員先生/小姐";
+   				mes "你所支付的金額不足。";
+				cutin "kafra_01",255;
+				close2;
+				cutin "kafra_01",255;
+				end;
+	return;
+}

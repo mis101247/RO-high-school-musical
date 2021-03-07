@@ -1,0 +1,98 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 租用動物 任務 -
+//========================================================================================
+prontera.gat,55,350,5	script	大嘴鳥管理士兵	105,{
+	mes "[大嘴鳥管理士兵]";
+	if (Class != 7 && Class != 13 && Class != 4008 && Class != 4014) goto L_START_1;
+		mes "歡迎光臨，騎士你要一只大嘴鳥嗎?";
+		mes "一只2500金幣。";
+		next;
+		menu "使用.",-,"取消.",L_MENU_1;
+			if (Zeny >= 2500) goto L_SUB_1;
+			mes "[大嘴鳥管理士兵]";
+			mes "閣下,你身上的錢不夠啊...";
+			close;
+		L_SUB_1:
+			mes "[大嘴鳥管理士兵]";
+			mes "等一下！你是否已經學習了騎乘術？";
+			mes "如果沒學的話，金錢也是一樣會少，但是沒有大嘴鳥哦";
+			next;
+			menu "是的",-,"沒有",L_ROOT_1;
+				set Zeny,Zeny-2500;
+				setriding;
+			L_ROOT_1:
+				close;
+		L_MENU_1:
+			mes "[大嘴鳥管理士兵]";
+			mes "好的，有需要就來找我...";
+			close;
+	L_START_1:
+		mes "請問有什麼事嗎?";
+		mes "大嘴鳥是騎士專用的，其他的職業不能使用。";
+		close;
+}
+
+in_hunter.gat,146,99,2	script	禿鷹管理人員	105,{
+	mes "[禿鷹管理人員]";
+	if (Class != 11 && Class != 4012) goto L_START_1;
+		mes "你要禿鷹嗎？！一只2500";
+		next;
+		menu "使用",-,"放棄",L_MENU_1;
+			if (Zeny >= 2500) goto L_SUB_1;
+			mes "[禿鷹管理人員]";
+			mes "錢不夠啊！";
+			close;
+		L_SUB_1:
+			mes "[禿鷹管理人員]";
+			mes "請等一下，要用的話必須是已經學了「馴鷹術」的！你學了嗎？";
+			mes "如果你確定學了的話，繼續";
+			next;
+			menu "是",-,"否",L_ROOT_1;
+				set Zeny,Zeny-2500;
+				setfalcon;
+			L_ROOT_1:
+				close;
+		L_MENU_1:
+			mes "[禿鷹管理人員]";
+			mes "下次見！";
+			close;
+	L_START_1:
+		mes "對不起，獵鷹只有獵人才能租借！";
+		close;
+}
+
+prontera.gat,232,318,3	script	大嘴鳥管理兵士	105,{
+	mes "[大嘴鳥管理兵士]";
+	if (Class != 14 && Class != 21 && Class != 4015 && Class != 4022) goto L_START_1;
+		mes "歡迎光臨，十字軍你要一只大嘴鳥嗎?";
+		mes "一只3000金幣。";
+		next;
+		menu "租一匹",-,"算了",L_MENU_1;
+			if (Zeny >= 3000) goto L_SUB_1;
+			mes "[大嘴鳥管理兵士]";
+			mes "十字軍先生……您的錢不夠哩...";
+			mes "...你破產了...？";
+			close;
+		L_SUB_1:
+			mes "[大嘴鳥管理兵士]";
+			mes "等一下！你是否已經學習了騎乘術？";
+			mes "如果沒學的話，金錢也是一樣會少，但是沒有嘟嘟鳥哦";
+			next;
+			menu "是的",-,"沒有",L_ROOT_1;
+				set Zeny,Zeny-3000;
+				setriding;
+			L_ROOT_1:
+				close;
+		L_MENU_1:
+			mes "[大嘴鳥管理兵士]";
+			mes "好的，有需要就來找我...";
+			close;
+	L_START_1:
+		mes "請問有什麼事嗎?";
+		mes "我們的大嘴鳥是，十字軍專用的";
+		close;
+}
+

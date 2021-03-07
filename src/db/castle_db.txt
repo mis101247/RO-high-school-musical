@@ -1,0 +1,23 @@
+// 工會城堡地圖 by sakage,shuto
+// AgitDB Modify by Michael_Huang at 2004-02/13.
+// <Castle_ID>,<Map_Name>,<Castle_Name>,<Event_Name>,<Switch_Flag:(reserved)>
+0,aldeg_cas01.gat,露依納 工會 1,AgitExe#L1,1
+1,aldeg_cas02.gat,露依納 工會 2,AgitExe#L2,1
+2,aldeg_cas03.gat,露依納 工會 3,AgitExe#L3,1
+3,aldeg_cas04.gat,露依納 工會 4,AgitExe#L4,1
+4,aldeg_cas05.gat,露依納 工會 5,AgitExe#L5,1
+5,gefg_cas01.gat,咘哩妥利亞 工會 1,AgitExe#B1,1
+6,gefg_cas02.gat,咘哩妥利亞 工會 2,AgitExe#B2,1
+7,gefg_cas03.gat,咘哩妥利亞 工會 3,AgitExe#B3,1
+8,gefg_cas04.gat,咘哩妥利亞 工會 4,AgitExe#B4,1
+9,gefg_cas05.gat,咘哩妥利亞 工會 5,AgitExe#B5,1
+10,payg_cas01.gat,青林湖泊 工會 1,AgitExe#C1,1
+11,payg_cas02.gat,青林湖泊 工會 2,AgitExe#C2,1
+12,payg_cas03.gat,青林湖泊 工會 3,AgitExe#C3,1
+13,payg_cas04.gat,青林湖泊 工會 4,AgitExe#C4,1
+14,payg_cas05.gat,青林湖泊 工會 5,AgitExe#C5,1
+15,prtg_cas01.gat,◤白⊿,AgitExe#V1,1
+16,prtg_cas02.gat,◤日⊿,AgitExe#V2,1
+17,prtg_cas03.gat,◤夢⊿,AgitExe#V3,1
+18,prtg_cas04.gat,◤飛⊿,AgitExe#V4,1
+19,prtg_cas05.gat,◤翔⊿,AgitExe#V5,1

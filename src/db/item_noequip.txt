@@ -1,0 +1,4 @@
+// 裝備限制檔案
+// PVP，GVG所使用的裝備物品限制
+// 書寫格式 : <itemID>,<mode>
+// mode = 1:PvP限制 2:GvG限制 3:PvP、GvG全部限制

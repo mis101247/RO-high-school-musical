@@ -1,0 +1,469 @@
+//====================================================================
+// Ragnarok Online Thief jobchange script
+// 漢化:LKM
+// http://coolro.cnnb.net
+//====================================================================
+moc_ruins.gat,141,125,1	script	行跡可疑的人	83,{
+	if (Class == 0) goto Lnovice;
+	if (Class == 6) goto Ltwice;
+	if (@DOUBT_NPC == 1) goto L_SUB_1;
+	if (@DOUBT_NPC == 2) goto L_SUB_2;
+	if (@DOUBT_NPC == 3) goto L_SUB_3;
+	if (@DOUBT_NPC == 4) goto L_SUB_4;
+		mes "[行跡可疑的人]";
+		mes "你好。今天天氣真是不錯!";
+		mes "像今天這樣有著和煦的陽光照耀的午後，";
+                mes "真想在金字塔附近找塊蔭涼的地方和同伴一起吃午餐呢!";
+		set @DOUBT_NPC,@DOUBT_NPC+1;
+		close;
+L_SUB_1:
+		mes "[行跡可疑的人]";
+		mes "'有家可歸是幸福的開始。";
+		mes "這可是我最喜歡的一段話呢!回家…";
+		set @DOUBT_NPC,@DOUBT_NPC+1;
+		close;
+L_SUB_2:
+		mes "[行跡可疑的人]";
+		mes "............... ";
+		set @DOUBT_NPC,@DOUBT_NPC+1;
+		close;
+L_SUB_3:
+		mes "[行跡可疑的人]";
+		mes "喔~我~不是行.跡.可.疑~的~人。";
+		mes "不要.用.那種眼神~看.我。";
+		set @DOUBT_NPC,@DOUBT_NPC+1;
+		close;
+L_SUB_4:
+		mes "[行跡可疑的人]";
+		mes "…你再怎麼問我，我都沒有任何可以告訴你的，";
+		mes "你快去你該去的地方吧。";
+		close;
+Lnovice:
+	if (change_thief == 2) goto LStart2;
+	if (change_thief == 3) goto LStart3;
+	mes "[行跡可疑的人]";
+	mes "那裏的初學者!";
+	mes "想過一個多采多姿的人生嗎?";
+	mes "想擁有更舒適的生活嗎?";
+	mes "想的話就加入盜賊工會成為盜賊吧！";
+	next;
+	mes "[行跡可疑的人]";
+	mes "盜賊公會歡迎您的加入!";
+	mes "現在加入的話附送卡片!";
+	mes "(開玩笑的)";
+	mes "位於金字塔地下一樓!";
+	mes "中央的地下通道進去，在左邊又許是右邊。";
+	close;
+LStart2:
+	mes "[盜賊 公會工作人員]";
+	mes "你…擁有不凡的氣質…";
+	mes "為了轉職考試而來的!";
+	mes "名字是 " + strcharinfo(0) + " 嗎…";
+	mes "唔…嗯!名單上有你。好!";
+	mes "不過你會不會合格我就不知道了!";
+	mes "嘻嘻!";
+	close2;
+	set change_thief,3;
+	warp "job_thief1.gat",38,50;
+	end;
+LStart3:
+	mes "[盜賊 公會工作人員]";
+	mes "喔呵呵呵呵!是你呀~";
+	mes "不是轉職出來了嗎?傻子!";
+	mes "呵哈哈哈哈!呃、哎呀~";
+	mes "盜賊是大家愚蠢不來的!";
+	mes "呵哈哈哈哈!";
+	mes "好!送出去!";
+	close2;
+	warp "job_thief1.gat",38,50;
+	end;
+Ltwice:
+	mes "[盜賊 公會工作人員]";
+	mes "咦~成為優秀的盜賊了!";
+	mes "那麼這裡已經不能進入囉~";
+	mes "相信你也知道，";
+	mes "這裡是給想要轉職的傢伙進入。";
+	mes "去更有趣的地方，";
+	mes "享受美食饗宴吧!";
+	close;
+}
+//==============================================================================
+moc_prydb1.gat,42,133,2	script	工會工作人員	118,{
+	if (Class == 6) goto Ltwice;
+	if ((change_thief == 2) && (Class == 0)) goto LStart2;
+	if ((change_thief == 3) && (Class == 0)) goto LStart3;
+	if (Class == 0) goto Lnovice;
+	mes "[盜賊 公會工作人員]";
+	mes "喔喔!那裏的傢伙!";
+	mes "在這裡做什麼?";
+	mes "這裡不是給你待的地方";
+	mes "快一點出去。";
+	close;
+Lnovice:
+	mes "[盜賊 公會工作人員]";
+	mes "嗯?";
+	mes "初學者來這做什麼啊?";
+	mes "如果你想轉職成為盜賊的話，";
+	mes "到我旁邊去問那位姊姊吧!";
+	close;
+LStart2:
+	mes "[盜賊 公會工作人員]";
+	mes "嘿!面試的情況怎樣?";
+	mes "接下來要接受摘香菇的考試囉!";
+	mes "廢話少說加油喔!";
+	close;
+LStart3:
+	mes "[盜賊 公會工作人員]";
+	mes "嗯…?你回來了呀!";
+	mes "來，看看你到底偷了多少香菇，";
+        mes "算一下點數。";
+	next;
+	set @kinokoA,countitem(1069)*3;
+	set @kinokototal,@kinokoA+countitem(1070);
+	mes "[盜賊 公會工作人員]";
+	if (countitem(1069) > 0) mes "惡臭香菇有 " + countitem(1069) + " 個。";
+	if (countitem(1070) > 0) mes "毒香菇有 " + countitem(1070) + " 個。";
+	mes "評價結果…得到…是 " + @kinokototal + " 點。";
+	next;
+	if (@kinokototal < 25) goto Llownum;
+		mes "[盜賊 公會工作人員]";
+		mes "很好，合格了!";
+		mes "現在就開始轉職儀式吧!";
+		next;
+		delitem 1069,countitem(1069);
+		delitem 1070,countitem(1070);
+		unequip;
+		jobchange 6;
+		set change_thief,99;
+		mes "[盜賊公會統帥 'E']";
+		if (Sex == 1) mes "'名字 " + strcharinfo(0) + " 先生。'";
+		if (Sex == 0) mes "'名字 " + strcharinfo(0) + " 小姐。'";
+		mes "所有考試都合格了!";
+		mes "承認你為盜賊。";
+		mes "同時允許你正式加入盜賊公會。";
+		next;
+		mes "[盜賊公會統帥 'E']";
+		mes "恭喜你轉職成為盜賊。";
+		mes "今後成為盜賊公會的一份子";
+		mes "要遵守公會的秩序與規範!";
+		mes "萬一你在外面的行動，";
+                mes "對盜賊工會造成損害的話，";
+		next;
+		mes "[盜賊公會統帥 'E']";
+		mes "就會被盜賊工會除名。";
+		mes "不管如何，期待你有一番成績。";
+		mes "以上。";
+		next;
+		mes "[賓拉登]";
+		mes "哈哈哈哈!恭喜你入團!";
+		mes "我們的同伴!我的名字是<賓拉登>";
+		mes "在這盜賊公會負責轉職與";
+		mes "會員管理的職務。";
+		mes "說不定以後我們會常見面喔!";
+		next;
+		set @kinokototal,@kinokototal*10;
+		set Zeny,Zeny+50+@kinokototal;
+		mes "[賓拉登]";
+		mes "來~這個你收下!";
+		mes "是給新加入的會員應急用的補助金";
+		mes "和香菇的貨款。";
+		next;
+		mes "[賓拉登]";
+		mes "可以為你做的我都做了，所以可以回去。";
+		mes "我是很忙碌的!";
+		mes "那麼的話，再見。";
+		close;
+Llownum:
+	mes "[盜賊 公會工作人員]";
+	mes "不夠不夠!再去盜取!";
+	close;
+Ltwice:
+	mes "[賓拉登]";
+	mes "現在沒有什麼特別的活動，";
+	mes "有訊息的話我會盡快趕來的。";
+	close;
+}
+//==============================================================================
+moc_prydb1.gat,39,129,2	script	公會工作人員	69,{
+	if (Class == 6) goto Ltwice;
+	if (change_thief == 1) goto LStart2;
+	if (change_thief == 2) goto LStart3;
+	if (change_thief == 3) goto LStart4;
+	if (Class == 0) goto Lnovice;
+		mes "[盜賊 公會工作人員]";
+		mes "有什麼問題嗎…?";
+		next;
+		if (Class >= 7) goto Lnext;
+		mes "[盜賊 公會工作人員]";
+		if (Class == 1) mes "這不是那無知的耍劍藝人嗎?!";
+		if (Class == 2) mes "這不是馬戲團的噴火特效師嗎?!";
+		if (Class == 3) mes "這不是笨蛋弓箭手嗎?!";
+		if (Class == 4) mes "這不是那假慈悲的聖職者嗎?";
+		if (Class == 5) mes "這不是那惡劣的商人嗎?!";
+		next;
+	Lnext:
+		mes "[盜賊 公會工作人員]";
+		if (Sex == 1) mes "喂~先生";
+		if (Sex == 0) mes "瞧~小姐";
+	   	mes "你來這兒幹嘛?回去!回去!";
+		close;
+Lnovice:
+	mes "[盜賊 公會工作人員]";
+	if (Sex == 1) goto Lman;
+		mes "唔…小姐有什麼事!";
+		mes "怎麼到這種骯髒的地方?";
+		goto Lchoose;
+	Lman:
+		mes "呃…先生有什麼事!";
+		mes "要特別來這種骯髒的地方?";
+		goto Lchoose;
+	LStart2:
+		mes "[盜賊 公會工作人員]";
+		mes "喔~還來呀!";
+		mes "這次大概沒搞錯吧?";
+Lchoose:
+	next;
+	menu "想成為盜賊。",L1,"算不了什麼。",-;
+		close;
+	L1:
+		if (change_thief == 1) goto L1_twice;
+		mes "[盜賊 公會工作人員]";
+		mes "…沒有自誇事情吧?";
+		mes "理直氣狀地說要成為盜賊，";
+		mes "還一點都不害羞。";
+		mes "愚蠢嗎?被正走在成為盜賊道路的我";
+		mes "這麼說也不會生氣?";
+		mes "等一下!頭做啥低低的?";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "真的想成為盜賊嗎?";
+		next;
+		menu "嗯!",L1_1,"不是的~",L1_2,"你怎麼可以說這樣的話!?",L1_3;
+		L1_1:
+			mes "[盜賊 公會工作人員]";
+			mes "嗯…";
+			mes "那就如你所願吧!";
+			goto L1_f;
+		L1_2:
+			mes "[盜賊 公會工作人員]";
+			mes "那麼的話，會是什麼?";
+			mes "在這裡有戀人?";
+			mes "如果不是到盜賊公會來做什麼?";
+			goto L1_f;
+		L1_3:
+			mes "[盜賊 公會工作人員]";
+			mes "呃…?我…?";
+			mes "啊~我是…只是…唔";
+			mes "別道聽塗說!";
+		L1_f:
+			mes "考慮好，在現實世界";
+			mes "成為盜賊的話是不能反悔的!";
+			next;
+			mes "[盜賊 公會工作人員]";
+			mes "真的…";
+			mes "真的想成為盜賊嗎?";
+			next;
+			menu "嗯!",L1_f2,"還是不要。",-;
+				mes "[盜賊 公會工作人員]";
+				mes "什麼呀!不想轉職…";
+				mes "真不知來做什麼的?";
+				mes "還在考慮什麼嗎…?";
+				close;
+			L1_f2:
+				mes "[盜賊 公會工作人員]";
+				mes "那樣的話請說你的名字。";
+				mes "嗯?什麼?";
+				mes "" + strcharinfo(0) + "." + strcharinfo(0) + " 是嗎…?";
+				next;
+//轉生的處理
+	//callfunc "jobchanger","盜賊 公會工作人員",6;
+	if (Upper == 1) goto LUpper1;
+				set change_thief,1;
+				mes "[盜賊 公會工作人員]";
+				mes "申請書OK了。";
+				mes "等你具備所有轉職條件再來找我";
+				mes "會馬上為你安排面試。";
+				mes "要不要試試?";
+				next;
+				menu "嗯!好的",Lcheck,"不，不需要",-;
+					mes "[盜賊 公會工作人員]";
+					mes "啊~隨你高興。掰掰～。";
+					close;
+L1_twice:
+	mes "[盜賊 公會工作人員]";
+	mes "來，那樣的話來確認一下吧?";
+	next;
+Lcheck:
+	mes "[盜賊 公會工作人員]";
+	mes "名字是… " + strcharinfo(0) + "。是嗎…";
+        mes "等我一下~";
+	mes "啊!有了，在這。你叫 " + strcharinfo(0) + "。";
+	next;
+	if (getskilllv(1) < 9) goto Llowlv;
+	mes "[盜賊 公會工作人員]";
+	mes "嗯…從你的資料來看有一些不錯的戰果";
+	mes "也算是具有一些基本的能力。";
+	mes "好!";
+	mes "名字 " + strcharinfo(0) + "。";
+	mes "盜賊轉職面試合格!";
+	next;
+	mes "[盜賊 公會工作人員]";
+	mes "來，這次確認你";
+	mes "有沒有成為盜賊的素質。";
+	mes "有關考試的內容清楚嗎?";
+	next;
+	menu "當然知道!輕而易舉。",-,"不清楚",Lcheck2;
+		mes "[盜賊 公會工作人員]";
+		mes "是嗎?太好了!";
+		goto Lcheckend;
+Lcheck2:
+		mes "[盜賊 公會工作人員]";
+		mes "不知道?沒辦法囉!";
+		mes "清意聽了!";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "到夢羅克一個惡質商人<西布>";
+		mes "經營的香菇農場裡偷取香菇。";
+		mes "盜取^0000ff惡臭香菇^000000和^0000ff毒香菇^000000 這2種。";
+		mes "這就是轉職考試!";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "盜取香菇後回來";
+		mes "依據採集的點數…";
+		mes "<惡臭香菇>1個是3點、";
+		mes "<毒香菇>1個是1點。";
+		mes "全部合計25點以上";
+		mes "就算合格了。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "去的路是…向金字塔原野東邊一直走去，";
+		mes "應該在兩個大柱子的中間";
+		mes "可以看得到我們的同伴。";
+		mes "與那傢伙說話，";
+		mes "會送你通過小洞到達香菇農場。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "正確的位置在…^ff0000141 125^000000'";
+		mes "知道了嗎?";
+		mes "想知道你現在的位置打入指令</where>";
+		mes "就可得知做為參考。";
+Lcheckend:
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "去前先給個忠告。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "在香菇農場有魔物。";
+		mes "知道了嗎?別以遊戲的心情去";
+		mes "那可就大錯特錯了，";
+		mes "所以最好小心一點。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "依你的判斷做適當決擇打倒魔物、逃跑等";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "雖然我們的轉職考試是要你去摘香菇，";
+		mes "你今日做的事情是犯罪!";
+		mes "而為了轉職做的事情並不算。";
+		mes "這是為了成為盜賊的資格。知道了嗎?";
+		mes "瞧、這就清楚的區別。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "我就言盡於此。";
+		mes "那出發吧!";
+		set change_thief,2;
+		close;
+LStart3:
+	mes "[盜賊 公會工作人員]";
+	mes "在這裡做什麼?";
+	mes "不是去盜採香菇了嗎?";
+	mes "莫非、你忘了轉職的條件";
+	mes "想要再教一次嗎?";
+	next;
+	menu "嗯!",LS3_1,"不用了",LS3_2;
+	LS3_1:
+		mes "[盜賊 公會工作人員]";
+		mes "要好好的記住喔!";
+		mes "通常是1個人去的。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "到夢羅克一個惡質商人<西布>";
+		mes "經營的香菇農場裡偷取香菇。";
+		mes "盜取^0000ff惡臭香菇^000000和^0000ff毒香菇^000000 這2種。";
+		mes "這就是轉職考試!";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "在香菇農場裏不只有香菇也有魔物";
+		mes "所以要小心。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "盜取香菇後回來";
+		mes "依據採集的點數…";
+		mes "<惡臭香菇>1個是3點、";
+		mes "<毒香菇>1個是1點。";
+		mes "全部合計25點以上";
+		mes "就算合格了。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "去的路是…向金字塔原野東邊一直走去，";
+		mes "應該在兩個大柱子的中間";
+		mes "可以看得到我們的同伴。";
+		mes "與那傢伙說話，";
+		mes "會送你通過小洞到達香菇農場。";
+		next;
+		mes "[盜賊 公會工作人員]";
+		mes "正確的位置在…^ff0000141 125^000000'";
+		mes "知道了嗎?";
+		mes "想知道你現在的位置打入指令</where>";
+		mes "就可得知做為參考。";
+		close;
+	LS3_2:
+		mes "[盜賊 公會工作人員]";
+		mes "…什麼啊?";
+		mes "雖然這樣也別特地說…";
+		mes "要爭吵嗎?嗯?";
+		close;
+LStart4:
+	mes "[盜賊 公會工作人員]";
+	mes "喔?只是隨便說說而已，";
+	mes "你還真的把香菇摘來了啊!";
+	mes "你是傻子嗎?";
+	mes "被騙了，知不知道呀?";
+	next;
+	mes "[盜賊 公會工作人員]";
+	mes "好了，不跟你開玩笑了。";
+	mes "這裡是接受想要成為盜賊申請的地方。";
+	mes "想要轉職的話去隔壁的視窗看看。";
+	close;
+Llowlv:
+	mes "[盜賊 公會工作人員]";
+	mes "你想成為盜賊…";
+	mes "只有想法在社會上是沒辦法生存的!";
+	mes "基本技能最少要提升到9級以上不然會被淘汰!";
+	close;
+Ltwice:
+	mes "[盜賊 公會工作人員]";
+	mes "喔~";
+	mes "有煩惱的話隨時可以來這邊諮詢喔!";
+	mes "嗯?";
+	close;
+LUpper1:
+	if (getskilllv(1) < 9) goto Llowlv;
+	mes "[盜賊 公會工作人員]";
+	mes "你已經轉生過了呀!";
+	mes "怎麼還沒去轉職?";
+	next;
+	unequip;
+	jobchange 6,1;
+	skill 149,1,0;
+	skill 150,1,0;
+	skill 151,1,0;
+	skill 152,1,0;
+	mes "[盜賊 公會工作人員]";
+	mes "恭喜轉職了!";
+	mes "今後也要為提升公會的聲望";
+	mes "請努力!";
+	close;
+
+
+}

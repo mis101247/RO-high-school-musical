@@ -1,0 +1,441 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 摩摩塔樂 任務 -
+//========================================================================================
+amatsu.gat,223,235,4	script	出版社職員	763,{
+	if (event_momo == 10) goto Lfin;
+	if ((event_momo >= 1) && (event_momo <= 4)) goto Lget;
+	mes "[出版社職員]";
+	mes "您好~";
+	mes "在村落裡代代相傳下來的故事";
+	mes "我們專門地收集做為^009CFF龜鶴出版社^000000裡";
+	mes "不分男女老少的熱門故事";
+	mes "^009CFF<摩摩塔樂>^000000故事……";
+	next;
+	mes "[出版社職員]";
+	mes "為了紀念出版百萬本";
+	mes "而設立了^3163FF摩摩塔樂 體驗館^000000";
+	mes "趕快來體驗其中的樂趣。";
+	next;
+	mes "[出版社職員]";
+	mes "親自成為故事裡的摩摩塔樂";
+	mes "消滅小鬼。";
+	mes "並領取禮物喔!";
+	next;
+	menu "什麼是摩摩塔樂故事？",-,"我想試試看！",L1,"我很忙所以……",L2;
+		mes "[出版社職員]";
+		mes "!? 竟然不知道摩摩塔樂 故事";
+		mes "真是一位對流行很遲鈍的人啊……";
+		mes "那麼由我來講給你聽吧……";
+		next;
+		mes "[出版社職員]";
+		mes "從前從前有一對老夫婦";
+		mes "這對夫婦雖然感情很好";
+		mes "不過膝下沒有子女";
+		mes "一直很想要有子女來疼愛……";
+		next;
+		mes "[出版社職員]";
+		mes "然而有一天，老太太在洗衣服時";
+		mes "在江上發現了一個大大的桃子。";
+		mes "立刻打撈桃子並且帶回家";
+		mes "老爺爺把它剝成一半……";
+		mes "結果有個小嬰兒從裡面，蹦！";
+		mes "的一聲出現了。";
+		next;
+		mes "[出版社職員]";
+		mes "老爺爺跟老婆婆雖然嚇了一跳";
+		mes "不過馬上把嬰兒當作自己的孩子";
+		mes "細心照顧養育著";
+		mes "心中也感到非常高興。";
+		next;
+		mes "[出版社職員]";
+		mes "那個小孩成長的非常快速";
+		mes "數日之後";
+		mes "成為健壯的少年了。";
+		next;
+		mes "[出版社職員]";
+		mes "那個小孩就被命名為<摩摩塔樂>";
+		mes "當時村民們被小鬼們欺負";
+		mes "生活地非常痛苦貧脊";
+		mes "於是摩摩塔樂開始踏上消滅小鬼的旅行……";
+		next;
+		mes "[出版社職員]";
+		mes "把旅途中所遇到的^3163FF猴子、雞、狗^000000";
+		mes "當作夥伴，一起並肩作戰到最後";
+		mes "在消滅完小鬼之後";
+		mes "回到故鄉里";
+		mes "與老爺爺跟老婆婆過著幸福的生活…… -完-";
+		next;
+		mes "[出版社職員]";
+		mes "怎麼樣呢?";
+		mes "值得賣出百萬本吧!";
+		close;
+L1:
+		mes "[出版社職員]";
+		mes "咿呀！是位活力充沛的人啊!";
+		mes "連我的體力也變的活力充沛啊!。";
+		mes "那麼，請填寫這張申請書吧……";
+		next;
+		mes "[出版社職員]";
+		mes "……";
+		mes "……嗯……讓我看看……";
+		mes "……好！很好！";
+		mes "那麼的話立刻去……";
+		mes "<摩摩塔樂 體驗館>!!";
+		mes "請好好體驗其中的樂趣";
+		close2;
+		warp "ama_test",52,35;
+		end;
+L2:
+		mes "[出版社職員]";
+		mes "………還會送小禮物喔!";
+		close;
+Lget:
+	mes "[出版社職員]";
+	mes "如何，體會到了嗎?";
+	mes "我們所準備的";
+	mes "迷你型體驗館";
+	mes "請您好好度過快樂的時光";
+	mes "祝您好運。";
+	next;
+	if (event_momo == 1) getitem 627,1;
+	if (event_momo == 2) getitem 629,1;
+	if (event_momo == 3) getitem 625,1;
+//ヤууЬ成功後不明
+	if (event_momo == 4) getitem 629,1;
+	set event_momo,10;
+	mes "[出版社職員]";
+	mes "怎麼樣?還愉快嗎?";
+	mes "那麼請收下我們所準備的禮物~。";
+	mes "請以後多多喜歡";
+	mes "我們的古典史話……";
+	close;
+Lfin:
+	mes "[出版社職員]";
+	mes "天氣很好吧?……";
+	mes "這種天氣就想要洗被子。";
+	close;
+}
+//=====================================================================
+ama_test.gat,52,44,4	script	待機室擔當者	109,{
+	mes "[佐敏]";
+	mes "<摩摩塔樂 體驗館>";
+	mes "歡迎!";
+	next;
+	mes "[佐敏]";
+	mes "我是<摩摩塔樂 體驗館>的控室擔當";
+	mes "我叫佐敏。";
+	next;
+	mes "[佐敏]";
+	mes "目前在出版社上班";
+	mes "因為……人手不足";
+	mes "急忙派遺到這邊……";
+	mes "可是，仍然維持一定的水準！";
+	mes "這種封條在使用和品質";
+	mes "從遊覽挑戰人滿意中獲得肯定。";
+	next;
+	mes "[佐敏]";
+	mes "……";
+	mes "不不、是開玩笑……";
+	mes "(擦汗)";
+	next;
+	mes "[佐敏]";
+	mes "那麼，關於體驗館";
+	mes "就在此說明。";
+	next;
+	mes "[佐敏]";
+	mes "大略聽過有關摩摩塔樂故事";
+	mes "是從拜訪外面的職員知道的嗎?";
+	next;
+	menu "是的",L1,"不是",-;
+		mes "[控室擔當]";
+		mes "是這樣?";
+		mes "到這裡來之後沒有談話?";
+		mes "……";
+		mes "作為摩摩塔樂狂熱愛好者";
+		mes "不能不認識呀……";
+		next;
+		mes "[控室擔當]";
+		mes "再與外面的職員談話之後再來鬼屋裡";
+		mes "然後……";
+		mes "再會~";
+		close2;
+		warp "amatsu.gat",223,230;
+		end;
+L1:
+		mes "[佐敏]";
+		mes "嗯嗯……";
+		mes "摩摩塔樂 故事，是我們";
+		mes "出版社最自豪的大作品";
+		mes "最高傑作吧!";
+		mes "哈哈哈啊!!!";
+		next;
+		mes "[佐敏]";
+		mes "……呼呼";
+		next;
+		mes "[佐敏]";
+		mes "體驗館的規則很簡單。";
+		mes "進入裡面之後在摩摩塔樂幼年時";
+		mes "勇猛的!!! 消滅小鬼";
+		mes "沒錯。";
+		mes "是，勇猛的!!!!";
+		next;
+		mes "[佐敏]";
+		mes "然後，注意事項";
+		mes "有三個。";
+		next;
+		mes "[佐敏]";
+		mes "第一點";
+		mes "當體驗館即使一次被過關";
+		mes "也還不能進入。";
+		mes "請耐心的再等候。";
+		next;
+		mes "[佐敏]";
+		mes "第二點";
+		mes "體驗館內不得帶寵物";
+		mes "隨主人進入。";
+		mes "如果正帶著寵物的話";
+		mes "改變成卵之後再請進入";
+		next;
+		mes "[佐敏]";
+		mes "最後的注意事項、";
+		mes "體驗館給一個人相當於6分鐘";
+		mes "的有限制時間。";
+		next;
+		mes "[佐敏]";
+		mes "來，那樣的話請進入控制聊天室";
+		mes "等待進入的順序。";
+		mes "祈禱奮鬥";
+		close;
+OnInit:
+	waitingroom "體驗館控室",1,"待機室擔當者::OnMax";
+	end;
+OnMax:
+	warpwaitingpc "ama_test.gat",50,83;
+	disablenpc "待機室擔當者";
+	disablenpc "管理人";
+	enablenpc "老婆婆";
+	enablenpc "老爺爺";
+	initnpctimer "roomt";
+	end;
+}
+ama_test.gat,50,93,4	script	老婆婆	761,{
+Onstart:
+	mes "[老婆婆]";
+	mes "啊——!?";
+	next;
+	mes "[老婆婆]";
+	mes "老爺爺";
+	mes "我的錢被盜走了";
+	mes "不知道嗎?";
+	next;
+	mes "[老爺爺]";
+	mes "老婆婆……聽村長說最近發生一些事";
+	mes "小鬼到處作亂";
+	mes "沒有得搶奪後就在村中大鬧";
+	mes "搞的人心荒荒……";
+	next;
+	mes "[老婆婆]";
+	mes "喀喀喀……！";
+	next;
+	mes "[老爺爺]";
+	mes "好像在哪裡常常聽到的聲音啊……";
+	next;
+	mes "[老爺爺]";
+	mes "不管什麼……摩摩塔樂啊";
+	next;
+	mes "[老爺爺]";
+	mes "你也知道";
+	mes "這裡的村民是膽小鬼只會聊天";
+	mes "沒有能力去消滅小鬼……";
+	mes "摩摩塔樂 想懇求你";
+	mes "……";
+	next;
+	mes "[老婆婆]";
+	mes "摩摩塔樂……";
+	mes "這是婆婆親自做的";
+	mes "^3355ff這世上最好喝的紅色藥水";
+	mes "很想交給你……";
+	mes "……不過全部製作失敗了^000000";
+	next;
+	mes "[老婆婆]";
+	mes "對不起……摩摩塔樂……";
+	next;
+	mes "[老婆婆 老爺爺]";
+	mes "那麼就交給你了  孩子啊……";
+	disablenpc "老婆婆";
+	disablenpc "老爺爺";
+	set @mobdie,0;
+	monster "ama_test.gat",47,101,"小鬼",1110,1,"mobcount";
+	monster "ama_test.gat",51,101,"小鬼",1110,1,"mobcount";
+	monster "ama_test.gat",55,101,"小鬼",1110,1,"mobcount";
+	monster "ama_test.gat",55,97,"小鬼",1110,1,"mobcount";
+	monster "ama_test.gat",55,93,"小鬼",1110,1,"mobcount";
+	monster "ama_test.gat",53,91,"小鬼",1110,1,"mobcount";
+	monster "ama_test.gat",49,91,"小鬼",1110,1,"mobcount";
+	monster "ama_test.gat",45,96,"小鬼",1110,1,"mobcount";
+	monster "ama_test.gat",45,99,"小鬼",1110,1,"mobcount";
+	close;
+}
+ama_test.gat,49,93,4	script	老爺爺	766,{
+	close;
+}
+ama_test.gat,50,100,4	script	管理人	762,{
+	mes "[管理人]";
+	mes "呵呼……真厲害";
+	mes "我一直在管理座位上觀察……";
+	mes "你不是普通的實力";
+	mes "真讓人驚訝";
+	next;
+	mes "[總監督]";
+	mes "我還以為故事裡的摩摩塔樂";
+	mes "活生生的出現在現實呢!";
+	mes "呵呵呵呵!";
+	next;
+	menu "小意思而已~",L1,"真無聊……",L2;
+L1:
+	mes "[管理人]";
+	mes "呵呵呵……";
+	mes "不要太驕傲……";
+	mes "我在你這個年齡時";
+	mes "把小鬼等用小指輕捏在手裡呢";
+	mes "呵呵呵……";
+	next;
+	mes "[管理人]";
+	mes "……";
+	mes "開個玩笑而已。";
+	next;
+	mes "[管理人]";
+	mes "那麼的話，摩摩塔樂體驗館已經結束了";
+	mes "體會到樂趣了嗎?";
+	mes "去找第一次遇見的女職員說話";
+	mes "會收到我們所準備的小禮物。";
+	next;
+	mes "[管理人]";
+	mes "希望你不要失去現在那麼堅強的心";
+	mes "請慢走!";
+	close2;
+	set event_momo,1;
+	stopnpctimer "roomt";
+	disablenpc "管理人";
+	enablenpc "待機室擔當者";
+	warp "amatsu.gat",223,230;
+	end;
+L2:
+	mes "[管理人]";
+	mes "!!!!!";
+	mes "……呵…呵呵呵……";
+	mes "很有趣的人啊……";
+	mes "好吧……";
+	mes "要不要聽我一個提案呢!";
+	next;
+	mes "[管理人]";
+	mes "…照理來說現在應該";
+	mes "要讓你回去……";
+	mes "不過我想看";
+	mes "你真正的實力…呵呵呵…";
+	mes "似乎看到了我年輕的時候。";
+	mes "呵呵呵呵呵……";
+	next;
+	mes "[管理人]";
+	mes "怎麼樣…?我再給你一次的機會";
+	mes "與小鬼們再挑戰一次";
+	mes "這次失敗了";
+	mes "^3355ff就無法再挑戰^000000……";
+	mes "還有這次就算是你，也會很困難吧!";
+	next;
+	menu "已經足夠了",L2_1,"挑戰看看",L2_2;
+L2_1:
+	mes "[管理人]";
+	mes "呵呵……";
+	mes "你也因剛剛的戰鬥而疲倦了嗎?";
+	mes "嗯，最後……享受到摩摩塔樂體驗館樂趣了嗎?";
+	mes "去找第一次遇見的女職員說話";
+	mes "會收到我們所準備的小禮物。";
+	next;
+	mes "[管理人]";
+	mes "希望你不要失去現在那麼堅強的心";
+	mes "請慢走!";
+	close2;
+	set event_momo,2;
+	stopnpctimer "roomt";
+	disablenpc "管理人";
+	enablenpc "待機室擔當者";
+	warp "amatsu.gat",223,230;
+	end;
+L2_2:
+	mes "[管理人]";
+	mes "呵呵呵…你這年輕人越來越討人喜歡啊!";
+	mes "好!這是最後的一次決戰。";
+	mes "盡情發揮你的實力吧!";
+	mes "我會期待的！";
+	monster "ama_test.gat",35,103,"鬼",1301,1,"mobcount2";
+	monster "ama_test.gat",56,111,"鬼",1301,1,"mobcount2";
+	monster "ama_test.gat",40,91,"鬼",1301,1,"mobcount2";
+	disablenpc "管理人";
+	set event_momo,3;
+	close;
+Onstart:
+	mes "[管理人]";
+	mes "呵呵……";
+	close;
+}
+//=======================================MobCount===============================-
+ama_test.gat,0,1,0	script	mobcount	-1,{
+	if (@mobdie == 8) goto Lfin;
+	set @mobdie,@mobdie+1;
+	set @mobrand,rand(4);
+	if (@mobrand == 1) goto Lrand2;
+	if (@mobrand == 2) goto Lrand3;
+	if (@mobrand == 3) goto Lrand4;
+Lrand1:
+	areaannounce "ama_test.gat",30,78,68,120,"DOKEBI: 啊!是摩摩塔樂來了！",8;end;
+Lrand2:
+	areaannounce "ama_test.gat",30,78,68,120,"DOKEBI: 對不起~對不起",8;end;
+Lrand3:
+	areaannounce "ama_test.gat",30,78,68,120,"DOKEBI: 啊呀…",8;end;
+Lrand4:
+	areaannounce "ama_test.gat",30,78,68,120,"DOKEBI: 是偷襲!! 快逃!!",8;end;
+Lfin:
+	areaannounce "ama_test.gat",30,78,68,120,"DOKEBI: 嗚嗚嗚嗚……",8;
+	enablenpc "管理人";
+	doevent "管理人::Onstart";
+	end;
+}
+//=======================================MobCount2==============================-
+ama_test.gat,50,101,0	script	mobcount2	-1,{
+	if (@mobdie2 == 2) goto Lfin;
+	set @mobdie2,@mobdie2+1;
+	areaannounce "ama_test.gat",30,78,68,120,"AMMUT: 哎呀哎呀…",8;end;
+Lfin:
+	set event_momo,4;
+	stopnpctimer "roomt";
+	enablenpc "待機室擔當者";
+	warp "amatsu.gat",223,230;
+	end;
+}
+//=======================================TIMER==================================-
+ama_test.gat,50,102,0	script	roomt	-1,{
+	close;
+
+OnTimer1000:
+	mapannounce "ama_test.gat","從現在開始6分鐘，請注意不要超過指定的時間。",8;
+	end;
+OnTimer180000:
+	mapannounce "ama_test.gat","剩下3分鐘。",8;
+	end;
+OnTimer300000:
+	mapannounce "ama_test.gat","剩下1分鐘。",8;
+	end;
+OnTimer360000:
+	mapannounce "ama_test.gat","嗶-嗶-嗶  已超過指定的時間了。",8;
+	end;
+OnTimer360500:
+	disablenpc "管理人";
+	enablenpc "待機室擔當者";
+	areawarp "ama_test.gat",30,78,68,120,"amatsu.gat",223,230;
+	stopnpctimer "roomt";
+	end;
+}

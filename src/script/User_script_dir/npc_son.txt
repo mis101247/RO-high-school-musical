@@ -1,0 +1,1186 @@
+//----------------------------------------------------------------------------------------
+// NPC Son 孫燕姿 
+//----------------------------------------------------------------------------------------
+//#普隆德拉
+prontera.gat,147,181,5	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;	close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+// 裴揚
+payon.gat,101,116,3	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+
+// 港口之都 艾爾貝塔
+alberta.gat,24,229,0	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//劍士島
+izlude.gat,136,90,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//吉芬
+geffen.gat,125,64,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//夢羅克
+morocc.gat,158,99,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//克魔島
+comodo.gat,195,152,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//鐘樓
+aldebaran.gat,143,117,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;	close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//崑崙
+gonryun.gat,154,15,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;	close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//天津
+amatsu.gat,110,158,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;	close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//天空之城 尤諾
+yuno.gat,161,189,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;	close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//姜餅城
+xmas.gat,152,136,5	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;	close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}
+
+//猿人部落
+umbala.gat,126,135,4	script	孫燕姿	756,{
+	cutin "son",2;
+	mes "[孫燕姿]";
+	mes "你好！";
+	mes "我是音樂精靈 ^3355FF孫燕姿^000000";
+	mes "你需要什麼幫忙？";
+	next;
+	menu "快速恢復！",Lheal,"城市傳送！",Lcity,"迷宮傳送！",Ltrans,"密穴傳送！",Lgld,"不用，謝謝！",Lcon;
+Lheal:
+	mes "[孫燕姿]";
+	mes "好的，";
+	mes "為你恢復HP與SP。";
+	mes "音樂精靈們，請聽我的傾訴…";
+	mes "請你祝福我的朋友！";
+	percentheal 100,100;
+	next;
+	mes "[孫燕姿]";
+	mes "已經完全恢復了！再見！";
+	cutin "son",255;
+	close;
+Lcity:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "中央之城─Prontera 普隆德拉",Ldun1,"山嶽之都─Payon 斐揚",Ldun2,"港口之都─Alberta 艾爾貝塔",Ldun3,"劍士島─Izlude 依斯魯得島",Ldun4,"魔幻之都─Geffen 吉芬",Ldun5,"邊境之都─Morroc 夢羅克",Ldun6,"夢幻之島─Comodo",Ldun7,"鐘樓─Aldebaran 艾爾帕蘭",Ldun8,"崑崙─Gonryun",Ldun9,"天津城─AMATSU",Ldun10,"天空之城─JUNO 尤諾",Ldun11,"幻想之城─Xmas 姜餅城",Ldun12,"猿人部落",Ldun13;
+		Ldun1:	warp "prontera",153,173;	close;
+		Ldun2:	warp "payon",101,114;	close;
+		Ldun3:	warp "alberta",24,231;	close;
+		Ldun4:	warp "izlude",134,90; 	close;
+		Ldun5:	warp "geffen",122,60;	close;
+		Ldun6:	warp "morocc",160,95;	close;
+		Ldun7:	warp "comodo",193,152;	close;
+		Ldun8:	warp "aldebaran",143,115;	close;
+		Ldun9:	warp "gonryun",156,15;	close;
+		Ldun10:	warp "amatsu",196,83;	close;
+		Ldun11:	warp "yuno",158,87;	close;
+		Ldun12:	warp "xmas",152,134;	close;
+		Ldun13:	warp "umbala",129,130;	close;
+Ltrans:
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "北之森林",Lduna,"獸人村落",Ldunb,"螞蟻巢穴",Ldunc,"廢棄礦洞",Ldund,"史芬克斯迷宮",Ldune,"克雷斯特漢姆古城",Lglast,"玩具工廠",Ldunf,"吉芬地下迷宮",Ldung,"海底世界",Ldunh,"海盜船遺址",Lduni,"金字塔迷宮",Ldunl,"首都地下水道",Ldunk,"裴揚殭屍洞",Ldunj,"烏龜島",Ldunm;
+		Lduna:	warp "prt_fild01",136,368;	close;
+		Ldunb:	warp "gef_fild10",67,334;	close;
+		Ldunc:	warp "moc_fild04",210,329;	close;
+		Ldund:	warp "mjolnir_02",79,361;	close;
+		Ldune:	warp "moc_fild19",105,99;	close;
+		Ldunf:	warp "xmas_dun01",205,16;	close;
+		Ldung:	warp "gef_tower",153,36;	close;
+		Ldunh:	warp "izlu2dun",107,50;	close;
+		Lduni:	warp "alb2trea",50,50;	close;
+		Ldunj:	warp "pay_arche",45,132;	close;
+		Ldunk:	warp "prt_fild05",272,210;	close;
+		Ldunl:	warp "moc_ruins",69,161;	close;
+		Ldunm:	warp "tur_dun01",158,35;	close;
+		Lglast:	warp "glast_01",200,246;	close;
+Lgld:
+	if(Class == BaseLevel > 70) goto Lerr;
+	mes "[孫燕姿]";
+	mes "我會用音樂與存在於";
+	mes "世上的時空精靈們進行溝通";
+	mes "試著借用他們的力量，為你傳送！";
+	mes "";
+	mes "請問你想要去那裡呢？";
+	menu "裴揚密穴",Lgld1,"新城密穴",Lgld2,"首都密穴",Lgld3,"吉芬密穴",Lgld4;
+		Lgld1:	warp "gld_dun01",187,166;	close;
+		Lgld2:	warp "gld_dun02",31,124;	close;
+		Lgld3:	warp "gld_dun03",75,32;	close;
+		Lgld4:	warp "gld_dun04",123,270;	close;
+Lcon:
+	mes "[孫燕姿]";
+	mes "記得，在美好的仙境裡";
+	mes "創造出屬於你的浪漫傳說";
+	mes "我會努力為各位服務的！";
+	cutin "son",255;
+	close;
+Lerr:
+	mes "[孫燕姿]";
+	mes "對不起,只有70級以上才能進入！";
+	cutin "son",255;
+	close;
+}

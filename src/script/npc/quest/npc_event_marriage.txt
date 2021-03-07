@@ -1,0 +1,525 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 結婚 任務 -
+//========================================================================================
+prt_church.gat,94,100,4	script	結婚 服務人員	71,{
+	cutin "wedding_marry01",2;
+	mes "[結婚 快樂]";
+	mes "所謂結婚是指，";
+	mes "期待著幸福，所有人們的希望，";
+	mes "請問你是否有，";
+	mes "想要結婚的對象嗎?";
+	next;
+	menu "請說明有關結婚典禮的事情",-,"結婚典禮的過程是什麼樣子呢?",L2,"想要申請結婚典禮",L3,"我是無敵的單身軍團！",L4;
+		mes "[結婚 快樂]";
+		mes "目前是由教主";
+		mes "負責結婚，由於忙碌";
+		mes "來主管結婚典禮";
+		next;
+		mes "[結婚 快樂]";
+		mes "因為教主先生，把很多單身貴族，";
+		mes "結合成很多情侶的關係，";
+		mes "所以也有 '愛的教主 '暱稱，";
+		mes "呵呵...";
+		next;
+		mes "[結婚 快樂]";
+		mes "雖然每天忙碌於國家大事，";
+		mes "為了即將新出發的小倆口，";
+		mes "特地來到了普隆德拉教堂，";
+		mes "期待所有人都能過著幸福的生活，";
+		mes "這是教主給的恩德";
+		next;
+		mes "[結婚 快樂]";
+		mes "求婚要慎重，";
+		mes "鄭重的提出，";
+		mes "只要有結過一次婚的人，";
+		mes "再也不能恢復原狀，結婚的兩個人，";
+		mes "除非離開這人世間為止，";
+		mes "否則就永遠會在一起";
+		next;
+		mes "[結婚 快樂]";
+		mes "另外男性對女性，";
+		mes "女性只能對男性結婚，";
+		mes "另外也有可能，";
+		mes "有些人會提出，和同性或者和魔物結婚，";
+		mes "這樣的主張... 是不會被成立的";
+		next;
+		mes "[結婚 快樂]";
+		mes "假如有約定好未來的對象的話，";
+		mes "不妨試著求婚看看吧，";
+		mes "願期待未來幸福的所有戀人，";
+		mes "祝福美滿!!";
+		close2;
+		cutin "wedding_marry01",255;
+		end;
+	L2:
+		mes "[結婚 快樂]";
+		mes "首先先確認新郎新娘們，";
+		mes "都有向我申請嗎，";
+		mes "當然兩位都是，沒有結過婚的人才對啊?";
+		mes "假如有申請的話，只請兩位組對之後，";
+		mes "請到教主那裡吧";
+		next;
+		mes "[結婚 快樂]";
+		mes "到教主那裡後，";
+		mes "^0000FF男方^000000先說話，";
+		mes "然後再說要結婚女性的名字，";
+		mes "名字不能講錯，要講正確，";
+		mes "結婚典禮才能執行";
+		next;
+		mes "[結婚 快樂]";
+		mes "當講完話時，";
+		mes "緊接著女方跟教主講話，";
+		mes "教主會問妳，";
+		mes "妳要結婚對象的名字，";
+		mes "相對的也一樣的回答男性的名字";
+		next;
+		mes "[結婚 快樂]";
+		mes "假如結婚對象的名字正確的話，";
+		mes "會交換結婚戒指，";
+		mes "從那瞬間開始，";
+		mes "兩個人會永遠的在一起，不錯吧?";
+		mes "說不定被委婉的拒絕也不一定，";
+		mes "也不要太難過啊";
+		next;
+		mes "[結婚 快樂]";
+		mes "當想要結婚的人，";
+		mes "太多的聚集在一起時，";
+		mes "請大家遵守秩序，按順序的來跟國王說話，";
+		mes "教主不可能同時的，";
+		mes "主持好幾對婚禮";
+		next;
+		mes "[結婚 快樂]";
+		mes "最後一點，講完名字後，";
+		mes "回答要快";
+		mes "^ff0000當新郎講完話，在 3分鐘之內，";
+		mes "把所有的過程都做完^000000吧 要不然，";
+		mes "結婚典禮會停止，";
+		mes "再也不能結婚了";
+		next;
+		mes "[結婚 快樂]";
+		mes "寫結婚對象的名字，最簡單的方法是，";
+		mes "先寄給對方一張紙條，";
+		mes "在對話視窗裡放名字的部份，";
+		mes "點選箭頭標示，";
+		mes "左邊即可";
+		next;
+		mes "[結婚 快樂]";
+		mes "那就會顯示送紙條給對方的名字，";
+		mes "按住 ctrl鍵的同時，";
+		mes "再按 C鍵，那名字會被記錄，";
+		mes "以後要放入名字時，";
+		mes "按住 shift鍵的同時，";
+		mes "再按 insert 鍵，那麼名字就很快的，";
+		mes "很方便的寫在上面了";
+		next;
+		mes "[結婚 快樂]";
+		mes "那麼就試驗一次吧，";
+		mes "把想要結婚對象的名字，";
+		mes "依告訴你的方式寫一遍，";
+		mes "按住 ctrl鍵的同時，";
+		mes "再按 C鍵是記錄... ?";
+		mes "按住 shift鍵的同時，";
+		mes "再按 insert 鍵";
+		next;
+		input @test$;
+		mes "[結婚 快樂]";
+		mes "如何?會了嗎?";
+		next;
+		mes "[結婚 快樂]";
+		mes "很好，寫的不錯，";
+		mes "若在你的心理已決定好了的話，一定要來";
+		mes "這裡申請";
+		close2;
+		cutin "wedding_marry01",255;
+		end;
+	L3:
+		cutin "wedding_marry02",2;
+		mes "[結婚 快樂]";
+		mes "想要結婚的話要申請噢，";
+		mes "男性要交出^0000881,300,000金幣和";
+		mes "燕尾服1件^000000，女性要交^0000881,200,000";
+		mes "金幣和結婚禮服1件^000000";
+		mes "然後填寫申請書即可，";
+		mes "假如男女雙方都有申請的話，";
+		mes "就可以結婚了";
+		next;
+		mes "[結婚 快樂]";
+		mes "別忘了還要準備結婚戒指，";
+		mes "男女雙方都需要^000088鑽石戒指1個^000000";
+		mes "當申請的時候，一起給我就好了";
+		next;
+		mes "[結婚 快樂]";
+		mes "兩位都申請好之後，";
+		mes "就可以馬上執行結婚典禮了，";
+		mes "請問你現在要申請結婚嗎?";
+		next;
+		menu "是",L3_1,"否",-;
+			mes "[結婚 快樂]";
+			mes "祝你有一個幸福的一天…！";
+			close2;
+			cutin "wedding_marry02",255;
+			end;
+		L3_1:
+		if(Upper == 2) {
+			close2;
+			cutin "wedding_marry02",255;
+			end;
+			}
+			if (PartnerID > 0) goto Lmarried;
+			if (event_marry==1) goto LError;
+			if (BaseLevel<45) goto Llowlevel;
+			if (countitem(2613)<1) goto LitemError1;
+			if ((Sex==0) && (countitem(2338)<1)) goto LitemError2W;
+			if ((Sex==0) && (Zeny<1200000)) goto LZenyError;
+			if ((Sex==1) && (countitem(7170)<1)) goto LitemError2M;
+			if ((Sex==1) && (Zeny<1300000)) goto LZenyError;
+			mes "[結婚 快樂]";
+			mes "先在這裡恭喜你結婚啊!";
+			mes "不知道對象是誰，應該很幸福啊";
+			next;
+			mes "[結婚 快樂]";
+			mes "那就開始接受申請書啦，";
+			mes "在這裡寫一下自己的名字吧";
+			next;
+		LEnterName:
+			input @name$;
+			if (@name$!=strcharinfo(0)) goto LNameError;
+			delitem 2613,1;
+			if (Sex==0) delitem 2338,1;
+			if (Sex==0) set Zeny,Zeny-1200000;
+			if (Sex==1) delitem 7170,1;
+			if (Sex==1) set Zeny,Zeny-1300000;
+			set event_marry,1;
+			mes "[結婚 快樂]";
+			mes "是的，正確的接收到結婚申請書了，";
+			mes "以後就是已這種方式，";
+			mes "對教主說出要結婚對象的名字，";
+			mes "要結婚人的名字也要正確知道啊，";
+			mes "了解嗎?";
+			mes "提早做好準備之後再去吧";
+			next;
+			mes "[結婚 快樂]";
+			mes "那麼"+strcharinfo(0)+" 先生 / 小姐....";
+			mes "再問一下要結婚的對象，";
+			mes "是否有申請好了呢，";
+			mes "假如兩位都有申請好的話";
+			mes "趕快到教主那裡，舉行結婚典禮吧";
+			mes "最後...";
+			mes "要幸福啊，願天下有情人終成眷屬~";
+			close2;
+			cutin "wedding_marry02",255;
+			end;
+	L4:
+		emotion 23;
+		hideoffnpc "單身軍團#普隆德拉";
+		hideoffnpc "單身軍團#吉芬";
+		hideoffnpc "單身軍團#夢羅克";
+		hideoffnpc "單身軍團#斐揚";
+		hideoffnpc "單身軍團#天津町";
+		hideoffnpc "單身軍團#克魔島";
+		donpcevent "::OnSolos";
+		mes "[單身軍團]";
+		mes "精練要自己做，才會做出好東西!";
+		mes "在迷宮裡面組隊是奢侈的行為!";
+		mes "我是有決心的 NPC!";
+		mes "從出生到轉職，都是自己練的!";
+		mes "過聖誕節的時候，到外面拔草求生!";
+		mes "我們是無敵的單身軍團!";
+		close2;
+		cutin "wedding_marry02",255;
+		hideonnpc "單身軍團#普隆德拉";
+		hideonnpc "單身軍團#吉芬";
+		hideonnpc "單身軍團#夢羅克";
+		hideonnpc "單身軍團#斐揚";
+		hideonnpc "單身軍團#天津町";
+		hideonnpc "單身軍團#克魔島";
+		emotion 4;
+		end;
+Llowlevel:
+	mes "[結婚 快樂]";
+	mes "從求婚來說，為了自己能";
+	mes "在結婚的義務或保護對方性命，";
+	mes "請基本等級達45以上。";
+	close2;
+	cutin "wedding_marry02",255;
+	end;
+LitemError1:
+	mes "[結婚 快樂]";
+	mes "結婚戒指呢?";
+	mes "好像忘記帶了喔!";
+	mes "仔細的找找之後，再來找我吧!";
+	close2;
+	cutin "wedding_marry02",255;
+	end;
+LitemError2M:
+	mes "[結婚 快樂]";
+	mes "哎呀!燕尾服呢?";
+	mes "這可是婚禮上新郎的裝扮…";
+	mes "是一生一次的事情，請別忘記準備!";
+	close2;
+	cutin "wedding_marry02",255;
+	end;
+LitemError2W:
+	mes "[結婚 快樂]";
+	mes "哎呀!結婚禮服呢?";
+	mes "這可是婚禮上新娘的裝扮…";
+	mes "是一生一次的事情，請別忘記準備!";
+	close2;
+	cutin "wedding_marry02",255;
+	end;
+LZenyError:
+	mes "[結婚 快樂]";
+	mes "很抱歉!婚禮的費用需要";
+	if (Sex==0) mes "1,200,000zeny。";
+	if (Sex==1) mes "1,300,000zeny。";
+	close2;
+	cutin "wedding_marry02",255;
+	end;
+LNameError:
+	mes "[結婚 快樂]";
+	mes "唉唷! 連名字都不會寫正確啊，";
+	mes "還想要結婚?";
+	mes "先去學一下，寫名字的方法後再來吧，";
+	mes "寫快一點會比較好啊，";
+	mes "請你再寫一次";
+	next;
+	goto LEnterName;
+LError:
+	mes "[結婚 快樂]";
+	mes "嗯...? 之前你有申請過啊，";
+	mes "因為已經都申請好了，";
+	mes "再問一下要結婚的對象，";
+	mes "是否有申請好了呢，";
+	mes "假如兩位都有申請好的話，";
+	mes "請到教主那裡，舉行結婚典禮吧";
+	close2;
+	cutin "wedding_marry02",255;
+	end;
+Lmarried:
+	mes "[結婚 快樂]";
+	mes "已申請過就不能再申請囉";
+	close2;
+	cutin "wedding_marry02",255;
+	end;
+OnInterIfInit:
+	hideonnpc "單身軍團#普隆德拉";
+	hideonnpc "單身軍團#吉芬";
+	hideonnpc "單身軍團#夢羅克";
+	hideonnpc "單身軍團#斐揚";
+	hideonnpc "單身軍團#天津町";
+	hideonnpc "單身軍團#克魔島";
+	end;
+}
+//========================================================================================
+prt_church.gat,99,125,4	script	教主	60,{
+	cutin "wedding_bomars01",2;
+	if ($@marry == 1) goto LErrorWOS;
+	if (PartnerID > 0) goto Lmarried;
+	if (event_marry == 1) goto Lmarrychk;
+	mes "[寶瑪樂絲]";
+	mes "想要結婚的話，先申請吧";
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+Lmarrychk:
+	if (Sex == 0) goto LmarryWoman;
+	getpartymember getcharid(1);
+	if ($@partymembercount != 2) goto LError;
+	if (readparam(21,$@partymembername$[0]) == 1) goto LChechSexW;
+	if (readparam(21,$@partymembername$[0]) == 0) goto LChechSexM;
+LChechSexW:
+	if (readparam(21,$@partymembername$[1]) == 1) goto LError;
+	goto LChechEnd;
+LChechSexM:
+	if (readparam(21,$@partymembername$[1]) == 0) goto LError;
+	goto LChechEnd;
+LChechEnd:
+	if (getcharid(0,$@partymembername$[0]) < 0) goto LError;
+	if (getcharid(0,$@partymembername$[1]) < 0) goto LError;
+	if (Sex == 1) goto LmarryMan;
+LError:
+	mes "[寶瑪樂絲]";
+	mes "想要結婚的話，";
+	mes "請限定兩位先組隊之後，再來吧";
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+LmarryMan:
+	mes "[寶瑪樂絲]";
+	mes "要結婚嗎...?";
+	mes "是"+strcharinfo(0)+"...啊?";
+	mes "你要申請結婚典禮嗎?";
+	next;
+	menu "是的",-,"不是",LWrong;
+	set $@marry,1;
+	initnpctimer;
+	set $@NameMan$,strcharinfo(0);
+	mapannounce "prt_church.gat","寶瑪樂絲: 是" + $@NameMan$ + "君的求婚啊...",8;
+	mes "[寶瑪樂絲]";
+	mes "是這樣啊，好的..";
+	mes "告訴我那新娘的名字吧?";
+	next;
+	input $@NameWoman$;
+	mes "[寶瑪樂絲]";
+	mes "是 '"+$@NameWoman$+"' 小姐嗎?";
+	next;
+	menu "是的",-,"不是",LWrong;
+	if (getcharid(0,$@NameWoman$) < 0) goto LError2;
+	if (readparam(21,$@NameWoman$) != 0) goto LError3;
+	mapannounce "prt_church.gat","寶瑪樂絲："+$@NameMan$+" 君對 "+$@NameWoman$+" 小姐提出結婚的要求了",15;
+	mes "[寶瑪樂絲]";
+	mes "總而言之..你會照顧她一輩子吧?";
+	mes "來點發誓性質的詞語吧XD...";
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "我願意承受接納 "+$@NameWoman$+" 做我的妻子，誠實遵照上帝的旨命，和他生活在一起。";
+	next;
+	mapannounce "prt_church.gat","寶瑪樂絲：現在應該換問女方了，讓我來聽聽 "+$@NameWoman$+" 小姐的意思如何吧？",15;
+	mes "[寶瑪樂絲]";
+	mes "現在應該換問女方了，我要聽聽她的意見";
+	set $@marry,2;
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+LmarryWoman:
+	if ($@marry!=2) goto LErrorWWF;
+	mes "[寶瑪樂絲]";
+	mes "是 "+strcharinfo(0)+" 啊?";
+	mes "剛剛...有人來跟我說他要跟你結婚呢~";
+	mes "你覺得如何呢？";
+	mes "你知道他叫做啥名字嗎?";
+	next;
+	input $@TempMan$;
+	if ($@TempMan$ != $@NameMan$) goto notthisname;
+	mes "[寶瑪樂絲]";
+	mes "嗯嗯...那你想跟他結婚嗎?";
+	next;
+	menu "我不要",LWrong,"我願意",-;
+	set $res,marriage($@NameMan$);
+	getitem 2635,1,0;
+	getitem 2634,1,0,getcharid(3,$@NameMan$);
+	set $@marry,0;
+	sc_start SC_WEDDING,3600,0;
+	sc_start SC_WEDDING,3600,0,getcharid(3,$@NameMan$);
+	wedding;
+	stopnpctimer;
+	mapannounce "prt_church.gat","寶瑪樂絲：那麼我在此宣佈，祝賀你們成為夫妻！",8;
+	mapannounce "prt_church.gat","寶瑪樂絲："+$@NameMan$+" 和 "+$@NameWoman$+" 的婚禮完成了！",15;
+	mes "[寶瑪樂絲]";
+	mes "祝你們幸福..";
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+notthisname:
+	mes "[寶瑪樂絲]";
+	mes "哦！？我的上帝啊！";
+	mes "你居然記錯了另一半的名字！";
+	mes "看來雙方的意見還沒有統一,好好商量一下吧！！";
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+LErrorWWF:
+	mes "[寶瑪樂絲]";
+	mes "要結婚的話...請男方過來申請吧";
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+LErrorWOS:
+	mes "[寶瑪樂絲]";
+	mes "現在有人的婚禮正在進行呢...";
+	mes "請你等等吧";
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+LWrong:
+	mes "[寶瑪樂絲]";
+	mes "好好想想吧，畢竟這是你的選擇……";
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+Lmarried:
+	mes "[寶瑪樂絲]";
+	mes "您已經結過婚囉，祝您幸福";
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+LError2:
+	mes "[寶瑪樂絲]";
+	mes "發生錯誤";
+	mes "新娘不在";
+	mapannounce "prt_church.gat","寶瑪樂絲: 好像準備不足……先進行下一個婚禮。",8;
+	stopnpctimer;
+	set $@marry,0;
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+LError3:
+	mes "[寶瑪樂絲]";
+	mes "發生錯誤";
+	mes "性別判定不合格";
+	mes "本人Readparam:"+readparam(21,strcharinfo(0));
+	mes "相手Readparam:"+readparam(21,$@NameWoman$);
+	mapannounce "prt_church.gat","寶瑪樂絲: 好像準備不足……先進行下一個婚禮。",8;
+	stopnpctimer;
+	set $@marry,0;
+	close2;
+	cutin "wedding_bomars01",255;
+	end;
+//新郎說完話之後，新娘如果在三分鐘之內沒有說話...
+OnTimer180000:
+	mapannounce "prt_church.gat","寶瑪樂絲: 回答太慢了...下一位",8;
+	set $@marry,0;
+	end;
+}
+//=======================Solo軍團==============================
+prt_church.gat,97,102,0	script	單身軍團#普隆德拉	105,{
+	mes "[單身軍團]";
+	mes "精練要自己做，才會做出好東西!";
+	close;
+OnSolos:
+	emotion 27;
+	end;
+}
+prt_church.gat,98,102,0	script	單身軍團#吉芬	705,{
+	mes "[單身軍團]";
+	mes "在洞穴裡面組隊是奢侈的行為!";
+	close;
+OnSolos:
+	emotion 27;
+	end;
+}
+prt_church.gat,99,102,0	script	單身軍團#夢羅克	707,{
+	mes "[單身軍團]";
+	mes "我是有決心的 NPC!";
+	close;
+OnSolos:
+	emotion 27;
+	end;
+}
+prt_church.gat,100,102,0	script	單身軍團#斐揚	708,{
+	mes "[單身軍團]";
+	mes "從出生到轉職，都是自己練的!";
+	close;
+OnSolos:
+	emotion 27;
+	end;
+}
+prt_church.gat,101,102,0	script	單身軍團#天津町	767,{
+	mes "[單身軍團]";
+	mes "過聖誕節的時候，到外面拔草求生!";
+	close;
+OnSolos:
+	emotion 27;
+	end;
+}
+prt_church.gat,102,102,0	script	單身軍團#克魔島	780,{
+	mes "[單身軍團]";
+	mes "我們是無敵的單身軍團!";
+	close;
+OnSolos:
+	emotion 27;
+	end;
+}

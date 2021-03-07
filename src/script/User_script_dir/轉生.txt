@@ -1,0 +1,1314 @@
+prontera.gat,144,174,5 script 菲莉雅女神 811,{
+	mes "[菲莉雅女神]";
+        mes ""+strcharinfo(0)+"...你終於來了!";
+        mes "我一直都在這無盡的時光中等著你的到來";
+        mes "在這轉生的漩渦中,你看起來非常地茫然";
+        mes "記得上一次見到你時也是如此呢.....";
+        next;
+        mes "[菲莉雅女神]";
+        mes "現在,你準備好迎接未來的挑戰,進入轉生之道了嗎?";
+        next;
+        menu "是的,我要轉生!",yes,"不,我還沒準備妥當",no,"轉生的意義是...?",why,"取消",over;
+
+yes:
+	if (BaseLevel < 255) goto NotYet5;		//未達到255等
+	if (checkoption(8) > 0) goto NotYet2;		//手推車等級1
+	if (checkoption(128) > 0) goto NotYet2;		//手推車等級2
+	if (checkoption(256) > 0) goto NotYet2;		//手推車等級3
+	if (checkoption(512) > 0) goto NotYet2;		//手推車等級4
+	if (checkoption(1024) > 0) goto NotYet2;	//手推車等級5
+	if (checkoption(16) > 0) goto NotYet3;		//帶老鷹
+	if (checkoption(32) > 0) goto NotYet4;		//騎鳥
+	if(BaseJob==Job_Knight) set ReBirth,7;
+	if(BaseJob==Job_Priest) set ReBirth,8;
+	if(BaseJob==Job_Wizard) set ReBirth,9;
+	if(BaseJob==Job_Blacksmith) set ReBirth,10;
+	if(BaseJob==Job_Hunter) set ReBirth,11;
+	if(BaseJob==Job_Assassin) set ReBirth,12;
+	if(BaseJob==Job_Knight2) set ReBirth,7;
+	if(BaseJob==Job_Crusader) set ReBirth,14;
+	if(BaseJob==Job_Monk) set ReBirth,15;
+	if(BaseJob==Job_Sage) set ReBirth,16;
+	if(BaseJob==Job_Rogue) set ReBirth,17;
+	if(BaseJob==Job_Alchem) set ReBirth,18;
+	if(BaseJob==Job_Bard) set ReBirth,19;
+	if(BaseJob==Job_Dancer) set ReBirth,20;
+	if(BaseJob==Job_Crusader2) set ReBirth,14;
+//        if(class ==23 ) set ReBirth,23;
+//        if(class ==28 ) set ReBirth,28;
+//        if(class ==29 ) set ReBirth,29;
+	if(Llv==2) goto L2;
+	if(Llv==3) goto L3;
+	if(Llv==4) goto L4;
+	if(Llv==5) goto L5;
+	if(Llv==6) goto L6;
+	if(Llv==7) goto L7;
+	if(Llv==8) goto L8;
+	if(Llv==9) goto L9;
+        if(Llv==10) goto Lo;
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "或許這使命對你一個人類來說是沉重了些";
+        mes "但未來的一切還是得依靠你與你的伙伴們";
+        mes "只是,在那之前你必需擁有相應的實力才行";
+        next;
+        mes "[菲莉雅女神]";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前";
+        mes "再會了..";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,2;
+        set StatusPoint,100;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 成為第2次轉生的玩家!",15;
+	close;
+OnInit:
+	waitingroom "轉生前請留個重量或空間!!!",0;
+	end;
+
+NotYet2:
+	mes "[菲莉雅女神]";
+	mes "無懼的勇者啊,請把手推車解除吧!";
+	close;
+NotYet3:
+	mes "[菲莉雅女神]";
+	mes "無懼的勇者啊,轉生之道有著未知的危險,請讓那跟隨著你的獵鷹伙伴先行離去吧!";
+	close;
+NotYet4:
+	mes "[菲莉雅女神]";
+	mes "無懼的勇者啊,轉生之道有著未知的危險,請讓那跟隨著你的大嘴鳥伙伴先行離去吧!";
+	close;
+NotYet5:
+	mes "[菲莉雅女神]";
+	mes ".....你的身軀還無法承受轉生之道的壓迫,請將等級練至255級吧!";
+	close;
+
+L2:
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "這使命對你一個人類來說是沉重了些";
+        mes "或許我可以給你一些幫助.....";
+        mes "隨著你的身體與靈魂經過一次次轉生淬煉";
+        mes "我能將你這世的職業知識凝結成靈魂結晶";
+        next;
+        mes "[菲莉雅女神]";
+        mes "但這會讓你的靈魂造成些許的傷害";
+        mes "在通過轉生之道之時..";
+        mes "我的魔力或許無法保障你的安全";
+        mes "這可能使你喪失所有的屬性點數";
+        mes "轉生後你將會變得非常虛弱...";
+        next;
+        mes "[菲莉雅女神]";
+        mes "即使是這樣,你還願意讓我幫你凝結靈魂的結晶嗎?";
+        next;
+        menu"是的,我希望得到靈魂結晶",L2Y,"不用了,直接進入轉生之道吧",L2N;
+
+L2Y:
+
+        mes "[菲莉雅女神]";
+        mes "希望你能好好地善用它";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+if(class == 7 && countitem(14013) >= 1) goto L2H; // 騎士領主
+if(class == 7 && countitem(14013) < 1) getitem 14013,1; // 騎士領主
+if(class == 14 && countitem(14014) >= 1) goto L2H; // 聖殿十字軍
+if(class == 14 && countitem(14014) < 1) getitem 14014,1; // 聖殿十字軍
+if(class == 15 && countitem(14015) >= 1) goto L2H; // 武術宗師 
+if(class == 15 && countitem(14015) < 1) getitem 14015,1; // 武術宗師 
+if(class == 8 && countitem(14016) >= 1) goto L2H; // 神官
+if(class == 8 && countitem(14016) < 1) getitem 14016,1; // 神官
+if(class == 9 && countitem(14017) >= 1) goto L2H; // 超魔導師
+if(class == 9 && countitem(14017) < 1) getitem 14017,1; // 超魔導師
+if(class == 16 && countitem(14018) >= 1) goto L2H; // 學者
+if(class == 16 && countitem(14018) < 1) getitem 14018,1; // 學者
+if(class == 12 && countitem(14019) >= 1) goto L2H; // 十字刺客
+if(class == 12 && countitem(14019) < 1) getitem 14019,1; // 十字刺客
+if(class == 17 && countitem(14020) >= 1) goto L2H; // 追跡者
+if(class == 17 && countitem(14020) < 1) getitem 14020,1; // 追跡者
+if(class == 10 && countitem(14021) >= 1) goto L2H; // 銀工匠
+if(class == 10 && countitem(14021) < 1) getitem 14021,1; // 銀工匠
+if(class == 18 && countitem(14022) >= 1) goto L2H; // 創造者
+if(class == 18 && countitem(14022) < 1) getitem 14022,1; // 創造者
+if(class == 11 && countitem(14023) >= 1) goto L2H; // 神射手
+if(class == 11 && countitem(14023) < 1) getitem 14023,1; // 神射手
+if(class == 19 && countitem(14024) >= 1) goto L2H; // 小丑
+if(class == 19 && countitem(14024) < 1) getitem 14024,1; // 小丑
+if(class == 20 && countitem(14025) >= 1) goto L2H; // 冷豔舞姬
+if(class == 20 && countitem(14025) < 1) getitem 14025,1; // 冷豔舞姬
+//if(class == 23 && countitem(14026) >= 1) goto L2H; // 超級初心者
+//if(class == 23 && countitem(14026) < 1) getitem 14043,1; // 超級初心者
+//if(class == 28 && countitem(14027) >= 1) goto L2H; // 槍手
+//if(class == 28 && countitem(14027) < 1) getitem 14043,1; // 槍手
+//if(class == 29 && countitem(14028) >= 1) goto L2H; // 忍者
+//if(class == 29 && countitem(14028) < 1) getitem 14043,1; // 忍者
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+        set StatusPoint,48;
+	set Llv,3;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第3次轉生的試練!",15;
+        close;
+
+L2N:
+        mes "[菲莉雅女神]";
+        mes "也好,那就如你所願";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,3;
+        set StatusPoint,150;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第3次轉生的試練!",15;
+        close;
+
+L2H:
+        mes "[菲莉雅女神]";
+        mes "您似乎已經擁有這顆靈魂結晶了";
+        mes "請您好好的珍昔它!";
+        next;
+        goto L2N;
+
+L3:
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "這使命對你一個人類來說是沉重了些";
+        mes "或許我可以給你一些幫助.....";
+        mes "隨著你的身體與靈魂經過一次次轉生的淬煉";
+        mes "我能將你這一世的職業知識凝結成靈魂結晶";
+        next;
+        mes "[菲莉雅女神]";
+        mes "但這會讓你的靈魂造成些許的傷害";
+        mes "在通過轉生之道之時..";
+        mes "我的魔力或許無法保障你的安全";
+        mes "這可能使你喪失所有的屬性點數";
+        mes "轉生後你將會變得非常虛弱...";
+        next;
+        mes "[菲莉雅女神]";
+        mes "即使是這樣,你還願意讓我幫你凝結靈魂的結晶嗎?";
+        next;
+        menu"是的,我希望得到靈魂結晶",L3Y,"不用了,直接進入轉生之道吧",L3N;
+
+L3Y:
+        mes "[菲莉雅女神]";
+        mes "希望你能好好地善用它";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+if(class == 7 && countitem(14013) >= 1) goto L2H; // 騎士領主
+if(class == 7 && countitem(14013) < 1) getitem 14013,1; // 騎士領主
+if(class == 14 && countitem(14014) >= 1) goto L2H; // 聖殿十字軍
+if(class == 14 && countitem(14014) < 1) getitem 14014,1; // 聖殿十字軍
+if(class == 15 && countitem(14015) >= 1) goto L2H; // 武術宗師 
+if(class == 15 && countitem(14015) < 1) getitem 14015,1; // 武術宗師 
+if(class == 8 && countitem(14016) >= 1) goto L2H; // 神官
+if(class == 8 && countitem(14016) < 1) getitem 14016,1; // 神官
+if(class == 9 && countitem(14017) >= 1) goto L2H; // 超魔導師
+if(class == 9 && countitem(14017) < 1) getitem 14017,1; // 超魔導師
+if(class == 16 && countitem(14018) >= 1) goto L2H; // 學者
+if(class == 16 && countitem(14018) < 1) getitem 14018,1; // 學者
+if(class == 12 && countitem(14019) >= 1) goto L2H; // 十字刺客
+if(class == 12 && countitem(14019) < 1) getitem 14019,1; // 十字刺客
+if(class == 17 && countitem(14020) >= 1) goto L2H; // 追跡者
+if(class == 17 && countitem(14020) < 1) getitem 14020,1; // 追跡者
+if(class == 10 && countitem(14021) >= 1) goto L2H; // 銀工匠
+if(class == 10 && countitem(14021) < 1) getitem 14021,1; // 銀工匠
+if(class == 18 && countitem(14022) >= 1) goto L2H; // 創造者
+if(class == 18 && countitem(14022) < 1) getitem 14022,1; // 創造者
+if(class == 11 && countitem(14023) >= 1) goto L2H; // 神射手
+if(class == 11 && countitem(14023) < 1) getitem 14023,1; // 神射手
+if(class == 19 && countitem(14024) >= 1) goto L2H; // 小丑
+if(class == 19 && countitem(14024) < 1) getitem 14024,1; // 小丑
+if(class == 20 && countitem(14025) >= 1) goto L2H; // 冷豔舞姬
+if(class == 20 && countitem(14025) < 1) getitem 14025,1; // 冷豔舞姬
+//if(class == 23 && countitem(14026) >= 1) goto L2H; // 超級初心者
+//if(class == 23 && countitem(14026) < 1) getitem 14043,1; // 超級初心者
+//if(class == 28 && countitem(14027) >= 1) goto L2H; // 槍手
+//if(class == 28 && countitem(14027) < 1) getitem 14043,1; // 槍手
+//if(class == 29 && countitem(14028) >= 1) goto L2H; // 忍者
+//if(class == 29 && countitem(14028) < 1) getitem 14043,1; // 忍者
+
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+        set StatusPoint,48;
+	set Llv,4;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第4次轉生的試練!",15;
+        close;
+
+L3N:
+        mes "[菲莉雅女神]";
+        mes "也好,那就如你所願";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,4;
+        set StatusPoint,200;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第4次轉生的試練!",15;
+        close;
+
+L3H:
+        mes "[菲莉雅女神]";
+        mes "您似乎已經擁有這顆靈魂結晶了";
+        mes "請您好好的珍昔它!";
+        next;
+        goto L3N;
+
+
+L4:
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "這使命對你一個人類來說是沉重了些";
+        mes "或許我可以給你一些幫助.....";
+        mes "隨著你的身體與靈魂經過一次次轉生的淬煉";
+        mes "我能將你這一世的職業知識凝結成靈魂結晶";
+        next;
+        mes "[菲莉雅女神]";
+        mes "但這會讓你的靈魂造成些許的傷害";
+        mes "在通過轉生之道之時..";
+        mes "我的魔力或許無法保障你的安全";
+        mes "這可能使你喪失所有的屬性點數";
+        mes "轉生後你將會變得非常虛弱...";
+        next;
+        mes "[菲莉雅女神]";
+        mes "即使是這樣,你還願意讓我幫你凝結靈魂的結晶嗎?";
+        next;
+        menu"是的,我希望得到靈魂結晶",L4Y,"不用了,直接進入轉生之道吧",L4N;
+
+L4Y:
+        mes "[菲莉雅女神]";
+        mes "希望你能好好地善用它";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+if(class == 7 && countitem(14013) >= 1) goto L2H; // 騎士領主
+if(class == 7 && countitem(14013) < 1) getitem 14013,1; // 騎士領主
+if(class == 14 && countitem(14014) >= 1) goto L2H; // 聖殿十字軍
+if(class == 14 && countitem(14014) < 1) getitem 14014,1; // 聖殿十字軍
+if(class == 15 && countitem(14015) >= 1) goto L2H; // 武術宗師 
+if(class == 15 && countitem(14015) < 1) getitem 14015,1; // 武術宗師 
+if(class == 8 && countitem(14016) >= 1) goto L2H; // 神官
+if(class == 8 && countitem(14016) < 1) getitem 14016,1; // 神官
+if(class == 9 && countitem(14017) >= 1) goto L2H; // 超魔導師
+if(class == 9 && countitem(14017) < 1) getitem 14017,1; // 超魔導師
+if(class == 16 && countitem(14018) >= 1) goto L2H; // 學者
+if(class == 16 && countitem(14018) < 1) getitem 14018,1; // 學者
+if(class == 12 && countitem(14019) >= 1) goto L2H; // 十字刺客
+if(class == 12 && countitem(14019) < 1) getitem 14019,1; // 十字刺客
+if(class == 17 && countitem(14020) >= 1) goto L2H; // 追跡者
+if(class == 17 && countitem(14020) < 1) getitem 14020,1; // 追跡者
+if(class == 10 && countitem(14021) >= 1) goto L2H; // 銀工匠
+if(class == 10 && countitem(14021) < 1) getitem 14021,1; // 銀工匠
+if(class == 18 && countitem(14022) >= 1) goto L2H; // 創造者
+if(class == 18 && countitem(14022) < 1) getitem 14022,1; // 創造者
+if(class == 11 && countitem(14023) >= 1) goto L2H; // 神射手
+if(class == 11 && countitem(14023) < 1) getitem 14023,1; // 神射手
+if(class == 19 && countitem(14024) >= 1) goto L2H; // 小丑
+if(class == 19 && countitem(14024) < 1) getitem 14024,1; // 小丑
+if(class == 20 && countitem(14025) >= 1) goto L2H; // 冷豔舞姬
+if(class == 20 && countitem(14025) < 1) getitem 14025,1; // 冷豔舞姬
+//if(class == 23 && countitem(14026) >= 1) goto L2H; // 超級初心者
+//if(class == 23 && countitem(14026) < 1) getitem 14043,1; // 超級初心者
+//if(class == 28 && countitem(14027) >= 1) goto L2H; // 槍手
+//if(class == 28 && countitem(14027) < 1) getitem 14043,1; // 槍手
+//if(class == 29 && countitem(14028) >= 1) goto L2H; // 忍者
+//if(class == 29 && countitem(14028) < 1) getitem 14043,1; // 忍者
+
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+        set StatusPoint,48;
+	set Llv,5;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第5次轉生的試練!",15;
+        close;
+
+L4N:
+        mes "[菲莉雅女神]";
+        mes "也好,那就如你所願";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,5;
+        set StatusPoint,250;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第5次轉生的試練!",15;
+        close;
+
+L4H:
+        mes "[菲莉雅女神]";
+        mes "您似乎已經擁有這顆靈魂結晶了";
+        mes "請您好好的珍昔它!";
+        next;
+        goto L4N;
+
+
+L5:
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "這使命對你一個人類來說是沉重了些";
+        mes "或許我可以給你一些幫助.....";
+        mes "隨著你的身體與靈魂經過一次次轉生的淬煉";
+        mes "我能將你這一世的職業知識凝結成靈魂結晶";
+        next;
+        mes "[菲莉雅女神]";
+        mes "但這會讓你的靈魂造成些許的傷害";
+        mes "在通過轉生之道之時..";
+        mes "我的魔力或許無法保障你的安全";
+        mes "這可能使你喪失所有的屬性點數";
+        mes "轉生後你將會變得非常虛弱...";
+        next;
+        mes "[菲莉雅女神]";
+        mes "即使是這樣,你還願意讓我幫你凝結靈魂的結晶嗎?";
+        next;
+        menu"是的,我希望得到靈魂結晶",L5Y,"不用了,直接進入轉生之道吧",L5N;
+
+L5Y:
+
+        mes "[菲莉雅女神]";
+        mes "希望你能好好地善用它";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+if(class == 7 && countitem(14013) >= 1) goto L2H; // 騎士領主
+if(class == 7 && countitem(14013) < 1) getitem 14013,1; // 騎士領主
+if(class == 14 && countitem(14014) >= 1) goto L2H; // 聖殿十字軍
+if(class == 14 && countitem(14014) < 1) getitem 14014,1; // 聖殿十字軍
+if(class == 15 && countitem(14015) >= 1) goto L2H; // 武術宗師 
+if(class == 15 && countitem(14015) < 1) getitem 14015,1; // 武術宗師 
+if(class == 8 && countitem(14016) >= 1) goto L2H; // 神官
+if(class == 8 && countitem(14016) < 1) getitem 14016,1; // 神官
+if(class == 9 && countitem(14017) >= 1) goto L2H; // 超魔導師
+if(class == 9 && countitem(14017) < 1) getitem 14017,1; // 超魔導師
+if(class == 16 && countitem(14018) >= 1) goto L2H; // 學者
+if(class == 16 && countitem(14018) < 1) getitem 14018,1; // 學者
+if(class == 12 && countitem(14019) >= 1) goto L2H; // 十字刺客
+if(class == 12 && countitem(14019) < 1) getitem 14019,1; // 十字刺客
+if(class == 17 && countitem(14020) >= 1) goto L2H; // 追跡者
+if(class == 17 && countitem(14020) < 1) getitem 14020,1; // 追跡者
+if(class == 10 && countitem(14021) >= 1) goto L2H; // 銀工匠
+if(class == 10 && countitem(14021) < 1) getitem 14021,1; // 銀工匠
+if(class == 18 && countitem(14022) >= 1) goto L2H; // 創造者
+if(class == 18 && countitem(14022) < 1) getitem 14022,1; // 創造者
+if(class == 11 && countitem(14023) >= 1) goto L2H; // 神射手
+if(class == 11 && countitem(14023) < 1) getitem 14023,1; // 神射手
+if(class == 19 && countitem(14024) >= 1) goto L2H; // 小丑
+if(class == 19 && countitem(14024) < 1) getitem 14024,1; // 小丑
+if(class == 20 && countitem(14025) >= 1) goto L2H; // 冷豔舞姬
+if(class == 20 && countitem(14025) < 1) getitem 14025,1; // 冷豔舞姬
+//if(class == 23 && countitem(14026) >= 1) goto L2H; // 超級初心者
+//if(class == 23 && countitem(14026) < 1) getitem 14043,1; // 超級初心者
+//if(class == 28 && countitem(14027) >= 1) goto L2H; // 槍手
+//if(class == 28 && countitem(14027) < 1) getitem 14043,1; // 槍手
+//if(class == 29 && countitem(14028) >= 1) goto L2H; // 忍者
+//if(class == 29 && countitem(14028) < 1) getitem 14043,1; // 忍者
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+        set StatusPoint,48;
+	set Llv,6;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第6次轉生的試練!",15;
+        close;
+
+L5N:
+        mes "[菲莉雅女神]";
+        mes "也好,那就如你所願";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,6;
+        set StatusPoint,300;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第6次轉生的試練!",15;
+        close;
+
+L5H:
+        mes "[菲莉雅女神]";
+        mes "您似乎已經擁有這顆靈魂結晶了";
+        mes "請您好好的珍昔它!";
+        next;
+        goto L5N;
+
+L6:
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "這使命對你一個人類來說是沉重了些";
+        mes "或許我可以給你一些幫助.....";
+        mes "隨著你的身體與靈魂經過一次次轉生的淬煉";
+        mes "我能將你這一世的職業知識凝結成靈魂結晶";
+        next;
+        mes "[菲莉雅女神]";
+        mes "但這會讓你的靈魂造成些許的傷害";
+        mes "在通過轉生之道之時..";
+        mes "我的魔力或許無法保障你的安全";
+        mes "這可能使你喪失所有的屬性點數";
+        mes "轉生後你將會變得非常虛弱...";
+        next;
+        mes "[菲莉雅女神]";
+        mes "即使是這樣,你還願意讓我幫你凝結靈魂的結晶嗎?";
+        next;
+        menu"是的,我希望得到靈魂結晶",L6Y,"不用了,直接進入轉生之道吧",L6N;
+
+L6Y:
+
+        mes "[菲莉雅女神]";
+        mes "希望你能好好地善用它";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+if(class == 7 && countitem(14013) >= 1) goto L2H; // 騎士領主
+if(class == 7 && countitem(14013) < 1) getitem 14013,1; // 騎士領主
+if(class == 14 && countitem(14014) >= 1) goto L2H; // 聖殿十字軍
+if(class == 14 && countitem(14014) < 1) getitem 14014,1; // 聖殿十字軍
+if(class == 15 && countitem(14015) >= 1) goto L2H; // 武術宗師 
+if(class == 15 && countitem(14015) < 1) getitem 14015,1; // 武術宗師 
+if(class == 8 && countitem(14016) >= 1) goto L2H; // 神官
+if(class == 8 && countitem(14016) < 1) getitem 14016,1; // 神官
+if(class == 9 && countitem(14017) >= 1) goto L2H; // 超魔導師
+if(class == 9 && countitem(14017) < 1) getitem 14017,1; // 超魔導師
+if(class == 16 && countitem(14018) >= 1) goto L2H; // 學者
+if(class == 16 && countitem(14018) < 1) getitem 14018,1; // 學者
+if(class == 12 && countitem(14019) >= 1) goto L2H; // 十字刺客
+if(class == 12 && countitem(14019) < 1) getitem 14019,1; // 十字刺客
+if(class == 17 && countitem(14020) >= 1) goto L2H; // 追跡者
+if(class == 17 && countitem(14020) < 1) getitem 14020,1; // 追跡者
+if(class == 10 && countitem(14021) >= 1) goto L2H; // 銀工匠
+if(class == 10 && countitem(14021) < 1) getitem 14021,1; // 銀工匠
+if(class == 18 && countitem(14022) >= 1) goto L2H; // 創造者
+if(class == 18 && countitem(14022) < 1) getitem 14022,1; // 創造者
+if(class == 11 && countitem(14023) >= 1) goto L2H; // 神射手
+if(class == 11 && countitem(14023) < 1) getitem 14023,1; // 神射手
+if(class == 19 && countitem(14024) >= 1) goto L2H; // 小丑
+if(class == 19 && countitem(14024) < 1) getitem 14024,1; // 小丑
+if(class == 20 && countitem(14025) >= 1) goto L2H; // 冷豔舞姬
+if(class == 20 && countitem(14025) < 1) getitem 14025,1; // 冷豔舞姬
+//if(class == 23 && countitem(14026) >= 1) goto L2H; // 超級初心者
+//if(class == 23 && countitem(14026) < 1) getitem 14043,1; // 超級初心者
+//if(class == 28 && countitem(14027) >= 1) goto L2H; // 槍手
+//if(class == 28 && countitem(14027) < 1) getitem 14043,1; // 槍手
+//if(class == 29 && countitem(14028) >= 1) goto L2H; // 忍者
+//if(class == 29 && countitem(14028) < 1) getitem 14043,1; // 忍者
+
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+        set StatusPoint,48;
+	set Llv,7;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第7次轉生的試練!",15;
+        close;
+
+L6N:
+        mes "[菲莉雅女神]";
+        mes "也好,那就如你所願";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,7;
+        set StatusPoint,350;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第7次轉生的試練!",15;
+        close;
+
+L6H:
+        mes "[菲莉雅女神]";
+        mes "您似乎已經擁有這顆靈魂結晶了";
+        mes "請您好好的珍昔它!";
+        next;
+        goto L6N;
+
+
+L7:
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "這使命對你一個人類來說是沉重了些";
+        mes "或許我可以給你一些幫助.....";
+        mes "隨著你的身體與靈魂經過一次次轉生的淬煉";
+        mes "我能將你這一世的職業知識凝結成靈魂結晶";
+        next;
+        mes "[菲莉雅女神]";
+        mes "但這會讓你的靈魂造成些許的傷害";
+        mes "在通過轉生之道之時..";
+        mes "我的魔力或許無法保障你的安全";
+        mes "這可能使你喪失所有的屬性點數";
+        mes "轉生後你將會變得非常虛弱...";
+        next;
+        mes "[菲莉雅女神]";
+        mes "即使是這樣,你還願意讓我幫你凝結靈魂的結晶嗎?";
+        next;
+        menu"是的,我希望得到靈魂結晶",L7Y,"不用了,直接進入轉生之道吧",L7N;
+
+L7Y:
+
+        mes "[菲莉雅女神]";
+        mes "希望你能好好地善用它";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+if(class == 7 && countitem(14013) >= 1) goto L2H; // 騎士領主
+if(class == 7 && countitem(14013) < 1) getitem 14013,1; // 騎士領主
+if(class == 14 && countitem(14014) >= 1) goto L2H; // 聖殿十字軍
+if(class == 14 && countitem(14014) < 1) getitem 14014,1; // 聖殿十字軍
+if(class == 15 && countitem(14015) >= 1) goto L2H; // 武術宗師 
+if(class == 15 && countitem(14015) < 1) getitem 14015,1; // 武術宗師 
+if(class == 8 && countitem(14016) >= 1) goto L2H; // 神官
+if(class == 8 && countitem(14016) < 1) getitem 14016,1; // 神官
+if(class == 9 && countitem(14017) >= 1) goto L2H; // 超魔導師
+if(class == 9 && countitem(14017) < 1) getitem 14017,1; // 超魔導師
+if(class == 16 && countitem(14018) >= 1) goto L2H; // 學者
+if(class == 16 && countitem(14018) < 1) getitem 14018,1; // 學者
+if(class == 12 && countitem(14019) >= 1) goto L2H; // 十字刺客
+if(class == 12 && countitem(14019) < 1) getitem 14019,1; // 十字刺客
+if(class == 17 && countitem(14020) >= 1) goto L2H; // 追跡者
+if(class == 17 && countitem(14020) < 1) getitem 14020,1; // 追跡者
+if(class == 10 && countitem(14021) >= 1) goto L2H; // 銀工匠
+if(class == 10 && countitem(14021) < 1) getitem 14021,1; // 銀工匠
+if(class == 18 && countitem(14022) >= 1) goto L2H; // 創造者
+if(class == 18 && countitem(14022) < 1) getitem 14022,1; // 創造者
+if(class == 11 && countitem(14023) >= 1) goto L2H; // 神射手
+if(class == 11 && countitem(14023) < 1) getitem 14023,1; // 神射手
+if(class == 19 && countitem(14024) >= 1) goto L2H; // 小丑
+if(class == 19 && countitem(14024) < 1) getitem 14024,1; // 小丑
+if(class == 20 && countitem(14025) >= 1) goto L2H; // 冷豔舞姬
+if(class == 20 && countitem(14025) < 1) getitem 14025,1; // 冷豔舞姬
+//if(class == 23 && countitem(14026) >= 1) goto L2H; // 超級初心者
+//if(class == 23 && countitem(14026) < 1) getitem 14043,1; // 超級初心者
+//if(class == 28 && countitem(14027) >= 1) goto L2H; // 槍手
+//if(class == 28 && countitem(14027) < 1) getitem 14043,1; // 槍手
+//if(class == 29 && countitem(14028) >= 1) goto L2H; // 忍者
+//if(class == 29 && countitem(14028) < 1) getitem 14043,1; // 忍者
+
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+        set StatusPoint,48;
+	set Llv,8;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第8次轉生的試練!",15;
+        close;
+
+L7N:
+        mes "[菲莉雅女神]";
+        mes "也好,那就如你所願";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,8;
+        set StatusPoint,400;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第8次轉生的試練!",15;
+        close;
+
+L7H:
+        mes "[菲莉雅女神]";
+        mes "您似乎已經擁有這顆靈魂結晶了";
+        mes "請您好好的珍昔它!";
+        next;
+        goto L7N;
+
+L8:
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "這使命對你一個人類來說是沉重了些";
+        mes "或許我可以給你一些幫助.....";
+        mes "隨著你的身體與靈魂經過一次次轉生的淬煉";
+        mes "我能將你這一世的職業知識凝結成靈魂結晶";
+        next;
+        mes "[菲莉雅女神]";
+        mes "但這會讓你的靈魂造成些許的傷害";
+        mes "在通過轉生之道之時..";
+        mes "我的魔力或許無法保障你的安全";
+        mes "這可能使你喪失所有的屬性點數";
+        mes "轉生後你將會變得非常虛弱...";
+        next;
+        mes "[菲莉雅女神]";
+        mes "即使是這樣,你還願意讓我幫你凝結靈魂的結晶嗎?";
+        next;
+        menu"是的,我希望得到靈魂結晶",L8Y,"不用了,直接進入轉生之道吧",L8N;
+
+L8Y:
+        mes "[菲莉雅女神]";
+        mes "希望你能好好地善用它";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+if(class == 7 && countitem(14013) >= 1) goto L2H; // 騎士領主
+if(class == 7 && countitem(14013) < 1) getitem 14013,1; // 騎士領主
+if(class == 14 && countitem(14014) >= 1) goto L2H; // 聖殿十字軍
+if(class == 14 && countitem(14014) < 1) getitem 14014,1; // 聖殿十字軍
+if(class == 15 && countitem(14015) >= 1) goto L2H; // 武術宗師 
+if(class == 15 && countitem(14015) < 1) getitem 14015,1; // 武術宗師 
+if(class == 8 && countitem(14016) >= 1) goto L2H; // 神官
+if(class == 8 && countitem(14016) < 1) getitem 14016,1; // 神官
+if(class == 9 && countitem(14017) >= 1) goto L2H; // 超魔導師
+if(class == 9 && countitem(14017) < 1) getitem 14017,1; // 超魔導師
+if(class == 16 && countitem(14018) >= 1) goto L2H; // 學者
+if(class == 16 && countitem(14018) < 1) getitem 14018,1; // 學者
+if(class == 12 && countitem(14019) >= 1) goto L2H; // 十字刺客
+if(class == 12 && countitem(14019) < 1) getitem 14019,1; // 十字刺客
+if(class == 17 && countitem(14020) >= 1) goto L2H; // 追跡者
+if(class == 17 && countitem(14020) < 1) getitem 14020,1; // 追跡者
+if(class == 10 && countitem(14021) >= 1) goto L2H; // 銀工匠
+if(class == 10 && countitem(14021) < 1) getitem 14021,1; // 銀工匠
+if(class == 18 && countitem(14022) >= 1) goto L2H; // 創造者
+if(class == 18 && countitem(14022) < 1) getitem 14022,1; // 創造者
+if(class == 11 && countitem(14023) >= 1) goto L2H; // 神射手
+if(class == 11 && countitem(14023) < 1) getitem 14023,1; // 神射手
+if(class == 19 && countitem(14024) >= 1) goto L2H; // 小丑
+if(class == 19 && countitem(14024) < 1) getitem 14024,1; // 小丑
+if(class == 20 && countitem(14025) >= 1) goto L2H; // 冷豔舞姬
+if(class == 20 && countitem(14025) < 1) getitem 14025,1; // 冷豔舞姬
+//if(class == 23 && countitem(14026) >= 1) goto L2H; // 超級初心者
+//if(class == 23 && countitem(14026) < 1) getitem 14043,1; // 超級初心者
+//if(class == 28 && countitem(14027) >= 1) goto L2H; // 槍手
+//if(class == 28 && countitem(14027) < 1) getitem 14043,1; // 槍手
+//if(class == 29 && countitem(14028) >= 1) goto L2H; // 忍者
+//if(class == 29 && countitem(14028) < 1) getitem 14043,1; // 忍者
+
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+        set StatusPoint,48;
+	set Llv,9;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第9次轉生的試練!",15;
+        close;
+
+L8N:
+        mes "[菲莉雅女神]";
+        mes "也好,那就如你所願";
+        mes "去吧,傳說中的勇者.....";
+        mes "希望你能戰勝未來一切的考驗與挑戰";
+        mes "再一次以英勇的身姿來在我的面前,再會了!";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,9;
+        set StatusPoint,450;
+        warp "prontera.gat",155,178;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成第9次轉生的試練!",15;
+        close;
+
+L8H:
+        mes "[菲莉雅女神]";
+        mes "您似乎已經擁有這顆靈魂結晶了";
+        mes "請您好好的珍昔它!";
+        next;
+        goto L8N;
+
+L9:
+	mes "[菲莉雅女神]";
+        mes "非常好,你還是如之前那般的英勇無懼";
+        mes "雖然你未來的旅途可能充滿了各種考驗";
+        mes "甚至是許多無法預知的危險...";
+        mes "但是,你身上背負著重要的使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "這使命對你一個人類來說是沉重了些";
+        mes "或許我可以給你一些幫助.....";
+        mes "隨著你的身體與靈魂經過一次次轉生的淬煉";
+        mes "我能將你這一世的職業知識凝結成靈魂結晶";
+        next;
+        mes "[菲莉雅女神]";
+        mes "但這會讓你的靈魂造成些許的傷害";
+        mes "在通過轉生之道之時..";
+        mes "我的魔力或許無法保障你的安全";
+        mes "這可能使你喪失所有的屬性點數";
+        mes "轉生後你將會變得非常虛弱...";
+        next;
+        mes "[菲莉雅女神]";
+        mes "即使是這樣,你還願意讓我幫你凝結靈魂的結晶嗎?";
+        next;
+        menu"是的,我希望得到靈魂結晶",L9Y,"不用了,直接進入轉生之道吧",L9N;
+
+L9Y:
+
+        mes "[菲莉雅女神]";
+        mes ".....";
+        next;
+        mes "..........";
+        next;
+        mes "...............";
+        next;
+        mes "[菲莉雅女神]";
+        mes "看來您的靈魂經過這幾次的轉生試練後";
+        mes "現在似乎非常的強大!"; 
+        mes "遠非先前所能比擬....";
+        next;
+        mes "[菲莉雅女神]";
+        mes "現在我認同你的實力";
+        mes "在您通過轉生之道時更加不會有危險";
+        mes "現在請您閉上雙眼...";
+        mes "讓我恭送您進入最後的轉生試練吧!";
+if(class == 7 && countitem(14013) >= 1) goto L2H; // 騎士領主
+if(class == 7 && countitem(14013) < 1) getitem 14013,1; // 騎士領主
+if(class == 14 && countitem(14014) >= 1) goto L2H; // 聖殿十字軍
+if(class == 14 && countitem(14014) < 1) getitem 14014,1; // 聖殿十字軍
+if(class == 15 && countitem(14015) >= 1) goto L2H; // 武術宗師 
+if(class == 15 && countitem(14015) < 1) getitem 14015,1; // 武術宗師 
+if(class == 8 && countitem(14016) >= 1) goto L2H; // 神官
+if(class == 8 && countitem(14016) < 1) getitem 14016,1; // 神官
+if(class == 9 && countitem(14017) >= 1) goto L2H; // 超魔導師
+if(class == 9 && countitem(14017) < 1) getitem 14017,1; // 超魔導師
+if(class == 16 && countitem(14018) >= 1) goto L2H; // 學者
+if(class == 16 && countitem(14018) < 1) getitem 14018,1; // 學者
+if(class == 12 && countitem(14019) >= 1) goto L2H; // 十字刺客
+if(class == 12 && countitem(14019) < 1) getitem 14019,1; // 十字刺客
+if(class == 17 && countitem(14020) >= 1) goto L2H; // 追跡者
+if(class == 17 && countitem(14020) < 1) getitem 14020,1; // 追跡者
+if(class == 10 && countitem(14021) >= 1) goto L2H; // 銀工匠
+if(class == 10 && countitem(14021) < 1) getitem 14021,1; // 銀工匠
+if(class == 18 && countitem(14022) >= 1) goto L2H; // 創造者
+if(class == 18 && countitem(14022) < 1) getitem 14022,1; // 創造者
+if(class == 11 && countitem(14023) >= 1) goto L2H; // 神射手
+if(class == 11 && countitem(14023) < 1) getitem 14023,1; // 神射手
+if(class == 19 && countitem(14024) >= 1) goto L2H; // 小丑
+if(class == 19 && countitem(14024) < 1) getitem 14024,1; // 小丑
+if(class == 20 && countitem(14025) >= 1) goto L2H; // 冷豔舞姬
+if(class == 20 && countitem(14025) < 1) getitem 14025,1; // 冷豔舞姬
+//if(class == 23 && countitem(14026) >= 1) goto L2H; // 超級初心者
+//if(class == 23 && countitem(14026) < 1) getitem 14043,1; // 超級初心者
+//if(class == 28 && countitem(14027) >= 1) goto L2H; // 槍手
+//if(class == 28 && countitem(14027) < 1) getitem 14043,1; // 槍手
+//if(class == 29 && countitem(14028) >= 1) goto L2H; // 忍者
+//if(class == 29 && countitem(14028) < 1) getitem 14043,1; // 忍者
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,10;
+        set StatusPoint,500;
+        warp "nif_in.gat",14,88;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成了最後的轉生試練!",15;
+        close;
+
+L9N:
+
+
+ 
+
+        mes "[菲莉雅女神]";
+        mes ".....";
+        next;
+        mes "..........";
+        next;
+        mes "...............";
+        next;
+        mes "[菲莉雅女神]";
+        mes "看來您的靈魂經過這幾次的轉生試練後";
+        mes "現在似乎非常的強大!"; 
+        mes "遠非先前所能比擬....";
+        next;
+        mes "[菲莉雅女神]";
+        mes "因此您不但可以凝結這一世的靈魂結晶";
+        mes "在您通過轉生之道時更加不會有危險";
+        mes "現在請您閉上雙眼...";
+        mes "讓我恭送您進入最後的轉生試練吧!";
+        next;
+        mes "[菲莉雅女神]";
+        mes "最後的這一顆靈魂結晶";
+        mes "象徵著您無懼無畏的精神";
+        mes "去吧,傳說中的勇者.....";
+        mes "未來的一切就得依靠您了,再會了!";
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,10;
+        set StatusPoint,500;
+        warp "nif_in.gat",14,88;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成了最後的轉生試練!",15;
+        close;
+
+L9H:
+        mes "[菲莉雅女神]";
+        mes "您似乎已經擁有這顆靈魂結晶了";
+        mes "請您好好的珍昔它!";
+        next;
+        goto L9T;
+
+L9T:
+        mes "[菲莉雅女神]";
+        mes "這將是您最後一次的轉生試練";
+        mes "漫長的旅途終將迎向終點";
+        mes "這最後的一刻終於來臨了";
+        mes "這將是我最後一次為您的祈禱";
+        mes "祝福您未來的旅程";
+        mes "再會了....";
+        next;
+        jobchange 0;
+	set BaseLevel,1;
+	set JobLevel,1;
+	set JobLevel,1;
+	set BaseLevel,1;
+	resetskill;
+	set SkillPoint,0;
+	resetstatus;
+	set StatusPoint,0;
+	set Llv,10;
+        set StatusPoint,500;
+        warp "nif_in.gat",14,88;
+	announce "轉生公告：恭喜傳說中的勇者 "+strcharinfo(0)+" 完成了最後的轉生試練!",15;
+
+
+Lo:
+        next;
+	mes "[菲莉雅女神]";
+        mes "傳說中的勇者"+strcharinfo(0)+"啊";
+        mes "歡迎您的歸來!!";
+	mes "在經過了漫長的旅途,終將迎向終點";
+	mes "這最後的時刻終於還是來臨了...";
+	mes "不過後續任務尚未完成,盡請期待^^";
+	close;
+
+why:
+        next;
+        mes "[菲莉雅女神]";
+        mes "轉生的意義?";
+        mes "呵,在經過不斷的轉生旅途後";
+        mes "您不記得最初的初衷與未來的使命了嗎?";
+        mes "還是讓我跟你解說一下吧";
+        next;
+        mes "[菲莉雅女神]";
+        mes "在許久之前,您本來是一位名望甚高的冒險者,與伙伴走遍世界各地後,原本打算找塊淨土隱居,只是隨著眾神之間的對立,魔物趁機侵入人間界,您便重新拿起了武器,與伙伴們共同對抗著魔物";
+        next;
+        mes "[菲莉雅女神]";
+        mes "直到你發現了魔物越來越多的主因,原來你昔日的伙伴艾克斯爾將魔界的封印解開,渴望獲得強大力量的艾克斯爾受到魔界的引誘,因此打開了封印....";
+        next;
+        mes "[菲莉雅女神]";
+        mes "原本封印魔界之門的制御裝置也隨之失控,最後魔界之門終於大開..然而艾克斯爾也被來自魔界之門的邪惡力量奪去心智,所幸來自未來的你及時重傷了他";
+        next;
+        mes "[菲莉雅女神]";
+        mes "他只好躲入魔界深處養傷,但錯誤終究已經造成,大批的魔物不但侵入人間界,甚至妄想將領地擴展至神域之中,只是,由於眾神在先前的對立之中元氣大傷";       
+        next;
+        mes "[菲莉雅女神]";
+        mes "眾神們也只能將魔界大軍阻擋在神域入口,短時間內是無法給予人間界太多的救援了,您與您的伙伴們組織了一股不小的勢力,這才穩住了各個王國間的安危";
+        next;
+        mes "[菲莉雅女神]";
+        mes "只是獲得強大力量的艾克斯爾隨時可能踏出魔界之門,為了迎接未來即將到來的決戰,最後您與主神奧丁達成了永恆的契約,而契約的內容便是藉由轉生來磨練你的身體與靈魂";
+        next;
+        mes "[菲莉雅女神]";
+        mes "並且在你完成了轉生的試練後,將給予您一柄神器,但你必需代替正在神域之中奮戰的主神奧丁,但你必需代替正在神域之中奮戰的主神奧丁,將你昔日的伙伴艾克斯爾永遠的封印在魔界之中,這便是你的初衷以及使命";
+        next;
+        mes "[菲莉雅女神]";
+        mes "現在,你還有什麼問題嗎?";
+        next;
+        menu "來自未來的我?",q1,"昔日的伙伴嗎...",q2,"我懂了..",ok;
+
+q1:
+        next;
+        mes "[菲莉雅女神]";
+        mes "關於這方面,不久之後你便會得知你想知道的一切,不需要著急也不需要困惑..一切只需隨緣,最後,祝福您! 希望您能完成這重大的使命!";
+        close;
+
+q2:
+        next;
+        mes "[菲莉雅女神]";
+        mes "艾克斯爾曾經是你最值得信賴的伙伴";
+        mes "只是渴求強大的力量而迷失了自我";
+        mes "現在能將他解放的只剩下你了";
+        mes "因此你必需完成轉生的試練";
+        next;
+        mes "[菲莉雅女神]";
+        mes "最後,祝福您! 希望您能完成這重大的使命!";
+        close;
+
+ok:
+        close;
+
+no:
+	mes "[菲莉雅女神]";
+	mes "是嗎..";
+        mes "我將在此期待你再次的到來";
+	close;
+
+over:
+	mes "[菲莉雅女神]";
+	mes "是嗎..";
+        mes "我將在此期待你再次的到來";
+        next;
+        close;
+}
+
+nif_in.gat,37,94,5	script	str使者	711,{ 
+mes "[str使者]";
+mes "你已通過菲莉雅女神的考驗";
+mes "你真的要拿魔械翅膀(str+10000)??";
+next;
+menu "我要領取！",LGET,"離開",LCLOSE;
+
+
+LGET:
+        getitem 15378,1;
+	warp "prontera",155,186;
+        close;
+	
+LCLOSE:
+       mes "[88]";
+	close;
+OnInit:
+	waitingroom "魔械翅膀",0;
+	end;
+	
+}
+nif_in.gat,37,92,5	script	agi使者	711,{
+mes "[agi使者]";
+mes "你已通過菲莉雅女神的考驗";
+mes "你真的要拿白靈翅膀(agi+10000)??";
+next;
+menu "我要領取！",LGET,"離開",LCLOSE;
+
+
+LGET:
+        getitem 15377,1;
+	warp "prontera",155,186;
+        close;
+	
+LCLOSE:
+       mes "[88]";
+	close;
+OnInit:
+	waitingroom "白靈翅膀",0;
+	end;
+	
+}
+nif_in.gat,37,90,5	script	vit使者	711,{
+mes "[vit使者]";
+mes "你已通過菲莉雅女神的考驗";
+mes "你真的要拿蝴蝶翅膀(vit+10000)??";
+next;
+menu "我要領取！",LGET,"離開",LCLOSE;
+
+
+LGET:
+        getitem 15379,1;
+	warp "prontera",155,186;
+        close;
+	
+LCLOSE:
+       mes "[88]";
+	close;
+OnInit:
+	waitingroom "蝴蝶翅膀",0;
+	end;
+	
+}
+nif_in.gat,37,88,5	script	int使者	711,{
+mes "[int使者]";
+mes "你已通過菲莉雅女神的考驗";
+mes "你真的要拿黃金戰神之翼(int+10000)??";
+next;
+menu "我要領取！",LGET,"離開",LCLOSE;
+
+
+LGET:
+        getitem 15375,1;
+	warp "prontera",155,186;
+        close;
+	
+LCLOSE:
+       mes "[88]";
+	close;
+OnInit:
+	waitingroom "黃金戰神之翼",0;
+	end;
+	
+}
+nif_in.gat,37,86,5	script	dex使者	711,{
+mes "[dex使者]";
+mes "你已通過菲莉雅女神的考驗";
+mes "你真的要拿火焰之翼(dex+10000)??";
+next;
+menu "我要領取！",LGET,"離開",LCLOSE;
+
+
+LGET:
+        getitem 15376,1;
+	warp "prontera",155,186;
+        close;
+	
+LCLOSE:
+       mes "[88]";
+	close;
+OnInit:
+	waitingroom "火焰之翼",0;
+	end;
+	
+}
+nif_in.gat,37,84,5	script	luk使者	711,{
+mes "[luk使者]";
+mes "你已通過菲莉雅女神的考驗";
+mes "你真的要拿黃金小天使之翼(luk+10000)??";
+next;
+menu "我要領取！",LGET,"離開",LCLOSE;
+
+
+LGET:
+        getitem 15380,1;
+	warp "prontera",155,186;
+        close;
+	
+LCLOSE:
+       mes "[88]";
+	close;
+OnInit:
+	waitingroom "黃金小天使之翼",0;
+	end;
+	
+}
+nif_in.gat,30,88,6	script	卡普拉服務人員~	117,{
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨 卡普拉公司.";
+	mes "我們隨時為您們服務.";
+	next;
+	menu "倉庫服務",aaa,"儲存服務",aa,"存錢",ab,"取錢",ac,;
+	
+aaa:
+      openstorage;
+       close;
+	OnInit:
+        	waitingroom "拿翅膀前請先存東西",0;
+        	end;
+
+
+aa:
+		savepoint "prontera.gat",155,176;
+		mes "[卡普拉服務人員]";
+		mes "你的紀錄點已經儲存.";
+			mes "感謝你的使用.";
+			close;
+
+	ab:
+menu "1千萬",ba,"5千萬",bb,"1億",bc,;
+ac:
+menu "1千萬",ca,"5千萬",cb,"1億",cc,;
+ba:
+if ((Zeny < 10000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-10000000;
+	getitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bb:
+if ((Zeny < 50000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-50000000;
+	getitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bc:
+if ((Zeny < 100000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-100000000;
+	getitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+ca:
+if (countitem(15068) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+10000000;
+	delitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cb:
+if (countitem(15069) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+50000000;
+	delitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cc:
+if (countitem(15070) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+100000000;
+	delitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+nnnnnn:
+mes " [卡普拉服務人員]";
+mes " [歡迎下次再來]";
+close;
+}

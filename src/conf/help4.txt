@@ -1,0 +1,38 @@
+GM指令使用方法：在聊天對話框內打入這些指令令，以及使用格式即可。
+
+@night              ---- 黑夜。
+@day                ---- 白天。
+
+@mapexit            ---- 關閉map-server。
+
+@gat                ---- DEBUG用(調查四周 gat)
+@packet             ---- DEBUG用(查看封包)
+
+@spiritball 數字    ---- 蓄氣個數[1~1000]之間
+
+@reloaditemdb    ---- 重新讀取itemdb
+@reloadmobdb    ---- 重新讀取mobdb
+@reloadskilldb    ---- 重新讀取skilldb
+@reloadatcommand   ---- 重新讀取atcommand_athena.conf
+@reloadbattleconf  ---- 重新讀取battle_athena.conf
+@reloadgmaccount   ---- 重新讀取gm_account_filename
+@reloadstatusdb    ---- 重新載入職業屬性相關、精煉成功率設定
+@reloadpcdb        ---- 重新載入經驗、職業技能樹、屬性設定
+
+@mapinfo	---- 查看當前地圖訊息
+
+@clock	---- 伺服器的時間
+
+@weather 數字或天氣名 地圖名	---- 在指定的地圖裡指定一種天氣
+				     未指定地圖時則在當前地圖
+	1:rain 2:snow 3:sakura 4:fog 5:leaves 0:day(清除天氣效果)
+@users 		--- 伺服器內人數分佈
+
+@idsearch 文字列	--- 查詢含有指定了的文字的道具
+@shuffle 數字1		--- PC、MOB重新配置
+@maintenance 數字	--- 1:維護
+			    2:取消維護
+
+@misceffect 數字	--- 表示各種效果
+
+@mailbox	--- 顯示信箱

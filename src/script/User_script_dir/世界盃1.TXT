@@ -1,0 +1,393 @@
+amatsu.gat,101,161,4	script	冥王哈迪斯	46,{
+			mes "[冥王哈迪斯]";
+			mes "你想要冥衣";
+			mes "就拿12星座聖衣跟我換";
+			next;
+			mes "[冥王哈迪斯]";
+			mes "你收齊了嗎??";
+			next;
+                        menu"我要換",devil_wing,"我沒有.",NotEnough;
+			
+
+//錢不足-------------------------------------------------------
+NotEnough:
+			mes "[冥王哈迪斯]";
+			mes "什麼!? 我要的東西都沒找好!!!";
+			mes "要耍我嗎?!去吃B吧!!";
+close;
+//去收集-------------------------------------------------------			
+bye:
+			mes "[冥王哈迪斯]";
+			mes "加油喔!!你一定行的!";
+close;
+//惡魔羽翼-----------------------------------------------------			
+devil_wing:
+			mes "[冥王哈迪斯]";
+                        if((countitem(8001) < 1) || (countitem(8002) < 1) || (countitem(8003) < 1) || (countitem(8004) < 1) || (countitem(8005) < 1) || (countitem(8006) < 1) || (countitem(8007) < 1) || (countitem(8008) < 1) || (countitem(8009) < 1) || (countitem(8010) < 1) || (countitem(8011) < 1) || (countitem(8012) < 1)) goto NotEnough;
+             		next;
+			mes "[冥王哈迪斯]";
+			mes ".................";
+			next;
+			delitem 8001,1;
+			delitem 8002,1;
+			delitem 8003,1;
+			delitem 8004,1;
+			delitem 8005,1;
+			delitem 8006,1;
+			delitem 8007,1;
+			delitem 8008,1;
+			delitem 8009,1;
+			delitem 8010,1;
+			delitem 8011,1;
+			delitem 8012,1;
+			getitem 18013,1;
+			mes "[冥王哈迪斯]";
+			mes "試看看威力吧!!";
+			mes "掰掰";
+close;
+}
+amatsu.gat,107,161,4	script	見習上帝	871,{
+			mes "[見習上帝]";
+			mes "你好!我是天庭的人事部!";
+			mes "現在幫你辦領見習上帝的手續。取得all+50000(千變之翼)";
+			mes "報名費為:";
+			mes "天使背包x1，黃金戰神之翼x1，火焰之翼x1，蝴蝶翅膀，";
+			mes "白靈翅膀x1，魔械翅膀x1，黃金小天使之翼x1，";
+			mes "真神x50，真金屬頭盔x1，血珊瑚x1,優待x10";
+			next;
+			mes "[見習上帝]";
+			mes "報名費都準備好了嗎??";
+			next;
+                        menu"準備好了",devil_wing,"還沒.",NotEnough;
+			
+
+//錢不足-------------------------------------------------------
+NotEnough:
+			mes "[見習上帝]";
+			mes "什麼!? 我要的報名費都沒找好!!!";
+			mes "要耍我嗎?!去吃B吧!!";
+close;
+//去收集-------------------------------------------------------			
+bye:
+			mes "[見習上帝]";
+			mes "加油喔!!你一定行的!";
+close;
+//惡魔羽翼-----------------------------------------------------			
+devil_wing:
+			mes "[見習上帝]";
+                        if((countitem(15366) < 1) || (countitem(15375) < 1) || (countitem(15376) < 1) || (countitem(15377) < 1) || (countitem(15378) < 1) || (countitem(15379) < 1) || (countitem(15380) < 1) || (countitem(15011) < 1) || (countitem(15199) < 50) || (countitem(15021) < 1) || (countitem(7199) < 10)) goto NotEnough;
+			delitem 15366,1;
+			delitem 7199,10;
+			delitem 15375,1;
+			delitem 15376,1;
+			delitem 15377,1;
+			delitem 15378,1;
+			delitem 15379,1;
+			delitem 15380,1;
+			delitem 15011,1;
+			delitem 15199,50;
+			delitem 15021,1;
+			getitem 15374,1;
+			mes "[見習上帝]";
+			mes "試看看威力吧!!";
+			mes "掰掰";
+close;
+}
+prontera.gat,198,191,3	script	抽獎機	858,{
+	if (countitem(7199)<1) goto L_WAITING;
+        mes "[抽獎機]";
+        mes "這裡什麼神裝都有就看你的運氣囉!";
+        mes "除真金,強化裝備,10轉翅膀外";
+        mes "其他神裝都有(4玉,血珊都有)";
+        mes "燕尾也是在這";
+        next;
+        menu"要、不信抽不到好裝",L1,"不要、我很背的",L2;
+        L2:
+        mes "抽獎機";
+        mes "那麼算了。";
+        close;
+        L1:
+        set @giv,rand(10);
+          if (@giv ==0) goto L3;
+          if (@giv ==1) goto L4;
+          if (@giv ==2) goto L5;
+          if (@giv ==3) goto L6;
+	  if (@giv ==4) goto L7;
+	  if (@giv ==5) goto L8;
+          if (@giv ==6) goto L9;
+	  if (@giv ==7) goto L10;
+	  if (@giv ==8) goto L11;
+	  if (@giv ==9) goto L12;
+	  if (@giv ==10) goto L13;
+	  if (@giv ==11) goto L14;
+	  if (@giv ==12) goto L15;
+	  if (@giv ==13) goto L16;
+	  if (@giv ==14) goto L17;
+	  if (@giv ==15) goto L18;
+	  if (@giv ==16) goto L19;
+	  if (@giv ==17) goto L20;
+	  close;
+L3:
+        set @item_db,rand(8001,8012);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的卡片！";
+	close;
+L4:
+        getitem 15013,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的卡片！";
+	close;
+L5:
+        set @item_db,rand(18028,18033);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L6:
+        set @item_db,rand(8015,8019);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L7:
+        set @item_db,rand(15366,15370);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L8:
+        set @item_db,rand(14013,14034);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L9:
+        set @item_db,rand(15028,15032);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L10:
+        getitem 7170,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L11:
+        getitem 2613,1;
+        getitem 2613,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L12:
+        set @item_db,rand(15013,15017);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L13:
+        getitem 8071,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L14:
+        getitem 8021,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L15:
+        set @item_db,rand(15089,15092);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L16:
+        set @item_db,rand(15100,15108);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L17:
+        getitem 15027,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L18:
+        set @item_db,rand(15068,15070);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L19:
+        set @item_db,rand(8055,8058);
+        getitem @item_db,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L20:
+        getitem 15199,1;
+        delitem 7199,1;
+        mes"[抽獎機]";
+        mes"你的裝備！";
+	close;
+L_WAITING:
+                mes"[抽獎機]";
+                mes"你沒有優待卷！";
+        close;
+}
+
+amatsu.gat,0,0,0,0      monster      寶箱      1360,1,0,0,0
+amatsu.gat,0,0,0,0      monster      寶箱      1361,1,0,0,0
+amatsu.gat,0,0,0,0      monster      寶箱      1362,1,0,0,0
+amatsu.gat,0,0,0,0      monster      寶箱      1363,1,0,0,0
+prontera.gat,0,0,0,0      monster      寶箱      1360,1,0,0,0
+prontera.gat,0,0,0,0      monster      寶箱      1361,1,0,0,0
+prontera.gat,0,0,0,0      monster      寶箱      1362,1,0,0,0
+prontera.gat,0,0,0,0      monster      寶箱      1363,1,0,0,0
+
+prontera.gat,147,186,4	script	城戰獎品	55,{
+	set @GIDp1,GetCastleData("prtg_cas01.gat",1);	
+	set @GIDp2,GetCastleData("prtg_cas02.gat",1);
+	set @GIDp3,GetCastleData("prtg_cas03.gat",1);
+	set @GIDp4,GetCastleData("prtg_cas04.gat",1);
+	set @GIDp5,GetCastleData("prtg_cas05.gat",1);
+        mes "[管理人]";
+	mes "請選擇:";
+	menu "歌 公會 ^ff0000 " + GetGuildName(@GIDp1) + " ^000000 會長 ^ff0000 " + getguildmaster(@GIDp1) + " ^000000",OnClick1,
+             "舞 公會 ^ff0000 " + GetGuildName(@GIDp2) + " ^000000 會長 ^ff0000 " + getguildmaster(@GIDp2) + " ^000000",OnClick2,
+             "永 公會 ^ff0000 " + GetGuildName(@GIDp3) + " ^000000 會長 ^ff0000 " + getguildmaster(@GIDp3) + " ^000000",OnClick3,
+             "青 公會 ^ff0000 " + GetGuildName(@GIDp4) + " ^000000 會長 ^ff0000 " + getguildmaster(@GIDp4) + " ^000000",OnClick4,
+             "春 公會 ^ff0000 " + GetGuildName(@GIDp5) + " ^000000 會長 ^ff0000 " + getguildmaster(@GIDp5) + " ^000000",OnClick5;
+
+OnClick1:
+	if (@GIDp1 == 0) goto L_Waiting;
+	if (strcharinfo(0) != GetGuildMaster(@GIDp1)) goto L_Member;
+	goto L_Castle1;
+	end;
+OnClick2:
+	if (@GIDp2 == 0) goto L_Waiting;
+	if (strcharinfo(0) != GetGuildMaster(@GIDp0)) goto L_Member;
+	goto L_Castle2;
+	end;
+OnClick3:
+	if (@GIDp3 == 0) goto L_Waiting;
+	if (strcharinfo(0) != GetGuildMaster(@GIDp3)) goto L_Member;
+	goto L_Castle3;
+	end;
+OnClick4:
+	if (@GIDp4 == 0) goto L_Waiting;
+	if (strcharinfo(0) != GetGuildMaster(@GIDp4)) goto L_Member;
+	goto L_Castle4;
+	end;
+OnClick5:
+	if (@GIDp5 == 0) goto L_Waiting;
+	if (strcharinfo(0) != GetGuildMaster(@GIDp5)) goto L_Member;
+	goto L_Castle5;
+	end;
+
+L_Waiting:
+	mes "[管理人]";
+	mes "  我將依據我的命運 ，在等待我的主人";
+	mes "勇士啊...試驗一下你的命運吧 ...";
+	close;
+	end;
+
+L_Member:
+	mes "[管理人]";
+	mes "你不是該城的公會會長";
+	close;
+	end;
+
+L_Castle1:
+	warp "pvp_n_1-3.gat",101,97;
+	end;
+L_Castle2:
+	warp "pvp_n_2-3.gat",101,97;
+	end;
+L_Castle3:
+	warp "pvp_n_3-3.gat",101,97;
+	end;
+L_Castle4:
+	warp "pvp_n_4-3.gat",101,97;
+	end;
+L_Castle5:
+	warp "pvp_n_5-3.gat",101,97;
+	end;
+}
+pvp_n_1-3.gat,101,97,0	script	寶箱#prt1	-1,{
+OnClock2000:
+	killmonster "pvp_n_1-3.gat","T_Box_P01";
+	end;
+OnClock2100:
+	monster "pvp_n_1-3.gat",94,96,"寶箱",rand(1324,1325),1,"T_Box_P01";
+	monster "pvp_n_1-3.gat",96,96,"寶箱",rand(1324,1325),1,"T_Box_P01";
+	monster "pvp_n_1-3.gat",98,96,"寶箱",rand(1324,1325),1,"T_Box_P01";
+	monster "pvp_n_1-3.gat",100,96,"寶箱",rand(1324,1325),1,"T_Box_P01";
+	monster "pvp_n_1-3.gat",102,96,"寶箱",rand(1324,1325),1,"T_Box_P01";
+	end;
+}
+pvp_n_2-3.gat,101,97,0	script	寶箱#prt2	-1,{
+OnClock2000:
+	killmonster "pvp_n_2-3.gat","T_Box_P02";
+	end;
+OnClock2100:
+	monster "pvp_n_2-3.gat",94,96,"寶箱",rand(1324,1325),1,"T_Box_P02";
+	monster "pvp_n_2-3.gat",96,96,"寶箱",rand(1324,1325),1,"T_Box_P02";
+	monster "pvp_n_2-3.gat",98,96,"寶箱",rand(1324,1325),1,"T_Box_P02";
+	monster "pvp_n_2-3.gat",100,96,"寶箱",rand(1324,1325),1,"T_Box_P02";
+	monster "pvp_n_2-3.gat",102,96,"寶箱",rand(1358,1359),1,"T_Box_P02";
+	end;
+}
+pvp_n_3-3.gat,101,97,0	script	寶箱#prt3	-1,{
+OnClock2000:
+	killmonster "pvp_n_3-3.gat","T_Box_P03";
+	end;
+OnClock2100:
+	monster "pvp_n_3-3.gat",94,96,"寶箱",rand(1324,1325),1,"T_Box_P03";
+	monster "pvp_n_3-3.gat",96,96,"寶箱",rand(1324,1325),1,"T_Box_P03";
+	monster "pvp_n_3-3.gat",98,96,"寶箱",rand(1324,1325),1,"T_Box_P03";
+	monster "pvp_n_3-3.gat",100,96,"寶箱",rand(1324,1325),1,"T_Box_P03";
+	monster "pvp_n_3-3.gat",102,96,"寶箱",rand(1324,1325),1,"T_Box_P03";
+	end;
+}
+pvp_n_4-3.gat,101,97,0	script	寶箱#prt4	-1,{
+OnClock2000:
+	killmonster "pvp_n_4-3.gat","T_Box_P04";
+	end;
+OnClock2100:
+	monster "pvp_n_4-3.gat",94,96,"寶箱",rand(1324,1325),1,"T_Box_P04";
+	monster "pvp_n_4-3.gat",96,96,"寶箱",rand(1324,1325),1,"T_Box_P04";
+	monster "pvp_n_4-3.gat",98,96,"寶箱",rand(1324,1325),1,"T_Box_P04";
+	monster "pvp_n_4-3.gat",100,96,"寶箱",rand(1324,1325),1,"T_Box_P04";
+	monster "pvp_n_4-3.gat",102,96,"寶箱",rand(1324,1325),1,"T_Box_P04";
+	end;
+}
+pvp_n_5-3.gat,101,97,0	script	寶箱#prt5	-1,{
+OnClock2000:
+	killmonster "pvp_n_5-3.gat","T_Box_P05";
+	end;
+OnClock2100:
+	monster "pvp_n_5-3.gat",94,96,"寶箱",rand(1324,1325),1,"T_Box_P05";
+	monster "pvp_n_5-3.gat",96,96,"寶箱",rand(1324,1325),1,"T_Box_P05";
+	monster "pvp_n_5-3.gat",98,96,"寶箱",rand(1324,1325),1,"T_Box_P05";
+	monster "pvp_n_5-3.gat",100,96,"寶箱",rand(1324,1325),1,"T_Box_P05";
+	monster "pvp_n_5-3.gat",102,96,"寶箱",rand(1324,1325),1,"T_Box_P05";
+	end;
+}

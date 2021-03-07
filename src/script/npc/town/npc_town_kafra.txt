@@ -1,0 +1,1615 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 卡普拉腳本 -
+//========================================================================================
+//----------------------------------
+// < 普隆德拉 - 以前的劍士公會 >
+//----------------------------------
+
+prontera.gat,248,42,0	script	卡普拉服務人員	116,{
+	cutin "kafra_02",2;
+	if (FIRST_JOB_QUEST == 1) goto L_START_1;
+		mes "[卡普拉服務人員]";
+		mes "歡迎光臨卡普拉公司劍士公會搬到新城市 '依斯魯得'.";
+		mes "我們卡普拉公司 從波朗特拉搬到依斯魯得收取的費用是 600金幣.";
+		next;
+		menu "使用.",-,"總結.",L2;
+			if ( Zeny < 600 ) goto Lerror1;
+			set Zeny,Zeny-600;
+			set KF_PIT,KF_PIT+60;
+			warp "izlude.gat",94,103;
+			end;
+		Lerror1:
+			mes "[卡普拉服務人員]";
+			mes "你的金錢不足。";
+			goto L_EXIT;
+L2:
+	goto L_EXIT;
+//===========商人轉職任務=============
+L_START_1:
+	if (JOB_MERCHANT_Q > 8) goto L_SUB_2;
+	if (JOB_MERCHANT_Q < 7) goto L_SUB_2;
+		if (NOV_3_MERCHANT != 0) goto L_EXIT;
+L_SUB_1:
+		mes "[卡普拉服務人員]";
+		mes "你好";
+		mes "有什麼事？";
+		goto L_EXIT;
+L_SUB_2:
+	if (JOB_MERCHANT_Q > 6) goto L_SUB_1;
+	if (JOB_MERCHANT_Q < 5) goto L_SUB_1;
+		mes "[卡普拉服務人員]";
+		mes "商人公會要求你送的貨到了？好，貨就放在這裡....";
+		if (countitem(1081)>=1) goto L_SUB_3;
+		if (countitem(1082)>=1) goto L_SUB_3;
+		if (countitem(1091)>=1) goto L_SUB_3;
+		goto L_SUB_4;
+L_SUB_3:
+		mes "搬那麼重的東西到這裡，真是辛苦您了~";
+		goto L_SUB_5;
+L_SUB_4:
+		mes "..貨在哪裡....？";
+		goto L_EXIT;
+L_SUB_5:
+	next;
+	mes "[卡普拉服務人員]";
+	mes "讓我查一下貨號吧.....";
+	if (JOB_MERCHANT_Q2 != 1) goto L_SUB_7;
+		if (countitem(1081)<1) goto L_START_2;
+		mes "2485741...這正是我們訂的貨~收據馬上就給您。";
+		delitem 1081,1;
+		getitem 1073,1;
+		goto L_START_3;
+L_SUB_7:
+	if (JOB_MERCHANT_Q2 != 2) goto L_START_2;
+		if (countitem(1082)<1) goto L_START_2;
+		mes "2328137...這正是我們訂的貨~收據馬上就給您。";
+		delitem 1082,1;
+		getitem 1074,1;
+		goto L_START_3;
+L_START_2:
+	mes "這個貨不是我們要的貨，商人公會給我們的貨號是2485741或者2328137。";
+	mes "可能中間搞錯了吧？";
+	goto L_EXIT;
+L_START_3:
+	if (JOB_MERCHANT_Q != 6) goto L_SUB_3_1;
+	set JOB_MERCHANT_Q,8;
+	goto L_SUB_3_2;
+L_SUB_3_1:
+	set JOB_MERCHANT_Q,7;
+L_SUB_3_2:
+	set FIRST_JOB_QUEST,5;
+	next;
+	mes "[卡普拉服務人員]";
+	mes "從那麼遠的地方來到這裡，您辛苦了~";
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 普隆德拉 - 中央 >
+//----------------------------------
+
+prontera.gat,146,89,6	script	卡普拉服務人員	117,{
+	cutin "kafra_01",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+		savepoint "prontera.gat",116,72;
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",2,600,3,1200,4,1200,5,1200,6,1800,7,1700,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,146,89,1,0x0000FF;
+	viewpoint 1,282,200,2,0x0000FF;
+	viewpoint 1,151,29,3,0x0000FF;
+	viewpoint 1,29,207,4,0x0000FF;
+L_EXIT:
+	close2;
+	cutin "kafra_01",255;
+	end;
+L7:
+	callfunc "kfend";
+}
+
+//----------------------------------
+// < 普隆德拉 - 東邊卡普拉 >
+//----------------------------------
+
+prontera.gat,282,200,2	script	卡普拉服務人員	114,{
+	cutin "kafra_04",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	menu "城市外面儲存",-,"城市裡面儲存",L1_2;
+		savepoint "prt_fild06.gat",33,192;
+		goto Lend1;
+	L1_2:
+		savepoint "prontera.gat",279,200;
+	Lend1:
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",2,600,3,1200,4,1200,5,1200,6,1800,7,1700,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,146,89,1,0x0000FF;
+	viewpoint 1,282,200,2,0x0000FF;
+	viewpoint 1,151,29,3,0x0000FF;
+	viewpoint 1,29,207,4,0x0000FF;
+L_EXIT:
+	close2;
+	cutin "kafra_04",255;
+	end;
+L7:
+	callfunc "kfend";
+}
+
+//----------------------------------
+// < 普隆德拉 - 南邊卡普拉 >
+//----------------------------------
+
+prontera.gat,151,29,0	script	卡普拉服務人員	115,{
+	cutin "kafra_03",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	menu "城市外面儲存",-,"城市裡面儲存",L1_2;
+		savepoint "prt_fild08.gat",170,368;
+		goto Lend1;
+	L1_2:
+		savepoint "prontera.gat",151,33;
+	Lend1:
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",2,600,3,1200,4,1200,5,1200,6,1800,7,1700,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,146,89,1,0x0000FF;
+	viewpoint 1,282,200,2,0x0000FF;
+	viewpoint 1,151,29,3,0x0000FF;
+	viewpoint 1,29,207,4,0x0000FF;
+L_EXIT:
+	close2;
+	cutin "kafra_03",255;
+	end;
+L7:
+	callfunc "kfend";
+}
+
+//----------------------------------
+// < 普隆德拉 - 西邊卡普拉 >
+//----------------------------------
+
+prontera.gat,29,207,6	script	卡普拉服務人員	113,{
+	cutin "kafra_05",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	menu "城市外面儲存",-,"城市裡面儲存",L1_3;
+		savepoint "prt_fild05.gat",368,205;
+		goto Lend1;
+	L1_3:
+		savepoint "prontera.gat",33,207;
+	Lend1:
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",2,600,3,1200,4,1200,5,1200,6,1800,7,1700,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,146,89,1,0x0000FF;
+	viewpoint 1,282,200,2,0x0000FF;
+	viewpoint 1,151,29,3,0x0000FF;
+	viewpoint 1,29,207,4,0x0000FF;
+L_EXIT:
+	close2;
+	cutin "kafra_05",255;
+	end;
+L7:
+	callfunc "kfend";
+}
+
+//----------------------------------
+// < 普隆德拉 - 北邊卡普拉 >
+//----------------------------------
+
+prt_fild01.gat,198,47,0	script	卡普拉服務人員	112,{
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "prt_fild01.gat",198,51;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	close2;
+	cutin "kafra_06",255;
+	end;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",2,600,3,1200,4,1200,5,1200,6,1800,7,1700,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+}
+
+//----------------------------------
+// < 普隆德拉 - 地下水道的卡普拉 >
+//----------------------------------
+
+prt_fild05.gat,290,224,4	script	卡普拉服務人員	114,{
+	cutin "kafra_04",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "prt_fild05.gat",274,244;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	close2;
+	cutin "kafra_04",255;
+	end;
+L2:
+	callfunc "kfstorage",30;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+}
+
+//----------------------------------
+// < 伊斯魯得島 - 城市中 >
+//----------------------------------
+
+izlude.gat,136,88,2	script	卡普拉服務人員	115,{
+	cutin "kafra_03",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	menu "城市外面儲存",-,"城市裡面儲存",L1_3;
+		savepoint "prt_fild08.gat",350,202;
+		goto Lend1;
+	L1_3:
+		savepoint "izlude.gat",94,103;
+	Lend1:
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",30;
+L3:
+	callfunc "kftransport",5,1200,4,1200,3,1200,8,1800,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,136,88,1,0x0000FF;
+L_EXIT:
+	close2;
+	cutin "kafra_03",255;
+	end;
+L7:
+	callfunc "kfend";
+}
+
+//----------------------------------
+// < 衛星都市 伊斯魯得島 >
+//----------------------------------
+// 海洞外↓
+izlu2dun.gat,106,58,4	script	卡普拉服務人員	116,{
+	cutin "kafra_02",2;
+	if (FIRST_JOB_QUEST == 4) goto L_QUEST;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "izlu2dun.gat",87,170;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+//===========商人轉職任務=============
+L_QUEST:
+	if (JOB_MERCHANT_Q > 8) goto L_Q_START_1;
+	if (JOB_MERCHANT_Q < 7) goto L_Q_START_1;
+		if (countitem(1072)<1) goto L_EXIT;
+			mes "[卡普拉服務人員]";
+			mes "有什麼事嗎？";
+			goto L_EXIT;
+L_Q_START_1:
+	if (JOB_MERCHANT_Q > 6) goto L_EXIT;
+	if (JOB_MERCHANT_Q < 5) goto L_EXIT;
+		mes "[卡普拉服務人員]";
+		mes "商人公會要求你送的貨到了？";
+		mes "好，貨就放在這裡....";
+		if (countitem(1081)>=1) goto L_Q_START_2;
+		if (countitem(1082)>=1) goto L_Q_START_2;
+		if (countitem(1091)>=1) goto L_Q_START_2;
+		mes "搬那麼重的東西到這裡 ";
+		mes "真是辛苦您了~";
+		goto L_EXIT;
+L_Q_START_2:
+		mes "..貨在哪裡....?";
+		next;
+		mes "[卡普拉服務人員]";
+		mes "讓我查一下貨號吧....";
+		next;
+		if (JOB_MERCHANT_Q2 != 7) goto L_Q_SUB_1;
+			if (countitem(1081)<1) goto L_EXIT;
+			mes "3012685.... 是我訂的物品沒錯，來，這收據給你。";
+				delitem 1081,1;
+				getitem 1079,1;
+				next;
+				goto L_Q_START_3;
+	L_Q_SUB_1:
+		if (JOB_MERCHANT_Q2 != 8) goto L_Q_SUB_2;
+			if (countitem(1082)<1) goto L_EXIT;
+			mes "3543625.... 是我訂的物品沒錯，來，這收據給你。";
+				delitem 1082,1;
+				getitem 1080,1;
+				next;
+				goto L_Q_START_3;
+	L_Q_SUB_2:
+		mes "[卡普拉服務人員]";
+		mes "....對不起....這好像不是我訂的東西..從商人公會那送過來的物品統一編號應該是3012685或者3543625才對...";
+		goto L_EXIT;
+L_Q_START_3:
+		if (JOB_MERCHANT_Q != 6) goto L_Q_SUB_3;
+		set JOB_MERCHANT_Q,8;
+			goto L_Q_SUB_4;
+	L_Q_SUB_3:
+		set JOB_MERCHANT_Q,7;
+	L_Q_SUB_4:
+		set FIRST_JOB_QUEST,5;
+		if (countitem(1072)<1) goto L_Q_START_4;
+			delitem 1072,1;
+			set NOV_3_MERCHANT,11;
+			next;
+		mes "[卡普拉服務人員]";
+		mes "啊呀，信來了";
+		next;
+L_Q_START_4:
+	mes "[卡普拉服務人員]";
+	mes "下次還要再麻煩你！再見~";
+		set @MERCHANT_JOB2,rand(2);
+		if (@MERCHANT_JOB2 != 0) goto L_Q_START_5;
+			getitem 513,3;
+			goto L_EXIT;
+L_Q_START_5:
+			getitem 512,3;
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 吉芬 - 南噴水 >
+//----------------------------------
+
+geffen.gat,120,62,0	script	卡普拉服務人員	115,{
+	cutin "kafra_03",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "geffen.gat",120,38;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",30;
+L3:
+	callfunc "kftransport",1,1200,8,1200,7,1700,9,1700,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,120,62,1,0x0000FF;
+	viewpoint 1,203,123,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_03",255;
+	end;
+}
+
+//----------------------------------
+// < 吉芬 - 東邊入口 >
+//----------------------------------
+
+geffen.gat,203,123,4	script	卡普拉服務人員	114,{
+	cutin "kafra_04",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	menu "城市外面儲存",-,"城市裡面儲存",L1_3;
+		savepoint "gef_fild00.gat",55,222;
+		goto L_SUB_1_1;
+	L1_3:
+		savepoint "geffen.gat",120,38;
+	L_SUB_1_1:
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",30;
+L3:
+	mes "[卡普拉服務人員]";
+	mes "請選擇目的地。";
+	next;
+	callfunc "kftransport",1,1200,8,1200,7,1700,9,1700,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,120,62,1,0x0000FF;
+	viewpoint 1,203,123,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_04",255;
+	end;
+}
+
+//----------------------------------
+// < 夢羅克 - 南 >
+//----------------------------------
+
+morocc.gat,156,97,4	script	卡普拉服務人員	113,{
+	cutin "kafra_05",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "morocc.gat",156,46;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",1,1200,4,1200,6,1800,10,1800,11,1200,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,160,258,1,0x0000FF;
+	viewpoint 1,159,97,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_05",255;
+	end;
+}
+
+//----------------------------------
+// < 夢羅克 - 北邊入口 >
+//----------------------------------
+
+morocc.gat,160,258,4	script	卡普拉服務人員	114,{
+	cutin "kafra_04",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	menu "城市外面儲存",-,"城市裡面儲存",L1_3;
+		savepoint "moc_fild07.gat",211,29;
+		goto L_SUB_1_1;
+	L1_3:
+		savepoint "morocc.gat",160,283;
+	L_SUB_1_1:
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",1,1200,4,1200,6,1800,10,1800,11,1200,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,160,258,1,0x0000FF;
+	viewpoint 1,159,97,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_04",255;
+	end;
+}
+
+//----------------------------------
+// < 夢羅克 - 金字塔入口 >
+//----------------------------------
+
+moc_ruins.gat,59,157,6	script	卡普拉服務人員	117,{
+	cutin "kafra_01",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "morocc.gat",58,154;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",50;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_01",255;
+	end;
+}
+
+//----------------------------------
+// < 艾爾貝塔 - 北邊入口 >
+//----------------------------------
+
+alberta.gat,28,229,0	script	卡普拉服務人員	116,{
+	cutin "kafra_02",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	menu "城市外面儲存",-,"城市裡面儲存",L1_3;
+		savepoint "pay_fild03.gat",387,76;
+		goto L_SUB_1_1;
+	L1_3:
+		savepoint "alberta.gat",31,231;
+	L_SUB_1_1:
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",50;
+L3:
+	callfunc "kftransport",4,1200,1,1800,5,1800,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,28,229,1,0x0000FF;
+	viewpoint 1,113,60,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 艾爾貝塔 - 南噴水池 >
+//----------------------------------
+
+alberta.gat,113,60,6	script	卡普拉服務人員#alberta2	112,{
+	cutin "kafra_06",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "alberta.gat",117,56;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",50;
+L3:
+	callfunc "kftransport",4,1200,1,1800,5,1800,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,28,229,1,0x0000FF;
+	viewpoint 1,113,60,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_06",255;
+	end;
+}
+
+//----------------------------------
+// < 艾爾貝塔 - 沉船附近的島嶼 >
+//----------------------------------
+
+alb2trea.gat,59,69,6	script	卡普拉服務人員	117,{
+	cutin "kafra_01",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "alb2trea.gat",91,63;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",50;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_01",255;
+	end;
+}
+
+//----------------------------------
+// < 斐揚 - 北 >
+//----------------------------------
+
+payon.gat,175,226,4	script	卡普拉服務人員	116,{
+	cutin "kafra_02",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",-,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+		savepoint "payon.gat",207,113;
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",6,1200,1,1200,5,1200,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 斐揚 - 南 >
+//----------------------------------
+
+payon.gat,181,104,4	script	卡普拉服務人員	113,{
+	cutin "kafra_05",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",-,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+		savepoint "payon.gat",160,58;
+		mes "[卡普拉服務人員]";
+		mes "已經儲存好了 謝謝您的使用";
+		goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",6,1200,1,1200,5,1200,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_05",255;
+	end;
+}
+
+//----------------------------------
+// < 斐揚 - 弓箭手村 >
+//----------------------------------
+
+pay_arche.gat,55,123,4	script	卡普拉服務人員	114,{
+	cutin "kafra_04",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "pay_arche.gat",50,145;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_04",255;
+	end;
+}
+
+//----------------------------------
+// < 艾爾帕蘭 >
+//----------------------------------
+
+aldebaran.gat,143,119,4	script	卡普拉服務人員	113,{
+	cutin "kafra_05",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "aldebaran.gat",143,110;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",3,1200,13,1200,2,1800,9,1700,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_05",255;
+	end;
+}
+
+//----------------------------------
+// < 克魔島 室內 >
+//----------------------------------
+
+cmd_in02.gat,146,180,4	script	卡普拉服務人員	721,{
+	cutin "kafra_07",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "comodo.gat",209,143;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",5,1800,12,1200,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_07",255;
+	end;
+}
+
+//----------------------------------
+// < 克魔島 發樂斯 燈塔島 >
+//----------------------------------
+
+cmd_fild07.gat,136,134,4	script	卡普拉服務人員	721,{
+	cutin "kafra_07",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨 卡普拉公司";
+	mes "隨時在你們身邊為您們服務";
+	mes "們服務.";
+	mes "在這卡普拉西方的";
+	mes "分公司";
+	mes "承諾會帶給你高品質";
+	mes "的服務";
+	mes "不論是何項服務內容.";
+	next;
+	mes "[卡普拉服務人員]";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "cmd_fild07.gat",127,134;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",80;
+L3:
+	callfunc "kftransport",10,1200,5,1200,0;
+L4:
+	callfunc "kfcart",1000;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_07",255;
+	end;
+}
+
+//----------------------------------
+// < 克魔島 > 
+//----------------------------------
+
+comodo.gat,195,150,4	script	卡普拉服務人員	721,{
+	cutin "kafra_07",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨. 卡普拉公司 需要什麼服務嗎?";
+	mes "我們卡普拉西部中心";
+	mes "通過改編程序";
+	mes "提供更好品質的服務.";
+	mes "謝謝大家~";
+	next;
+	mes "[卡普拉服務人員]";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "comodo.gat",180,151;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",80;
+L3:
+	callfunc "kftransport",5,1800,12,1200,0;
+L4:
+	callfunc "kfcart",1000;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_07",255;
+	end;
+}
+
+//----------------------------------
+// < 東邊 獸人村落前 >
+//----------------------------------
+
+gef_fild10.gat,73,340,5	script	卡普拉服務人員	117,{
+	cutin "kafra_01",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "gef_fild10.gat",54,320;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",130;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_01",255;
+	end;
+}
+
+//----------------------------------
+// < 妙勒尼 山脈廢礦前 >
+//----------------------------------
+
+mjolnir_02.gat,84,362,4	script	卡普拉服務人員	117,{
+	cutin "kafra_01",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "mjolnir_02.gat",98,351;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",100;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_01",255;
+	end;
+}
+
+//----------------------------------
+// < 朱諾 > 南邊入口
+//----------------------------------
+
+yuno.gat,152,187,4	script	卡普拉服務人員	113,{
+	cutin "kafra_05",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "yuno.gat",158,124;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",8,1200,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	viewpoint 1,327,109,2,0x0000FF;
+	viewpoint 1,277,221,3,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_05",255;
+	end;
+}
+
+//----------------------------------
+// < 朱諾 > 南東
+//----------------------------------
+
+yuno.gat,327,109,4	script	卡普拉服務人員	113,{
+	cutin "kafra_05",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "yuno.gat",327,100;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",8,1200,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	viewpoint 1,152,187,1,0x0000FF;
+	viewpoint 1,277,221,3,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_05",255;
+	end;
+}
+
+//----------------------------------
+// < 朱諾 > 北東
+//----------------------------------
+
+yuno.gat,277,221,4	script	卡普拉服務人員	113,{
+	cutin "kafra_05",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "yuno.gat",275,229;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "kftransport",8,1200,0;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	viewpoint 1,152,187,1,0x0000FF;
+	viewpoint 1,327,109,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_05",255;
+	end;
+}
+
+//----------------------------------
+// < 天津 >
+//----------------------------------
+
+amatsu.gat,102,149,4	script	卡普拉服務人員#amatsunomal	116,{
+	cutin "kafra_02",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "amatsu.gat",116,94;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",80;
+L4:
+	callfunc "kfcart",700;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 崑崙 >
+//----------------------------------
+
+gonryun.gat,159,122,4	script	卡普拉服務人員	116,{
+	cutin "kafra_02",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "gonryun.gat",160,62;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",80;
+L4:
+	callfunc "kfcart",700;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 汶巴拉 >
+//----------------------------------
+
+umbala.gat,87,160,5	script	卡普拉服務人員	721,{
+	cutin "kafra_07",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "umbala.gat",100,154;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",80;
+L3:
+	callfunc "kftransport",10,1800,0;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_07",255;
+	end;
+}
+
+//----------------------------------
+// < 尼芙菲姆 >
+//----------------------------------
+
+niflheim.gat,202,180,3	script	卡普拉服務人員	791,{
+	mes "[卡普拉服務人員]";
+	mes "歡迎... 來到.... ";
+	mes "卡普拉公司....";
+	mes "我們.... 到死.... 都會繼續為您服務...."; 
+	next;
+	menu "倉庫服務",L2,"總結",L7;
+L2:
+	percentheal 0,-10;
+	callfunc "kfstorage",150;
+L7:
+	percentheal 0,-10;
+	callfunc "kfend";
+	close;
+}
+
+//----------------------------------
+// < 龍之城 >
+//----------------------------------
+
+louyang.gat,210,104,4	script	卡普拉服務人員	116,{
+	cutin "kafra_02",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "louyang.gat",218,97;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",80;
+L4:
+	callfunc "kfcart",700;
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 哎喲泰雅 >
+//----------------------------------
+
+ayothaya.gat,212,169,6	script	卡普拉服務人員	116,{
+	cutin "kafra_02",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"手推車服務",L4,"點數累積確認",L5,"總結",L7;
+L1:
+	savepoint "ayothaya.gat",217,187;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",80;
+L4:
+	callfunc "kfcart",700;	//這裡的租車費用未証實
+L5:
+	callfunc "kfpoint";
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 艾音布羅克 - 廣場 >
+//----------------------------------
+
+einbroch.gat,242,205,5	script	卡普拉服務人員#einbroch1	116,{
+	cutin "kafra_02",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "einbroch.gat",239,197;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	mes "[卡普拉 服務人員]";
+	mes "我們卡普拉服務在秀發茲發德總公司，";
+	mes "因為和秀發茲發德 共和國";
+	mes "的協定，";
+	mes "'^ff0000在秀發茲發德內限制傳送服務^000000'";
+	mes "的關係，";
+	mes "目前不做任何傳送服務的";
+	next;
+	mes "[卡普拉]";
+	mes "想要移動到其它區域時，";
+	mes "請使用飛空艇吧";
+	goto L_EXIT;
+L4:
+	callfunc "kfcart",700;	//這裡的租車費用未証實
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,242,205,1,0x0000FF;
+	viewpoint 1,59,203,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_02",255;
+	end;
+}
+
+//----------------------------------
+// < 艾音布羅克 - 空港 >
+//----------------------------------
+
+einbroch.gat,59,203,5	script	卡普拉服務人員#einbroch2	117,{
+	cutin "kafra_01",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "einbroch.gat",239,197;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	mes "[卡普拉 服務人員]";
+	mes "我們卡普拉服務在秀發茲發德總公司，";
+	mes "因為和秀發茲發德 共和國";
+	mes "的協定，";
+	mes "'^ff0000在秀發茲發德內限制傳送服務^000000'";
+	mes "的關係，";
+	mes "目前不做任何傳送服務的";
+	next;
+	mes "[卡普拉]";
+	mes "想要移動到其它區域時，";
+	mes "請使用飛空艇吧";
+	goto L_EXIT;
+L4:
+	callfunc "kfcart",700;	//這裡的租車費用未証實
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,242,205,1,0x0000FF;
+	viewpoint 1,59,203,2,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_01",255;
+	end;
+}
+
+//----------------------------------
+//  < 艾音貝赫 >
+//----------------------------------
+
+einbech.gat,181,132,5	script	卡普拉服務人員	115,{
+	cutin "kafra_03",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"卡普拉服務人員位置分佈",L6,"總結",L7;
+L1:
+	savepoint "einbech.gat",181,123;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	mes "[卡普拉 服務人員]";
+	mes "我們卡普拉服務在秀發茲發德總公司，";
+	mes "因為和秀發茲發德 共和國";
+	mes "的協定，";
+	mes "'^ff0000在秀發茲發德內限制傳送服務^000000'";
+	mes "的關係，";
+	mes "目前不做任何傳送服務的";
+	next;
+	mes "[卡普拉]";
+	mes "想要移動到其它區域時，";
+	mes "請使用飛空艇吧";
+	goto L_EXIT;
+L4:
+	callfunc "kfcart",700;	//這裡的租車費用未証實
+L5:
+	callfunc "kfpoint";
+L6:
+	mes "[卡普拉服務人員]";
+	mes "小地圖中顯示了卡普拉服務人員分佈。";
+	viewpoint 1,181,132,1,0x0000FF;
+	goto L_EXIT;
+L7:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_03",255;
+	end;
+}
+
+
+//----------------------------------
+// < 里希塔樂鎮 - 北ロкь >
+//----------------------------------
+
+lighthalzen.gat,191,320,4	script	卡普拉服務人員	861,{
+	cutin "kafra_09",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L6;
+L1:
+	savepoint "lighthalzen.gat",193,314;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	mes "[卡普拉 服務人員]";
+	mes "我們卡普拉服務在秀發茲發德總公司，";
+	mes "因為和秀發茲發德 共和國";
+	mes "的協定，";
+	mes "'^ff0000在秀發茲發德內限制傳送服務^000000'";
+	mes "的關係，";
+	mes "目前不做任何傳送服務的";
+	next;
+	mes "[卡普拉]";
+	mes "想要移動到其它區域時，";
+	mes "請使用飛空艇吧";
+	goto L_EXIT;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_09",255;
+	end;
+}
+
+//----------------------------------
+// < 里希塔樂鎮 - 南 >
+//----------------------------------
+
+lighthalzen.gat,164,100,4	script	卡普拉服務人員	860,{
+	cutin "kafra_08",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L6;
+L1:
+	savepoint "lighthalzen.gat",160,95;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	mes "[卡普拉 服務人員]";
+	mes "我們卡普拉服務在秀發茲發德總公司，";
+	mes "因為和秀發茲發德 共和國";
+	mes "的協定，";
+	mes "'^ff0000在秀發茲發德內限制傳送服務^000000'";
+	mes "的關係，";
+	mes "目前不做任何傳送服務的";
+	next;
+	mes "[卡普拉]";
+	mes "想要移動到其它區域時，";
+	mes "請使用飛空艇吧";
+	goto L_EXIT;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_08",255;
+	end;
+}
+
+//----------------------------------
+// < 里希塔樂鎮 - 旅館 >
+//----------------------------------
+
+lhz_in02.gat,237,284,4	script	卡普拉服務人員	861,{
+	cutin "kafra_09",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨，卡普拉公司隨時為您們服務，";
+	mes "需要什麼服務嗎?";
+	next;
+	menu "儲存服務",L1,"倉庫服務",L2,"傳送服務",L3,"手推車服務",L4,"點數累積確認",L5,"總結",L6;
+L1:
+	savepoint "lhz_in02.gat",278,214;
+	mes "[卡普拉服務人員]";
+	mes "已經儲存好了 謝謝您的使用";
+	goto L_EXIT;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	mes "[卡普拉 服務人員]";
+	mes "我們卡普拉服務在秀發茲發德總公司，";
+	mes "因為和秀發茲發德 共和國";
+	mes "的協定，";
+	mes "'^ff0000在秀發茲發德內限制傳送服務^000000'";
+	mes "的關係，";
+	mes "目前不做任何傳送服務的";
+	next;
+	mes "[卡普拉]";
+	mes "想要移動到其它區域時，";
+	mes "請使用飛空艇吧";
+	goto L_EXIT;
+L4:
+	callfunc "kfcart",800;
+L5:
+	callfunc "kfpoint";
+L6:
+	callfunc "kfend";
+L_EXIT:
+	close2;
+	cutin "kafra_09",255;
+	end;
+}

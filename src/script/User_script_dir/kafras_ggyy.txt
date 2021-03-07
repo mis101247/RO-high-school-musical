@@ -1,0 +1,358 @@
+prontera.gat,147,163,6	script	卡普拉服務人員	117,{
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨 卡普拉公司.";
+	mes "我們隨時為您們服務.";
+	next;
+	menu "倉庫服務",aaa,"儲存服務",aa,"存錢",ab,"取錢",ac,;
+	
+aaa:
+      openstorage;
+       close;
+	OnInit:
+        	waitingroom "你們最愛的卡姐",0;
+        	end;
+
+
+aa:
+		savepoint "prontera",155,167;
+		mes "[卡普拉服務人員]";
+		mes "你的紀錄點已經儲存.";
+			mes "感謝你的使用.";
+			close;
+
+	ab:
+menu "1千萬",ba,"5千萬",bb,"1億",bc,;
+ac:
+menu "1千萬",ca,"5千萬",cb,"1億",cc,;
+ba:
+if ((Zeny < 10000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-10000000;
+	getitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bb:
+if ((Zeny < 50000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-50000000;
+	getitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bc:
+if ((Zeny < 100000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-100000000;
+	getitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+ca:
+if (countitem(15068) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+10000000;
+	delitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cb:
+if (countitem(15069) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+50000000;
+	delitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cc:
+if (countitem(15070) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+100000000;
+	delitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+nnnnnn:
+mes " [卡普拉服務人員]";
+mes " [歡迎下次再來]";
+close;
+}
+
+izlude.gat,127,97,6	script	卡普拉服務人員	117,{
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨 卡普拉公司.";
+	mes "我們隨時為您們服務.";
+	next;
+	menu "倉庫服務",aaa,"儲存服務",aa,"存錢",ab,"取錢",ac,;
+	
+aaa:
+      openstorage;
+       close;
+
+
+aa:
+		savepoint "prontera",155,167;
+		mes "[卡普拉服務人員]";
+		mes "你的紀錄點已經儲存.";
+			mes "感謝你的使用.";
+			close;
+
+	ab:
+menu "1千萬",ba,"5千萬",bb,"1億",bc,;
+ac:
+menu "1千萬",ca,"5千萬",cb,"1億",cc,;
+ba:
+if ((Zeny < 10000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-10000000;
+	getitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bb:
+if ((Zeny < 50000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-50000000;
+	getitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bc:
+if ((Zeny < 100000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-100000000;
+	getitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+ca:
+if (countitem(15068) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+10000000;
+	delitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cb:
+if (countitem(15069) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+50000000;
+	delitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cc:
+if (countitem(15070) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+100000000;
+	delitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+nnnnnn:
+mes " [卡普拉服務人員]";
+mes " [歡迎下次再來]";
+close;
+}
+
+yuno.gat,165,83,6	script	卡普拉服務人員	117,{
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨 卡普拉公司.";
+	mes "我們隨時為您們服務.";
+	next;
+	menu "倉庫服務",aaa,"儲存服務",aa,"存錢",ab,"取錢",ac,;
+	
+aaa:
+      openstorage;
+       close;
+
+
+aa:
+		savepoint "prontera",155,167;
+		mes "[卡普拉服務人員]";
+		mes "你的紀錄點已經儲存.";
+			mes "感謝你的使用.";
+			close;
+
+	ab:
+menu "1千萬",ba,"5千萬",bb,"1億",bc,;
+ac:
+menu "1千萬",ca,"5千萬",cb,"1億",cc,;
+ba:
+if ((Zeny < 10000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-10000000;
+	getitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bb:
+if ((Zeny < 50000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-50000000;
+	getitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bc:
+if ((Zeny < 100000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-100000000;
+	getitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+ca:
+if (countitem(15068) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+10000000;
+	delitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cb:
+if (countitem(15069) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+50000000;
+	delitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cc:
+if (countitem(15070) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+100000000;
+	delitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+nnnnnn:
+mes " [卡普拉服務人員]";
+mes " [歡迎下次再來]";
+close;
+}
+
+nif_in.gat,146,28,6	script	卡普拉服務人員	117,{
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨 卡普拉公司.";
+	mes "我們隨時為您們服務.";
+	next;
+	menu "倉庫服務",aaa,"儲存服務",aa,"存錢",ab,"取錢",ac,;
+	
+aaa:
+      openstorage;
+       close;
+
+
+aa:
+		savepoint "prontera",155,167;
+		mes "[卡普拉服務人員]";
+		mes "你的紀錄點已經儲存.";
+			mes "感謝你的使用.";
+			close;
+
+	ab:
+menu "1千萬",ba,"5千萬",bb,"1億",bc,;
+ac:
+menu "1千萬",ca,"5千萬",cb,"1億",cc,;
+ba:
+if ((Zeny < 10000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-10000000;
+	getitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bb:
+if ((Zeny < 50000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-50000000;
+	getitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+bc:
+if ((Zeny < 100000000)) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny-100000000;
+	getitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+ca:
+if (countitem(15068) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+10000000;
+	delitem 15068,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cb:
+if (countitem(15069) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+50000000;
+	delitem 15069,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+cc:
+if (countitem(15070) < 1) goto nnnnnn;
+	mes " [卡普拉服務人員]";
+	mes " 馬上幫您存錢";
+	next;
+	set Zeny,Zeny+100000000;
+	delitem 15070,1;
+	mes "[卡普拉服務人員]";
+	mes "謝謝您的使用";
+	close;
+nnnnnn:
+mes " [卡普拉服務人員]";
+mes " [歡迎下次再來]";
+close;
+}

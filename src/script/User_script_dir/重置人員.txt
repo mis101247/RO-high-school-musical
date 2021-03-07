@@ -1,0 +1,373 @@
+//By GeisHa
+prontera.gat,159,190,4	script	瘋狂阿伯	52,{
+	mes "[金大福]";
+	mes "年輕人，不要吵啊，我的魚都跑了啦。";
+	next;
+	menu "對不起，我走開",LEnd,"我有事找你。",Lstart;
+Lstart:
+	mes "[金大福]";
+	mes "哦？有什麼事？";
+	mes "已經很久沒人找我了，有事儘管說";
+	menu "你能幫我釣出海的主人嗎？",Lseamaster,"聽說你有一種特殊能力",Lstart2;
+Lseamaster:
+	mes "[金大福]";
+	mes "呵呵,這個很簡單";
+	mes "不過你要給我特別的魚餌";
+	mes "....";
+	close;	
+Lstart2:
+	mes "[金大福]";
+	mes "呵呵,你也知道?";
+	mes "我祖傳獨門秘技，就是可以幫人重置點數";
+	mes "你想重置什麼呢？";
+	next;
+	menu "^FF3355技能點(費用80w)^000000",L1,"^FF3355屬性點(費用80w)^000000",L2,"^FF3355技能點和屬性點(費用150w)^000000",L3,"取消",LEnd;
+	
+	L1:
+		if (Zeny<800000) goto NeedZenys;
+		mes "[金大福]";
+		mes "已經重置好了";
+		mes "^FF3355請好好分配^000000";
+		set Zeny,Zeny-800000;
+		resetskill;
+		close;
+	L2:
+		if (Zeny<800000) goto NeedZenys;
+		mes "[金大福]";
+		mes "已經重置好了";
+		mes "^FF3355請好好分配^000000";
+		set Zeny,Zeny-800000;
+		resetstatus;
+		close;
+	L3:
+		if (Zeny<1500000) goto NeedZenys;
+		mes "[金大福]";
+		mes "已經重置好了";
+		mes "^FF3355請好好分配^000000";
+		set Zeny,Zeny-1500000;
+		resetstatus;
+		resetskill;
+		close;
+
+		NeedZenys:
+			mes "[金大福]";
+			mes "窮人不要來湊熱鬧！影響我釣魚";
+			close;
+	LEnd:
+		mes "[金大福]";
+		mes "…………";
+		close;	
+}
+/****************Cathena腳本***************\
+名稱:賽馬腳本
+版本:1.0測試版
+構思:淺龍(Sianzain)
+作者:淺龍(Sianzain)
+添加測試:淺龍(Sianzain)
+版權:淺龍(Sianzain)
+注意:未經作者同意,請勿轉載!!!
+\***********************************************/
+\********************說明***********************/
+以 金幣(671) 為下注品
+下注跑的最快的賽馬
+中了 一賽馬狀態給予賠率
+\***********************************************/
+//$sm_1		1號賽馬贏次數
+//$sm_2		2號賽馬贏次數
+//$sm_3		3號賽馬贏次數
+//$sm_4		4號賽馬贏次數
+//$allout	全部摔馬次數
+//$double	雙贏次數
+//$setdsd	比賽次數
+//超過最大值請至行歸零
+
+cmd_in02.gat,182,66,2 script 賽馬主持 719,{
+
+begin:
+mes "[賽馬主持]";
+mes "你想進行賽馬嗎?";
+mes "提供4匹賽馬,40米長的跑道來進行";
+next;
+menu "是的,我要參加",touzhu,"不,我不參加",cl,"說明",-;
+mes "[賽馬主持]";
+mes "名故其實就是下注哪隻馬跑的最快";
+close;
+OnInit:
+        	waitingroom "賽馬~咩咩咩",0;
+        	end;
+
+//歸零
+touzhu:
+set @tzall,0;
+set @mashu,4;
+set @win_,0;
+set @chaju_,0;
+set @sm_1,0;
+set @sm_2,0;
+set @sm_3,0;
+set @sm_4,0;
+set @dm_1,0;
+set @dm_2,0;
+set @dm_3,0;
+set @dm_4,0;
+set @suman_,0;
+set @win_2,0;
+set @jajaoro,0;
+set @sudna1,0;
+set @sudna2,0;
+set @sudna3,0;
+set @sudna4,0;
+set @sudna1_byeli,0;
+set @sudna2_byeli,0;
+set @sudna3_byeli,0;
+set @sudna4_byeli,0;
+set @byeli,0;
+goto sudna;
+
+sudna:
+//隨機賽馬狀態
+//@sudna賽馬狀態 越小越不好
+set @sudna1,rand(1,3);
+set @sudna2,rand(1,3);
+set @sudna3,rand(1,3);
+set @sudna4,rand(1,3);
+
+//賠率倍數
+//@sudna1_byeli賽馬賠率
+if (@sudna1 == 1) set @sudna1_byeli,4;
+if (@sudna1 == 2) set @sudna1_byeli,3;
+if (@sudna1 == 3) set @sudna1_byeli,2;
+
+if (@sudna2 == 1) set @sudna2_byeli,4;
+if (@sudna2 == 2) set @sudna2_byeli,3;
+if (@sudna2 == 3) set @sudna2_byeli,2;
+
+if (@sudna3 == 1) set @sudna3_byeli,4;
+if (@sudna3 == 2) set @sudna3_byeli,3;
+if (@sudna3 == 3) set @sudna3_byeli,2;
+
+if (@sudna4 == 1) set @sudna4_byeli,4;
+if (@sudna4 == 2) set @sudna4_byeli,3;
+if (@sudna4 == 3) set @sudna4_byeli,2;
+
+//此為不讓賽馬狀態極差平衡摔馬機率(建議不要修改)
+if (@sudna1+@sudna2+@sudna3+@sudna4 <= 7) goto sudna;
+
+mes "[賽馬主持]";
+mes "下注幾枚 金幣 ";
+next;
+input @mooney;
+if (@mooney == 0) close;
+mes "[賽馬主持]";
+mes "收取 金幣 "+@mooney+"枚";
+next;
+if (countitem(671) < @mooney) goto noitem;
+delitem 671,@mooney;
+goto again2;
+
+again2:
+//賽馬狀態以及勝率
+mes "[賽馬主持]";
+mes "第^FF0000" + $setdsd + "^000000期賽馬報表";
+mes "全部摔馬率:^FF0000" + (($allout*100)/$setdsd) + "% ^000000雙冠軍機率:^FF0000" + (($double*100)/$setdsd) + "%^000000";
+if (@sudna1 == 1) mes "^0000FF1號馬^000000 以往勝率:^FF0000" + (($sm_1*100)/$setdsd) +"%^000000 狀態:生病!";
+if (@sudna1 == 2) mes "^0000FF1號馬^000000 以往勝率:^FF0000" + (($sm_1*100)/$setdsd) +"%^000000 狀態:普通!";
+if (@sudna1 == 3) mes "^0000FF1號馬^000000 以往勝率:^FF0000" + (($sm_1*100)/$setdsd) +"%^000000 狀態:良好!";
+
+if (@sudna2 == 1) mes "^0000FF2號馬^000000 以往勝率:^FF0000" + (($sm_2*100)/$setdsd) +"%^000000 狀態:生病!";
+if (@sudna2 == 2) mes "^0000FF2號馬^000000 以往勝率:^FF0000" + (($sm_2*100)/$setdsd) +"%^000000 狀態:普通!";
+if (@sudna2 == 3) mes "^0000FF2號馬^000000 以往勝率:^FF0000" + (($sm_2*100)/$setdsd) +"%^000000 狀態:良好!";
+
+if (@sudna3 == 1) mes "^0000FF3號馬^000000 以往勝率:^FF0000" + (($sm_3*100)/$setdsd) +"%^000000 狀態:生病!";
+if (@sudna3 == 2) mes "^0000FF3號馬^000000 以往勝率:^FF0000" + (($sm_3*100)/$setdsd) +"%^000000 狀態:普通!";
+if (@sudna3 == 3) mes "^0000FF3號馬^000000 以往勝率:^FF0000" + (($sm_3*100)/$setdsd) +"%^000000 狀態:良好!";
+
+if (@sudna4 == 1) mes "^0000FF4號馬^000000 以往勝率:^FF0000" + (($sm_4*100)/$setdsd) +"%^000000 狀態:生病!";
+if (@sudna4 == 2) mes "^0000FF4號馬^000000 以往勝率:^FF0000" + (($sm_4*100)/$setdsd) +"%^000000 狀態:普通!";
+if (@sudna4 == 3) mes "^0000FF4號馬^000000 以往勝率:^FF0000" + (($sm_4*100)/$setdsd) +"%^000000 狀態:良好!";
+next;
+input @win_;
+
+if (@win_==0){
+mes "[賽馬主持]";
+mes "沒有此賽馬喔";
+next;
+goto again2;
+}
+
+if(@win_ > 4){
+mes "[賽馬主持]";
+mes "沒有此賽馬喔";
+next;
+goto again2;
+}
+
+//完成交易
+set @touma_1,1;
+
+//開始
+set $setdsd,$setdsd+1;
+mes "[賽馬主持]";
+mes "^0000FF1號馬^000000準備就緒!";
+mes "^0000FF2號馬^000000準備就緒!";
+mes "^0000FF3號馬^000000準備就緒!";
+mes "^0000FF4號馬^000000準備就緒!";
+mes "好了,所有的馬匹都已經準備就緒了";
+mes "請點確定開始賽馬~~!";
+next;
+menu "確定",begin_1;
+
+//計算馬跑的速度
+begin_1:
+if (@dm_1 == 1) goto begin_2;
+set @suiji_1,rand(1,55);
+if (@dm_1 == 0 && @suiji_1 >= 51){
+	if (@sudna1 <= 1) set @dm_1,1;
+	else {
+		set @sudna1,@sudna1-1;
+		}
+	}
+if (@dm_1 == 0 && @suiji_1 <= 31) set @sm_1,@sm_1+1;
+if (@dm_1 == 0 && @suiji_1 >= 30 && @suiji_1 <= 41 ) set @sm_1,@sm_1+2;
+if (@dm_1 == 0 && @suiji_1 >= 40 && @suiji_1 <= 50) set @sm_1,@sm_1+3;
+if (@sudna1+1 == 4 && @suiji_1 <= 31) set @sm_1,@sm_1+1;
+if (@sudna1+1 == 1 && @suiji_1 >= 40 && @suiji_1 <= 50) set @sm_1,@sm_1-1;
+if (@sm_1 > 40) set @sm_1,40;
+goto begin_2;
+
+begin_2:
+if (@dm_2 == 1) goto begin_3;
+set @suiji_2,rand(1,55);
+if (@dm_2 == 0 && @suiji_2 >= 51){
+	if (@sudna2 <= 1) set @dm_2,1;
+	else {
+		set @sudna2,@sudna2-1;
+		}
+	}
+if (@dm_2 == 0 && @suiji_2 <= 31) set @sm_2,@sm_2+1;
+if (@dm_2 == 0 && @suiji_2 >= 30 && @suiji_2 <= 41 ) set @sm_2,@sm_2+2;
+if (@dm_2 == 0 && @suiji_2 >= 40 && @suiji_2 <= 50) set @sm_2,@sm_2+3;
+if (@sudna2+1 == 4 && @suiji_2 <= 31) set @sm_2,@sm_2+1;
+if (@sudna2+1 == 1 && @suiji_2 >= 40 && @suiji_2 <= 50) set @sm_2,@sm_2-1;
+if (@sm_2 > 40) set @sm_2,40;
+goto begin_3;
+
+begin_3:
+if (@dm_3 == 1) goto begin_4;
+set @suiji_3,rand(1,55);
+if (@dm_3 == 0 && @suiji_3 >= 51){
+	if (@sudna3 <= 1) set @dm_3,1;
+	else {
+		set @sudna3,@sudna3-1;
+		}
+	}
+if (@dm_3 == 0 && @suiji_3 <= 31) set @sm_3,@sm_3+1;
+if (@dm_3 == 0 && @suiji_3 >= 30 && @suiji_3 <= 41 ) set @sm_3,@sm_3+2;
+if (@dm_3 == 0 && @suiji_3 >= 40 && @suiji_3 <= 50) set @sm_3,@sm_3+3;
+if (@sudna3+1 == 4 && @suiji_3 <= 31) set @sm_3,@sm_3+1;
+if (@sudna3+1 == 1 && @suiji_3 >= 40 && @suiji_3 <= 50) set @sm_3,@sm_3-1;
+if (@sm_3 > 40) set @sm_3,40;
+goto begin_4;
+
+begin_4:
+if (@dm_4 == 1) goto xianshi2;
+set @suiji_4,rand(1,55);
+if (@dm_4 == 0 && @suiji_4 >= 51){
+	if (@sudna4 <= 1) set @dm_4,1;
+	else {
+		set @sudna4,@sudna4-1;
+		}
+	}
+if (@dm_4 == 0 && @suiji_4 <= 31) set @sm_4,@sm_4+1;
+if (@dm_4 == 0 && @suiji_4 >= 30 && @suiji_4 <= 41 ) set @sm_4,@sm_4+2;
+if (@dm_4 == 0 && @suiji_4 >= 40 && @suiji_4 <= 50) set @sm_4,@sm_4+3;
+if (@sudna4+1 == 4 && @suiji_4 <= 31) set @sm_4,@sm_4+1;
+if (@sudna4+1 == 1 && @suiji_4 >= 40 && @suiji_4 <= 50) set @sm_4,@sm_4-1;
+if (@sm_4 > 40) set @sm_4,40;
+goto xianshi2;
+
+xianshi2:
+mes "[賽馬現場直播]";
+set @mashu, 4-@dm_1-@dm_2-@dm_3-@dm_4;
+mes "賽道上,還有^0000FF[" + @mashu + "]^000000匹馬在比賽! ";
+if(@dm_1 == 1) mes "很不幸,^0000FF1號馬^000000墮馬了!賠率"+@sudna1_byeli+"";
+if(@dm_1 == 0) mes "^0000FF1號馬^000000衝到了第[" + @sm_1 + "] 節了!賠率"+@sudna1_byeli+" ";
+if(@dm_2 == 1) mes "很不幸,^0000FF2號馬^000000墮馬了!賠率"+@sudna2_byeli+"";
+if(@dm_2 == 0) mes "^0000FF2號馬^000000衝到了第[" + @sm_2 + "] 節了!賠率"+@sudna2_byeli+" ";
+if(@dm_3 == 1) mes "很不幸,^0000FF3號馬^000000墮馬了!賠率"+@sudna3_byeli+"";
+if(@dm_3 == 0) mes "^0000FF3號馬^000000衝到了第[" + @sm_3 + "] 節了!賠率"+@sudna3_byeli+" ";
+if(@dm_4 == 1) mes "很不幸,^0000FF4號馬^000000墮馬了!賠率"+@sudna4_byeli+"";
+if(@dm_4 == 0) mes "^0000FF4號馬^000000衝到了第[" + @sm_4 + "] 節了!賠率"+@sudna4_byeli+" ";
+next;
+
+//測試哪之賽馬到終點和是否全部摔馬
+if (@mashu == 0) goto allout;
+if (@sm_1 > 39) goto win;
+if (@sm_2 > 39) goto win;
+if (@sm_3 > 39) goto win;
+if (@sm_4 > 39) goto win;
+goto begin_1;
+
+//第一名賽馬紀錄到@win內
+//@win_2則紀錄幾隻賽馬到終點
+win:
+if (@sm_1 >= 40){
+	set @win,1;
+	set $sm_1,$sm_1+1;
+	set @win_2,@win_2+1;
+	}
+if (@sm_2 >= 40){
+	set @win,2;
+	set $sm_2,$sm_2+1;
+	set @win_2,@win_2+1;
+	}
+if (@sm_3 >= 40){
+	set @win,3;
+	set $sm_3,$sm_3+1;
+	set @win_2,@win_2+1;
+	}
+if (@sm_4 >= 40){
+	set @win,4;
+	set $sm_4,$sm_4+1;
+	set @win_2,@win_2+1;
+	}
+if (@win_2 >= 2) goto double;
+
+mes "[賽馬主持]";
+mes "本次賽馬.首先衝過終點的是^0000FF[" + @win + "]^000000號馬~! ";
+mes "祝賀支持它的人,真有眼光~~!";
+mes "你投注的是^0000FF[" + @win_ + "]^000000號馬~! ";
+if (@win == @win_) mes "恭喜,你真有眼光,買中了^0000FF[" + @win + "]^000000號馬~! ";
+if (@win != @win_) mes "很不幸,你沒買中頭馬,下次努力吧";
+if (@win == @win_){
+	//依照贏的賽馬賠率給予獎勵
+	if(@win==1) set @byeli,@sudna1_byeli;
+	if(@win==2) set @byeli,@sudna2_byeli;
+	if(@win==3) set @byeli,@sudna3_byeli;
+	if(@win==4) set @byeli,@sudna4_byeli;
+	getitem 671,@mooney*@byeli;
+	close;
+	}
+close;
+
+double:
+set $double,$double+1;
+mes "[賽馬主持]";
+mes "哇..竟然出現雙冠軍~~!";
+mes "這情況沒人想到,令所有投注者都失望";
+close;
+
+allout:
+set $allout,$allout+1;
+mes "[賽馬主持]";
+mes "哇..天哪~~!";
+mes "竟然全部騎師都墮馬了~~!";
+mes "這情況沒人想到,令投注者失望";
+close;
+
+noitem:
+mes "[賽馬主持]:";
+mes "你沒準備好響應的貨幣不能參加投注哦~~!";
+close;
+
+}

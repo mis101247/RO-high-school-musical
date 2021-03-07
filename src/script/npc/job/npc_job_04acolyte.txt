@@ -1,0 +1,382 @@
+//====================================================================
+//Ragnarok Online Acolyte jobchange script
+//漢化:chiho
+//====================================================================
+prt_church.gat,184,41,4	script	聖堂神父	60,{
+	mes "[馬勒西斯神父]";
+	mes "請問有什麼事情嗎?";
+	next;
+	menu "轉職成為服事",L1,"詢問有關轉職成為服事的條件",-,"放棄",Lend;
+		mes "[馬勒西斯神父]";
+		mes "你想要轉職成為服事嗎?";
+		mes "那麼，你必須要通過神的試驗並克服2項修練才行";
+		next;
+		mes "[馬勒西斯神父]";
+		mes "首先，初學者的基本技能等級要到達9級以上";
+		mes "這是要在這世界上生存下去的最基本修行，";
+		mes "請你好好的修練。";
+		next;
+		mes "[馬勒西斯神父]";
+		mes "第二，必須要克服所有的考驗再回到這來。";
+		mes "並且取得修行處的申請許可認同。";
+		next;
+		mes "[馬勒西斯神父]";
+		mes "當你完成這兩項修練後請再回到這個地方來，";
+		mes "那麼你就能夠成為服事這個神聖職業了。";
+		close;
+L1:
+	if (Class == 4) goto Laco;
+	if (Class != 0) goto LError;
+	if (change_acolyte >= 1) goto Lcheck;
+	mes "[馬勒西斯神父]";
+	mes "你是真心想成為神的隨從嗎?";
+	next;
+	menu "是的。",L1_1,"還是在考慮一下",-;
+		mes "[馬勒西斯神父]";
+		mes "不管怎麼樣，願天主保佑你。";
+		close;
+	L1_1:
+//轉生成長處理
+		//callfunc "jobchanger","馬勒西斯神父",4;
+	if (Upper == 1) goto LUpper1;
+		mes "[馬勒西斯神父]";
+		mes "很好。"+strcharinfo(0)+" …";
+		mes "我接受你的轉職申請書";
+		mes "那麼，你應該知道要成為神的隨從";
+		mes "必須要經過一連串嚴格的修練吧?!";
+		next;
+		mes "[馬勒西斯神父]";
+		mes "你的工作是……";
+		set @acorand,rand(3);
+	if (@acorand == 1) goto Lmati;
+	if (@acorand == 2) goto Lruba;
+		set change_acolyte,1;
+		mes "^3355ff請你去普隆德拉北西^000000的^3355ff橋墩邊^000000";
+		mes "找修行中的 ^3355ff洋介神父^000000 ";
+		goto Lrandend;
+	Lmati:
+		set change_acolyte,2;
+		mes "^3355ff請你去普隆德拉南西^000000的^3355ff夢羅克北邊^000000";
+		mes "找修行中的 ^3355ff麻蒂達修女^000000 ";
+		goto Lrandend;
+	Lruba:
+		set change_acolyte,3;
+		mes "^3355ff請你去普隆德拉北東^000000的^3355ff聖卡畢利那修道院前^000000";
+		mes "找修行中的 ^3355ff魯巴卡帕拉神父^000000 ";
+Lrandend:
+		mes "正等著你的到來";
+		next;
+		mes "[馬勒西斯神父]";
+		mes "神父正等待著為了成為服事而虔心修行的人，";
+		mes "請你去告訴他你的意願吧!";
+		close;
+Lcheck:
+	mes "[馬勒西斯神父]";
+	mes "很高興又見到你了。";
+	mes "不知道你是否已經完成了你的工作了呢?";
+	next;
+	if (getskilllv(1) < 9) goto Llowlv;
+	if (change_acolyte == 1) goto Lmeet1;
+	if (change_acolyte == 2) goto Lmeet2;
+	if (change_acolyte == 3) goto Lmeet3;
+	if (change_acolyte >= 10) goto Ljobchange;
+//Error
+	mes "[馬勒西斯神父]";
+	mes "Script Error";
+	mes "change_acolyte : "+change_acolyte;
+	mes "Class : "+Class;
+	close;
+Lmeet1:
+	mes "[馬勒西斯神父]";
+	mes "在修行完成者名冊裡";
+	mes "沒有你的名字……。";
+	mes "^000077請你去普隆德拉北西的橋墩^000000";
+	mes "找修行中的 ^000077洋介^000000 神父";
+	mes "正等著你的到來";
+	goto Lmeetend;
+Lmeet2:
+	mes "[馬勒西斯神父]";
+	mes "在修行完成者名冊裡";
+	mes "沒有你的名字……。";
+	mes "^000077請你去普隆德拉南西的夢羅克邊^000000";
+	mes "找修行中的 ^000077麻蒂達^000000 修女";
+	mes "正等著你的到來";
+	goto Lmeetend;
+Lmeet3:
+	mes "[馬勒西斯神父]";
+	mes "在修行完成者名冊裡";
+	mes "沒有你的名字……。";
+	mes "^000077請你去普隆德拉北東的聖卡畢利那修道院前^000000";
+	mes "找修行中的 ^000077魯巴卡帕拉^000000 神父";
+	mes "正等著你的到來";
+Lmeetend:
+	next;
+	mes "[馬勒西斯神父]";
+	mes "神父正等待著為了成為服事而虔心修行的人，";
+	mes "請你去告訴他你的意願吧!";
+	close;
+Ljobchange:
+	mes "[馬勒西斯神父]";
+	mes "嗯，你的基本技能等級足夠。";
+	mes "修練完成名單上也已經有你的名字，";
+	mes "我就接受你的請求，";
+	mes "讓你轉職成為服事。";
+	unequip;
+	jobchange 4;
+	set change_acolyte,0;
+	next;
+	mes "[馬勒西斯神父]";
+	mes "要時常懷著感謝的心侍奉憐愛我們的神，";
+	mes "今後不管面臨什麼困難與磨練，";
+	mes "也要以更虔誠的信仰來侍奉我們的神。";
+	next;
+	mes "[馬勒西斯神父]";
+	mes "最後，恭喜你能堅持到最後，";
+	mes "克服困難與磨練，完成這一連串的修行。";
+	close;
+Llowlv:
+	mes "[馬勒西斯神父]";
+	mes "什麼?!基本等級不足喔!";
+	mes "想要轉職至少得是十級的初心者才行。";
+	close;
+Laco:
+	mes "[馬勒西斯神父]";
+	mes "你已經是服事了";
+	mes "難道現在是在開玩笑嗎?";
+	close;
+LError:
+	mes "[馬勒西斯神父]";
+	mes "嗯......你是不是還有剩下的技能點數忘了點?";
+Lend:
+	close;
+LUpper1:
+	if (getskilllv(1) < 9) goto Llowlv;
+	mes "[馬勒西斯神父]";
+	mes "抱歉，你已經轉職成別的職業了。";
+	next;
+	unequip;
+	jobchange 4,1;
+	skill 156,1,0;
+	mes "[馬勒西斯神父]";
+	mes "恭喜你轉職為服事!";
+	mes "今後也請你努力!";
+	close;
+
+
+}
+
+//==============================================================================
+prt_fild00.gat,208,218,4	script	修行中的神父	98,{
+	if (Class == 4) goto Laco;
+	if ((Class == 0) && (change_acolyte == 0)) goto Lnovice;
+	if ((Class == 0) && (change_acolyte == 1)) goto Lok;
+	if ((Class == 0) && (change_acolyte == 10)) goto Ltwice;
+	if ((Class == 0) && (change_acolyte != 1)) goto Lno;
+	mes "[洋介神父]";
+	mes "……";
+	close;
+Lok:
+	mes "[洋介神父]";
+	mes "你是服事修行者?";
+	next;
+	mes "[洋介神父]";
+	mes "很高興你能平安的到達這裡。";
+	mes "你的名字是 "+strcharinfo(0)+"。";
+	next;
+	set change_acolyte,10;
+	savepoint "prt_fild00.gat",206,231;
+	mes "[洋介神父]";
+	mes "很好。 "+strcharinfo(0)+"。";
+	mes "我會將你已經來過這裡的確認書寄出";
+	mes "請回教堂去跟神父確認一下吧!";
+	close;
+Lno:
+	mes "[洋介神父]";
+	mes "你是服事修行者?";
+	next;
+	mes "[洋介神父]";
+	mes "很高興你能平安的到達這裡。";
+	mes "你的名字是 "+strcharinfo(0)+" …?";
+	mes "這裡的名單上沒有你的名字呢!";
+	next;
+	mes "[洋介神父]";
+	mes "是不是認錯人啊!";
+	mes "…因為你的錯認所以請回到大教堂";
+	mes "再找馬勒西斯神父再確認一次。";
+	close;
+Ltwice:
+	mes "[洋介神父]";
+	mes "有事嗎?我現在正在潛心修行";
+	mes "沒事的話趕快回到教堂!";
+	close;
+Laco:
+	if ((change_priest >= 1) && (change_priest <= 3)) goto Lchgpri;
+	mes "[洋介神父]";
+	mes "祭司修行者嗎?好久不見啊";
+	close;
+Lnovice:
+	mes "[洋介神父]";
+	mes "那裏的初學者，有事情想向我說嗎?";
+	close;
+Lchgpri:/*適當*/
+	if (priest_meet1 == 1) goto Lptwice;
+	mes "[洋介神父]";
+	mes "你應該是想要轉職成為祭司的修行者吧。";
+	mes "辛苦了~";
+	next;
+	set change_priest,change_priest+1;
+	set priest_meet1,1;
+	savepoint "prt_fild00.gat",206,231;
+	mes "[洋介神父]";
+	mes "瞧喔!這樣就完成了教堂方面的傳達了";
+	close;
+Lptwice:/*適當*/
+	mes "[洋介神父]";
+	mes "有事嗎?我現在正在潛心修行";
+	mes "沒事的話趕快回到教堂!";
+	close;
+}
+//==============================================================================
+moc_fild07.gat,41,355,4	script	修行中的修女	95,{
+	if (Class == 4) goto Laco;
+	if ((Class == 0) && (change_acolyte == 0)) goto Lnovice;
+	if ((Class == 0) && (change_acolyte == 2)) goto Lok;
+	if ((Class == 0) && (change_acolyte == 20)) goto Ltwice;
+	if ((Class == 0) && (change_acolyte != 2)) goto Lno;
+Lnovice:/*其他職業的回答*/
+	mes "[麻蒂達修女]";
+	mes "……";
+	close;
+Lok:
+	mes "[麻蒂達修女]";
+	mes "嗯，你是服事修行者啊!";
+	mes "看起來好像很疲倦。";
+	next;
+	set change_acolyte,20;
+	savepoint "moc_fild07.gat",36,355;
+	mes "[麻蒂達修女]";
+	mes "名字是?嗯…";
+	mes "啊~在這裡!";
+	mes strcharinfo(0)+"就是你";
+	mes "我會將你已經來過這裡的確認書寄出";
+	mes "請回到教堂跟馬勒西斯神父確認一下吧";
+	close;
+Lno:
+	mes "[麻蒂達修女]";
+	mes "嗯，你是服事修行者啊!";
+	mes "看起來好像很疲倦。";
+	mes "名字是?嗯…";
+	mes "疑?沒有找到…";
+	mes "那個…這裡的名單上沒有你的名字呢…";
+	next;
+	mes "[麻蒂達修女]";
+	mes "請回到教堂再確認一次";
+	close;
+Ltwice:
+	mes "[麻蒂達修女]";
+	mes "派遣信鴿將確認書送至教堂了";
+	mes "你快要到達聖堂的時候，";
+	mes "負責的神父應該已經收到知會了。";
+	mes "你走上成為服事的路，神會為你祈禱的。";
+	close;
+Laco:
+	if ((change_priest >= 1) && (change_priest <= 3)) goto Lchgpri;
+	mes "[麻蒂達修女]";
+	mes "你會受到神的保佑的…";
+	close;
+Lchgpri:
+	if (priest_meet2 == 1) goto Lptwice;
+	mes "[麻蒂達修女]";
+	mes "你是祭司修行者啊!";
+	mes "看起來好像很疲倦。";
+	next;
+	set change_priest,change_priest+1;
+	set priest_meet2,1;
+	savepoint "moc_fild07.gat",36,355;
+	mes "[麻蒂達修女]";
+	mes "…好。OK了。";
+	mes "派遣信鴿將確認書送至教堂了";
+	close;
+Lptwice:
+	mes "[麻蒂達修女]";
+	mes "派遣信鴿將確認書送至教堂了";
+	mes "你快要到達聖堂的時候，";
+	mes "負責的神父應該已經收到知會了。";
+	mes "你走上成為祭司的路，神會為你祈禱的。";
+	close;
+}
+//==============================================================================
+prt_fild03.gat,365,255,1	script	修行中的神父	89,{
+	if (Class == 4) goto Laco;
+	if ((Class == 0) && (change_acolyte == 0)) goto Lnovice;
+	if ((Class == 0) && (change_acolyte == 3)) goto Lok;
+	if ((Class == 0) && (change_acolyte == 30)) goto Ltwice;
+	if ((Class == 0) && (change_acolyte != 3)) goto Lno;
+	mes "[魯巴卡帕拉神父]";
+	mes "啊?你是從內地來修行的嗎?";
+	mes "或是外地旅人?";
+	mes "這裡的魔物外觀雖然可愛但仍然有很強的殺傷力";
+	mes "所以要小心。";
+	close;
+Lok:/*log未取得*/
+	mes "[魯巴卡帕拉神父]";
+	mes "嗯…";
+	mes "你就是那位想成為服事的人嗎?";
+	next;
+	set change_acolyte,30;
+	savepoint "prt_fild03.gat",360,256;
+	mes "[魯巴卡帕拉神父]";
+	mes "名字是?嗯…";
+	mes "啊~在這裡!";
+	mes strcharinfo(0)+"就是你";
+	mes "我會將你已經來過這裡的確認書寄出。";
+	mes "請回教堂再跟馬勒西斯神父確認一下吧!";
+	close;
+Lno:
+	mes "[魯巴卡帕拉神父]";
+	mes "嗯…";
+	mes "你就是那位想成為服事的人嗎?";
+	mes "正好剛從教堂收到聯絡信";
+	mes "你的名字是… "+strcharinfo(0)+"…";
+	mes "那個…沒有啊…";
+	next;
+	mes "[魯巴卡帕拉神父]";
+	mes "……要回到教堂再一次確認喔!";
+	close;
+Ltwice:/*log未取得*/
+	mes "[魯巴卡帕拉神父]";
+	mes "因為教堂方面有傳達訊息";
+	mes "所以請您再做一次的確認吧!";
+	close;
+Laco:
+	if ((change_priest >= 1) && (change_priest <= 3)) goto Lchgpri;
+	mes "[魯巴卡帕拉神父]";
+	mes "對不起。我現在正在修行當中";
+	mes "不能與人談天";
+	close;
+Lnovice:
+	mes "[魯巴卡帕拉神父]";
+	mes "嗯?為什麼到這樣的地方來呢?";
+	mes "這邊是修行者與旅人會經過的區域";
+	mes "對於初學者來說是個危險的場所";
+	mes "所以最好快點回去。";
+	close;
+Lchgpri:/*適當*/
+	if (priest_meet3 == 1) goto Lptwice;
+	mes "[魯巴卡帕拉神父]";
+	mes "你是祭司修行者啊!";
+	mes "看起來好像很疲倦。";
+	next;
+	set change_priest,change_priest+1;
+	set priest_meet3,1;
+	savepoint "prt_fild03.gat",360,256;
+	mes "[魯巴卡帕拉神父]";
+	mes "…好。OK了。";
+	mes "已把確認書送至教堂了。";
+	close;
+Lptwice:/*適當*/
+	mes "[魯巴卡帕拉神父]";
+	mes "因為教堂方面有傳達訊息";
+	mes "所以請您再做一次的確認吧!";
+	close;
+}

@@ -1,0 +1,371 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 崑崙 氣功師 任務 -
+//========================================================================================
+gonryun.gat,180,117,0	script	氣功師	85,{
+	if (Class == 0) goto Lnovice;
+	if (event_tougijou == 1) goto LStart2;
+	mes "[宋武杜]";
+	mes "來來~這不是天都有的喔!";
+	mes "歐~我看你能使點力氣羅!";
+	mes "要試試看嗎?";
+	next;
+	menu "試試看",L1,"沒興趣",L2,"不理他直接過去",L3;
+L1:
+	mes "[宋武杜]";
+	mes "歐歐~果然我的眼光沒錯";
+	mes "只要可以把這個抬起來的話";
+	mes "我會帶你去好的地方";
+	mes "來!準備吧~";
+	next;
+//氣功師給730石頭(以ATK決定)
+	if (checkweight(7049,730)) goto Lweightok;
+		mes "^0000ff宋武杜";
+		mes "指著蠻大的石頭";
+		mes "並要你抬起來";
+		mes "但是，對你來說好像太重了。^000000";
+		next;
+		mes "[宋武杜]";
+		mes "修練的還不夠呢!";
+		mes "去修練之後再來吧!";
+		close;
+Lweightok:
+	getitem 7049,730;
+	set event_tougijou,1;
+	mes "^0000ff宋武杜";
+	mes "指著蠻大的石頭";
+	mes "並要你抬起來";
+	mes "你很輕鬆的把石頭抬起來了^000000";
+	next;
+	emotion 21;
+	mes "[宋武杜]";
+	mes "哈哈~果然我的眼光沒錯";
+	mes "下次見到你的話";
+	mes "帶你去好的地方";
+	mes "那麼再見了！";
+	close;
+L2:
+	mes "[宋武杜]";
+	mes "是嗎?";
+	mes "啊啊 沒什麼嘛";
+	mes "只是費點力氣就可以有特別的經驗";
+	mes "哈哈~";
+	mes "有興趣的話不妨挑戰看看吧!";
+	close;
+L3:
+	emotion 32;
+	mes "[宋武杜]";
+	mes "真是看錯人啦!";
+	mes "唉伊……";
+	close;
+LStart2:
+	mes "[宋武杜]";
+	mes "歐~ 又見面了啊！";
+	mes "你要去有趣的地方看嗎?";
+	next;
+	menu "去",-,"不去",Lno;
+		mes "[宋武杜]";
+		mes "果然是你啊";
+		mes "嗯哈哈哈哈";
+		mes "那就加油吧！";
+		close2;
+		warp "gon_test.gat",53,6;
+		end;
+	Lno:
+		mes "[宋武杜]";
+		mes "喔~這樣喔!";
+		mes "那就沒辦法了";
+		mes "那麼下次再見羅！";
+		close;
+Lnovice:
+	mes "[宋武杜]";
+	mes "小孩子一邊玩去。";
+	close;
+}
+//===============================================================================
+gon_test.gat,50,14,4	script	控室管理者	780,{
+	close;
+OnInit:
+	waitingroom "請進入!!",1,"控室管理者::Onwarp";
+	end;
+Onwarp:
+	warpwaitingpc "gon_test.gat",44,86;
+	KillMonster "gon_test.gat","All";
+	initnpctimer "gontimer";
+	disablenpc "控室管理者";
+	end;
+}
+//===============================================================================
+gon_test.gat,46,14,4	script	鬥技場案內員	770,{
+	mes "[宋喜燕]";
+	mes "……";
+	mes "啊…歡迎光臨";
+	mes "這裡是鬥技場。";
+	mes "什麼疑問嗎？";
+	next;
+	menu "鬥技場？",L1,"小姐有空嗎？",L2,"往觀眾席",L3,"回去",L4,"沒有疑問",L5;
+L1:
+	mes "[宋喜燕]";
+	mes "這鬥技場就同名字一樣是鬥技的地方";
+	mes "就是可以與魔物鬥技的場所。";
+	next;
+	mes "[宋喜燕]";
+	mes "已準備好各階段的魔物了";
+	mes "因此進入鬥技場後，請使用召喚者";
+	mes "與召喚者對話";
+	mes "召喚你喜歡的魔物出來";
+	next;
+	mes "[宋喜燕]";
+	mes "而且制限時間是入場後3分鐘。";
+	mes "請注意。";
+	close;
+L2:
+	mes "[宋喜燕]";
+	mes "喔……啊？";
+	mes "現在正在工作中……。";
+	mes "很抱歉。";
+	close;
+L3:
+	mes "[宋喜燕]";
+	mes "好的!";
+	mes "謝謝。";
+	mes "祝你有個愉快的時間。";
+	close2;
+	set @kengaku,1;
+	warp "gon_test.gat",25,99;
+	end;
+	L4:
+	mes "[宋喜燕]";
+	mes "要回去嗎?";
+	mes "謝謝~請下次再度光臨";
+	close2;
+	warp "gonryun.gat",177,112;
+	end;
+L5:
+	mes "[宋喜燕]";
+	mes "……。";
+	mes "謝謝光臨。";
+	close;
+}
+//===============================================================================
+gon_test.gat,42,89,4	script	召喚者	774,{
+	if (@kengaku == 1) goto LError;
+	if (@addmon == 1) goto Lalready;
+	mes "[宋延 余]";
+	mes "歡迎光臨。";
+	mes "想要召喚哪種魔物呢？";
+	next;
+	menu "１號組群",L1,"２號組群",L2,"３號組群",L3,"４號組群",L4,"５號組群",L5,"６號組群",L6,"７號組群",L7,"８號組群",L8,"９號組群",L9,"１０號組群",L10,"１１號組群",L11;
+	L1:
+		menu "皮革髮帶",L1_1,"食物中毒",L1_2,"捐血證書",L1_3,"吸血鬼",L1_4,"螳螂拳",L1_5,"狂犬病",L1_6;
+		L1_1:
+			monster "gon_test.gat",58,87,"皮革髮帶",1419,1,"gontimer::OnEnd";set @addmon,1;close;
+		L1_2:
+			monster "gon_test.gat",58,87,"食物中毒",1428,1,"gontimer::OnEnd";set @addmon,1;close;
+		L1_3:
+			monster "gon_test.gat",58,87,"捐血證書",1434,1,"gontimer::OnEnd";set @addmon,1;close;
+		L1_4:
+			monster "gon_test.gat",58,87,"吸血鬼",1430,1,"gontimer::OnEnd";set @addmon,1;close;
+		L1_5:
+			monster "gon_test.gat",58,87,"螳螂拳",1457,1,"gontimer::OnEnd";set @addmon,1;close;
+		L1_6:
+			monster "gon_test.gat",58,87,"狂犬病",1432,1,"gontimer::OnEnd";set @addmon,1;close;
+	L2:
+		menu "豬骷髏頭",L2_1,"食人熊",L2_2,"礦工",L2_3,"斗犬",L2_4,"美人魚",L2_5,"老師",L2_6;
+		L2_1:
+			monster "gon_test.gat",58,87,"豬骷髏頭",1462,1,"gontimer::OnEnd";set @addmon,1;close;
+		L2_2:
+			monster "gon_test.gat",58,87,"食人熊",1442,1,"gontimer::OnEnd";set @addmon,1;close;
+		L2_3:
+			monster "gon_test.gat",58,87,"礦工",1469,1,"gontimer::OnEnd";set @addmon,1;close;
+		L2_4:
+			monster "gon_test.gat",58,87,"斗犬",1460,1,"gontimer::OnEnd";set @addmon,1;close;
+		L2_5:
+			monster "gon_test.gat",58,87,"美人魚",1425,1,"gontimer::OnEnd";set @addmon,1;close;
+		L2_6:
+			monster "gon_test.gat",58,87,"老師",1472,1,"gontimer::OnEnd";set @addmon,1;close;
+	L3:
+		menu "腳步",L3_1,"侵蝕",L3_2,"空",L3_3,"涼",L3_4,"熱",L3_5,"腐臭",L3_6;
+		L3_1:
+			monster "gon_test.gat",58,87,"腳步",1454,1,"gontimer::OnEnd";set @addmon,1;close;
+		L3_2:
+			monster "gon_test.gat",58,87,"侵蝕",1443,1,"gontimer::OnEnd";set @addmon,1;close;
+		L3_3:
+			monster "gon_test.gat",58,87,"空",1455,1,"gontimer::OnEnd";set @addmon,1;close;
+		L3_4:
+			monster "gon_test.gat",58,87,"涼",1426,1,"gontimer::OnEnd";set @addmon,1;close;
+		L3_5:
+			monster "gon_test.gat",58,87,"熱",1436,1,"gontimer::OnEnd";set @addmon,1;close;
+		L3_6:
+			monster "gon_test.gat",58,87,"腐臭",1423,1,"gontimer::OnEnd";set @addmon,1;close;
+	L4:
+		menu "祭司",L4_1,"洋蔥",L4_2,"大蜈蚣",L4_3,"木偶",L4_4,"賣火柴的少女",L4_5,"蠅",L4_6;
+		L4_1:
+			monster "gon_test.gat",58,87,"祭司",1458,1,"gontimer::OnEnd";set @addmon,1;close;
+		L4_2:
+			monster "gon_test.gat",58,87,"洋蔥",1440,1,"gontimer::OnEnd";set @addmon,1;close;
+		L4_3:
+			monster "gon_test.gat",58,87,"大蜈蚣",1429,1,"gontimer::OnEnd";set @addmon,1;close;
+		L4_4:
+			monster "gon_test.gat",58,87,"人偶",1459,1,"gontimer::OnEnd";set @addmon,1;close;
+		L4_5:
+			monster "gon_test.gat",58,87,"賣火柴的少女",1444,1,"gontimer::OnEnd";set @addmon,1;close;
+		L4_6:
+			monster "gon_test.gat",58,87,"蠅",1422,1,"gontimer::OnEnd";set @addmon,1;close;
+	L5:
+		menu "女禍",L5_1,"息壤",L5_2,"修蛇",L5_3,"毒龍",L5_4,"青龍",L5_5,"疫鬼",L5_6;
+		L5_1:
+			monster "gon_test.gat",58,87,"女禍",1421,1,"gontimer::OnEnd";set @addmon,1;close;
+		L5_2:
+			monster "gon_test.gat",58,87,"息壤",1481,1,"gontimer::OnEnd";set @addmon,1;close;
+		L5_3:
+			monster "gon_test.gat",58,87,"修蛇",1424,1,"gontimer::OnEnd";set @addmon,1;close;
+		L5_4:
+			monster "gon_test.gat",58,87,"毒龍",1465,1,"gontimer::OnEnd";set @addmon,1;close;
+		L5_5:
+			monster "gon_test.gat",58,87,"青龍",1466,1,"gontimer::OnEnd";set @addmon,1;close;
+		L5_6:
+			monster "gon_test.gat",58,87,"疫鬼",1433,1,"gontimer::OnEnd";set @addmon,1;close;
+	L6:
+		menu "貘",L6_1,"堀火氣",L6_2,"雷神",L6_3,"怨靈",L6_4,"付喪神",L6_5,"飯綱",L6_6;
+		L6_1:
+			monster "gon_test.gat",58,87,"貘",1427,1,"gontimer::OnEnd";set @addmon,1;close;
+		L6_2:
+			monster "gon_test.gat",58,87,"堀火氣",1473,1,"gontimer::OnEnd";set @addmon,1;close;
+		L6_3:
+			monster "gon_test.gat",58,87,"雷神",1431,1,"gontimer::OnEnd";set @addmon,1;close;
+		L6_4:
+			monster "gon_test.gat",58,87,"怨靈",1446,1,"gontimer::OnEnd";set @addmon,1;close;
+		L6_5:
+			monster "gon_test.gat",58,87,"付喪神",1474,1,"gontimer::OnEnd";set @addmon,1;close;
+		L6_6:
+			monster "gon_test.gat",58,87,"飯綱",1471,1,"gontimer::OnEnd";set @addmon,1;close;
+	L7:
+		menu "杖",L7_1,"斧",L7_2,"大槌",L7_3,"鎧",L7_4,"弓",L7_5,"鐵球",L7_6;
+		L7_1:
+			monster "gon_test.gat",58,87,"杖",1450,1,"gontimer::OnEnd";set @addmon,1;close;
+		L7_2:
+			monster "gon_test.gat",58,87,"斧",1439,1,"gontimer::OnEnd";set @addmon,1;close;
+		L7_3:
+			monster "gon_test.gat",58,87,"大槌",1461,1,"gontimer::OnEnd";set @addmon,1;close;
+		L7_4:
+			monster "gon_test.gat",58,87,"鎧",1467,1,"gontimer::OnEnd";set @addmon,1;close;
+		L7_5:
+			monster "gon_test.gat",58,87,"弓",1453,1,"gontimer::OnEnd";set @addmon,1;close;
+		L7_6:
+			monster "gon_test.gat",58,87,"鐵球",1479,1,"gontimer::OnEnd";set @addmon,1;close;
+	L8:
+		menu "唇",L8_1,"齒",L8_2,"發",L8_3,"手",L8_4,"筋肉",L8_5,"骨",L8_6;
+		L8_1:
+			monster "gon_test.gat",58,87,"唇",1451,1,"gontimer::OnEnd";set @addmon,1;close;
+		L8_2:
+			monster "gon_test.gat",58,87,"齒",1475,1,"gontimer::OnEnd";set @addmon,1;close;
+		L8_3:
+			monster "gon_test.gat",58,87,"發",1437,1,"gontimer::OnEnd";set @addmon,1;close;
+		L8_4:
+			monster "gon_test.gat",58,87,"手",1441,1,"gontimer::OnEnd";set @addmon,1;close;
+		L8_5:
+			monster "gon_test.gat",58,87,"筋肉",1476,1,"gontimer::OnEnd";set @addmon,1;close;
+		L8_6:
+			monster "gon_test.gat",58,87,"骨",1435,1,"gontimer::OnEnd";set @addmon,1;close;
+	L9:
+		menu "球",L9_1,"鏡",L9_2,"書",L9_3,"手袋",L9_4,"靴子",L9_5,"服",L9_6;
+		L9_1:
+			monster "gon_test.gat",58,87,"球",1477,1,"gontimer::OnEnd";set @addmon,1;close;
+		L9_2:
+			monster "gon_test.gat",58,87,"鏡",1448,1,"gontimer::OnEnd";set @addmon,1;close;
+		L9_3:
+			monster "gon_test.gat",58,87,"書",1478,1,"gontimer::OnEnd";set @addmon,1;close;
+		L9_4:
+			monster "gon_test.gat",58,87,"手袋",1489,1,"gontimer::OnEnd";set @addmon,1;close;
+		L9_5:
+			monster "gon_test.gat",58,87,"靴子",1488,1,"gontimer::OnEnd";set @addmon,1;close;
+		L9_6:
+			monster "gon_test.gat",58,87,"服",1438,1,"gontimer::OnEnd";set @addmon,1;close;
+	L10:
+		menu "女王",L10_1,"熱血男",L10_2,"死刑執行人",L10_3,"突變龍",L10_4,"合成獸",L10_5,"惡魔",L10_6;
+		L10_1:
+			monster "gon_test.gat",58,87,"女王",1482,1,"gontimer::OnEnd";set @addmon,1;close;
+		L10_2:
+			monster "gon_test.gat",58,87,"熱血男",1464,1,"gontimer::OnEnd";set @addmon,1;close;
+		L10_3:
+			monster "gon_test.gat",58,87,"死刑執行人",1487,1,"gontimer::OnEnd";set @addmon,1;close;
+		L10_4:
+			monster "gon_test.gat",58,87,"突變也",1449,1,"gontimer::OnEnd";set @addmon,1;close;
+		L10_5:
+			monster "gon_test.gat",58,87,"合成獸",1456,1,"gontimer::OnEnd";set @addmon,1;close;
+		L10_6:
+			monster "gon_test.gat",58,87,"惡魔",1486,1,"gontimer::OnEnd";set @addmon,1;close;
+	L11:
+		menu "狩人",L11_1,"暗殺者",L11_2,"侍",L11_3,"武道家",L11_4,"劍土",L11_5;
+		L11_1:
+			monster "gon_test.gat",58,87,"狩人",1447,1,"gontimer::OnEnd";set @addmon,1;close;
+		L11_2:
+			monster "gon_test.gat",58,87,"暗殺者",1483,1,"gontimer::OnEnd";set @addmon,1;close;
+		L11_3:
+			monster "gon_test.gat",58,87,"侍",1490,1,"gontimer::OnEnd";set @addmon,1;close;
+		L11_4:
+			monster "gon_test.gat",58,87,"武道家",1484,1,"gontimer::OnEnd";set @addmon,1;close;
+		L11_5:
+			monster "gon_test.gat",58,87,"劍士",1485,1,"gontimer::OnEnd";set @addmon,1;close;
+Lalready:
+	mes "[宋延 余]";
+	mes "已經召喚出魔物了。";
+	mes "1次可以召喚出1只魔物";
+	mes "如果要再傳喚其他的魔物話";
+	mes "請重新入鬥技場。";
+	close;
+LError:
+	mes "[宋延 余]";
+	mes "正式做申請之後";
+	mes "請再進入鬥技場。";
+	close;
+}
+//===============================================================================
+gon_test.gat,51,90,0	script	gontimer	-1,{
+	close;
+
+OnTimer120000:
+	mapannounce "gon_test.gat",": 剩下1分鐘。",0;
+	end;
+OnTimer180000:
+	mapannounce "gon_test.gat",": 時間到。",0;
+	areawarp "gon_test.gat",42,82,73,91,"gon_test.gat",44,4;
+	stopnpctimer "gontimer";
+	killmonster "gon_test.gat","All";
+	enablenpc "控室管理者";
+	end;
+OnEnd:
+	mapannounce "gon_test.gat","召喚者 : 謝謝!請再度光臨。",0;
+	addtimer 3000,"gontimer::OnReturn";
+	end;
+OnReturn:
+	deltimer "gontimer";
+	stopnpctimer "gontimer";
+	warp "gon_test.gat",44,4;
+	enablenpc "控室管理者";
+	set @addmon,0;
+	end;
+}
+
+
+//===============================================================================
+gon_test.gat,70,103,4	script	出口案內員	773,{
+	mes "[趙櫻櫻]";
+	mes "要回去嗎？";
+	next;
+	menu "回去",-,"不回去",Lno;
+		mes "[趙櫻櫻]";
+		mes "謝謝。";
+		mes "請下次再光臨。";
+		close2;
+		warp "gon_test.gat",44,4;
+		set @kengaku,0;
+		end;
+	Lno:
+		mes "[趙櫻櫻]";
+		mes "謝謝。";
+		close;
+}

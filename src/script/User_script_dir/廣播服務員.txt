@@ -1,0 +1,1962 @@
+prontera.gat,162,173,2	script	廣播服務員(大喊)	803,{
+	cutin "kafra_01",2;
+	mes " [^00F0F0廣播服務員^000000]";
+	mes " 您好，這裡是私服直播室";
+	mes " 歡迎您使用廣播服務";
+	mes " 希望我們的服務能讓您滿意！";
+	next;
+	mes " [^00F0F0廣播服務員^000000]";
+	mes " 每次廣播會收^FF00001張優惠券^000000作服務費";
+	mes " 您要使用廣播系統嗎？";
+	next;
+	menu "我要使用",L_say,"不囉！謝謝你的好意^_^",L_close;
+
+L_say:
+	cutin "kafra_01",2;
+	mes " [^00F0F0廣播服務員^000000]";
+        mes " 在輸入信息之前請看^FF0000注意事項^000000";
+        mes " ^3355FF1、只限40個字符或20個漢字以內^000000";
+        mes " ^3355FF2、禁止發送任何含有暴力、色情、政治、人身攻擊的文字^000000";
+        mes " 如有玩家發現違反規定者請立刻向GM檢舉,任何違規者^FF0000凍結帳戶1周^000000,再犯將^FF0000永久凍結帳戶^000000!";
+	mes " 請輸入您要廣播的內容";
+              next;
+                if (countitem(7037) < 1) goto Over;
+	        delitem 7037,1;
+                input @string$;
+                if (@string$ == "close") goto L_close;
+                announce "【玩家公告】" + strcharinfo(0) + " : " + @string$ + "",15; 
+                goto L_close;
+
+L_close:
+	cutin "kafra_01",2;
+	mes " [^00F0F0廣播服務員^000000]";
+	mes " 期待您的下次光臨";
+	mes " 再見！";
+	cutin "kafra_01",255;
+	close;
+
+Over:
+	cutin "kafra_01",2;
+        mes " [^00F0F0廣播服務員^000000]";
+        mes " 你沒有足夠的優惠券哦！";
+	cutin "kafra_01",255;
+        close;
+}
+
+//支持下列新技能:
+//衝鋒攻擊,退避,音速投擲加速,劇毒短刀,緊密封鎖,火狩衝擊,轉換器製造,水屬性轉換,地屬性轉換,火屬性轉換,風屬性轉換,幻箭,苦痛之聲,拋媚眼,可疑的商業策略,貪慾,犧牲,氣力注入,氣爆發
+
+
+prontera.gat,147,174,5   script   新技能指導員   751,{
+  mes "[新技能指導員II]";   
+  mes "我是新技能指導員II，你將會在我這裡學到每一個職業的新技能";
+  mes "當然，必須要對應職業才可以學到該技能咯。";
+  mes "嗯……你看,我這裡有很多職業技能,免費都給你";
+  next;
+  mes "[新技能指導員II]";   
+  mes "^ff0000不過有些你看不懂我也沒辦法^000000";
+  mes "想看嗎?";
+  next;
+  menu "好,真是個好人啊!",-,"以後再說吧",B_Bye;
+  skill 142,1,0;
+  switch(Class){
+        case Job_Novice:goto L1;break;
+        
+        case Job_Knight:
+        case Job_Knight2:
+          skill 1000,1,0;
+          goto L2;
+          break;
+        case Job_Crusader:
+        case Job_Crusader2:
+          skill 1002,1,0;
+          goto L2;
+          break;         
+        case Job_Swordman:goto L2;break;
+        
+        case Job_Hunter:
+          skill 1009,1,0;
+          goto L3;
+          break;
+        case Job_Bard:
+          skill 1010,1,0;
+          goto L3;
+          break;
+        case Job_Dancer:
+          skill 1011,1,0;
+          goto L3;
+          break;
+        case Job_Archer:goto L3;break;
+          
+        case Job_Blacksmith:
+          skill 1012,1,0;
+          skill 1013,1,0;
+          goto L4;
+          break;
+        case Job_Alchem:   
+          skill 238,1,0;
+          goto L4;
+          break;
+        case Job_Merchant:goto L4;break;
+          
+        case Job_Priest:
+          skill 1014,1,0;
+          goto L5;
+          break;
+        case Job_Monk:
+          skill 1015,1,0;
+          skill 1016,1,0;
+          goto L5;
+          break;
+        case Job_Acolyte:goto L5;break;
+          
+        case Job_Wizard:
+          skill 1006,1,0;
+          goto L6;
+          break;
+        case Job_Sage:
+          if(getskilllv(1008)+getskilllv(1017)+getskilllv(1018)+getskilllv(1019)==0){
+            mes "[新技能指導員II]";   
+            mes "您就是偉大的賢者阿,很高興見到你";
+            mes "我這裡有一種神奇的技能可以轉換怪物的屬性";
+            mes "這是一種極其危險魔法,為了保護您";
+            mes "^ff0000只能學習其中的一種屬性轉換^000000";
+            mes "您要學習哪一種呢?";
+            next;
+            switch(select("水屬性轉換","地屬性轉換","火屬性轉換","風屬性轉換","取消")){
+                case 1:skill 1008,1,0;break;
+                case 2:skill 1017,1,0;break;
+                case 3:skill 1018,1,0;break;
+                case 4:skill 1019,1,0;break;
+                case 5:goto L6;break;
+          }}
+          skill 1007,1,0;
+          goto L6;
+          break;
+        case Job_Mage:goto L6;break;
+          
+        case Job_Assassin:
+          skill 1003,1,0;
+          skill 1004,1,0;
+          goto L7;
+          break;     
+        case Job_Rogue:
+          skill 1005,1,0;
+          goto L7;
+          break;
+        case Job_Thief:goto L7;break;
+        
+        case Job_StarGladiator:
+        case Job_StarGladiator2:
+        case Job_SoulLinker:
+        case Job_TaeKwonBoy:goto L8;break;
+        
+  }
+close;end;
+  
+B_Bye:
+  mes "[新技能指導員]";
+  mes "這樣啊……";
+  mes "那好,下次再說吧";
+  close;
+end;   
+  
+//"初心者",L1,"劍士",L2,"弓箭手",L3,"商人",L4,"服侍",L5,"魔法師",L6,"盜賊",L7,"跆拳道",L8;
+L1:
+  if (getskilllv(143)==0) skill 143,1,0;
+  mes "[新技能指導員II]";
+  mes "我已經把初心者的新技能教給你了，打開技能表看一下吧";
+  mes "雖然這不是什麼厲害的技能，但是也可以在一定程度上幫助你的";
+  mes "祝你在^FF0000仙境傳說^000000中玩得愉快。";
+  close;
+    end;
+
+L2:
+  if (getskilllv(144)==0) skill 144,1,0;
+  if (getskilllv(145)==0) skill 145,1,0;
+  if (getskilllv(146)==0) skill 146,1,0;
+  mes "[新技能指導員II]";
+  mes "我已經把劍士系列的新技能教給你了，打開技能表看一下吧";
+  mes "雖然這不是什麼厲害的技能，但是也可以在一定程度上幫助你的";
+  mes "祝你在^FF0000仙境傳說^000000中玩得愉快。";
+  close;
+    end;
+
+L3:
+  if (getskilllv(147)==0) skill 147,1,0;
+  if (getskilllv(148)==0) skill 148,1,0;
+  mes "[新技能指導員II]";
+  mes "我已經把弓箭手系列的新技能教給你了，打開技能表看一下吧";
+  mes "雖然這不是什麼厲害的技能，但是也可以在一定程度上幫助你的";
+  mes "祝你在^FF0000仙境傳說^000000中玩得愉快。";
+  close;
+    end;
+
+L4:
+  if (getskilllv(153)==0) skill 153,1,0;
+  if (getskilllv(154)==0) skill 154,1,0;
+  if (getskilllv(155)==0) skill 155,1,0;
+  mes "[新技能指導員II]";
+  mes "我已經把商人系列的新技能教給你了，打開技能表看一下吧";
+  mes "雖然這不是什麼厲害的技能，但是也可以在一定程度上幫助你的";
+  mes "祝你在^FF0000仙境傳說^000000中玩得愉快。";
+  close;
+    end;
+
+L5:
+  if (getskilllv(156)==0) skill 156,1,0;
+  mes "[新技能指導員II]";
+  mes "我已經把服侍系列的新技能教給你了，打開技能表看一下吧";
+  mes "雖然這不是什麼厲害的技能，但是也可以在一定程度上幫助你的";
+  mes "祝你在^FF0000仙境傳說^000000中玩得愉快。";
+  close;
+    end;
+
+L6:
+  if (getskilllv(157)==0) skill 157,1,0;
+  mes "[新技能指導員II]";
+  mes "我已經把魔法師系列的新技能教給你了，打開技能表看一下吧";
+  mes "雖然這不是什麼厲害的技能，但是也可以在一定程度上幫助你的";
+  mes "祝你在^FF0000仙境傳說^000000中玩得愉快。";
+  close;
+    end;
+
+L7:
+  if (getskilllv(149)==0) skill 149,1,0;
+  if (getskilllv(150)==0) skill 150,1,0;
+  if (getskilllv(151)==0) skill 151,1,0;
+  if (getskilllv(152)==0) skill 152,1,0;
+  mes "[新技能指導員II]";
+  mes "我已經把盜賊系列的新技能教給你了，打開技能表看一下吧";
+  mes "雖然這不是什麼厲害的技能，但是也可以在一定程度上幫助你的";
+  mes "祝你在^FF0000仙境傳說^000000中玩得愉快。";
+  close;
+    end;
+
+L8:
+  if (getskilllv(493)==0) skill 493,1,0;
+  mes "[新技能指導員II]";
+  mes "我已經把跆拳道系列的新技能教給你了，打開技能表看一下吧";
+  mes "雖然這不是什麼厲害的技能，但是也可以在一定程度上幫助你的";
+  mes "祝你在^FF0000仙境傳說^000000中玩得愉快。";
+  close;
+    end;
+}
+
+quiz_01.gat	mapflag	nomemo	dummy
+quiz_01.gat	mapflag	noteleport	dummy
+quiz_01.gat	mapflag	nosave	prontera.gat,156,183
+quiz_01.gat	mapflag	nopenalty	dummy
+quiz_01.gat	mapflag	noskill,81:78:75:74:45:33:29:30:34:24:25:12:18:21:20:43:44:60:79:80:83:84:85:87:89:90:91:92:110:111:112:113:114:115:116:117:118:119:120:121:122:123:124:125:130:131:155:213:229:230:232:233:254:261:270:285:286:287:288:290:305:306:307:308:309:310:311:312:313:317:320:321:322:325:327:328:329:330:362:380:384:390:395:401:404:405:406:70:334:335:336	dummy
+quiz_01.gat	mapflag	nobranch	dummy
+
+quiz_00.gat	mapflag	nomemo	dummy
+quiz_00.gat	mapflag	noteleport	dummy
+quiz_00.gat	mapflag	nosave	prontera.gat,156,183
+quiz_00.gat	mapflag	nopenalty	dummy
+quiz_00.gat	mapflag	noskill,81:78:75:74:45:33:29:30:34:24:25:12:18:21:20:43:44:60:79:80:83:84:85:87:89:90:91:92:110:111:112:113:114:115:116:117:118:119:120:121:122:123:124:125:130:131:155:213:229:230:232:233:254:261:270:285:286:287:288:290:305:306:307:308:309:310:311:312:313:317:320:321:322:325:327:328:329:330:362:380:384:390:395:401:404:405:406:70:334:335:336	dummy
+quiz_00.gat	mapflag	nobranch	dummy
+
+
+amatsu.gat,101,152,4	script	益智問答工作人員	769,{
+	if ($@QuizeStart != 0) goto L_poat;
+	mes "[益智問答工作人員]";
+	mes "啊~~";
+	mes "難得有休息時間";
+	mes "如果你是想參加益智問答的人";
+	mes "那你錯過時間囉";
+	next;
+	mes "[益智問答工作人員]";
+	mes "每天有四個場次";
+	mes "每天早上10點";
+	mes "每天下午2點";
+	mes "每天晚上6點";
+	mes "每天晚上10點";
+	close;
+L_poat:
+	if ($@QuizeStart != 1) goto L_GameStarting;
+	mes "[益智問答工作人員]";
+	mes "請問你要參加機智問答嗎";
+	next;
+	menu "是",L_QuiseStart,"否",-;
+	mes "[益智問答工作人員]";
+	mes "再見";
+	close;
+L_QuiseStart:
+	if ($@QuizeStart != 1) goto L_GameStarting;
+	warp "quiz_01.gat",140,285;
+	end;
+L_GameStarting:
+	mes "[益智問答工作人員]";
+	mes "遊戲進行中";
+	mes "等下一次吧！";
+	close;
+
+OnClock1400:
+	if ($@BRSTART != 0) end;
+	callfunc "SYSOXquizeStarter";
+	end;
+OnClock1530:
+	goto NUM_cleen;
+OnClock1800:
+	if ($@BRSTART != 0) end;
+	callfunc "SYSOXquizeStarter";
+	end;
+OnClock1930:
+	goto NUM_cleen;
+OnClock2200:
+	if ($@BRSTART != 0) end;
+	callfunc "SYSOXquizeStarter";
+	end;
+OnClock2330:
+	goto NUM_cleen;
+OnClock1000:
+	if ($@BRSTART != 0) end;
+	callfunc "SYSOXquizeStarter";
+	end;
+OnClock1130:
+	goto NUM_cleen;
+	//機智問答場地座標
+	//起始座標
+NUM_cleen:
+	setarray $@QzStOXMp$[1],"","","","","","","","","","","","","";
+	setarray $@QzStOXPoX[1],0,0,0,0,0,0,0,0,0,0,0,0,0;
+	setarray $@QzStOXPoY[1],0,0,0,0,0,0,0,0,0,0,0,0,0;
+	//OX
+	setarray $@QuizoxOm$[1],"","","","","","","";
+	setarray $@QuizoxMm$[1],"","","","","","","";
+	setarray $@QuizoxXm$[1],"","","","","","","";
+	setarray $@QuizoxOXs[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxMXs[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxXXs[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxOYs[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxMYs[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxXYs[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxOXe[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxMXe[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxXXe[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxOYe[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxMYe[1],0,0,0,0,0,0,0;
+	setarray $@QuizoxXYe[1],0,0,0,0,0,0,0;
+	//1234
+	setarray $@QzizNmMpm$[8],"","","","","";
+	setarray $@QzizNmMn$[8],"","","","","";
+	setarray $@QzizNm1xs[8],0,0,0,0,0;
+	setarray $@QzizNm2xs[8],0,0,0,0,0;
+	setarray $@QzizNm3xs[8],0,0,0,0,0;
+	setarray $@QzizNm4xs[8],0,0,0,0,0;
+	setarray $@QzizNmM1xs[8],0,0,0,0,0;
+	setarray $@QzizNmM2xs[8],0,0,0,0,0;
+	setarray $@QzizNmM3xs[8],0,0,0,0,0;
+	setarray $@QzizNmM4xs[8],0,0,0,0,0;
+	setarray $@QzizNmM5xs[8],0,0,0,0,0;
+	setarray $@QzizNm1ys[8],0,0,0,0,0;
+	setarray $@QzizNm2ys[8],0,0,0,0,0;
+	setarray $@QzizNm3ys[8],0,0,0,0,0;
+	setarray $@QzizNm4ys[8],0,0,0,0,0;
+	setarray $@QzizNmM1ys[8],0,0,0,0,0;
+	setarray $@QzizNmM2ys[8],0,0,0,0,0;
+	setarray $@QzizNmM3ys[8],0,0,0,0,0;
+	setarray $@QzizNmM4ys[8],0,0,0,0,0;
+	setarray $@QzizNmM5ys[8],0,0,0,0,0;
+	setarray $@QzizNm1xe[8],0,0,0,0,0;
+	setarray $@QzizNm2xe[8],0,0,0,0,0;
+	setarray $@QzizNm3xe[8],0,0,0,0,0;
+	setarray $@QzizNm4xe[8],0,0,0,0,0;
+	setarray $@QzizNmM1xe[8],0,0,0,0,0;
+	setarray $@QzizNmM2xe[8],0,0,0,0,0;
+	setarray $@QzizNmM3xe[8],0,0,0,0,0;
+	setarray $@QzizNmM4xe[8],0,0,0,0,0;
+	setarray $@QzizNmM5xe[8],0,0,0,0,0;
+	setarray $@QzizNm1ye[8],0,0,0,0,0;
+	setarray $@QzizNm2ye[8],0,0,0,0,0;
+	setarray $@QzizNm3ye[8],0,0,0,0,0;
+	setarray $@QzizNm4ye[8],0,0,0,0,0;
+	setarray $@QzizNmM1ye[8],0,0,0,0,0;
+	setarray $@QzizNmM2ye[8],0,0,0,0,0;
+	setarray $@QzizNmM3ye[8],0,0,0,0,0;
+	setarray $@QzizNmM4ye[8],0,0,0,0,0;
+	setarray $@QzizNmM5ye[8],0,0,0,0,0;
+	end;
+}
+
+quiz_01.gat,240,285,1	script	SYSquizeTimmerCher	-1,{
+OnTimer1000:
+	set $@QuizeStart,1;
+	announce "機智問答主持人：機智問答開始倒數15分鐘，請於這段時間去報名",15;
+	end;
+OnTimer300000:
+	announce "機智問答主持人：機智問答開始倒數10分鐘，請於這段時間去報名",15;
+	end;
+OnTimer600000:
+	announce "機智問答主持人：機智問答開始倒數5分鐘，請於這段時間去報名",15;
+	end;
+OnTimer900000:
+	if (getmapusers("quiz_01.gat") == 0) goto No_people;
+	announce "機智問答主持人：機智問答活動參加人數" + getmapusers("quiz_01.gat") + "人，現在開始",15;
+
+	//機智問答場地座標
+	//起始座標
+	setarray $@QzStOXMp$[1],"quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_00.gat";
+	setarray $@QzStOXPoX[1],140,64,230,322,42,42,138,335,56,334,204,236,66;
+	setarray $@QzStOXPoY[1],285,183,368,368,369,285,369,89,90,234,92,283,7;
+	//OX
+	setarray $@QuizoxOm$[1],"quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat";
+	setarray $@QuizoxMm$[1],"quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat";
+	setarray $@QuizoxXm$[1],"quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat";
+	setarray $@QuizoxOXs[1],125,45,217,309,23,23,123;
+	setarray $@QuizoxMXs[1],138,62,228,320,40,40,136;
+	setarray $@QuizoxXXs[1],143,67,233,325,45,45,141;
+	setarray $@QuizoxOYs[1],279,175,363,363,361,277,363;
+	setarray $@QuizoxMYs[1],283,181,366,366,367,283,367;
+	setarray $@QuizoxXYs[1],280,175,363,363,361,277,363;
+	setarray $@QuizoxOXe[1],137,61,227,319,39,39,135;
+	setarray $@QuizoxMXe[1],142,66,232,324,44,44,140;
+	setarray $@QuizoxXXe[1],155,83,243,335,61,61,153;
+	setarray $@QuizoxOYe[1],291,191,373,373,378,293,375;
+	setarray $@QuizoxMYe[1],287,185,370,370,371,287,371;
+	setarray $@QuizoxXYe[1],291,191,373,373,377,293,375;
+	//1234
+	setarray $@QzizNmMpm$[8],"quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat";
+	setarray $@QzizNmMn$[8],"quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat","quiz_01.gat";
+	setarray $@QzizNm1xs[8],313,33,313,183,221;
+	setarray $@QzizNm2xs[8],325,45,325,195,240;
+	setarray $@QzizNm3xs[8],337,57,337,207,221;
+	setarray $@QzizNm4xs[8],345,69,349,219,240;
+	setarray $@QzizNmM1xs[8],309,33,313,182,234;
+	setarray $@QzizNmM2xs[8],316,36,316,185,242;
+	setarray $@QzizNmM3xs[8],328,48,328,197,234;
+	setarray $@QzizNmM4xs[8],340,60,340,209,229;
+	setarray $@QzizNmM5xs[8],352,72,352,221,1;
+	setarray $@QzizNm1ys[8],59,59,207,59,280;
+	setarray $@QzizNm2ys[8],59,59,207,59,280;
+	setarray $@QzizNm3ys[8],59,59,207,59,261;
+	setarray $@QzizNm4ys[8],59,59,207,59,261;
+	setarray $@QzizNmM1ys[8],86,86,230,88,282;
+	setarray $@QzizNmM2ys[8],82,82,224,82,274;
+	setarray $@QzizNmM3ys[8],82,82,224,82,269;
+	setarray $@QzizNmM4ys[8],82,82,224,82,274;
+	setarray $@QzizNmM5ys[8],82,82,224,82,1;
+	setarray $@QzizNm1xe[8],321,41,321,191,233;
+	setarray $@QzizNm2xe[8],333,53,333,203,252;
+	setarray $@QzizNm3xe[8],345,65,345,215,233;
+	setarray $@QzizNm4xe[8],357,77,357,227,252;
+	setarray $@QzizNmM1xe[8],361,77,357,228,239;
+	setarray $@QzizNmM2xe[8],318,38,318,188,244;
+	setarray $@QzizNmM3xe[8],330,50,330,200,239;
+	setarray $@QzizNmM4xe[8],342,62,342,212,231;
+	setarray $@QzizNmM5xe[8],354,74,354,224,1;
+	setarray $@QzizNm1ye[8],81,81,223,81,292;
+	setarray $@QzizNm2ye[8],81,81,223,81,292;
+	setarray $@QzizNm3ye[8],81,81,223,81,273;
+	setarray $@QzizNm4ye[8],81,81,223,81,273;
+	setarray $@QzizNmM1ye[8],92,94,236,94,284;
+	setarray $@QzizNmM2ye[8],85,85,229,87,279;
+	setarray $@QzizNmM3ye[8],85,85,229,87,271;
+	setarray $@QzizNmM4ye[8],85,85,229,87,279;
+	setarray $@QzizNmM5ye[8],85,85,229,87,1;
+	end;
+OnTimer901000:
+	announce "機智問答主持人：這段時間之內請不要使用公共頻道發言，以避免影響遊戲進行。",15;
+	set $@OXActionQuiz,0;
+	set $@QuizeStart,2;
+	initnpctimer "SYSquizeOXAction";
+	goto SYS_EndTime;
+No_people:
+	announce "機智問答主持人：無人參加機智問答，活動取消",15;
+SYS_EndTimer:
+	set $@QuizeStart,0;
+SYS_EndTime:
+	stopnpctimer;
+	setnpctimer 0,"SYSquizeTimmerCher";
+	end;
+}
+quiz_01.gat,240,285,1	script	SYSquizeOXAction	-1,{
+OnTimer1000:
+	set $@OXActionQuiz,$@OXActionQuiz + 1;
+	MapAnnounce "quiz_01.gat","20秒後將進行第 " + $@OXActionQuiz + " 題，準備好了嗎？",17;
+	end;
+OnTimer11000:
+	MapAnnounce "quiz_01.gat","還有10秒，請做好準備。",17;
+	end;
+OnTimer21000:
+	callfunc "SYSoxquizeData";
+	MapAnnounce "quiz_01.gat","機智問答主持人：第" + $@OXActionQuiz + "題：" + $@GameQz$ + "",15;
+	end;
+OnTimer27000:
+	set $@NUM,rand(1000)+1000;
+	set $@Quizrand,$@Quizrand+$@NUM;
+	MapAnnounce "quiz_01.gat","你有10秒的思考時間。",17;
+	MapAnnounce "quiz_01.gat","[SYSquizeOXAction]：題庫ID：" + $@NUM + "" + $@Quizrand + "若出現問題請向gm報告此ID",17;
+	end;
+OnTimer32000:
+	MapAnnounce "quiz_01.gat","還有5秒的思考時間，決定好你的答案了嗎？",17;
+	end;
+OnTimer37000:
+	MapAnnounce "quiz_01.gat","機智問答主持人：現在公佈答案。",15;
+	end;
+OnTimer38000:
+	MapAnnounce "quiz_01.gat","機智問答主持人：答案是......。",15;
+	end;
+OnTimer38700:
+	if ($@GameAns == 0) MapAnnounce "quiz_01.gat","機智問答主持人：O",15;
+	if ($@GameAns == 1) MapAnnounce "quiz_01.gat","機智問答主持人：X",15;
+	end;
+OnTimer39000:
+	set $@OXM,$@OXActionQuiz + 1;
+	areawarp $@QuizoxMm$[$@OXActionQuiz],$@QuizoxMXs[$@OXActionQuiz],$@QuizoxMYs[$@OXActionQuiz],$@QuizoxMXe[$@OXActionQuiz],$@QuizoxMYe[$@OXActionQuiz],"prontera",149,92;
+	if ($@GameAns != 0) goto AnsIsX;
+	areawarp $@QuizoxOm$[$@OXActionQuiz],$@QuizoxOXs[$@OXActionQuiz],$@QuizoxOYs[$@OXActionQuiz],$@QuizoxOXe[$@OXActionQuiz],$@QuizoxOYe[$@OXActionQuiz],$@QzStOXMp$[$@OXM],$@QzStOXPoX[$@OXM],$@QzStOXPoY[$@OXM];
+	areawarp $@QuizoxXm$[$@OXActionQuiz],$@QuizoxXXs[$@OXActionQuiz],$@QuizoxXYs[$@OXActionQuiz],$@QuizoxXXe[$@OXActionQuiz],$@QuizoxXYe[$@OXActionQuiz],"prontera",149,92;
+	end;
+AnsIsX:
+	areawarp $@QuizoxOm$[$@OXActionQuiz],$@QuizoxOXs[$@OXActionQuiz],$@QuizoxOYs[$@OXActionQuiz],$@QuizoxOXe[$@OXActionQuiz],$@QuizoxOYe[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QuizoxXm$[$@OXActionQuiz],$@QuizoxXXs[$@OXActionQuiz],$@QuizoxXYs[$@OXActionQuiz],$@QuizoxXXe[$@OXActionQuiz],$@QuizoxXYe[$@OXActionQuiz],$@QzStOXMp$[$@OXM],$@QzStOXPoX[$@OXM],$@QzStOXPoY[$@OXM];
+	end;
+OnTimer42000:
+	if (getmapusers("quiz_01.gat") == 0) goto AllOut;
+	MapAnnounce "quiz_01.gat","機智問答主持人：機智問答進行至第" + $@OXActionQuiz + "題，目前場內剩下" + getmapusers("quiz_01.gat") + "人",15;
+	end;
+OnTimer46000:
+	if ($@OXActionQuiz == 7) end;
+	setnpctimer 0,"SYSquizeTimmerCher";
+	initnpctimer;
+	end;
+AllOut:
+	set $@GameQz$,"";
+	set $@QZnum,0;
+	set $@GameAns,0;
+	set $@QUNUM2,0;
+	announce "機智問答主持人：這次的機智問答最後的參加者在第 " + $@OXActionQuiz + " 題出局，無人獲勝。",15;
+	set $@QuizeStart,0;
+	setnpctimer 0,"SYSquizeTimmerCher";
+	stopnpctimer;
+	end;
+OnTimer50000:
+	MapAnnounce "quiz_01.gat","能進行到這裡，真是不簡單！",17;
+	end;
+OnTimer53000:
+	MapAnnounce "quiz_01.gat","接下來的題目都是選擇題，大家要加油喔！",17;
+	setnpctimer 0,"SYSquizeTimmerCher";
+	initnpctimer "SYSquize1234Action";
+	end;
+}
+
+quiz_01.gat,241,285,1	script	SYSquize1234Action	-1,{
+OnTimer1000:
+	set $@OXActionQuiz,$@OXActionQuiz + 1;
+	MapAnnounce "quiz_01.gat","20秒後將進行第 " + $@OXActionQuiz + " 題，準備好了嗎？",17;
+	end;
+OnTimer11000:
+	MapAnnounce "quiz_01.gat","還有10秒，請做好準備。",17;
+	end;
+OnTimer21000:
+	callfunc "SYS1234quizeData";
+	MapAnnounce "quiz_01.gat","第" + $@OXActionQuiz + "題：" + $@GameQz$ + "",15;
+	end;
+OnTimer22000:
+	MapAnnounce "quiz_01.gat","選項一：" + $@NumAns$[1] + "",15;
+	end;
+OnTimer23000:
+	MapAnnounce "quiz_01.gat","選項二：" + $@NumAns$[2] + "",15;
+	end;
+OnTimer24000:
+	MapAnnounce "quiz_01.gat","選項三：" + $@NumAns$[3] + "",15;
+	end;
+OnTimer25000:
+	MapAnnounce "quiz_01.gat","選項四：" + $@NumAns$[4] + "",15;
+	end;
+OnTimer29000:
+	MapAnnounce "quiz_01.gat","思考時間25秒，請仔細的思考你的答案。",17;
+	end;
+OnTimer34000:
+	MapAnnounce "quiz_01.gat","還有20秒，盡快做決定。",17;
+	end;
+OnTimer44000:
+	MapAnnounce "quiz_01.gat","10秒後公布答案。",17;
+	end;
+OnTimer54000:
+	MapAnnounce "quiz_01.gat","機智問答主持人：現在公佈答案。",15;
+	end;
+OnTimer55000:
+	MapAnnounce "quiz_01.gat","機智問答主持人：答案是......。",15;
+	end;
+OnTimer56700:
+	MapAnnounce "quiz_01.gat","選項" + $@GameAns + "：" + $@NumAns$[$@GameAns] + "",15;
+	end;
+OnTimer57000:
+	//傳走M區
+	set $@OXM,$@OXActionQuiz + 1;
+	areawarp $@QzizNmMpm$[$@OXActionQuiz],$@QzizNmM1xs[$@OXActionQuiz],$@QzizNmM1ys[$@OXActionQuiz],$@QzizNmM1xe[$@OXActionQuiz],$@QzizNmM1ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMpm$[$@OXActionQuiz],$@QzizNmM2xs[$@OXActionQuiz],$@QzizNmM2ys[$@OXActionQuiz],$@QzizNmM2xe[$@OXActionQuiz],$@QzizNmM2ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMpm$[$@OXActionQuiz],$@QzizNmM3xs[$@OXActionQuiz],$@QzizNmM3ys[$@OXActionQuiz],$@QzizNmM3xe[$@OXActionQuiz],$@QzizNmM3ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMpm$[$@OXActionQuiz],$@QzizNmM4xs[$@OXActionQuiz],$@QzizNmM4ys[$@OXActionQuiz],$@QzizNmM4xe[$@OXActionQuiz],$@QzizNmM4ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMpm$[$@OXActionQuiz],$@QzizNmM5xs[$@OXActionQuiz],$@QzizNmM5ys[$@OXActionQuiz],$@QzizNmM5xe[$@OXActionQuiz],$@QzizNmM5ye[$@OXActionQuiz],"prontera",149,92;
+	if ($@GameAns != 1) goto Rura_2;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm1xs[$@OXActionQuiz],$@QzizNm1ys[$@OXActionQuiz],$@QzizNm1xe[$@OXActionQuiz],$@QzizNm1ye[$@OXActionQuiz],$@QzStOXMp$[$@OXM],$@QzStOXPoX[$@OXM],$@QzStOXPoY[$@OXM];
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm2xs[$@OXActionQuiz],$@QzizNm2ys[$@OXActionQuiz],$@QzizNm2xe[$@OXActionQuiz],$@QzizNm2ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm3xs[$@OXActionQuiz],$@QzizNm3ys[$@OXActionQuiz],$@QzizNm3xe[$@OXActionQuiz],$@QzizNm3ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm4xs[$@OXActionQuiz],$@QzizNm4ys[$@OXActionQuiz],$@QzizNm4xe[$@OXActionQuiz],$@QzizNm4ye[$@OXActionQuiz],"prontera",149,92;
+Rura_2:	if ($@GameAns != 2) goto Rura_3;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm1xs[$@OXActionQuiz],$@QzizNm1ys[$@OXActionQuiz],$@QzizNm1xe[$@OXActionQuiz],$@QzizNm1ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm2xs[$@OXActionQuiz],$@QzizNm2ys[$@OXActionQuiz],$@QzizNm2xe[$@OXActionQuiz],$@QzizNm2ye[$@OXActionQuiz],$@QzStOXMp$[$@OXM],$@QzStOXPoX[$@OXM],$@QzStOXPoY[$@OXM];
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm3xs[$@OXActionQuiz],$@QzizNm3ys[$@OXActionQuiz],$@QzizNm3xe[$@OXActionQuiz],$@QzizNm3ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm4xs[$@OXActionQuiz],$@QzizNm4ys[$@OXActionQuiz],$@QzizNm4xe[$@OXActionQuiz],$@QzizNm4ye[$@OXActionQuiz],"prontera",149,92;
+Rura_3:	if ($@GameAns != 3) goto Rura_4;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm1xs[$@OXActionQuiz],$@QzizNm1ys[$@OXActionQuiz],$@QzizNm1xe[$@OXActionQuiz],$@QzizNm1ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm2xs[$@OXActionQuiz],$@QzizNm2ys[$@OXActionQuiz],$@QzizNm2xe[$@OXActionQuiz],$@QzizNm2ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm3xs[$@OXActionQuiz],$@QzizNm3ys[$@OXActionQuiz],$@QzizNm3xe[$@OXActionQuiz],$@QzizNm3ye[$@OXActionQuiz],$@QzStOXMp$[$@OXM],$@QzStOXPoX[$@OXM],$@QzStOXPoY[$@OXM];
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm4xs[$@OXActionQuiz],$@QzizNm4ys[$@OXActionQuiz],$@QzizNm4xe[$@OXActionQuiz],$@QzizNm4ye[$@OXActionQuiz],"prontera",149,92;
+Rura_4:	if ($@GameAns != 4) end;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm1xs[$@OXActionQuiz],$@QzizNm1ys[$@OXActionQuiz],$@QzizNm1xe[$@OXActionQuiz],$@QzizNm1ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm2xs[$@OXActionQuiz],$@QzizNm2ys[$@OXActionQuiz],$@QzizNm2xe[$@OXActionQuiz],$@QzizNm2ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm3xs[$@OXActionQuiz],$@QzizNm3ys[$@OXActionQuiz],$@QzizNm3xe[$@OXActionQuiz],$@QzizNm3ye[$@OXActionQuiz],"prontera",149,92;
+	areawarp $@QzizNmMn$[$@OXActionQuiz],$@QzizNm4xs[$@OXActionQuiz],$@QzizNm4ys[$@OXActionQuiz],$@QzizNm4xe[$@OXActionQuiz],$@QzizNm4ye[$@OXActionQuiz],$@QzStOXMp$[$@OXM],$@QzStOXPoX[$@OXM],$@QzStOXPoY[$@OXM];
+	end;
+OnTimer60000:
+	if ($@OXActionQuiz == 12) goto GameEnd;
+	if (getmapusers("quiz_01.gat") == 0) goto AllOut;
+	MapAnnounce "quiz_01.gat","機智問答主持人：機智問答進行至第" + $@OXActionQuiz + "題，目前場內剩下" + getmapusers("quiz_01.gat") + "人",15;
+	end;
+OnTimer64000:
+	setnpctimer 0,"SYSquizeTimmerCher";
+	initnpctimer;
+	end;
+AllOut:
+	set $@NumAns1$,"";
+	set $@NumAns2$,"";
+	set $@NumAns3$,"";
+	set $@NumAns4$,"";
+	set $@GameQz$,"";
+	set $@QZnum,0;
+	set $@GameAns,0;
+	set $@QUNUM2,0;
+	set $@QuizeStart,0;
+	announce "機智問答主持人：這次的機制問答最後的參加者在第 " + $@OXActionQuiz + " 題出局，無人獲勝。",15;
+	setnpctimer 0,"SYSquizeTimmerCher";
+	stopnpctimer;
+	end;
+GameEnd:
+	if (getmapusers("quiz_00.gat") == 0) goto AllOut;
+	if (getmapusers("quiz_01.gat") != 0) announce "ERROR!!，玩家仍留在場內",15;
+	announce "機智問答主持人：這次的機制問答已進結束，成功闖關人數有" + getmapusers("quiz_00.gat") + "人",15;
+	set $@QuizeStart,0;	//測試用
+	setnpctimer 0,"SYSquizeTimmerCher";
+	stopnpctimer;
+	end;
+}
+
+function	script	SYSOXquizeStarter	{
+	initnpctimer "SYSquizeTimmerCher";
+	return;
+}
+
+quiz_00.gat,67,31,4	script	獎品發放員	736,{
+
+	mes "[獎品發放員]";
+	mes "你很厲害！能過到這裡，讓我給你一些獎勵吧！";
+        percentheal 100,100;
+	next;
+	mes "[獎品發放員]";
+	mes "我是負責發放獎品的";
+	mes "你將會低機率取得天使背包和卡普拉戒指和真金和金幣";
+	mes "你確定你要選擇獎品嗎？";
+	next;
+	menu "對，我要領獎品！",-,"不了，讓我在考慮一下！",cancel;
+        set @gi,rand(18);
+          if (@gi ==0)getitem 15366,1;
+          if (@gi ==1)getitem 607,20;
+          if (@gi ==2)getitem 7005,1;
+          if (@gi ==3)getitem 7005,1;
+	  if (@gi ==4)getitem 7005,1;
+	  if (@gi ==5)getitem 7005,10;
+          if (@gi ==6)getitem 7005,10;
+	  if (@gi ==7)getitem 2640,1;
+	  if (@gi ==8)getitem 607,100;
+	  if (@gi ==9)getitem 15199,1;
+	  if (@gi ==10)getitem 671,50;
+	  if (@gi ==11)getitem 671,50;
+	  if (@gi ==12)getitem 671,50;
+	  if (@gi ==13)getitem 671,50;
+	  if (@gi ==14)getitem 671,50;
+	  if (@gi ==15)getitem 671,50;
+	  if (@gi ==16)getitem 671,50;
+	  if (@gi ==17)getitem 671,50;
+if (@gi ==0)announce "[機制公告]恭喜玩家"+strcharinfo(0)+" 得到天使背包",15;
+if (@gi ==9)announce "[機制公告]恭喜玩家"+strcharinfo(0)+" 得到真神",15;
+if (@gi ==7)announce "[機制公告]恭喜玩家"+strcharinfo(0)+" 得到卡普拉戒指",15;
+	warp "prontera",155,186;
+	cancel:
+		close;
+
+}
+
+new_4-1.gat	mapflag	nomemo	dummy
+new_4-1.gat	mapflag	noteleport	dummy
+new_4-1.gat	mapflag	nopenalty	dummy
+new_4-1.gat	mapflag	noskill,81:78:75:74:45:33:29:30:34:24:25:12:18:21:20:43:44:60:79:80:83:84:85:87:89:90:91:92:110:111:112:113:114:115:116:117:118:119:120:121:122:123:124:125:130:131:155:213:229:230:232:233:254:261:270:285:286:287:288:290:305:306:307:308:309:310:311:312:313:317:320:321:322:325:327:328:329:330:362:380:384:390:395:401:404:405:406:70:334:335:336	dummy
+
+function	script	SYSoxquizeData	{
+	set $@QZnum,rand(2);
+	set $@Quizrand,rand(142);
+	if ($@Quizrand > 149) goto L_QZ150;
+	if ($@Quizrand > 99) goto L_QZ100;
+	if ($@Quizrand > 49) goto L_QZ50;
+
+	if ($@Quizrand == 0) goto Qz0000;
+	if ($@Quizrand == 1) goto Qz0001;
+	if ($@Quizrand == 2) goto Qz0002;
+	if ($@Quizrand == 3) goto Qz0003;
+	if ($@Quizrand == 4) goto Qz0004;
+	if ($@Quizrand == 5) goto Qz0005;
+	if ($@Quizrand == 6) goto Qz0006;
+	if ($@Quizrand == 7) goto Qz0007;
+	if ($@Quizrand == 8) goto Qz0008;
+	if ($@Quizrand == 9) goto Qz0009;
+	if ($@Quizrand == 10) goto Qz0010;
+	if ($@Quizrand == 11) goto Qz0011;
+	if ($@Quizrand == 12) goto Qz0012;
+	if ($@Quizrand == 13) goto Qz0013;
+	if ($@Quizrand == 14) goto Qz0014;
+	if ($@Quizrand == 15) goto Qz0015;
+	if ($@Quizrand == 16) goto Qz0016;
+	if ($@Quizrand == 17) goto Qz0017;
+	if ($@Quizrand == 18) goto Qz0018;
+	if ($@Quizrand == 19) goto Qz0019;
+	if ($@Quizrand == 20) goto Qz0020;
+	if ($@Quizrand == 21) goto Qz0021;
+	if ($@Quizrand == 22) goto Qz0022;
+	if ($@Quizrand == 23) goto Qz0023;
+	if ($@Quizrand == 24) goto Qz0024;
+	if ($@Quizrand == 25) goto Qz0025;
+	if ($@Quizrand == 26) goto Qz0026;
+	if ($@Quizrand == 27) goto Qz0027;
+	if ($@Quizrand == 28) goto Qz0028;
+	if ($@Quizrand == 29) goto Qz0029;
+	if ($@Quizrand == 30) goto Qz0030;
+	if ($@Quizrand == 31) goto Qz0031;
+	if ($@Quizrand == 32) goto Qz0032;
+	if ($@Quizrand == 33) goto Qz0033;
+	if ($@Quizrand == 34) goto Qz0034;
+	if ($@Quizrand == 35) goto Qz0035;
+	if ($@Quizrand == 36) goto Qz0036;
+	if ($@Quizrand == 37) goto Qz0037;
+	if ($@Quizrand == 38) goto Qz0038;
+	if ($@Quizrand == 39) goto Qz0039;
+	if ($@Quizrand == 40) goto Qz0040;
+	if ($@Quizrand == 41) goto Qz0041;
+	if ($@Quizrand == 42) goto Qz0042;
+	if ($@Quizrand == 43) goto Qz0043;
+	if ($@Quizrand == 44) goto Qz0044;
+	if ($@Quizrand == 45) goto Qz0045;
+	if ($@Quizrand == 46) goto Qz0046;
+	if ($@Quizrand == 47) goto Qz0047;
+	if ($@Quizrand == 48) goto Qz0048;
+	if ($@Quizrand == 49) goto Qz0049;
+L_QZ50:
+	if ($@Quizrand == 50) goto Qz0050;
+	if ($@Quizrand == 51) goto Qz0051;
+	if ($@Quizrand == 52) goto Qz0052;
+	if ($@Quizrand == 53) goto Qz0053;
+	if ($@Quizrand == 54) goto Qz0054;
+	if ($@Quizrand == 55) goto Qz0055;
+	if ($@Quizrand == 56) goto Qz0056;
+	if ($@Quizrand == 57) goto Qz0057;
+	if ($@Quizrand == 58) goto Qz0058;
+	if ($@Quizrand == 59) goto Qz0059;
+	if ($@Quizrand == 60) goto Qz0060;
+	if ($@Quizrand == 61) goto Qz0061;
+	if ($@Quizrand == 62) goto Qz0062;
+	if ($@Quizrand == 63) goto Qz0063;
+	if ($@Quizrand == 64) goto Qz0064;
+	if ($@Quizrand == 65) goto Qz0065;
+	if ($@Quizrand == 66) goto Qz0066;
+	if ($@Quizrand == 67) goto Qz0067;
+	if ($@Quizrand == 68) goto Qz0068;
+	if ($@Quizrand == 69) goto Qz0069;
+	if ($@Quizrand == 70) goto Qz0070;
+	if ($@Quizrand == 71) goto Qz0071;
+	if ($@Quizrand == 72) goto Qz0072;
+	if ($@Quizrand == 73) goto Qz0073;
+	if ($@Quizrand == 74) goto Qz0074;
+	if ($@Quizrand == 75) goto Qz0075;
+	if ($@Quizrand == 76) goto Qz0076;
+	if ($@Quizrand == 77) goto Qz0077;
+	if ($@Quizrand == 78) goto Qz0078;
+	if ($@Quizrand == 79) goto Qz0079;
+	if ($@Quizrand == 80) goto Qz0080;
+	if ($@Quizrand == 81) goto Qz0081;
+	if ($@Quizrand == 82) goto Qz0082;
+	if ($@Quizrand == 83) goto Qz0083;
+	if ($@Quizrand == 84) goto Qz0084;
+	if ($@Quizrand == 85) goto Qz0085;
+	if ($@Quizrand == 86) goto Qz0086;
+	if ($@Quizrand == 87) goto Qz0087;
+	if ($@Quizrand == 88) goto Qz0088;
+	if ($@Quizrand == 89) goto Qz0089;
+	if ($@Quizrand == 90) goto Qz0090;
+	if ($@Quizrand == 91) goto Qz0091;
+	if ($@Quizrand == 92) goto Qz0092;
+	if ($@Quizrand == 93) goto Qz0093;
+	if ($@Quizrand == 94) goto Qz0094;
+	if ($@Quizrand == 95) goto Qz0095;
+	if ($@Quizrand == 96) goto Qz0096;
+	if ($@Quizrand == 97) goto Qz0097;
+	if ($@Quizrand == 98) goto Qz0098;
+	if ($@Quizrand == 99) goto Qz0099;
+L_QZ100:
+	if ($@Quizrand == 100) goto Qz0100;
+	if ($@Quizrand == 101) goto Qz0101;
+	if ($@Quizrand == 102) goto Qz0102;
+	if ($@Quizrand == 103) goto Qz0103;
+	if ($@Quizrand == 104) goto Qz0104;
+	if ($@Quizrand == 105) goto Qz0105;
+	if ($@Quizrand == 106) goto Qz0106;
+	if ($@Quizrand == 107) goto Qz0107;
+	if ($@Quizrand == 108) goto Qz0108;
+	if ($@Quizrand == 109) goto Qz0109;
+	if ($@Quizrand == 110) goto Qz0110;
+	if ($@Quizrand == 111) goto Qz0111;
+	if ($@Quizrand == 112) goto Qz0112;
+	if ($@Quizrand == 113) goto Qz0113;
+	if ($@Quizrand == 114) goto Qz0114;
+	if ($@Quizrand == 115) goto Qz0115;
+	if ($@Quizrand == 116) goto Qz0116;
+	if ($@Quizrand == 117) goto Qz0117;
+	if ($@Quizrand == 118) goto Qz0118;
+	if ($@Quizrand == 119) goto Qz0119;
+	if ($@Quizrand == 120) goto Qz0120;
+	if ($@Quizrand == 121) goto Qz0121;
+	if ($@Quizrand == 122) goto Qz0122;
+	if ($@Quizrand == 123) goto Qz0123;
+	if ($@Quizrand == 124) goto Qz0124;
+	if ($@Quizrand == 125) goto Qz0125;
+	if ($@Quizrand == 126) goto Qz0126;
+	if ($@Quizrand == 127) goto Qz0127;
+	if ($@Quizrand == 128) goto Qz0128;
+	if ($@Quizrand == 129) goto Qz0129;
+	if ($@Quizrand == 130) goto Qz0130;
+	if ($@Quizrand == 131) goto Qz0131;
+	if ($@Quizrand == 132) goto Qz0132;
+	if ($@Quizrand == 133) goto Qz0133;
+	if ($@Quizrand == 134) goto Qz0134;
+	if ($@Quizrand == 135) goto Qz0135;
+	if ($@Quizrand == 136) goto Qz0136;
+	if ($@Quizrand == 137) goto Qz0137;
+	if ($@Quizrand == 138) goto Qz0138;
+	if ($@Quizrand == 139) goto Qz0139;
+	if ($@Quizrand == 140) goto Qz0140;
+	if ($@Quizrand == 141) goto Qz0141;
+	if ($@Quizrand == 142) goto Qz0142;
+	if ($@Quizrand == 143) goto Qz0143;
+	if ($@Quizrand == 144) goto Qz0144;
+	if ($@Quizrand == 145) goto Qz0145;
+	if ($@Quizrand == 146) goto Qz0146;
+	if ($@Quizrand == 147) goto Qz0147;
+	if ($@Quizrand == 148) goto Qz0148;
+	if ($@Quizrand == 149) goto Qz0149;
+L_QZ150:
+	if ($@Quizrand == 150) goto Qz0150;
+
+L_ERROR:
+	set $@GameAns,$@QZnum;
+	set $@GameQz$,"ERROR!!! 題號出錯 編號：" + $@Quizrand + "" + $@QZnum + "";
+	goto ChQend;
+
+
+
+Qz0000:
+	if ($@QZnum == 0)set $@GameQz$,"不賣雙刃短劍的城市是普隆德拉，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"不賣雙刃短劍的城市是薑餅城，對或錯？";
+	set $@GameAns,$@QZnum;
+Qz0001:
+	if ($@QZnum == 0)set $@GameQz$,"秘銀金屬盔甲重量550，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"怪物情報是巫師專有的技能，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0002:
+	if ($@QZnum == 0) set $@GameQz$,"劍士的技能怒爆的攻擊範圍為5X5格，對或錯？";
+	if ($@QZnum == 1) set $@GameQz$,"劍士的技能怒爆的攻擊範圍為3X3格，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0003:
+	if ($@QZnum == 0) set $@GameQz$,"劍士的技能怒爆的攻擊範圍為25格，對或錯？";
+	if ($@QZnum == 1) set $@GameQz$,"劍士的技能狂擊的攻擊範圍為5X5格，對或錯？";
+	set $@GameAns,1;
+	goto ChQend;
+Qz0004:
+	if ($@QZnum == 0) set $@GameQz$,"法師的技能心靈爆破是單目標法術，對或錯？";
+	if ($@QZnum == 1) set $@GameQz$,"法師的技能火狩是火球術的前置技能，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0005:
+	set $@QUNUM2,$@QZnum+4;
+	set $@GameQz$,"法師的技能心靈爆破LV" + $@QUNUM2 + "是聖靈召喚的前置技能，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0006:
+	set $@GameQz$,"在一般狀況下弓箭手的射程比其他職業的射程多了1" + $@QZnum * 2 + "格，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0007:
+	set $@QZnum,rand(2)*2 + 16;
+	set $@GameQz$,"弓箭手的技能心神凝聚LV10增加" + $@QZnum + "DEX，對或錯？";
+	if ($@QZnum == 18)set $@GameAns,0;
+	if ($@QZnum == 16)set $@GameAns,1;
+	goto ChQend;
+Qz0008:
+	if ($@QZnum == 0)set $@GameQz$,"RO的故事主要發生在米德加爾特王國，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"RO的故事主要發生在米德加德爾王國，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0009:
+	if ($@QZnum == 0)set $@GameQz$,"RO的故事中創造世界的巨人為太初巨人，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"RO的故事中創造世界的巨人為盤古巨人，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0010:
+	if ($@QZnum == 0)set $@GameQz$,"增加DEX會影響ASPD，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"LUK會影響掉寶率，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0011:
+	if ($@QZnum == 0)set $@GameQz$,"增加DEX會影響ATK，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"LUK會影響掉FREE，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0012:
+	if ($@QZnum == 0)set $@GameQz$,"以屬性而言，暗屬性攻擊可以對天使玻利造成二倍傷害，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"不管是使用任何屬性的武器攻擊無屬性的怪物，傷害都是100%，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0013:
+	if ($@QZnum == 0)set $@GameQz$,"怪物波利之王的等級跟綠棉蟲一樣，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"波力的HP比瘋兔多，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0014:
+	if ($@QZnum == 0)set $@GameQz$,"刺客對自己施展塗毒之後打巴風特會一直miss，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"以屬性而言，聖屬性攻擊可以對死靈騎士造成二倍傷害，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0015:
+	if ($@QZnum == 0)set $@GameQz$,"除了痊癒術與時間到自動解除之外，沒有辦法解除暈眩狀態，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"玩家若想使敵方陷入詛咒狀態，只能以插上魔鍋蛋卡的武器攻擊，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0016:
+	if ($@QZnum == 0)set $@GameQz$,"祭師除了解毒以外，可以使用技能解除所有發生在玩家上異常狀態，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"使用萬能藥可以解除睡眠狀態，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0017:
+	if ($@QZnum == 0)set $@GameQz$,"獸牙怪會掉落捕捉鬼女的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"行邢者會掉落捕捉鬼女的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0018:
+	if ($@QZnum == 0)set $@GameQz$,"寵物土人的食物是魔物飼料，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"香蕉是捕捉溜溜猴的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0019:
+	if ($@QZnum == 0)set $@GameQz$,"獸人之證是捕捉獸人戰士的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"獸人之證是捕捉獸人戰士長的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0020:
+	if ($@QZnum == 0)set $@GameQz$,"蠍子會掉落捕捉綠蒼蠅的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"靈巧影響了迴避率，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0021:
+	if ($@QZnum == 0)set $@GameQz$,"魔物信件是抓殭屍的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"魔物信件是抓妖道的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0022:
+	if ($@QZnum == 0)set $@GameQz$,"妖道與殭屍生前的關係是鄰居姊姊與弟弟，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"妖道與殭屍生前的關係是戀人，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0023:
+	if ($@QZnum == 0)set $@GameQz$,"鬼女認識妖道，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"妖道與鬼女生前的關係是戀人，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0024:
+	if ($@QZnum == 0)set $@GameQz$,"彩色蘿蔔是抓瘋兔的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"紅蘿蔔是抓瘋兔的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0025:
+	if ($@QZnum == 0)set $@GameQz$,"營養蚯蚓是抓大嘴鳥的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"變態蚯蚓是抓大嘴鳥的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0026:
+	if ($@QZnum == 0)set $@GameQz$,"變態蚯蚓是抓小雞的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"營養蚯蚓是抓小雞的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0027:
+	if ($@QZnum == 0)set $@GameQz$,"變態蚯蚓是抓小雞的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"營養蚯蚓是抓小雞的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0028:
+	if ($@QZnum == 0)set $@GameQz$,"心愛女人的回憶是抓妖道的道具，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"心愛女人的回憶是抓殭屍的道具，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0029:
+	if ($@QZnum == 0)set $@GameQz$,"斧頭對小型怪傷害減半，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"斧頭對小型怪傷害減為75%，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0030:
+	if ($@QZnum == 0)set $@GameQz$,"槍對大型怪傷害不會增加，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"騎鳥拿槍對小型怪傷害不會減少，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0031:
+	if ($@QZnum == 0)set $@GameQz$,"不論任何法杖都有MATK+15%的能力加乘，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"法杖的普通攻擊對大型怪的攻擊力為75%，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0032:
+	if ($@QZnum == 0)set $@GameQz$,"RO的全文是Ragnarok Online，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"RO的全文是Regolark Online，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0033:
+	if ($@QZnum == 0)set $@GameQz$,"天空之城-朱諾位於尤配擂斯，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"天空之城-朱諾位於米德加爾特，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0034:
+	if ($@QZnum == 0)set $@GameQz$,"夢幻之島-克魔島位於洞穴中，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"夢幻之島-克魔島是練金術士轉職的地方，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0035:
+	if ($@QZnum == 0)set $@GameQz$,"魔幻之都─吉芬位於首都的西北方，傳說中這個城市的地底下有一個已滅亡的王國，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"魔幻之都─吉芬位於首都的西北方，與尤配擂斯共和國為鄰，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0036:
+	if ($@QZnum == 0)set $@GameQz$,"邊境之都─夢羅克，大家謠傳著邪惡之神落基的暗殺者秘密組織密藏在這個城市中的某處，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"邊境之都─夢羅克，大家謠傳著雷神索爾的暗殺者秘密組織密藏在這個城市中的某處，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0037:
+	if ($@QZnum == 0)set $@GameQz$,"邊境之都─夢羅克，棉花工業在這裡獲得高度發展，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"邊境之都─夢羅克是刺客轉職的地方，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0038:
+	if ($@QZnum == 0)set $@GameQz$,"運河之都─艾爾帕蘭，在原作中是shu-bal-chi-balde共和國最南邊的城市，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"艾爾帕蘭是賢者的轉職場所，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0039:
+	if ($@QZnum == 0)set $@GameQz$,"港口之都─艾爾貝塔是米德加爾特王國的貿易中心，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"港口之都─艾爾貝塔可以經過坐船的方式通往世界各地，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0040:
+	if ($@QZnum == 0)set $@GameQz$,"山岳之都─斐揚是製作各種果汁的地方，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"港口之都─艾爾貝塔可以經過坐船的方式直達骷髏島，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0041:
+	if ($@QZnum == 0)set $@GameQz$,"山岳之都─斐揚是傳說中的彩虹故鄉，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"山岳之都─斐揚是傳說中的雲朵故鄉，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0042:
+	if ($@QZnum == 0)set $@GameQz$,"烏龜島是只要你搭船靠近的話，就會看到哪裡被一團什麼都看不見的濃霧包圍住的島嶼，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"烏龜將軍出現在烏龜島地下最底層，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0043:
+	if ($@QZnum == 0)set $@GameQz$,"巫師的技能暗之障壁Lv6時, 消耗40SP跟迴避次數7次，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"當初學者轉職成魔法師時, 形成3號混合液的礦石是紅色魔力礦石，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0044:
+	if ($@QZnum == 0)set $@GameQz$,"當初學者轉職成魔法師時, 形成3號混合液的礦石是藍色魔力礦石，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"吉芬道具店在吉芬塔為中心6點鐘方向，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0045:
+	if ($@QZnum == 0)set $@GameQz$,"吉芬道具店在吉芬塔為中心8點鐘方向，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"吉芬道具店在吉芬塔為中心11點鐘方向，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0046:
+	if ($@QZnum == 0)set $@GameQz$,"鐵匠製作昇龍拳套需要的神之金屬比龍爪拳套多，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"水球術只有站在水面上才能施放，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0047:
+	if ($@QZnum == 0)set $@GameQz$,"吉芬的鐵匠族人最多，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"艾爾貝塔的鐵匠族人最多，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0048:
+	if ($@QZnum == 0)set $@GameQz$,"有洞的笨拙短劍可以從蜂兵身上獲得，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"有洞的笨拙短劍可以從沙漠之狼身上獲得，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0049:
+	if ($@QZnum == 0)set $@GameQz$,"蟲蛹可以看到，隱匿／偽裝的盜賊，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"木乃伊可以看到，隱匿／偽裝的盜賊，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0050:
+	if ($@QZnum == 0)set $@GameQz$,"舞孃的舞蹈中，女神之吻會增加必殺攻擊，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"舞孃的舞蹈中，為你服務會史敵方受到SP傷害，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0051:
+	if ($@QZnum == 0)set $@GameQz$,"到克魔島之前，位於發樂斯燈塔島，東北方的海邊地名是克克魔 海邊，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"到克魔島之前，位於發樂斯燈塔島，東北方的海邊地名是克幕克 海邊，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0052:
+	if ($@QZnum == 0)set $@GameQz$,"克魔島賭博場的負責人是 無，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"克魔島賭博場的負責人是 水伊樂娜，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0053:
+	if ($@QZnum == 0)set $@GameQz$,"在舞台跳完舞之後，對舞伴沒禮貌的行動是不足於當自己的舞伴而拒絕人家，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"在舞台跳完舞之後，對舞伴沒禮貌的行動是提議跳其它的舞蹈，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0054:
+	if ($@QZnum == 0)set $@GameQz$,"位於克魔島的卡普拉正式名稱是卡普拉 西部分社，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"位於克魔島的卡普拉正式名稱是卡普拉 西部服務社，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0055:
+	if ($@QZnum == 0)set $@GameQz$,"二級武器一口氣衝到+9的成功率是4.8%，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"三級武器一口氣衝到+9的成功率是1.3%，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0056:
+	if ($@QZnum == 0)set $@GameQz$,"四級武器精練過+1時ATK+7，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"沙漠毒蠍是地屬性怪物，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0057:
+	if ($@QZnum == 0)set $@GameQz$,"艾斯恩魔女是無屬性怪物，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"沙漠毒蠍是毒屬性怪物，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0058:
+	if ($@QZnum == 0)set $@GameQz$,"舞孃的練習舞蹈技能效果是增加舞蹈技能的效果，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"舞孃的練習舞蹈技能效果是重複上次舞蹈技能的效果，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0059:
+	if ($@QZnum == 0)set $@GameQz$,"普隆德拉的禮品商人不賣的物品是花束，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"普隆德拉的禮品商人不賣的物品是白色盤子，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0060:
+	if ($@QZnum == 0)set $@GameQz$,"有賣雙刃短劍的城市是夢羅克，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"不賣雙刃短劍的城市是吉芬，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0061:
+	if ($@QZnum == 0)set $@GameQz$,"鬼火會掉酒精，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"狂暴鬼火會掉酒精，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0062:
+	if ($@QZnum == 0)set $@GameQz$,"佑比是普隆德拉的居民，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"比娜是普隆德拉的居民，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0063:
+	if ($@QZnum == 0)set $@GameQz$,"佑羅是普隆德拉的居民，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"克裡斯多夫是普隆德拉的居民，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0064:
+	if ($@QZnum == 0)set $@GameQz$,"小巴風特是會給「天地樹葉子」的魔物，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"馬爾杜克是會給「天地樹葉子」的魔物，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0065:
+	if ($@QZnum == 0)set $@GameQz$,"與祭司轉職沒有關係的人是文強 派內迪特，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"與祭司轉職沒有關係的人是湯姆斯 塞爾班特斯，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0066:
+	if ($@QZnum == 0)set $@GameQz$,"吉芬的魔法商人不賣的物品是大衣，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"吉芬的所有商店都不賣厚刃劍，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0067:
+	if ($@QZnum == 0)set $@GameQz$,"最年輕的卡普拉職員的名字是德帛硫，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"最年輕的卡普拉職員的名字是泰依琳，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0068:
+	if ($@QZnum == 0)set $@GameQz$,"初學者轉職成為魔法師時，可以成為混合劑4號的觸媒的礦石是透明的寶石，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"初學者轉職成為魔法師時，可以成為混合劑4號的觸媒的礦石是藍色魔力礦石，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0069:
+	if ($@QZnum == 0)set $@GameQz$,"與迷藏森林最近的城市是普隆德拉，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"與迷藏森林最近的城市是朱諾，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0070:
+	if ($@QZnum == 0)set $@GameQz$,"當魔物是不死屬性Lv2時，比起火屬性聖屬性所增加的傷害力是50%，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"當魔物是不死屬性Lv2時，比起火屬性聖屬性所增加的傷害力是75%，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0071:
+	if ($@QZnum == 0)set $@GameQz$,"不能從闇神官獲得的物品是神聖之帽，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"不能從闇神官獲得的物品是聖職之帽，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0072:
+	if ($@QZnum == 0)set $@GameQz$,"插卡而言，對惡魔型魔物最好的劍是〝交叉的〞開頭，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"插卡而言，對惡魔型魔物最好的劍是〝可惡的〞開頭，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0073:
+	if ($@QZnum == 0)set $@GameQz$,"不能從土人身上獲得的物品是黃金錘子，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"不能從土人身上獲得的物品是黃金，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0074:
+	if ($@QZnum == 0)set $@GameQz$,"可以對惡魔型魔物，減少傷害力的鋼盾是激烈的鋼盾，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"可以對惡魔型魔物，減少傷害力的鋼盾是護身符的鋼盾，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0075:
+	if ($@QZnum == 0)set $@GameQz$,"天使之護Lv. 7時，對不死系增加的防禦力是21，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"天使之護Lv. 6時，對不死系增加的防禦力是21，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0076:
+	if ($@QZnum == 0)set $@GameQz$,"騎兵修練學到Lv3時攻擊速度是平常時的80%，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"騎兵修練學到Lv3時攻擊速度是平常時的60%，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0077:
+	if ($@QZnum == 0)set $@GameQz$,"天使之擊修練完成時對不死系的攻擊力增加＋30，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"天使之擊只屬於服事的技能，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0078:
+	if ($@QZnum == 0)set $@GameQz$,"偽裝可以在對方看不到的情況下移動，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"後退迴避可以在對方看不到的情況下移動，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0079:
+	if ($@QZnum == 0)set $@GameQz$,"人物等級由LV98升到LV99需要99999999的EXP，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"人物等級由LV98升到LV99需要999999999的EXP，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0080:
+	if ($@QZnum == 0)set $@GameQz$,"劍士技能單手劍使用熟練度LV5，使用單手劍時可增加攻擊力20，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"劍士技能單手劍使用熟練度LV8，使用單手劍時可增加攻擊力30，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0081:
+	if ($@QZnum == 0)set $@GameQz$,"劍士技能狂暴狀態為快要死亡時（HP在25%以下）會變成狂暴狀態，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"劍士技能狂暴狀態為快要死亡時（HP在33%以下）會變成狂暴狀態，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0082:
+	set $@QUNUM2,rand(9)+1;
+	set $@QUNUM3,$@QUNUM2+1;
+	if ($@QZnum == 0)set $@GameQz$,"法師技能暗之障壁LV" + $@QUNUM2 + "能迴避敵人" + $@QUNUM3 + "次攻擊，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"法師技能暗之障壁LV" + $@QUNUM2 + "能迴避敵人" + $@QUNUM2 + "次攻擊，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0083:
+	if ($@QZnum == 0)set $@GameQz$,"法師技能冰凍術成功凍結目標的機率與INT無關，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"法師技能冰凍術成功凍結目標的機率與怪物屬性無關，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0084:
+	if ($@QZnum == 0)set $@GameQz$,"使用石化術需使用一顆紅色魔力礦石做為催化劑，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"使用石化術需使用一顆黃色魔力礦石做為催化劑，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0085:
+	if ($@QZnum == 0)set $@GameQz$,"使用傳送之陣需使用一顆藍色魔力礦石做為催化劑，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"使用傳送之陣需使用一顆藍色的寶石做為催化劑，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0086:
+	set $@QUNUM2,rand(9)+1;
+	if ($@QZnum == 0)set $@GameQz$,"盜賊技能隱匿LV" + $@QUNUM2 + "持續時間" + ($@QUNUM2 * 30) + "秒，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"盜賊技能隱匿LV" + $@QUNUM2 + "持續時間" + ($@QUNUM2 * 40) + "秒，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0087:
+	if ($@QZnum == 0)set $@GameQz$,"噴砂的攻擊力為一般的四分之五，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"噴砂的攻擊力為一般的150%，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0088:
+	set $@QUNUM2,rand(5)+1;
+	if ($@QZnum == 0)set $@GameQz$,"祭師的技能神威祈福在LV" + $@QUNUM2 + "時可增加" + ($@QUNUM2 * 5 ) + "ATK，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"祭師的技能神威祈福在LV" + $@QUNUM2 + "時可增加" + ($@QUNUM2 * 6 ) + "ATK，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0089:
+	if ($@QZnum == 0)set $@GameQz$,"噴砂技能的攻擊力為一般的四分之五而且有機會使對方陷入黑暗狀態，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"噴砂技能的攻擊力為一般的125%而且有機會使對方陷入混亂狀態，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0090:
+	if ($@QZnum == 0)set $@GameQz$,"使用火焰屬性附加時需要消耗火靈礦石一顆，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"使用火焰屬性附加時需要消耗火靈原石一顆，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0091:
+	if ($@QZnum == 0)set $@GameQz$,"使用金剛不壞時消耗200sp，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"使用火焰屬性附加時需要消耗黃色魔力礦石一顆，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0092:
+	if ($@QZnum == 0)set $@GameQz$,"使用水元素領域時需要消耗黃色魔力礦石一顆，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"使用火元素領域時需要消耗紅色魔力礦石一顆，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0093:
+	if ($@QZnum == 0)set $@GameQz$,"進階騎士的技能靈氣刃的持續時間會因為技能的提升而減少，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"進階騎士的技能靈氣刃消耗SP會因為技能的提升而減少，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0094:
+	if ($@QZnum == 0)set $@GameQz$,"進階騎士的技能靈氣刃LV5時消耗的SP為30，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"進階騎士的技能集中持續時間會因為技能的提升而減少，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0095:
+	if ($@QZnum == 0)set $@GameQz$,"商人的技能大聲吶喊消耗的SP為8，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"商人的技能大聲吶喊能增加str8點，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0096:
+	if ($@QZnum == 0)set $@GameQz$,"成功反擊時，反擊增加的暴擊機率是二倍，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"成功反擊時，反擊增加的命中率是二倍，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0097:
+	if ($@QZnum == 0)set $@GameQz$,"撒水祈福不論是LV1或是LV5，效果皆是使武器轉為聖屬性，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"撒水祈福不論是LV1或是LV5，持續時間皆是五分鐘，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0098:
+	if ($@QZnum == 0)set $@GameQz$,"犧牲祈福不論是LV1或是LV3，消耗SP皆為8，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"犧牲祈福效果持續時間會隨著等級上升而增加，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0099:
+	if ($@QZnum == 0)set $@GameQz$,"JobLV6的鐵匠可能已經可以製造騎士長矛，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"JobLV5的鐵匠可能已經可以製造騎士長矛，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0100:
+	if ($@QZnum == 0)set $@GameQz$,"一般的二轉祭師有可能將十字驅魔與聖之祈福同時點出來，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"一般的二轉祭師有可能將十字驅魔、暗之障璧與聖之祈福同時點到最高級，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0101:
+	set $@QUNUM2,rand(9)+1;
+	if ($@QZnum == 0)set $@GameQz$,"商人的技能最大負重量上升LV" + $@QUNUM2 + "時，可增加最大負重量" + ($@QUNUM2 * 100) + "，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"商人的技能最大負重量上升LV" + $@QUNUM2 + "時，可增加最大負重量" + ($@QUNUM2 * 150) + "，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0102:
+	set $@QUNUM2,rand(9)+1;
+	if ($@QZnum == 0)set $@GameQz$,"使用技能偷竊LV" + $@QUNUM2 + "需要消耗10SP，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"使用技能殘影LV" + $@QUNUM2 + "時需要消耗10SP，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0103:
+	set $@QUNUM2,rand(9)+1;
+	if ($@QZnum == 0)set $@GameQz$,"使用技能殘影LV" + $@QUNUM2 + "時需要消耗0SP，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"使用技能二刀連擊LV" + $@QUNUM2 + "需要消耗" + $@QUNUM2 * 4 + "SP，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0104:
+	if ($@QZnum == 0)set $@GameQz$,"在中央的精煉房販賣一、二級強化金屬的NPC是卡拉曼莉斯，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"在中央的精煉房販賣一、二級強化金屬的NPC是卡曼拉斯莉，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0105:
+	if ($@QZnum == 0)set $@GameQz$,"在中央的精煉房提煉鋁與神之金屬的NPC叫做帝特立西，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"在中央的精煉房提煉鋁與神之金屬的NPC叫做帝西立特，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0106:
+	if ($@QZnum == 0)set $@GameQz$,"在艾爾帕蘭左下角的一位拾蛤蜊的女孩叫做喬絲，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"在艾爾帕蘭左下角的一位拾蝸牛的女孩叫做喬絲，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0107:
+	if ($@QZnum == 0)set $@GameQz$,"金屬頭盔的防禦力是6，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"金屬頭盔的防禦力是5，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0108:
+	if ($@QZnum == 0)set $@GameQz$,"長大衣的重量是大衣的二倍，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"大衣的重量是長大衣的二倍，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0109:
+	if ($@QZnum == 0)set $@GameQz$,"斗篷的重量與戰事長靴一樣，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"皮帶的重量比斗篷輕，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0110:
+	if ($@QZnum == 0)set $@GameQz$,"金屬頭盔的防禦力與綱盾一樣，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"金屬頭盔的防禦力與圓盾一樣，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0111:
+	if ($@QZnum == 0)set $@GameQz$,"卡普拉總公司位於運河之都-艾爾帕蘭，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"卡普拉總公司位於運河之都-艾爾貝塔，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0112:
+	if ($@QZnum == 0)set $@GameQz$,"傳送人員傳送費用固定為為2000，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"傳送人員傳送費用會隨著地點而改變，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0113:
+	if ($@QZnum == 0)set $@GameQz$,"可以藉由傳送人員到達各個城市，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"傳送人員傳送費用固定為為3000，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0114:
+	if ($@QZnum == 0)set $@GameQz$,"位於初心者炫練場中，裡歐本弗裡修是擔任普隆德拉第4祭壇情報所屬新兵教育訓練官，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"位於初心者炫練場中，裡歐本弗裡修是擔任普隆德拉第4情報大隊所屬新兵教育訓練官，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0115:
+	if ($@QZnum == 0)set $@GameQz$,"在普隆德拉中央的水池的神祇雕像是子息之神，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"在普隆德拉中央的水池的神祇雕像是雷神，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0116:
+	if ($@QZnum == 0)set $@GameQz$,"崑崙宣傳官的名字是佤巴，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"崑崙宣傳官的名字是佤喇，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0117:
+	if ($@QZnum == 0)set $@GameQz$,"龜島4F(tur_dun04)沒有岩石龜的分布，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"龜島3F(tur_dun02)沒有火焰龜的分布，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0118:
+	if ($@QZnum == 0)set $@GameQz$,"普隆德拉隨處可見的旗幟中畫的是雙頭鳥，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"普隆德拉隨處可見的旗幟中畫的是鳳凰，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0119:
+	if ($@QZnum == 0)set $@GameQz$,"司葵古是普隆德拉的城堡，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"關德是斐楊的城堡，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0120:
+	if ($@QZnum == 0)set $@GameQz$,"劍士工會原本位於首都普隆德拉之中，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"大教堂位於克雷斯特漢姆古城中，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0121:
+	if ($@QZnum == 0)set $@GameQz$,"卡普拉髮圈def跟MDEF+3，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"卡普拉髮圈除了初新者之外的所有職業都能裝備，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0122:
+	if ($@QZnum == 0)set $@GameQz$,"水果皮帽的防禦是4，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"神秘的水果皮帽的防禦是4，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0123:
+	if ($@QZnum == 0)set $@GameQz$,"熊貓帽的重量是80，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"熊貓帽的防禦是4，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0124:
+	if ($@QZnum == 0)set $@GameQz$,"鐵匠製作擊刺長劍的材料是鋼鐵×20+黃金槌子，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"鐵匠製作斧的材料鋼鐵)×15+神之金屬×8+紫寶石+神之金屬槌子，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0125:
+	if ($@QZnum == 0)set $@GameQz$,"鐵匠製作水紋之劍的材料是神之金屬×16+詛咒紅寶石+神之金屬槌子，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"鐵匠製作雙刃長戟的材料是鋼鐵*50+黃金槌子，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0126:
+	if ($@QZnum == 0)set $@GameQz$,"鐵匠製作虎爪拳套的材料是鐵×160+珍珠×1+鋼鐵槌子，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"鐵匠製作鋼鐵拳套的材料是鋼鐵×65+黃金槌子，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0127:
+	if ($@QZnum == 0)set $@GameQz$,"燕尾服可藉由購買獲得，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"在普隆德拉初心者盔甲可藉由購買獲得，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0128:
+	if ($@QZnum == 0)set $@GameQz$,"輕便鞋的賣價是400，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"披肩的賣價4000，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0129:
+	if ($@QZnum == 0)set $@GameQz$,"輕便鞋的賣價是400，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"披肩的賣價4000，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0130:
+	if ($@QZnum == 0)set $@GameQz$,"漁夫帽的賣價是1000，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"防具精練+1，def增加1，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0131:
+	if ($@QZnum == 0)set $@GameQz$,"無邊帽的防禦比冒險衣高，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"長大衣的重量比皮帶重，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0132:
+	if ($@QZnum == 0)set $@GameQz$,"長靴的防禦力比連帽披肩高，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"長大衣的重量比皮帶輕，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0133:
+	if ($@QZnum == 0)set $@GameQz$,"鋼鐵面具的製作材料是鋼鐵×50+2000Zeny，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"兔耳髮夾的製作材料是柔毛×100+四片葉幸運草+貓髮夾，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0134:
+	if ($@QZnum == 0)set $@GameQz$,"鋼鐵面具的製作材料是鋼鐵×50+2000Zeny，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"兔耳髮夾的製作材料是柔毛×100+四片葉幸運草+貓髮夾，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0135:
+	if ($@QZnum == 0)set $@GameQz$,"邪骸士兵卡片的效果是CRI+9，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"邪骸戰士卡片的效果是CRI+9，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0136:
+	if ($@QZnum == 0)set $@GameQz$,"浮勒盜蟲卡片效果為AGI+1 FREE+1，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"綠綿蟲卡片效果為MHP+100，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0137:
+	if ($@QZnum == 0)set $@GameQz$,"狼卡片效果為ATK+15 CRI+1，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"浮勒盜蟲卡片效果為AGI+1 FREE+5，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0138:
+	if ($@QZnum == 0)set $@GameQz$,"小野豬卡片效果為攻擊敵人時，有5%的機率使敵人陷入昏迷狀態 ATK+5，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"青蛇卡片效果為攻擊敵人時，可使用二刀連擊技能Lv1(所有武器皆適用)，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0139:
+	if ($@QZnum == 0)set $@GameQz$,"綠綿蟲卡片效果和蛋殼小雞卡片一樣，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"巴風特卡片效果為攻擊範圍可以達到九格內，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0140:
+	if ($@QZnum == 0)set $@GameQz$,"草精卡片效果為受到魚貝系魔物攻擊時，可減少30%的傷害度，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"犬妖卡片效果為CRI+4，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0141:
+	if ($@QZnum == 0)set $@GameQz$,"邪骸戰士卡片的效果是攻擊敵人時，有2%的機率使敵人陷入昏迷狀態，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"邪骸戰士卡片的效果是攻擊敵人時，有2%的機率使敵人陷入混亂狀態，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0142:
+	if ($@QZnum == 0)set $@GameQz$,"中和劑的敘述：Detrimindexta的縮寫。是無法輕易得到的液體，有著無法與水混合的特性，非常的稀少，常常被用來製成中和劑，對或錯？";
+	if ($@QZnum == 1)set $@GameQz$,"中和劑的重量5，對或錯？";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+
+ChQend:
+	return;
+}
+
+function	script	SYS1234quizeData	{
+	set $@Quizrand,rand(37);
+	set $@QZnum,rand(4) + 1;
+
+	if ($@Quizrand == 0) goto Qz0000;
+	if ($@Quizrand == 1) goto Qz0001;
+	if ($@Quizrand == 2) goto Qz0002;
+	if ($@Quizrand == 3) goto Qz0003;
+	if ($@Quizrand == 4) goto Qz0004;
+	if ($@Quizrand == 5) goto Qz0005;
+	if ($@Quizrand == 6) goto Qz0006;
+	if ($@Quizrand == 7) goto Qz0007;
+	if ($@Quizrand == 8) goto Qz0008;
+	if ($@Quizrand == 9) goto Qz0009;
+	if ($@Quizrand == 10) goto Qz0010;
+	if ($@Quizrand == 11) goto Qz0011;
+	if ($@Quizrand == 12) goto Qz0012;
+	if ($@Quizrand == 13) goto Qz0013;
+	if ($@Quizrand == 14) goto Qz0014;
+	if ($@Quizrand == 15) goto Qz0015;
+	if ($@Quizrand == 16) goto Qz0016;
+	if ($@Quizrand == 17) goto Qz0017;
+	if ($@Quizrand == 18) goto Qz0018;
+	if ($@Quizrand == 19) goto Qz0019;
+	if ($@Quizrand == 20) goto Qz0020;
+	if ($@Quizrand == 21) goto Qz0021;
+	if ($@Quizrand == 22) goto Qz0022;
+	if ($@Quizrand == 23) goto Qz0023;
+	if ($@Quizrand == 24) goto Qz0024;
+	if ($@Quizrand == 25) goto Qz0025;
+	if ($@Quizrand == 26) goto Qz0026;
+	if ($@Quizrand == 27) goto Qz0027;
+	if ($@Quizrand == 28) goto Qz0028;
+	if ($@Quizrand == 29) goto Qz0029;
+	if ($@Quizrand == 30) goto Qz0030;
+	if ($@Quizrand == 31) goto Qz0031;
+	if ($@Quizrand == 32) goto Qz0032;
+	if ($@Quizrand == 33) goto Qz0033;
+	if ($@Quizrand == 34) goto Qz0034;
+	if ($@Quizrand == 35) goto Qz0035;
+	if ($@Quizrand == 36) goto Qz0036;
+	if ($@Quizrand == 37) goto Qz0037;
+	if ($@Quizrand == 38) goto Qz0038;
+	if ($@Quizrand == 39) goto Qz0039;
+	if ($@Quizrand == 40) goto Qz0040;
+	if ($@Quizrand == 41) goto Qz0041;
+	if ($@Quizrand == 42) goto Qz0042;
+	if ($@Quizrand == 43) goto Qz0043;
+	if ($@Quizrand == 44) goto Qz0044;
+	if ($@Quizrand == 45) goto Qz0045;
+	if ($@Quizrand == 46) goto Qz0046;
+	if ($@Quizrand == 47) goto Qz0047;
+	if ($@Quizrand == 48) goto Qz0048;
+	if ($@Quizrand == 49) goto Qz0049;
+
+
+
+Qz0000:
+	set $@GameQz$,"請選出下列魔物中，種族與其他不同者？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"鳥人哈比","血腥騎士","冰暴騎士","獸牙怪";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"巴風特","邪惡使者","七彩夢魘?","赤焰小惡魔";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"火靈龜","岩石龜","風靈龜","水靈龜";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"三葉蟲","捲甲蟲","黃金蟲","賢者蟲";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0001:
+	set $@GameQz$,"請選出下列魔物中，種族與其他不同者？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"人魚士兵","海神","卡那多斯","人魚";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"刺錘哥布靈","玩具士兵","哥布靈首領","甜餅人";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"狂暴鬼火","紙妖","鶚梟首領","南瓜先生";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"深淵騎士","馬爾杜克","魔靈娃娃","傀儡娃娃";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0002:
+	set $@GameQz$,"下列何者是鬼女的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"3S雙刃短劍","1S護士帽","頭髮","鬼女長髮";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"黃色藥水","護士帽","1S韓服","2S雙刃短劍";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"光滑的頭髮","0S披肩","韓服","藍色藥水";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"黃色藥水","白色藥水","2S雙刃短劍","長髮";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0003:
+	set $@GameQz$,"下列何者是鏈錘哥布靈的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"雪勒結晶","2S流星鎚","無言面具","時毫眼鏡";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"鏈錘哥布靈卡片","氣憤面具","加勒結晶","3S鏈錘";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"2S鏈錘","無言面具","印地安頭飾","黃色藥水";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"頭巾","鋼鐵","3S鏈錘","黃色藥草";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0004:
+	set $@GameQz$,"請問下列哪個人是克魔島賭場內的職員？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"樂呀勒","馬卡芻","伊樂","墮落的賭徒";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"墮落的賭徒","水伊樂娜","陶舞斯副","曼智";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"陶舞斯副","馬樂禔納","水伊樂娜","樂呀奇";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"馬卡芻","伊樂","墮落的賭徒","無";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+
+Qz0005:
+	set $@GameQz$,"請問克魔島的村長叫什麼名字？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"陶舞斯副","陶舞副斯","副斯陶舞","副斯舞陶";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"陶舞副斯","陶舞斯副","副斯舞陶","副斯陶舞";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"馬樂禔納","戴妮羅斯","陶舞斯副","斯庫世基";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"斯庫世基","馬樂禔納","戴妮羅斯","陶舞斯副";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0006:
+	set $@GameQz$,"以下是神秘的老人說過的話，請問哪一句出錯了？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"傳說中的救世主！何時才會降臨我們的世界？他將死而重生，從天堂降臨。","普隆德拉百年來的期盼，何時才會實現？","傳說中的救世主！我在此地等待著你。","我接受命運的引導，在眾人之中，尋找著你!!!";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"傳說中的救世主！何時才會降臨我們的世界？他將死而重生，由地獄歸來。","米德加爾特王國千年來的期盼，何時才會實現？","傳說中的救世主！我在此地等待著你。","我接受命運的引導，在眾人之中，尋找著你!!!";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"傳說中的救世主！何時才會降臨我們的世界？他將死而重生，由地獄歸來。","普隆德拉百年來的期盼，何時才會實現？","傳說中的救世主！我在這裡等你降臨。","我接受命運的引導，在眾人之中，尋找著你!!!";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"傳說中的救世主！何時才會降臨我們的世界？他將死而重生，由地獄歸來。","普隆德拉百年來的期盼，何時才會實現？","傳說中的救世主！我在此地等待著你。","我接受索爾的指引，在眾人之中，尋找著你!!!";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0007:
+	set $@GameQz$,"下列有關卡片的說明何者有錯或是不完整？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"小雞卡片功效為 Str+1","盜蟲卵卡片功效為 Mhp+400","白蟻幼蟲卡片功效為 Int+1 Msp+10","魔菇卡片功效為 Vit+2";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"殭屍卡片裝備位置為 盾牌","草精卡片裝備位置為 披肩","帕莎納卡片裝備位置為盔甲","狄奧斯卡片裝備位置為 武器";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"安畢斯卡片功效為 受到天使系怪物攻擊時減少30%傷害","艾吉歐蜈蚣卡片功效為 盔甲毒屬性 Def+1","黃金蟲卡片功效為 避免被施展任何魔法(包括治療術在內)","虎王卡片效果為 無限「霸體」技能 Mhp25%減少";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"巨石怪卡片裝備位置為 武器","野豬卡片裝備位置為 盔甲","綠棉蟲卡片裝備位置為 武器","蛋殼小雞卡片裝備位置為 武器";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0008:
+	set $@GameQz$,"下列有關草葉的敘述何者正確？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"重量10","可以減少植物系敵人5%的傷害","只有一轉職業才能裝備","紅草會掉落";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"黃草會掉落","沒有防禦力","只有二轉職業才能裝備","位置 頭中下";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"所有職業都可以裝備","重量20","含在嘴裡，會感到隨風飄蕩，到處流浪的感覺。","可以增加對植物系敵人3%的傷害";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"防禦力1","光芒草會掉落","白草會掉落","所有怪物中只有3種怪會掉落";
+	set $@GameAns,$@QZnum;
+Qz0009:
+	set $@GameQz$,"請問華麗金屬無法由下列哪一種怪物獲得？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"聖天使波利","狼人","諾可伊","幽靈波利";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"天使波利","魔羌","黃金蟲","邪惡箱";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"巴風特","邪惡箱","傑洛米","獸人腐屍";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"狼人","獸人腐屍","光芒草","黑暗之王";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0010:
+	set $@GameQz$,"請問關於精練NPC的敘述何者錯誤？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"斐楊的精煉師名字叫做夏金","夢羅克的精煉師名字叫做亞拉甘","艾爾貝塔的精煉師名字叫做弗雷德利 賀樂曼孫","朱諾的精煉師名字叫做尤思特";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"朱諾的精煉師名字叫做尤思特","艾爾貝塔的精煉師名字叫做卡拉曼莉斯","斐楊的精煉師名字叫做安東尼奧","普隆德拉的精煉師名字叫做忽克連";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"普隆德拉的精煉師名字叫做忽克連","艾爾貝塔的精煉師名字叫弗雷德利 賀樂曼孫","朱諾的精煉師名字叫做艾爾來特","夢羅克的精煉師名字叫做亞拉甘";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"斐楊的精煉師名字叫做安東尼","朱諾的精煉師名字叫做尤思特","艾爾貝塔的精煉師名字叫做弗雷德利 賀樂曼孫","普隆德拉的精煉師名字叫做忽連克";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0011:
+	set $@GameQz$,"請問關於天使耳環的敘述何者錯誤？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"等級40以上的人才能裝備","初心者可以裝備","裝備位置為頭中","怪物不會掉落此物品";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"製作的材料之中需要妖精長耳朵頭飾","LUK+1 AGI+1","模仿天使翅膀製作的耳飾，象徵神聖的力量","製作的材料中需要天使法圈";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"AGI+0","STR+1","仿照天使玻利的樣子製作而成的頭飾，象徵守護他人的心。","重量10";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"防禦力1","等級70以上的人才能裝備","重量10","除了初心者以外的職業都可以裝備";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0012:
+	set $@GameQz$,"請問關於骨製頭盔的敘述何者正確？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"以骨頭製成相當堅硬的頭具。雖然戴起來相當重且費力，但是擁有卓越的防禦力。","受到黑暗屬性攻擊時增加5%傷害值","需求等級80","所有的一轉職業皆無法裝備";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"只有等級80以上，且必須是劍士系列才能裝備。","需求等級70","重量90","以骨頭製成相當堅硬的頭具。戴起來相當輕便，而且擁有卓越的防禦力。";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"迷幻之王不會掉落此物品","黑暗之王不會掉落此物品","法老王不會掉落此物品","工會箱不會掉落此物品";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"只有等級70以上的劍士系列才能裝備。","以卡格利斯的骨頭製成相當堅硬的頭具。雖然戴起來相當重且費力，但是擁有卓越的防禦力。","攻擊黑暗屬性怪物時時增加15%傷害值","精練到+10防禦力可達15";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0013:
+	set $@GameQz$,"紅色魔力礦石不能由下列何者獲得？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"瑪勒盜蟲","盜蟲卵","卡浩","梅納海葵";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"單眼蟲","傘蜥","狂暴惡靈","狂暴傘蜥";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"狂暴鐵蠍","偽天使","綠腐屍","卷甲蟲";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"浮勒盜蟲","惡靈","腐屍首領","惡靈";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0014:
+	set $@GameQz$,"下列何者是邪骸獸人的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"死人遺骨","神之金屬原石","萬靈藥","萬能藥水";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"萬靈藥","綠色藥水","鋁","邪骸獸人戰士卡片";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"亡者遺物","1s毀滅之斧","鋁原石","獸人卡片";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"紅色藥水","神之金屬","死人遺物","2s毀滅之斧";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0015:
+	set $@GameQz$,"下列哪種怪物不會掉落神之金屬？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"哥布靈","直升機哥布靈","行刑者","血腥騎士";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"水靈龜","岩石龜","藍鼠","虎蜥人";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"怨靈武士","聖天使波利","天使玻利","狂暴米諾斯";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"鐘怪","艾斯恩魔女","裘卡","弒神者";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0016:
+	set $@GameQz$,"下列何者是狄奧斯的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"人魚嘴巴","菠色克藥水","鋁","人魚之淚";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"白色藥水","神之金屬原石","卡勒波迪藥水","覺醒藥水";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"人魚之哀","神之金屬","水靈原石","鋁原石";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"集中藥水","水靈礦石","人魚之心","帝特立米藥水";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0017:
+	set $@GameQz$,"下列何者是狂暴綠綿蟲的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"1S無邊帽","毛","綠色藥水","星星的粉末";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"3S木錘","布裡刊","黃色藥水","綠色藥草";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"4S木錘","0S無邊帽","星星的角","綠色藥水";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"毛","土靈礦石","三葉幸運草","藍色藥水";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0018:
+	set $@GameQz$,"下列何者是邪靈魔導士的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"撕裂的捲軸","老舊捲軸","2S言靈魔杖","回憶書籤";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"聖杖 英靈","大巫師之杖","破舊的捲軸","破舊捲軸";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"3S智慧魔杖","1S言靈魔杖","靈魂之杖","魔法書";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"聖言之書","骷髏魔杖","破舊魔法圖","老舊魔法書";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0019:
+	set $@GameQz$,"請問下列哪個NPC不是位於克魔島";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"德邱大嬸","林達","盧哈","阿希娜 斯諾特拉";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"愛默藍漢它斯","伯克納德"," 阿伊歐樂","赫拉麗絲";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"露奇特","雷依基","迪思恩","烏茲德";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"馬卡芻","戚致理","帕帕亞","馬雷克漢森";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0020:
+	set $@GameQz$,"下列何者是白草的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"西納雷花","曼特花","草葉","幻想花";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"哀唱草","鱗片梗","茉莉花","天地樹葉子";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"野生花","捧花","蘆薈葉子","呢喃花";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"哀唱草","花束","草葉","青嫩毒草";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0021:
+	set $@GameQz$,"下列何者是光芒草的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"天地樹?","蘆薈葉子","草葉","神之金屬";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"蜂膠","華麗金屬","花葉","西納雷花";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"蜂膠","曼特花","幻想花","哀唱草";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"呢喃花","草葉","哀唱草","蜂蜜";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0022:
+	set $@GameQz$,"下列何者是九尾狐的掉落物？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"神秘箱子","蜂蜜","1S皮製外套","狐狸皮革";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"蜂蜜","蜂膠","神秘紫箱","1S毛皮大衣";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"彈珠","枯木汁","神之金屬原石","九尾狐卡片";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"狐狸皮革","動物皮革","鋁原石","玻璃珠";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0023:
+	set $@GameQz$,"下列有關卡片附加於裝備前的名字，何者錯誤？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"弒神者卡片 抓狂的","狄奧斯卡片 水生的","蒼蠅 發光二極體","德古拉男爵卡片 心靈的";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"烏賊卡片 魔神之","獸人腐屍卡片 腐爛的","闇神官卡片 致命的","僵屍卡片 護身符的";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"螞蟻卵卡片 佳的","邪駭戰士卡片 敏的","麥斯特卡片 有害的","蛋殼小雞卡片 沖的";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"蛇女伊絲卡片 神聖的","弒神者卡片 發瘋的","卡浩卡片 下之","傀儡娃娃卡片 玩偶之";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0024:
+	set $@GameQz$,"下列魔物中HP最高的是？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"獸人女戰士","獸人戰士","獸人腐屍","巧克猴";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"綠棉蟲","樹精","蒼蠅","禿鷹";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"綠腐屍","木乃伊","赤蒼蠅","黑蛇";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"烏龜將軍","俄賽裡斯","法老王","巴風特";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0025:
+	set $@GameQz$,"請選出下列魔物中，屬性與其他不同者？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"刺刀哥布靈","釣魚河童","鬼女","卡那多斯";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"流氓","小惡魔","米杜沙","惡雲仙人";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"瑪勒盜蟲","白鼠","綠餅人","吸血蝙蝠";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"猴桃木","獸人女戰士","野豬","鐘怪";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0026:
+	set $@GameQz$,"下列有關屬性的攻擊力加乘，何者錯誤？(攻方屬性-->守方屬性 加乘傷害)";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"不死-->地2 100%","不死-->聖1 100%","不死-->闇1 miss","不死-->不死1 miss";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"水-->不死2 100%","水-->火2 150%","水-->毒4 75%","水-->風2 25%";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"闇-->火4 75%","闇-->闇1 miss","闇-->不死4 75%","闇-->念4 100%";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"念-->火1 miss","念-->不死3 175%","念-->聖3 25%","念-->毒2 50%";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0027:
+	set $@GameQz$,"請問下列地圖的俗稱以及正式中文名稱的配對，何者錯誤？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"斐楊5F(pay_dun04)：殭屍洞","人面3F(in_sphinx3)：史芬克斯 密穴","克魔島西邊的洞窟：西邊 洞穴 加露","吉芬塔地下1F(gef_dun00)：吉芬 地下 密穴";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"斐楊5F(pay_dun04)：地下廢棄村落","人面3F：史帝芬斯 密穴","克魔島東邊的洞窟：東邊 洞穴 馬吾","吉芬塔地下2F(gef_dun01)：吉芬 地下 密穴";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"斐楊3F(pay_dun02)：斐楊 地下","火洞：諾可羅德","海洞5F(iz_dun04)：海底 遺跡","礦坑：妙勒尼 廢棄礦場";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"海洞1F(iz_dun00)：海底 洞窟","蟻洞：螞蟻 地獄","克魔島北邊的洞窟：北邊 洞穴 盧安達","火洞：熔岩 洞窟";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0028:
+	set $@GameQz$,"請問下列地圖的俗稱以及正式中文名稱的配對，何者錯誤？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"吉芬塔地下3F(gef_dun02)：吉芬 地下 密穴","礦坑：妙勒尼 廢棄礦場","人面3F(in_sphinx3)：史帝芬斯 密穴","礦坑：妙勒尼 廢棄礦場";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"蟻洞：螞蟻 地獄","斐楊5F(pay_dun04)：斐楊 地下","海洞5F(iz_dun04)：海底 洞窟","金二：金字塔 迷宮";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"斐楊3F：斐楊 地下","吉芬塔地下2F(gef_dun01)：吉芬 地下 密穴","蟻洞：螞蟻 洞窟","克魔島西邊的洞窟：西邊 洞穴 加露";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"克魔島北邊的洞窟：北邊 洞穴 盧安達","火洞：諾可羅德","金字塔地下2F(moc_pryd2)：金字塔 迷宮","克魔島西邊的洞窟：西邊 洞穴 馬吾";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0029:
+	set $@GameQz$,"請問下列地圖的俗稱以及正式中文名稱的配對，何者錯誤？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"歐洞：獸人 洞窟","崑崙1F(gon_dun01)：西王母神殿","龜島4F(tur_dun04)：舊良宮","長老樹精區：普隆德拉 區域";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"崑崙2F(gon_dun02)：神仙的圍棋台","斐楊長老樹精區：斐楊 叢林","龜島2F(tur_dun02)：烏龜島 密穴","獸人村(英雄出現的地圖)：西邊 獸人村落";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"崑崙3F(gon_dun03)：武陵道院","龜島1F(tur_dun01)：烏龜島","波利島：波利 島嶼","克島燈塔：發樂斯 燈塔島";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"波利島：蘇克拉特 沙漠","斐楊長老樹精區：斐楊 樹林","龜島3F(tur_dun03)：烏龜村","克島燈塔：克魔島 燈塔";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0030:
+	set $@GameQz$,"請問下列地圖的俗稱以及正式中文名稱的配對，何者錯誤？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"克魔島北邊的洞窟：北邊 洞穴 加露","歐洞：獸人地下洞窟","龜島3F：烏龜村","崑崙1F(gon_dun01)：西王母神殿";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"金字塔地下2F(moc_pryd2)：金字塔 迷宮","崑崙1F(gon_dun01)：武陵道院","龜島4F(tur_dun04)：舊良宮","克島燈塔：發樂斯 燈塔島";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"崑崙3F(gon_dun03)：武陵道院","吉芬塔地下2F：吉芬 地下 密穴","龜島2F(tur_dun02)：烏龜島 洞窟","克魔島東邊的洞窟：東邊 洞穴 馬吾";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"克魔島北邊的洞窟：北邊 洞穴 盧安達","克魔島西邊的洞窟：西邊 洞穴 加露","龜島4F(tur_dun04)：舊良宮","崑崙1F(gon_dun01)：聖王母聖殿";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0031:
+	set $@GameQz$,"下列何者不是寵物波利的台詞？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"痛快!全是不堪一擊的廢物啊!哈哈!","ROO~有種果汁真好喝~","哈啾!天氣變涼囉!","還在發呆呀!趕快練功準備新二轉哦!";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"開香檳慶祝吧","給我一杯新鮮果汁!均衡一下!","嘿呀!主人真贊!","天下第一強者在這啦!";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"你真是個大好人啊^^","主人, 你看那裡?!","衣服有點大啊.","你們好弱,完全不是主人的對手!";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"別以為你是睡美人!快醒醒吧!","騎士和十字軍?你覺得誰比較強呀?","哇咧!別突然出現嚇我啦!","一起吃吧!這可是你的榮幸哦!";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0032:
+	set $@GameQz$,"下列何者不是寵物波波利的台詞？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"主人，我的卡片要插在夾子上才可以哦...","好險!偶差一點就變成餓死鬼波利了@@","氣死我也!現在才上菜@@","怪物什麼時候才清光啊!肚子好餓哦";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"主人，您好像已經趴了很多次喔~","好呀!十年苦練無人問,一舉升級天下知!","天堂有路您不走，地獄無門您偏闖","沒關係,失敗為成功之母";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"奇怪?我餓過頭了嗎?怎麼眼前好多食物在飛","噓~噓~我在練習吟遊詩人的吹口哨技能","昏天暗地，征戰一番苦盡甘來，佩服!佩服!","嘿嘿，波波利果然是主人的幸運物";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"我要把眼睛睜大一點看!","能當主人的寵物是很幸福的一件事","鐵沙掌!六合拳!連環全身掌!!通通給我上呀!","生不帶來,死不帶去!所以主人你自己走吧!";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0033:
+	set $@GameQz$,"下列何者不是寵物殭屍的台詞？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"主人和我真是心靈相通,知道我在想什麼...","危險囉!該喝藥水還是得喝...","哇哇!怎麼丟下人家就走啦!","有紙巾嗎?我要擦擦嘴^^";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"看吧!這就是一直不給我吃東西的結果!","魔物走開...不要欺負我們家主人.","打怪歸打怪，也記得讓可愛的我吃些東西吧!","主人別擔心,我不會棄您而去的";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"現在有妖道陪著我了，感覺不這麼孤單了!","我不喜歡太亮的地方!","快點回來吧~我一個人在這兒會無聊哦!","發了夏傷的芽，開了歎息的花，在多心的園地裡，任它恣意的長大...";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"您好!想不想像我這樣跳跳跳呀^^","少年不識愁滋味，愛上層樓!愛上層樓!","快!暫時停止呼吸!......哇!沒有用!","主人您有什麼煩惱也可以說給我聽聽啊!";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0034:
+	set $@GameQz$,"下列何者不是寵物鬼女的台詞？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"嫩嫩入口好消化，口齒留香。","呵呵...正好有點餓了..","淑女即使肚子餓了，吃東西仍然要優雅又端莊","您看起來似乎很虛弱喔,喝點水歇息歇息吧";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"主人這樣不行喔!請再加油^^","給我一杯檸檬茶!我要做蜂蜜檸檬茶喝^^","主人可以買個卡普拉發圈給我嗎?這樣我就不怕魔法傷害哩^^","別難過,等會我們又可以見面啦";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"別難過,等會我們又可以見面啦","以前的我實在太凶了,從現在起我會更溫柔的對待您地^^","早點回來吧!我等你!","恭喜^^來!我在空中跳舞給您看!";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"不要被我華麗的身影所迷惑囉!","主人要堅強撐下去，人家會一直陪著你的","傳說中的天空之城如果真在天上,那我可以飛上去囉^^","你看起來不大對勁啊!先去一旁休息吧!";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+Qz0035:
+	set $@GameQz$,"下列何者不是寵物妖道的台詞？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"只有在趴掉的時後才會體會活著的快樂!偶沒說錯吧!","這麼晚才餵我,難道你是嫉妒我的美麗,企圖餓死我嗎?","除了我的瀟灑外,食物就是我的第二最愛^_^","嘿嘿!別被我的華麗身影迷惑住哦!";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"嘿嘿!這裡讓我表演就好!你去幫我準備食物吧!","主人剛剛那招亂猛的說!","嘖!要是我吃飽的話,這些嫩角色根本不算什麼!","你先躺一下,我先去找吃的哦!";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"不錯哦!越來越知道我的需求!","你們全上吧!讓我享受殺戮快感吧!別欺負命危的主人","如果有飯後甜點更好唷~","鈴~鈴~鈴~鈴~安息吧!";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"我會燒紙錢給你的......啊!燒信用卡就可以了嘛!","波!你看我飛吻一出,旁人立刻迷倒在地^^","給我一杯新鮮果汁!均衡一下!","孤獨的修行者...我想這是在形容武道家這個職業吧!";
+Qz0036:
+	set $@GameQz$,"以一般精練師而言，請問有關精練的機率敘述何者正確？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"除了武器Lv.1之外，其他的裝備由+8衝+9的機率都一樣","忽克連由於會私藏精練成功的裝備，所以衝過的機率比較低","精練武器都是使用神之金屬","武器Lv.3由+6衝+7與+7衝+8的機率一樣";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"防具一口氣衝到+8的機率為2.19%","防具一口氣衝到+8的機率為1.92%","防具一口氣衝到+8的機率為1.95%","防具一口氣衝到+8的機率為2.91%";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"安全鞋可以安全精練到+4","聖耀之盾可以安全精練到+4","神秘的水果皮帽可以安全精練到+4","生存斗篷可以安全精練到+4";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"所有武器都能安全衝到+4","所有盾都能安全衝到+4","所有披肩都能安全衝到+4","所有盔甲都能安全衝到+4";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+
+
+
+//------------------------------------原始格式-----------------------------------------------
+Qz9000:
+	set $@GameQz$,"？";
+	if ($@QZnum == 1) setarray $@NumAns$[1],"","","","";
+	if ($@QZnum == 2) setarray $@NumAns$[1],"","","","";
+	if ($@QZnum == 3) setarray $@NumAns$[1],"","","","";
+	if ($@QZnum == 4) setarray $@NumAns$[1],"","","","";
+	set $@GameAns,$@QZnum;
+	goto ChQend;
+
+
+
+ChQend:
+	return;
+}

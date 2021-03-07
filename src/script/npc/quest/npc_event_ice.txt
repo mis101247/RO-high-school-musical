@@ -1,0 +1,92 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 冰琪琳 商人 -
+//========================================================================================
+-	script	icenpc	85,{
+		mes "[冰淇淋商人]";
+		mes "來喔來喔";
+		mes "只有夏天才可以品嚐的到的冰淇淋上市了！！";
+		mes "一客^3355FF100 金幣^000000";
+		mes "保證你吃了爽到心裡哦！";
+		next;
+		menu "給我冰淇淋！",-,"有關冰淇淋",L_START_1,"結束交易",Lcancel;
+			mes "[冰淇淋商人]";
+			mes "冰涼又好吃的冰淇淋";
+			mes "買的人太多了";
+			mes "所以請你最多只買 10 個好嗎?";
+			mes "謝謝你的合作";
+	L_ROOT_1:
+			next;
+			input @CHANGE_NUM;
+			if (@CHANGE_NUM <= 0) goto L_MENU_1;
+			if (@CHANGE_NUM >= 11) goto L_MENU_2;
+			set @CHANGE_ZENY,@CHANGE_NUM;
+			set @CHANGE_ZENY,@CHANGE_ZENY*100;
+			if (Zeny >= @CHANGE_ZENY) goto L_ROOT_2;
+				mes "[冰淇淋商人]";
+				mes "你的金錢不足";
+				mes "一客^3355FF100 金幣^000000！";
+				close;
+	L_ROOT_2:
+			if (checkweight(536,@CHANGE_NUM)) goto L_ROOT_3;
+				mes "[冰淇淋商人]";
+				mes "客人，你身上的東西太多了";
+				mes "放不下那麼多冰淇淋了。";
+				mes "請清理後再來。";
+				close;
+	L_ROOT_3:
+			set Zeny,Zeny-@CHANGE_ZENY;
+			getitem 536,@CHANGE_NUM;
+			mes "[冰淇淋商人]";
+			mes "你一共買了 "  + @CHANGE_NUM + " 個。";
+			mes "好好享用吧。";
+			close;
+	L_MENU_1:
+			mes "[冰淇淋商人]";
+			mes "嗯？";
+			mes "你的肚子不好嗎？";
+			close;
+	L_MENU_2:
+			mes "[冰淇淋商人]";
+			mes "哇";
+			mes "你會不會買太多";
+			mes "說真的";
+			mes "根據我們經驗";
+			mes "吃太多，對身體真的不好";
+			mes "會肚子痛的 ?";
+			goto L_ROOT_1;
+	L_START_1:
+			mes "[冰淇淋商人]";
+			mes "冰淇淋的製造方式？";
+			mes "你不會是商業間諜吧！..";
+			mes "不過，你看起來也不像";
+			mes "我就偷偷的告訴你好了";
+			mes "糖加上雞蛋加上安定劑再加上牛奶";
+			next;
+			mes "[冰淇淋商人]";
+ 			mes "還有香料，色素等";
+ 			mes "放入攪拌後，再冷凍";
+ 			mes "就完成了";
+ 			mes "不過，熱量很高喔";
+ 			mes "適量的食用比較好喔";
+			next;
+			mes "[冰淇淋商人]";
+ 			mes "還有 ..";
+  			mes "吃太多的話";
+			mes "會腸胃不適";
+			mes "肚子痛我不會負責的！";
+			close;
+	Lcancel:
+			mes "[冰淇淋商人]";
+			mes "現在沒有把握這機會的話";
+			mes "到明年夏天";
+			mes "就吃不到了喔";
+			mes "快來買喔 !";
+			close;
+}
+
+morocc.gat,160,143,4	duplicate(icenpc)	冰淇淋商人	85
+alberta.gat,106,65,4	duplicate(icenpc)	冰淇淋商人	85
+moc_fild16.gat,88,304,4	duplicate(icenpc)	冰淇淋商人	85

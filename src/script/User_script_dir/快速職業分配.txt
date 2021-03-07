@@ -1,0 +1,822 @@
+prontera.gat,141,175,6	script	轉職分配員	790,{
+
+	mes "[轉職分配員]";
+	mes "請選擇下列的的職業";
+        mes "(男弓箭手請不要選舞姬,女弓箭手請不要選藝人!)";
+next;
+menu	"超級初心者",LLordkingho,"騎士領主",LLordkinght,"聖殿十字軍",LPaladin,"超魔導師",LHighWizard,"智者",LProfessor,"神官",LHighPriest,"武術宗師",LChampion,"神工匠",LWhiteSmith,"造物者",LCreator,"十字刺客",LAssasinCross,"神行太保",LStalker,"狙擊手",LSniper,"藝人",LClown,"舞姬",LGypsy,"靈媒",LSoulLinker,"拳聖",LStarKnight,"槍手",abb,"忍者",acc,"不轉了.",LCancel;
+LCancel:
+	mes "[轉職分配員]";
+	mes "恩,好的,好好想想吧,決定要轉了隨時歡迎回來找我!";
+	mes "祝你玩得愉快!";
+	close;
+	OnInit:
+        	waitingroom "找我轉職(開放靈媒/拳聖/忍者/槍手)",0;
+        	end;
+
+LSoulLinker:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 靈媒 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+        jobchange 27;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	
+        close;
+LStarKnight:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 拳聖 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 25;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;	
+        close;
+
+acc:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 忍者 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 29;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;	
+        close;
+abb:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 槍手 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 28;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;	
+        close;
+
+//超級初心者
+    LLordkingho:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!"; 
+	mes "快看看,你現在是^0000FF 超級初心者 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 23,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//騎士領主
+    LLordkinght:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 騎士領主 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 7,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//聖殿十字軍
+    LPaladin:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 聖殿十字軍 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 14,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//超魔導師
+    LHighWizard:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 超魔導師 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 9,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//智者
+    LProfessor:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 智者 ^000000了.";
+	resetstatus;
+	resetskill;
+	jobchange 16,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+//神官
+    LHighPriest:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 神官 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 8,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//武術宗師
+    LChampion:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 武術宗師 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 15,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//神工匠
+    LWhiteSmith:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 神工匠 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 10,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+//造物者
+    LCreator:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 造物者 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 18,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//十字刺客
+    LAssasinCross:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 十字刺客 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 12,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+//神行太保
+    LStalker:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 神行太保 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 17,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//狙擊手
+    LSniper:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 狙擊手 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 11,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//藝人
+    LClown:
+       	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 藝人 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 19,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	set SkillPoint,500;
+	close;
+
+//舞姬
+    LGypsy:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 舞姬 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 20,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+
+}
+
+prontera.gat,148,161,6	script	未轉生轉職分配員	790,{
+
+	mes "[未轉生轉職分配員]";
+	mes "請選擇下列的的職業";
+        mes "(男弓箭手請不要選舞姬,女弓箭手請不要選藝人!)";
+next;
+menu	"騎士",LLordkinght,"十字軍",LPaladin,"魔導師",LHighWizard,"賢者",LProfessor,"祭司",LHighPriest,"武道家",LChampion,"鐵匠",LWhiteSmith,"鍊金術師",LCreator,"刺客",LAssasinCross,"流氓",LStalker,"獵人",LSniper,"詩人",LClown,"舞孃",LGypsy,"不轉了.",LCancel;
+LCancel:
+	mes "[未轉生轉職分配員]";
+	mes "恩,好的,好好想想吧,決定要轉了隨時歡迎回來找我!";
+	mes "祝你玩得愉快!";
+	close;
+
+
+//騎士領主
+    LLordkinght:
+        mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 騎士 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 7,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//聖殿十字軍
+    LPaladin:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 十字軍 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 14,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//超魔導師
+    LHighWizard:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 魔導師 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 9,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//智者
+    LProfessor:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 賢者 ^000000了.";
+	resetstatus;
+	resetskill;
+	jobchange 16,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+//神官
+    LHighPriest:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 祭司 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 8,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//武術宗師
+    LChampion:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 武道家 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 15,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//神工匠
+    LWhiteSmith:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 鐵匠 ^000000了";
+	mes "祝你玩得愉快!";
+	resetskill;
+	resetstatus;
+	jobchange 10,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+//造物者
+    LCreator:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 鍊金術師 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 18,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//十字刺客
+    LAssasinCross:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 刺客 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 12,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+//神行太保
+    LStalker:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 流氓 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 17,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//狙擊手
+    LSniper:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 獵人 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 11,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//藝人
+    LClown:
+       	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 詩人 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 19,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+//舞姬
+    LGypsy:
+	mes "[未轉生轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 舞孃 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 20,0;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+
+	close;
+
+
+}
+
+
+prontera.gat,148,158,6	script	一轉轉職分配員	790,{
+
+	mes "[一轉轉職分配員]";
+	mes "請選擇下列的的職業";
+        mes "(男弓箭手請不要選舞姬,女弓箭手請不要選藝人!)";
+next;
+menu	"初心者",LLordkingho,"劍士",LLordkinght,"盜賊",LPaladin,"商人",LHighWizard,"法師",LProfessor,"服事",LHighPriest,"弓箭手",LChampion,"不轉了.",LCancel;
+LCancel:
+	mes "[一轉轉職分配員]";
+	mes "恩,好的,好好想想吧,決定要轉了隨時歡迎回來找我!";
+	mes "祝你玩得愉快!";
+	close;
+	OnInit:
+        	waitingroom "找我轉職一轉",0;
+        	end;
+
+    LLordkingho:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!"; 
+	mes "快看看,你現在是^0000FF 初心者 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 0,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	close;
+
+    LLordkinght:
+        mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 劍士 ^000000了";
+	mes "祝你玩得愉快!";
+	resetskill;
+	resetstatus;
+	jobchange 1,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	close;
+
+    LPaladin:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 盜賊 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 6,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	close;
+
+    LHighWizard:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 商人 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 5,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	close;
+
+//智者
+    LProfessor:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 法師 ^000000了.";
+	resetstatus;
+	resetskill;
+	jobchange 2,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	close;
+//神官
+    LHighPriest:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 服事 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 4,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	close;
+
+//商人
+    LChampion:
+	mes "[轉職分配員]";
+	mes "好了,恭喜你,轉職成功!";
+	mes "快看看,你現在是^0000FF 弓箭手 ^000000了";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 3,1;
+	set BaseLevel,150;
+	set JobLevel,99;
+	set StatusPoint,30000;
+	close;
+
+
+
+}
+
+prontera.gat,148,155,6	script	神秘的魔法師	792,{
+
+	mes "[神秘的魔法師]";
+	mes "請選擇下列的的職業";
+        mes "(男弓箭手請不要選舞姬,女弓箭手請不要選藝人!)";
+next;
+menu	"超級初心者",LLordkingho,"騎士領主",LLordkinght,"聖殿十字軍",LPaladin,"超魔導師",LHighWizard,"智者",LProfessor,"神官",LHighPriest,"武術宗師",LChampion,"神工匠",LWhiteSmith,"造物者",LCreator,"十字刺客",LAssasinCross,"神行太保",LStalker,"狙擊手",LSniper,"藝人",LClown,"舞姬",LGypsy,"初心者",abb,"不變了.",LCancel;
+LCancel:
+	mes "[神秘的魔法師]";
+	mes "恩,好的,好好想想吧,決定要轉了隨時歡迎回來找我!";
+	mes "祝你玩得愉快!";
+	close;
+
+
+abb:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 0,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;	
+        close;
+
+//超級初心者
+    LLordkingho:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 23,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//騎士領主
+    LLordkinght:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 7,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//聖殿十字軍
+    LPaladin:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 14,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//超魔導師
+    LHighWizard:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 9,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//智者
+    LProfessor:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	resetstatus;
+	resetskill;
+	jobchange 16,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+//神官
+    LHighPriest:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 8,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29900;
+	set SkillPoint,500;
+	close;
+
+//武術宗師
+    LChampion:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 15,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//神工匠
+    LWhiteSmith:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 10,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29900;
+	set SkillPoint,500;
+	close;
+//造物者
+    LCreator:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 18,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//十字刺客
+    LAssasinCross:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 12,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+//神行太保
+    LStalker:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 17,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//狙擊手
+    LSniper:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 11,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//藝人
+    LClown:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 19,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+//舞姬
+    LGypsy:
+	mes "[神秘的魔法師]";
+	mes "好了,恭喜你,變小成功!";
+	mes "祝你玩得愉快!";
+	resetstatus;
+	resetskill;
+	jobchange 20,2;
+	set BaseLevel,200;
+	set JobLevel,99;
+	set StatusPoint,29500;
+	set SkillPoint,500;
+	close;
+
+
+}

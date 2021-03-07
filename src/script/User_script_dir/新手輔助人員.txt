@@ -1,0 +1,132 @@
+
+//新人裝備發送員
+//by 嗚嗚
+
+prontera.gat,196,191,5	script	嗚嗚	711,{
+mes "[嗚嗚]";
+mes "你好，我是嗚嗚!";
+mes "我為每位初學都發放天使之翼!";
+mes "每個人只能領一次哦！";
+next;
+menu "我要領取！",LGET,"離開",LCLOSE;
+
+//開始
+LGET:
+		if (g==2) goto OREADY;
+
+		set g,2;
+		getitem	8020,1;	
+		goto LOK;
+OREADY:
+		mes "[嗚嗚]";
+		mes "領過了不能再領哦！";
+		goto LCLOSE;
+LOK:
+		mes "[嗚嗚]";
+		mes "希望你玩得愉快!";
+		goto LCLOSE;	
+LCLOSE:
+		close;
+OnInit:
+	waitingroom "天使之翼領取員！",0;
+	end;
+	
+	
+}
+
+
+amatsu.gat,107,164,4	script	上帝	50,{
+			mes "[上帝]";
+			mes "哈哈!你想要又強又帥的光明/黑暗翅膀嘛?";
+			mes "分別int/str+10萬";
+			mes "優待x20 真金x2 優惠x1000 黑人冥衣x1 天使背包x1 血珊瑚x1 千變翅膀x1";
+			next;
+			mes "[上帝]";
+			mes "你想要換取哪項翅膀卡?";
+			next;
+        menu "好的，我要去",Lpr1,
+        "哇!你把我的命拿去好了。",LError;
+
+Lpr1:  
+        if (countitem(7199)<20) goto LError;
+        if (countitem(15374)<1) goto LError;
+        if (countitem(15011)<2) goto LError;
+        if (countitem(7037)<1000) goto LError;
+        if (countitem(15366)<1) goto LError;
+        if (countitem(18013)<1) goto LError;
+        if (countitem(15021)<1) goto LError;      
+        menu "光明翅膀",Lpr3,
+        "黑暗翅膀",Lpr4;
+	
+
+
+
+//錢不足-------------------------------------------------------
+NotEnough:
+			mes "[上帝]";
+			mes "東西還不齊全哦！";
+			mes "加油在去蒐集吧！";
+close;
+//去收集-------------------------------------------------------			
+LError:
+	mes "[上帝]";
+	mes "bye bye";
+	close;
+                OnInit:
+        	waitingroom "上帝",0;
+        	end;
+//-----------------------------------------------------			
+Lpr3:
+        if (countitem(7199)<20) goto LError;
+        if (countitem(15374)<1) goto LError;
+        if (countitem(15011)<2) goto LError;
+        if (countitem(7037)<1000) goto LError;
+        if (countitem(15366)<1) goto LError;
+        if (countitem(18013)<1) goto LError;
+        if (countitem(15021)<1) goto LError; 
+			mes "[上帝]";
+			mes "現在就為你製作！";
+			next;
+			mes "[上帝]";
+			mes ".................";
+			next;
+	delitem 7199,20;
+	delitem 15011,2;
+	delitem 7037,1000;
+	delitem 15366,1;
+	delitem 18013,1;
+	delitem 15021,1;
+	delitem 15374,1;
+			getitem 15371,1;
+			mes "[上帝]";
+			mes "做好囉！去試看看效果如何吧!!";
+			mes "掰掰^^";
+close;
+//-------------------------------------------------------
+Lpr4:
+        if (countitem(7199)<20) goto LError;
+        if (countitem(15374)<1) goto LError;
+        if (countitem(15011)<2) goto LError;
+        if (countitem(7037)<1000) goto LError;
+        if (countitem(15366)<1) goto LError;
+        if (countitem(18013)<1) goto LError;
+        if (countitem(15021)<1) goto LError; 
+			mes "[上帝]";
+			mes "現在就為你製作！";
+			next;
+			mes "[上帝]";
+			mes ".................";
+			next;
+	delitem 7199,20;
+	delitem 15011,2;
+	delitem 7037,1000;
+	delitem 15366,1;
+	delitem 18013,1;
+	delitem 15021,1;
+	delitem 15374,1;
+			getitem 15372,1;
+			mes "[上帝]";
+			mes "做好了!!!真是傑作阿!!";
+			mes "掰掰";
+close;
+}

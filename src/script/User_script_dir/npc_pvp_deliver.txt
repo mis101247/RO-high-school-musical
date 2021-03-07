@@ -1,0 +1,221 @@
+prontera.gat,162,165,4	script	pvp/gvg	823,{
+	set @GIDp1,getcastledata("prtg_cas01.gat",1);
+	set @GIDp2,getcastledata("prtg_cas02.gat",1);
+	set @GIDp3,getcastledata("prtg_cas03.gat",1);
+	set @GIDp4,getcastledata("prtg_cas04.gat",1);
+	set @GIDp5,getcastledata("prtg_cas05.gat",1);	
+        menu "pvp/gvg",Lpro,
+        "活動用地圖 [" + getmapusers("pvp_y_1-1.gat") + " / 40]",Lpr,
+	"取消",Lcancel;
+Lpro:
+	menu "耍白1區 [" + getmapusers("pvp_n_7-5.gat") + " / 30]",Lpr1,
+        "耍白2區 [" + getmapusers("pvp_n_1-5.gat") + " / 30]",Lpr2,
+        "不耍白區 [" + getmapusers("pvp_y_8-2.gat") + " / 30]",Lpr3,
+        "歌 佔有公會 ^ff0000 " + GetGuildName(@GIDp1) + " ^000000",Lpr4,
+        "舞 佔有公會 ^ff0000 " + GetGuildName(@GIDp2) + " ^000000",Lpr5,
+        "永 佔有公會 ^ff0000 " + GetGuildName(@GIDp3) + " ^000000",Lpr6,
+        "青 佔有公會 ^ff0000 " + GetGuildName(@GIDp4) + " ^000000",Lpr7,
+        "春 佔有公會 ^ff0000 " + GetGuildName(@GIDp5) + " ^000000",Lpr8;
+Lpr1:
+	if(getmapusers("pvp_n_7-5.gat") >= 30 ) goto LError;
+	warp "pvp_n_7-5",0,0;
+	end;
+Lpr2:
+	if(getmapusers("pvp_n_1-5.gat") >= 30 ) goto LError;
+	warp "pvp_n_1-5.gat",0,0;
+	end;
+Lpr3:
+	if(getmapusers("pvp_y_8-2.gat") >= 30 ) goto LError;
+	warp "pvp_y_8-2.gat",0,0;
+	end;
+Lpr4:
+	warp "prtg_cas01.gat",95,51;
+	end;
+Lpr5:
+	warp "prtg_cas02.gat",15,216;
+	end;
+Lpr6:
+	warp "prtg_cas03.gat",188,10;
+	end;
+Lpr7:
+	warp "prtg_cas04.gat",91,57;
+	end;
+Lpr8:
+	warp "prtg_cas05.gat",10,264;
+	end;
+Lpr:
+	warp "pvp_y_1-1.gat",0,0;
+	end;
+Lcancel:
+	close;
+                OnInit:
+        	waitingroom "pvp/gvg",0;
+        	end;
+Error:
+   	mes "[pvp/gvg]";
+	announce "pvp&gvg等候室： "+strcharinfo(0)+"帶g戎不能進唷!",15;
+        close;
+LError:
+	mes "[耍白2區]";
+	mes "對不起，滿員了。";
+	close;
+}
+pvp_n_8-5.gat	mapflag	noskill
+pvp_n_1-5.gat	mapflag	nosave	prontera.gat,155,179
+pvp_n_7-5.gat	mapflag	nosave	prontera.gat,155,179
+pvp_n_3-5.gat	mapflag	nosave	prontera.gat,155,179
+pvp_y_8-2.gat	mapflag	nosave	prontera.gat,155,179
+
+prontera.gat,162,162,6	script	人行怪區傳送員	806,{
+mes "人行怪區傳送員]";
+mes "我是人行怪區傳送員,有沒有膽量去挑戰,哇哈哈!";
+mes "費用是10000元";
+mes "要或不要,一句話??";
+next;
+menu"要",L_OK,"不要",L_NO;
+
+L_OK:
+if (Zeny<100000) goto NeedZenys;
+set Zeny,Zeny-10000;
+goto L_YES;
+
+L_YES: warp "lhz_dun03",127,136; close;
+
+L_NO:
+mes "[人行怪區傳送員]";
+mes "真沒種,還想當什麼英雄";
+OnInit:
+        	waitingroom "人行怪區傳送員",0;
+        	end;
+close;
+//---------------------------------------------------------------
+NeedZenys:
+mes "[人行怪區傳送員]";
+mes "沒錢還想我幫你傳送,別笑死人";
+close;
+}
+//----------------------------------------------------------------
+lhz_dun03.gat,120,136,4	script	回城傳送員	806,{
+mes "[回城傳送員]";
+mes "想要回去,除非你有蝴蝶翅膀,否則是回不去,別想用登出大法(登出一樣回不去)";
+mes "如果沒有蝴蝶翅膀,也沒關係,只要付費,我可以幫你傳回去";
+mes "費用是10000元,要或不要,一句話??";
+next;
+menu"要",L_koko1,"不要",L_koko2;
+
+L_koko1:
+if (Zeny<10000) goto NeedZenys;
+set Zeny,Zeny-10000;
+goto L_koko3;
+
+L_koko3: warp "prontera",162,165; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+
+lhz_dun03.gat,0,0,0,0      monster      超級初心者      1782,3,0,0,00
+lhz_dun03.gat,0,0,0,0      monster      騎士領主      1789,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      騎士領主      1790,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      神管      1791,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      超魔導士     1792,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      神工匠      1793,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      神射手      1794,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      十字刺客      1795,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      聖殿十字軍      1796,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      武術宗師      1797,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      智者      1798,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      神行太保      1799,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      造物者      1800,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      詩人      1801,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      舞姬      1802,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      聖殿十字軍      1803,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      槍手      1804,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      忍者      1805,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      我們結婚去      1806,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      超級初心者      1827,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      騎士領主      1834,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      騎士領主      1835,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      神管      1836,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      超魔導士      1837,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      神工匠      1838,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      神射手      1839,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      十字刺客      1840,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      聖殿十字軍      1841,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      武術宗師      1842,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      智者      1843,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      神行太保      1844,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      造物者      1845,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      聖殿十字軍      1846,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      槍手      1847,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      忍者      1848,3,0,0,0
+lhz_dun03.gat,0,0,0,0      monster      我們結婚去      1849,3,0,0,0
+
+prontera.gat,162,159,6	script	MVP區傳送員	806,{
+mes "MVP區傳送員]";
+mes "我是MVP區傳送員,有沒有膽量去挑戰,哇哈哈!";
+mes "費用是無價";
+mes "要或不要,一句話??";
+next;
+menu"要",L_YES,"不要",L_NO;
+
+
+
+L_YES: warp "prt_fild08",170,363; close;
+
+L_NO:
+mes "[MVP區傳送員]";
+mes "真沒種,還想當什麼英雄";
+OnInit:
+        	waitingroom "MVP區傳送員",0;
+        	end;
+close;
+//---------------------------------------------------------------
+NeedZenys:
+mes "[MVP區傳送員]";
+mes "沒錢或金幣還想我幫你傳送,別笑死人";
+close;
+}
+//----------------------------------------------------------------
+prt_fild08.gat,170,366,4	script	回城傳送員	806,{
+mes "[回城傳送員]";
+mes "想要回去,除非你有蝴蝶翅膀,否則是回不去,別想用登出大法(登出一樣回不去)";
+mes "如果沒有蝴蝶翅膀,也沒關係,只要付費,我可以幫你傳回去";
+mes "費用是無價,要或不要,一句話??";
+next;
+menu"要",L_koko3,"不要",L_koko2;
+
+
+L_koko3: warp "prontera",162,162; close;
+
+L_koko2:
+mes "[回城傳送員]";
+mes "還不想回去,那就面對死亡的恐懼吧,哇哈哈!";
+close;
+}
+//-------------------------------------------------------------------
+prt_fild08.gat,0,0,0,0      monster      俄塞里斯      1038,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      巴風特        1039,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      蜂后          1059,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      黃金蟲        1086,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      獸人英雄      1087,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      海盜之王      1112,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      虎王          1115,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      幽靈波利      1120,3,0,0,0
+prt_fild08.gat,0,0,0,0      monster      法老王        1157,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      皮里恩        1159,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      獸人酋長      1190,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      冰暴騎士      1251,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      卡崙          1252,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      烏龜將軍      1312,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      死靈          1046,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      月夜貓        1150,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      蟻后          1147,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      優待草        1830,25,0,0,0
+prt_fild08.gat,0,0,0,0      monster      阿門拉=ˇ=    1511,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      死靈騎士      1373,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      塔奧群卡      1583,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      貝思波        1685,5,0,0,0
+prt_fild08.gat,0,0,0,0      monster      聖誕波利      1062,25,0,0,0

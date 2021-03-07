@@ -1,0 +1,261 @@
+GM指令使用方法：在聊天對話框內打入這些指令令，以及使用格式即可。
+
+@help              ---- @顯示幫助
+@help1              ---- @顯示幫助1
+@help2              ---- @顯示幫助2
+@help3              ---- @顯示幫助3
+@help4              ---- @顯示幫助4
+
+@die  		---- 自殺
+@alive		---- 復活
+@save		---- 儲存現在的點
+@load		---- 回到儲存地點
+@rura 地圖名 x坐標 y坐標               ---- 瞬移到某一個地圖位置
+@rura+  人物名 地圖名 ｘ坐標 y坐標  ---- 把某玩家傳送到某地圖位置
+@jump x坐標 y坐標        ---- 飛到當前地圖的指定坐標
+@jumpto 玩家名稱         ---- 飛到某玩家身旁
+@go 數字                 ---- 簡化移動命令
+    0:普隆德拉     6:艾爾帕蘭         12:汶巴拉                18:鋼鐵之都 艾音布羅克
+    1:夢羅克       7:薑餅城           13:尼芙菲姆              19:採礦村落 艾音貝赫
+    2:吉芬         8:克魔島           14:洛陽                  20:企業城市 里希塔樂鎮
+    3:斐揚         9:朱諾             15:爪哇咿                21:遺忘者都市 黑喬爾
+    4:艾爾貝塔     10:天津町          16:哎喲泰雅
+    5:依斯魯得島   11:崑崙            17:鋼鐵之都 艾音布羅克
+
+@jobchange 職業ID [轉生] ---- 0～23職業選擇
+                              轉生 0=通常,1=轉生,2=養子,-1 or 無ウ=現狀
+    0:初心者      7:騎士             14:十字軍         22:結婚(轉職不可)
+    1:劍士        8:祭司             15:武道家         23:超級初心者
+    2:魔法師      9:巫師             16:賢者           24:跆拳道
+    3:弓箭手      10:鐵匠            17:流氓           25:拳聖
+    4:服事        11:獵人            18:鍊金術師       26:拳聖2
+    5:商人        12:刺客            19:吟遊詩人       27:悟靈士
+    6:盜賊        13:騎士(騎乘狀態) 20:舞孃            28:槍手
+                                     21:十字軍(騎乘狀態)29:忍者
+
+@option x y z            ---- x y z 改變現有角色狀態
+    x = 01 石化             y = 01 中毒              z = 01 火狩
+    x = 02 冰凍             y = 02 背後靈魂          z = 02 隱暱
+    x = 03 頭冒金星         y = 04 沉默狀態          z = 04 隱身
+    x = 04 睡覺             y = 16 周圍變暗          z = 08 手推車
+    x = 06 暗闇                                      z = 16 帶老鷹
+                                                     z = 32 騎鳥
+                                                     z = 64 消失
+
+@where 人物名稱    ---- 顯示人物當前位置
+@who               ---- 在線人物信息列表
+@who+              ---- 在線人物詳細信息列表
+
+@storage           ---- 開啟倉庫
+@gstorage           ---- 打開工會倉庫
+@speed   步行速度  ---- 1～1000移動速度，1表示為最快。
+@kami 消息   ---- 全體廣播，且不顯示發言者名字。字體顏色為黃色！
+@kamib 消息  ---- 體廣播，且不顯示發言者名字。字體顏色為淡藍色！
+@kamic 數字 消息  ---- 指定顏色廣播
+@pvpon             ---- 開啟即時PK。
+@pvpoff            ---- 解除即時pk
+@gvgon		   ---- 開啟工會戰。
+@gvgoff		   ---- 解除工會戰(地圖移動後解除。)
+
+@lvup 等級     ---- 基本等級上升 最高255。
+@jobLvup 增加值    ---- 職業等級上升。
+@stpoint 數字      ---- 增加狀態點數
+@skpoint 數字      ---- 增加技能點數
+@memo 數字         ---- 記錄傳送地圖名、0最新、2最早
+@zeny 數字         ---- 增加錢
+@model x y z       ---- x [0～23]髮型、y [0～8]髮色、z [0～4]服裝顏色。
+@hide              ---- 隱身 ON/OFF
+@heal   HP回復量 SP回復量           ---- HP,SP的回復量，若只打@heal　為SP，HP全部回復
+@str,@agi,@vit,@int,@dex,@luk 數字  ---- 具體屬性點上升點數
+@statall           ---- 全屬性MAX、或指定數字增減
+
+@makepet 怪物代碼或寵物蛋代碼     ---- 製作寵物蛋
+@petfriendly 數字  ---- 寵物親密度變更(0-1000)
+@pethungry 數字    ---- 寵物飢餓度(0-100)
+@petrename         ---- 寵物改名
+
+@item  物品代碼或名字 數量        ---- 得到物品。
+@item2  物品代碼或名字 數量 鑑定狀態 精練值 屬性 卡片1 卡片2 卡片3 卡片4  ---- 設置得到道具的詳細情況
+@item3　物品代碼或名字 數量 人物名     ---- 給指定人物指定道具。
+@itemreset                          ---- 清除物品欄內所有物品。（裝備著的物品保留）
+@itemidentify                   ---- 鑑定身上所有未鑑定的物品。
+@refine 位置代碼 精煉值       ---- 精煉右手=2 左手=32 雙手=34 頭=256/257/768/769 身上=16 肩膀=4 腳部=64 位置代碼0表示全部精練
+@produce 物品代碼或名字 屬性 星星角的數量                  ---- 製造武器 屬性代碼 0=無 1=水 2=地 3=火 4=風
+@repair                         ---- 修理損壞的裝備
+@monster 召喚出的怪物名稱 怪物名字或代碼 召喚數量 x坐標 y坐標    ---- x坐標 y表可省略，省略＝在當前位置召喚
+@monstermap 怪物名字或ID    ---- 召喚怪物。 (當前地圖) （隨機位置）
+@killmonster 地圖名   ---- 殺死指定地圖全部怪物，沒有制訂地圖則在當前地圖，有掉落道具
+@killmonster2 地圖名   ---- 殺死指定地圖全部怪物，沒有制訂地圖則在當前地圖，無掉落道具
+@guildlvup 數字                 ---- 工會等級上升。
+@recall 玩家名                ---- 召喚指定玩家到你身邊。
+@charjob 職業代碼 [轉生] 玩家名 ---- 變更指定玩家職業
+@revive 玩家名                ---- 復活指定玩家。
+@kill 玩家名                  ---- 殺死指定玩家。
+@charbaselvl 數字 玩家名      ---- 調節指定玩家的base等級。
+@charjlvl 數字 玩家名         ---- 調節指定玩家的Job等級。
+@charstats 玩家名             ---- 列出指定玩家的加點情況，(如等級，屬性數值，身上的金錢數目等相關信息)。
+@charoption x y z 玩家名      ---- 調節指定玩家的狀態。
+@charsave 地圖名 x坐標 y坐標 玩家名       ---- 指定玩家存儲點。
+
+@night              ---- 黑夜。
+@day                ---- 白天。
+@doom               ---- 服務器內，除GM外，所有人死亡。
+@doommap            ---- 當前地圖，除GM外，所有人死亡。
+@raise              ---- 復活服務器內所有人。
+@raisemap           ---- 復活當前地圖內所有人
+@kick 玩家名字      ---- 踢指定玩家下線。
+@kickall            ---- 踢所有人下線。（包括自己）。
+
+@mapexit            ---- 關閉map-server。
+
+@gat                ---- DEBUG用(調查四周 gat)
+@packet             ---- DEBUG用(查看封包)
+@icon	數字  0/1   ---- DEBUG用(狀態符號ON/OFF)
+@emotion            ---- DEBUG用(表情表示)
+@spiritball 數字    ---- 蓄氣個數[1--1000]之間
+@viewclass 數字     ---- 改變職業外觀
+
+@allskill                ---- 學會所有技能
+@skillall		 ---- 同上
+@questskill 技能ID   ---- 學習一個新技能
+@lostskill 技能ID    ---- 刪除一個技能
+ 初心者                              服事
+  142 = 緊急治療                      156 = 神聖之光
+  143 = 裝死                         商人
+ 劍士                                 153 = 手推車攻擊
+  144 = 移動HP恢復                    154 = 改裝手推車
+  145 = 攻擊弱點                      155 = 大聲吶喊
+  146 = 狂暴狀態                     盜賊
+ 魔法師                               149 = 噴砂
+  157 = 能量外套                      150 = 後退迴避
+ 弓箭手                               151 = 撿石頭
+  147 = 製作箭                        152 = 扔石頭
+  148 = 衝鋒箭
+
+@party    ---- 建立組隊(沒有限制)
+@guild    ---- 建立工會(沒有限制)
+
+@reloadatcommand   ---- 重新讀取atcommand_athena.conf
+@reloadbattleconf  ---- 重新讀取battle_athena.conf
+@reloadgmaccount   ---- 重新讀取gm_account_filename
+@reloadhomundb     ---- 重新讀取生命體DB
+@reloaditemdb    ---- 重新讀取itemdb
+@reloadmobdb    ---- 重新讀取mobdb
+@reloadpcdb        ---- 重新載入經驗、職業技能樹、屬性設定
+@reloadskilldb    ---- 重新讀取skilldb
+@reloadstatusdb    ---- 重新載入職業屬性相關、精煉成功率設定
+
+@agitstart    ---- 攻城戰開始
+@agitend      ---- 攻城戰結束
+
+@recallall	---- 召喚所有人到身邊。
+@recallparty 隊伍名	---- 召喚指定隊伍的所有在線人物。
+@recallguild 工會名	---- 召喚指定工會的所有在線人物。
+@hatch		---- 孵化寵物蛋
+@charquestskill 技能代碼 玩家名	---- 指定玩家學會一種技能
+@charlostskill 技能代碼 玩家名	---- 刪除指定玩家的一種技能
+@charpetrename 玩家名	---- 授權指定玩家可以為寵物重命名
+@charstpoint 數字 玩家名	---- 調整指定玩家的屬性升級點
+@charskpoint 數字 玩家名	---- 調整指定玩家的技能升級點
+@charstreset 玩家名	---- 重置玩家屬性點
+@charskreset 玩家名	---- 重置玩家技能點
+@charreset 玩家名	---- 重置玩家屬性點、技能點
+@charzeny 數字 玩家名	---- 增加一個玩家的ROZ
+@mapinfo	---- 查看當前地圖信息
+
+@clock	---- 服務器的時間
+@mobsearch mob_id/mob_name/-1/-2 mapname	---- 查找本地圖內指定怪物的坐標
+				如果選擇-1則查找本地圖內所有的怪物/-2-1則查找本地圖內所有的Boss怪物
+				地圖名稱可以省略，省略時代表目前所在地圖
+@cleanmap	---- 清除地圖裡所有的道具
+@giveitem 物品代碼或名字 數字 玩家名稱	---- 給指定玩家一種物品
+					     如果玩家名稱裡輸入ALL則給全部玩家一種道具
+@weather 數字或天氣名 地圖名	---- 在指定的地圖裡指定一種天氣
+				     未指定地圖時則在當前地圖
+	1:rain 2:snow 3:sakura 4:fog 5:leaves 0:day(清除天氣效果)
+@mes 信息		--- 向所有玩家發送信息
+@users 		--- 服務器內人數分佈
+
+@idsearch 文字列	--- 查詢含有指定了的文字的道具
+@shuffle 數字1		--- PC、MOB重新配置
+@maintenance 數字	--- 1:維護
+			    2:取消維護
+
+@mapflag 地圖名 文字列     --- 關閉指定地圖的flag。文字列必須輸入。
+@mannerpoint 數字 人物名   --- 減少指定人物的mannerpoint
+@connectlimit 數字           --- 改變最大用戶連接數。
+
+@misceffect 數字	--- 表示各種效果
+@summon 怪物名字或ID 	--- 將服務器中存在的怪物召喚到身邊
+@im 怪物名或道具名或道具ID	--- 回收怪物和道具，裝備品以外的道具30個回收
+
+@npctalk npc名 信息	--- 指定NPC說話
+@pettalk 信息	--- 寵物說話
+
+@itemcheck		--- 檢查當前裝備的合法性
+@param			--- 檢查屬性
+
+
+broadcast	--- 公開說話
+	/nb 信息	--- 黃文字(無名字)
+	/b 信息	--- 黃文字(有名字)
+	/bb 信息	--- 藍色(無名字)
+
+local_broadcast	--- 同一地圖公開說話
+	/lb 信息	--- 黃文字(有名字)
+
+mapmove		--- 地圖移動
+	/mm 地圖名 坐標1 坐標2		
+
+resetstate
+	/resetstate	--- 重置狀態點數
+	/resetskill	--- 重置技能點數
+
+@econ	---- 緊急召喚！※工會成員以外沒效果
+@ecoff	---- 不能緊急召喚！※工會成員以外沒效果
+
+@ranking 數字	---表示順序
+@blacksmith 	---鐵匠順序
+@alchemist	---銀匠順序
+@taekwon	---BAby表示
+@rankingpoint 數字		--- 改變順序
+	  0:鐵匠 1:商人 2鍊金術師
+
+@resetfeel 數字  ---0:太陽 1:月 2:星
+		    復原太陽和月亮和星星的感覺
+@resethate 數字  ---0:太陽 1:月 2:星
+		    復原太陽和月亮和星星的憎惡
+
+@mailbox	--- 郵箱顯示
+
+@readvars 變數名 名前     --- 顯示指定的變數值
+                              能夠讀取在script裡面的變數數值
+                              ワць一時/永續れプヂヤロヨ⑦Ь變數ソ場合、名前メ省略時ゾ自分、入力時ゾガソワцьヱУみゎ對像
+                              сЧк一時/永續變數ソ場合、名前ゾ不要
+                              ЗヱэкЬ依存變數ソ場合、名前ズゾNPC名メ入力エペ（必須）
+                              關數依存變數ゾ指定不可。配列メ指定エペアシパザわネエ
+@writevars 變數名 值 名前 --- 設定指定的變數值
+                              以下同上
+                              ネギ、值メ"ザ圍ハシ"ザ圍ネホギ部分メ文字列シウサ認識ウネエ
+                              アホズプベ半角ЗнみЗメ含ハ文字列パ書わ迂ハアシゎ可能ザエ
+                              ギクウアソ場合 "記號ゾ \"、\記號ゾ \\シウサ表記ウネエ（doc/script_ref.txt參照）
+
+	例）@readvars @val 		-> 顯示目前自己目前角色的@val值
+	    @readvars 'count$[3] Test 	-> The character string of element number 3 of variable of the dependence for the script of NPC named Test 'count$ is displayed. 
+	    @writevars $num 30 		-> The value of map perpetuity variable $num is changed to 30. 
+	    @writevars @str$ "X Y" ABCD	-> Variable @str$ is changed to character string X Y at one o'clock of the character of the character named ABCD.
+
+@cloneskill ID [LV]	--- 學習可以學到的技能
+			    LV省略時就是最大值
+@cloneskill2 ID [LV]	--- 學習指定技能
+			    LV省略時就是最大值
+
+@mobinfo mobid/name	--- 查找顯示mobdb信息
+
+@homlv 值	--- 提供生命體的等級，無法降低。
+@homviewclass	--- 改變生命體外觀
+@homrecalc	    --- 重新計算生命體等級
+@evolution	    --- 進化生命體
+@makehomun 值	--- 製作生命體
+
+@autoloot  --- 道具自動取得On/Off

@@ -1,0 +1,80 @@
+//===================================================================
+//Ragnarok Online EP2.5 GVG Script	aldeg_cas05         by kalen
+//===================================================================
+-	script	gfaldeE	722,{
+	callfunc "flagsc","aldeg_cas05.gat",1,0,0,0;
+OnRecvCastleA05:
+	FlagEmblem getcastledata("aldeg_cas05.gat",1);
+	end;
+}
+aldeg_cas05.gat,170,85,2	duplicate(gfaldeE)	羅探布勒克#a5-1	722
+aldeg_cas05.gat,142,212,2	duplicate(gfaldeE)	羅探布勒克#a5-2	722
+aldeg_cas05.gat,149,196,2	duplicate(gfaldeE)	羅探布勒克#a5-3	722
+aldeg_cas05.gat,41,180,2	duplicate(gfaldeE)	羅探布勒克#a5-4	722
+aldeg_cas05.gat,38,201,2	duplicate(gfaldeE)	羅探布勒克#a5-5	722
+aldeg_cas05.gat,65,182,2	duplicate(gfaldeE)	羅探布勒克#a5-6	722
+aldeg_cas05.gat,65,205,2	duplicate(gfaldeE)	羅探布勒克#a5-7	722
+aldeg_cas05.gat,10,218,2	duplicate(gfaldeE)	羅探布勒克#a5-8	722
+aldeg_cas05.gat,164,201,2	duplicate(gfaldeE)	羅探布勒克#a5-9	722
+aldeg_cas05.gat,216,96,2	duplicate(gfaldeE)	羅探布勒克#a5-10	722
+aldeg_cas05.gat,217,80,2	duplicate(gfaldeE)	羅探布勒克#a5-11	722
+aldeg_cas05.gat,14,117,2	duplicate(gfaldeE)	羅探布勒克#a5-12	722
+aldeg_cas05.gat,10,225,2	duplicate(gfaldeE)	羅探布勒克#a5-13	722
+aldeg_cas05.gat,187,59,2	duplicate(gfaldeE)	羅探布勒克#a5-14	722
+aldeg_cas05.gat,154,51,2	duplicate(gfaldeE)	羅探布勒克#a5-15	722
+aldeg_cas05.gat,22,211,2	duplicate(gfaldeE)	羅探布勒克#a5-16	722
+aldeg_cas05.gat,150,202,2	duplicate(gfaldeE)	羅探布勒克#a5-17	722
+//------------------------------ロкь--------------------------------
+aldeg_cas05.gat,31,190,0	script	卡普拉 職員::kapra_aldeg05	117,{
+	callfunc "gkfmenu","aldeg_cas05.gat";
+	menu "使用倉庫服務",L2,"使用空間移動服務",L3,"使用手推車服務",L4,"結束",L7;
+L2:
+	callfunc "kfstorage",40;
+L3:
+	callfunc "gkfwarp","艾爾帕蘭","aldebaran.gat",132,103;
+L4:
+	callfunc "kfcart",800;
+L7:
+	callfunc "kfend";
+}
+//-------------------------------管理人---------------------------------
+aldeg_cas05.gat,51,179,0	script	怖淋亥申	55,{
+	callfunc "Steward_menu0","aldeg_cas05.gat","怖淋亥申";
+	menu "查看秘密基地狀況",L1,"投資商業發展度",L2,"投資防禦度",L3,"設定監護人",L4,"僱用 / 解雇 倉庫職員",L5,"進入主人房間",L6,"讓出秘密基地",L7;
+L1:
+	callfunc "Steward_menu1","aldeg_cas05.gat","怖淋亥申";
+L2:
+	callfunc "Steward_menu2","aldeg_cas05.gat","怖淋亥申";
+L3:
+	callfunc "Steward_menu3","aldeg_cas05.gat","怖淋亥申";
+L4:
+	callfunc "Steward_menu4","aldeg_cas05.gat","怖淋亥申";
+	if (@GDnum == 10) monster "aldeg_cas05.gat",51,202,"--ja--",1285,1,"Agit_A05::On_GDa51";
+	if (@GDnum == 11) monster "aldeg_cas05.gat",27,221,"--ja--",1286,1,"Agit_A05::On_GDa52";
+	if (@GDnum == 12) monster "aldeg_cas05.gat",145,78,"--ja--",1286,1,"Agit_A05::On_GDa53";
+	if (@GDnum == 13) monster "aldeg_cas05.gat",157,192,"--ja--",1287,1,"Agit_A05::On_GDa54";
+	if (@GDnum == 14) monster "aldeg_cas05.gat",157,74,"--ja--",1287,1,"Agit_A05::On_GDa55";
+	if (@GDnum == 15) monster "aldeg_cas05.gat",188,79,"--ja--",1285,1,"Agit_A05::On_GDa56";
+	if (@GDnum == 16) monster "aldeg_cas05.gat",156,73,"--ja--",1286,1,"Agit_A05::On_GDa57";
+	if (@GDnum == 17) monster "aldeg_cas05.gat",41,112,"--ja--",1286,1,"Agit_A05::On_GDa58";
+	mes "[管理人怖淋亥申]";
+	mes "監護人已經設定完畢。";
+	mes "監護人能守護我們的城";
+	mes "防止敵人的進攻。";
+	close;
+L5:
+	callfunc "Steward_menu5","aldeg_cas05.gat","怖淋亥申","kapra_aldeg05";
+L6:
+	callfunc "Steward_menu6","aldeg_cas05.gat","怖淋亥申",68,13;
+L7:
+	callfunc "Steward_menu7","aldeg_cas05.gat","怖淋亥申";
+	callfunc "resetcastledata","aldeg_cas05.gat","::OnRecvCastleA05","kapra_aldeg05",@GID,"::OnGDEMPSetA05";
+}
+//-----------------------------開關-------------------------------
+aldeg_cas05.gat,64,8,0	script	　	111,{
+callfunc "gdswitch","aldeg_cas05.gat",51,179;
+}
+//-----------------------------開關2------------------------------
+aldeg_cas05.gat,65,23,0	script	　	111,{
+callfunc "gdswitch2","aldeg_cas05.gat","gld_dun02.gat",103,169;
+}

@@ -1,0 +1,2030 @@
+//====================================================================
+//Ragnarok Online Assassin jobchange script
+// 漢化:LKM
+// http://coolro.cnnb.net
+//====================================================================
+//change_assassin
+//1	筆記試驗
+//2	筆記試驗結果
+//3	實技試驗１
+//4	實技試驗２
+//5	最終試驗結果
+
+in_moc_16.gat,19,33,4	script	公會人員	55,{
+	if (Upper == 1) goto L_Upper;
+	if ((Class == 6) && (change_assassin == 5)) goto L_Start2;
+	if ((Class == 6) && (change_assassin == 4)) goto L_Start1;
+	if ((Class == 6) && (Skillpoint != 0) && (JobLevel >= 40)) goto L_Error2;
+	mes "[感覺到殺氣的人]";
+	mes "呃…";
+	mes "來這有什麼事嗎?";
+	mes "……";
+	next;
+	if (Class == 12) goto L_Assassin;
+	if (Class == 0) goto L_Novice;
+	if ((Class == 4) || (Class == 8) || (Class == 15)) goto L_Acolyte;
+	if (Class == 6) goto L_Thief;
+	mes "[感覺到殺氣的人]";
+	mes "沒有什麼事情來這兒?";
+	mes "那樣的話不如早點離去…";
+	close;
+L_Novice:
+	mes "[感覺到殺氣的人]";
+	mes "喂…初心者";
+	mes "這裡不是你這樣的人來的地方";
+	mes "快點離開…";
+	close;
+L_Acolyte:
+	mes "[感覺到殺氣的人]";
+	mes "侍奉神的人來做什麼?";
+	mes "這兒沒有你要找的神。";
+	mes "回去…";
+	close;
+L_Assassin:
+	mes "[高手暗殺者 修伊]";
+	mes "嗯…";
+	mes "好像是 "+strcharinfo(0)+" 是嗎…";
+	next;
+	mes "[高手暗殺者 修伊]";
+	mes "很可惜";
+	mes "現在工會沒有什麼事情可以做。";
+	mes "你就更加努力修行吧!掰掰。";
+	close;
+L_Thief:
+	if (JobLevel < 40) goto L_Error1;
+	mes "[感覺到殺氣的人]";
+	mes "嗯…盜賊嗎…";
+	mes "以盜賊來看的話累積相當高的修行程度。";
+	mes "怎麼樣?要不要轉職成刺客?";
+	next;
+	menu "為此而來",-,"轉職的條件是?",L_Info,"再想想!",L_Close;
+		mes "[感覺到殺氣的人]";
+		mes "喔…好久沒有客人來。";
+		mes "好、送你到櫃檯。";
+		hideoffnpc "公會服務人員#assassin1";
+		hideonnpc "公會服務人員#assassin2";
+		close2;
+		savepoint "in_moc_16.gat",15,12;
+		warp "in_moc_16.gat",19,76;
+		end;
+	L_Info:
+		mes "[感覺到殺氣的人]";
+		mes "轉職的條件是…";
+		mes "一．一定要是盜賊。";
+		mes "二．JobLv要40以上。";
+		mes "三．要通過公會的考試。";
+		mes "這三項。";
+		next;
+		mes "[感覺到殺氣的人]";
+		mes "累積一定水準的盜賊修行的話";
+		mes "那麼你就有可能很簡單地通過試驗。";
+		close;
+L_Start1:
+	mes "[感覺到殺氣的人]";
+	mes "昏過去了呀…";
+	mes "幫你回覆HP和SP。";
+	mes "提起精神再來挑戰吧!";
+	percentheal 100,100;
+	next;
+	mes "[感覺到殺氣的人]";
+	mes "但是…這有能讓你昏厥程度嗎?";
+	mes "要不要下次再來挑戰轉職啊…";
+	mes "還是不要勉強好嗎?";
+	next;
+	menu "不要緊",-,"的確有點勉強…下次再來挑戰",L_Exit;
+		mes "[感覺到殺氣的人]";
+		mes "喔…是嗎…";
+		mes "那就加油吧!";
+		close2;
+		set change_assassin,2;
+		warp "in_moc_16.gat",19,76;
+		end;
+	L_Exit:
+		mes "[感覺到殺氣的人]";
+		mes "這樣啊…隨時等待。";
+		next;
+		mes "[感覺到殺氣的人]";
+		mes "啊…";
+		mes "要回到村子的話要走路過去才行。";
+		mes "那麼……";
+		close2;
+		set change_assassin,2;
+		end;
+L_Start2:
+	if (countitem(1008)==0) goto L_Error3;
+	if (Skillpoint != 0) goto L_Error2;
+	mes "[高手暗殺者 修伊]";
+	mes "…恭喜。終於轉職。";
+	mes "在那之前…";
+	mes "看過公會會長的要求了嗎?…";
+	next;
+	mes "[高手暗殺者 修伊]";
+	mes "………";
+	mes "……";
+	mes "…";
+	next;
+	delitem 1008,1;
+	mes "[高手暗殺者 修伊]";
+	mes "嗯，很好。";
+	next;
+	unequip;
+	jobchange 12;
+	mes "[高手暗殺者 修伊]";
+	mes "好!邁向刺客的路往前進吧!";
+	mes "平常也不要忘了要遵守自己的信念才行";
+	mes "偶爾來玩玩唷!";
+	mes "慶祝轉職吧!";
+	close;
+L_Close:
+	mes "[感覺到殺氣的人]";
+	mes "是這樣啊…沒辦法…";
+	close;
+L_Error1:
+	mes "[感覺到殺氣的人]";
+	mes "喔…你這小子修行不足啊。";
+	mes "如果想成為刺客的話，";
+	mes "至少把盜賊這個職業的修行";
+        mes "練到一定的水準才行。";
+	next;
+	mes "[感覺到殺氣的人]";
+	mes "那麼的話";
+	mes "去修行之後再來吧…";
+	mes "正確的轉職條件是JobLv 40以上";
+	close;
+L_Error2:
+	mes "[感覺到殺氣的人]";
+	mes "如果有剩下的技能點數的話";
+	mes "就無法轉職。";
+	mes "回去把它用完再來吧!";
+	close;
+L_Error3:
+	mes "[高手暗殺者 修伊]";
+	mes "呃……有沒有聽過或拿到「泯滅之心」";
+	mes "應該要拿到才對。";
+	next;
+	mes "[高手暗殺者 修伊]";
+	mes "到底把它丟到哪裡去的啊…?";
+	next;
+	mes "[高手暗殺者 修伊]";
+	mes "在公會會長還沒有發覺的時候";
+	mes "快點回來!";
+	next;
+	mes "[高手暗殺者 修伊]";
+	mes "找到之後再來找我!";
+	close;
+L_Upper:
+	mes "[感覺到殺氣的人]";
+	mes "嗯……你這小子……";
+	mes "該不會是要做可疑的事情吧!";
+	next;
+	mes "[感覺到殺氣的人]";
+	mes "但是我不會被你騙到的……";
+	mes "不受用";
+	mes "回去!";
+	close;
+}
+
+//==============================================================================
+
+in_moc_16.gat,21,91,2	script	公會服務人員#assassin1	730,1,1{
+	end;
+OnTouch:
+	mes "[刺客 凱伊]";
+	mes "嗯…?";
+	close2;
+	misceffect 16;
+	hideonnpc "公會服務人員#assassin1";
+	hideoffnpc "公會服務人員#assassin2";
+	end;
+}
+
+in_moc_16.gat,25,90,2	script	公會服務人員#assassin2	730,2,2{
+	mes "[刺客 凱伊]";
+	mes "請靠近一點。";
+	mes "我要看著跟我談話的人。";
+	mes "不擅長不注視著對方的臉與之對話…";
+	mes "特別討厭背對著與人對談…";
+	close;
+OnTouch:
+	if (change_assassin == 1) goto L_Start2;
+	mes "[刺客 凱伊]";
+	mes "什麼…原來是為了轉職來的呀…";
+	mes "因為已經習慣有人接近我的話先避開…";
+	mes "嗯…不管怎樣辛苦你來到這裡了。";
+	next;
+	mes "[刺客 凱伊]";
+	mes "是因為轉職成刺客而來的吧?";
+	next;
+	menu "是的",-,"不",L_Cancel;
+		mes "[刺客 凱伊]";
+		mes "好、先填轉職申請書吧!";
+		mes "把你的名字跟JobLv寫上去。";
+		next;
+		goto L_Start1;
+	L_Cancel:
+		mes "[刺客 凱伊]";
+		mes "嗯…";
+		mes "……";
+		next;
+		mes "[刺客 凱伊]";
+		mes "真的嗎?";
+		mes "……";
+		next;
+		menu "不是",L_Exit1,"要轉職",-;
+			mes "[刺客 凱伊]";
+			mes "……";
+			mes "……你在跟誰開玩笑啊!?";
+			mes "總之…是要轉職的吧?";
+			next;
+			mes "[刺客 凱伊]";
+			mes "把你的名字跟";
+			mes "JobLv寫在轉職申請書上吧!";
+			next;
+			goto L_Start1;
+		L_Exit1:
+			mes "[刺客 凱伊]";
+			mes "那麼離開。";
+			close2;
+			warp "moc_fild16.gat",206,229;
+			end;
+	L_Start1:
+		mes "[刺客 凱伊]";
+		mes "你叫… "+strcharinfo(0)+" 和…";
+		mes "JobLv是 "+JobLevel+" …";
+		next;
+		if (JobLevel >= 50) {	//消息未取得
+			mes "[刺客 凱伊]";
+			mes "嗯、累積一定程度的修行。";
+			mes "上面的很高興有像你";
+			mes "這樣有定性的人加入。";
+			mes "歡迎。";
+		}
+		if (JobLevel <= 49) {
+			mes "[刺客 凱伊]";
+			mes "嗯…差了些。";
+			mes "最近真的太多沒有定性的傢伙…";
+			mes "啊、是自言自語。忘了吧!";
+		}
+		next;
+		mes "[刺客 凱伊]";
+		mes "……";
+		next;
+		mes "[刺客 凱伊]";
+		mes "申請書寫好了嗎?";
+		mes "那麼把它交給我吧!";
+		next;
+		mes "[刺客 凱伊]";
+		mes "好、送你過去。祝你好運!";
+		close2;
+		warp "in_moc_16.gat",19,144;
+		misceffect 16;
+		hideonnpc "公會服務人員#assassin2";
+		hideoffnpc "公會服務人員#assassin1";
+		end;
+L_Start2:
+	mes "[刺客 凱伊]";
+	mes "喔…考試結束了嗎?";
+	next;
+	mes "[刺客 凱伊]";
+	mes "啊…考試失敗了啊?";
+	mes "噗…喀喀喀…哈哈哈哈!";
+	next;
+	mes "[刺客 凱伊]";
+	if (Sex == 0) mes "沒事…好久不曾遇見有趣的小姐";
+	if (Sex == 1) mes "不…好久沒有遇到像你這麼好強的傢伙";
+	mes "要想當刺客的話…";
+	mes "這種事應該要知道的吧?";
+	mes "喀喀喀…";
+	next;
+	mes "[刺客 凱伊]";
+	mes "…哈哈肚子好痛…";
+	next;
+	mes "[刺客 凱伊]";
+	mes "喀喀…現在不是笑的時候。";
+	mes "呵呵…要不要告訴提示啊?";
+	next;
+	menu "要",L_Menu1,"不要再笑啦!趕快告訴我提示",L_Menu2,"不必提示了",-;
+		mes "[刺客 凱伊]";
+		mes "嗯…";
+		next;
+		mes "[刺客 凱伊]";
+		mes "就是那股精神。";
+		mes "不可任由自己的自尊心備受損。";
+		mes "不管怎樣，";
+		mes "我們是『沙漠的利牙』 刺客呢!";
+		mes "剛剛一直笑你…正式地道歉…";
+		next;
+		mes "[刺客 凱伊]";
+		mes "最近太多那種精神狀態糜爛的傢伙";
+		mes "先不管是否知道自己要做的事情的知識";
+		mes "連刺客的自尊心以及過去艱難的時候";
+		mes "所努力的記憶都給遺忘掉了…";
+		next;
+		mes "[刺客 凱伊]";
+		mes "拜託你…";
+		next;
+		mes "[刺客 凱伊]";
+		mes "拜託你如果成為刺客的話";
+		mes "請你堅持刺客的自尊心!";
+		next;
+		menu "…知道了",-,"…不要",L_Exit2;
+			mes "[刺客 凱伊]";
+			mes "嗯。你的回答當中";
+			mes "可以感覺的你的覺悟之心。";
+			mes "那麼，我告訴你一些提示吧!";
+			next;
+			set @rand,rand(2);
+			if(@rand == 1) goto L_Hint2;
+			if(@rand == 2) goto L_Hint3;
+			L_Hint1:
+				mes "[刺客 凱伊]";
+				mes "如果撿到低廉卡片 長老樹精卡";
+				mes "立刻賣給魔法師可是非常暢銷。";
+				mes "魔法師好像蠻喜歡";
+                                mes "那種我們沒有用的卡片呢!";
+				mes "好像是有增加INT的效果吧…";
+				next;
+				mes "[刺客 凱伊]";
+				mes "我們要重視的並不是防禦而是迴避!";
+				mes "帶著那種金屬頭盔之類的話";
+				mes "動作會變的不方便，同時會妨礙視線…";
+				mes "雖然…偶爾會看到那些使用心眼的…";
+				mes "總之像是獵人著裝備";
+				mes "所使用的技能。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "習得迴避率增加技能的話'";
+				mes "就在每上升一等級會增加3%的迴避率。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "我曾說過…拳刃系列的武器";
+				mes "(秘刃 闇嘯/拳刃/卡塔勒拳刃 等)";
+				mes "是雙手裝備的武器。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "沙漠之都…好懷念喔…";
+				mes "我也好久沒有去";
+				mes "我的故鄉夢羅克了…";
+				mes "好像昨天剛成為盜賊的說";
+				mes "早就過了這麼久的時間了啊…";
+				next;
+				mes "[刺客 凱伊]";
+				mes "好懷念過去當盜賊的時候";
+				mes "當時潛入農場去偷惡臭香菇";
+				mes "跟毒香菇的時候…";
+				mes "那種緊張又擔驚的心情呀…";
+				next;
+				mes "[刺客 凱伊]";
+				mes "昆蟲會看到 隱匿/偽裝";
+				mes "那些傢伙沒有一個是找不到的。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "小巴風特 的卡片功能是";
+				mes "AGI+3和CRI+1吧…";
+				next;
+				mes "[刺客 凱伊]";
+				mes "我們刺客 AGI 最優越";
+				mes "然後精通的話Job加重?為10";
+				mes "只有這個，";
+				mes "增加的話是很了不起的東西吧!";
+				next;
+				goto L_HintEnd;
+			L_Hint2:
+				mes "[刺客 凱伊]";
+				mes "骸靈拳刃是綠腐屍掉落";
+				mes "有綠腐屍屬性?";
+				mes "也就是說它具有不死性的屬性。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "你在轉職前所使用的武器是什麼…";
+				mes "大馬士革短劍?長柄短劍?";
+				mes "雙刃短劍?…";
+				mes "不知道的話就看看你的手吧…";
+				next;
+				mes "[刺客 凱伊]";
+				mes "卡塔勒拳刃";
+				mes "是沙漠之狼所掉落的物品。";
+				mes "事先應記得很清楚。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "3s拳刃";
+				mes "是在土地裏面挖鑿隧道的魔物擁有。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "我並不想養青蛙。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "拿著鋼斧的 刺刀哥布靈";
+				mes "記得是有大地的屬性…";
+				mes "使用火屬性剋地屬性的弱點。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "使用製作的武器";
+				mes "會刻著鐵匠的名字。";
+				next;
+				goto L_HintEnd;
+			L_Hint3:
+				mes "[刺客 凱伊]";
+				mes "首先、無影之牙是";
+				mes "只有裝備拳刃時才能使用的技能。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "poison 的話是「毒藥」的意思";
+				next;
+				mes "[刺客 凱伊]";
+				mes "雙重攻擊，是攻擊一次";
+				mes "會連續攻擊兩次的那個。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "火靈礦石是屬性石";
+				mes "藍色魔力礦石是跟刺客";
+				mes "沒什麼關係的石頭。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "法師用冰箭術打倒長老樹精時候";
+				mes "總是使用水屬性剋火屬性。";
+				mes "相反風屬性則比較弱。";
+				next;
+				mes "[刺客 凱伊]";
+				mes "偽裝只要不離開牆壁的話";
+				mes "就不會被發現的!";
+				mes "除了某些傢伙使用特定的技能之外。";
+				next;
+				goto L_HintEnd;
+			L_HintEnd:
+				mes "[刺客 凱伊]";
+				mes "呼…這種事情也是蠻累的說…";
+				mes "那麼…";
+				next;
+				mes "[刺客 凱伊]";
+				mes "可以告訴你的提示就只有這些了。";
+				mes "應該是大部分題目的提示了吧!";
+				mes "別擔心。那麼…";
+				mes "到「無名者」那邊去考一次看看吧!";
+				close2;
+				warp "in_moc_16.gat",19,144;
+				misceffect 16;
+				hideonnpc "公會服務人員#assassin2";
+				hideoffnpc "公會服務人員#assassin1";
+				end;
+		L_Exit2:
+			mes "[刺客 凱伊]";
+			mes "……講到這種地步了還聽不懂嗎?";
+			next;
+			mes "[刺客 凱伊]";
+			mes "堅持你的自尊是有這麼難嗎?";
+			next;
+			mes "[刺客 凱伊]";
+			mes "你想成為一隻家犬嗎!";
+			next;
+			mes "[刺客 凱伊]";
+			mes "出去!當場給我離開這裡!";
+			mes "像你這種傢伙沒有資格當刺客的!";
+			next;
+			mes "[刺客 凱伊]";
+			mes "滾!!!!!";
+			close2;
+			warp "c_tower4.gat",64,76;
+			end;
+	L_Menu1:
+		mes "[刺客 凱伊]";
+		mes "噗…哈哈哈哈哈!";
+		mes "這真的好好笑…";
+		mes "肚子好痛喔!…不要讓我再笑出來啦!!";
+		next;
+		mes "[無名者]";
+		mes "…喀喀喀";
+		next;
+		mes "[刺客 凱伊]";
+		mes "哈哈哈…無名者";
+		mes "你也覺得好笑吧…";
+		next;
+		mes "[無名者]";
+		mes "……";
+		next;
+		mes "[刺客 凱伊]";
+		mes "提示嗎?…";
+		next;
+		mes "[刺客 凱伊]";
+		mes "…";
+		next;
+		mes "[刺客 凱伊]";
+		mes "……";
+		next;
+		mes "[刺客 凱伊]";
+		mes "…………";
+		next;
+		mes "[刺客 凱伊]";
+		mes "………………";
+		next;
+		mes "[刺客 凱伊]";
+		mes "……………………";
+		next;
+		mes "[刺客 凱伊]";
+		mes "這樣呀~";
+		next;
+		mes "[刺客 凱伊]";
+		mes "喀喀喀…不告訴你。…";
+		close;
+	L_Menu2:
+		mes "[刺客 凱伊]";
+		mes "喔…蠻有膽量的…";
+		mes "呃…實在很抱歉一直笑";
+		mes "每個人都會犯這種事的。";
+		mes "別捨棄自尊喔!";
+		next;
+		mes "[刺客 凱伊]";
+		mes "稍微提示一下。";
+		mes "關於刺客可不是一言二語就可以說完。";
+		next;
+		mes "[刺客 凱伊]";
+		mes "要非常堅持自尊心才行。";
+		mes "我們是『沙漠的利牙』 刺客呢!";
+		mes "不知何時是我們出勤的時刻…";
+		mes "現在只能等待那個時候。";
+		next;
+		mes "[刺客 凱伊]";
+		mes "還有…在裏面周圍跟你很熟的人也有。";
+		mes "但是我們在工作上的關係挺孤獨";
+		mes "孤獨?生??。";
+		mes "如果，你的戀人或朋友";
+		mes "看到你手上所沾到的血的話…";
+		next;
+		mes "[刺客 凱伊]";
+		mes "絕對不能忘記。";
+		mes "這是一生所必須背負的責任…";
+		next;
+		mes "[刺客 凱伊]";
+		mes "雖然有點寂寞，但也是自己所選擇的道路";
+		mes "這也是沒有辦法的…";
+		mes "貫徹「自己的道路」。";
+		next;
+		mes "[刺客 凱伊]";
+		mes "我就言盡於此…";
+		close;
+}
+
+in_moc_16.gat,19,154,0	script	無名者	139,8,2{
+	if (change_assassin >= 2) goto L_Start;
+	if (change_assassin == 1) goto L_Restart;
+	mes "[無名者]";
+	mes "嗯…是客人啊~";
+	mes "竊笑…在怎麼尋找也徒勞喔!";
+	mes "我完全地隱藏身影。";
+	mes "這種是基本程度呢!";
+	mes "喀喀…";
+	next;
+	mes "[無名者]";
+	mes "嗯、你問我為何沒有名字嗎…";
+	mes "…喝哈哈!有趣的傢伙";
+	mes "不怕看不見身影的我嗎?";
+	mes "不知道何時刀刃把你的背當作目標?";
+	next;
+	menu "害怕…",L_Cancel,"那種程度的殺氣是不會讓我感到害怕",-;
+		mes "[無名者]";
+		mes "哼…是這樣嗎?";
+		next;
+		mes "[無名者]";
+		mes "……";
+		next;
+		mes "[無名者]";
+		mes "好吧。那就告訴你吧…";
+		next;
+		mes "[無名者]";
+		mes "我是不斷的殺生的人…";
+		mes "血腥味從沒有在我手中消失過…";
+		next;
+		mes "[無名者]";
+		mes "我是公會的一把刀而已。";
+		mes "依公會指示的殺手";
+		mes "只不過是個道具。";
+		mes "所以，不需要名字等等的";
+		next;
+		mes "[無名者]";
+		mes "喀喀喀…";
+		mes "總之、沒有實力的人";
+		mes "是不能為刺客的去邊邊涼快。";
+		mes "為了要讓我也認同你，";
+		mes "好好地回答我所出的問題吧!";
+		next;
+		mes "[無名者]";
+		mes "呵呵…那麼在出題之前";
+		mes "我先讓你問個問題要嗎?";
+		mes "問看看你想知道的事情。";
+		next;
+		goto L_InfoStart;
+	L_Cancel:
+		mes "[無名者]";
+		mes "哼!你這自傲的傢伙…";
+		next;
+		mes "[無名者]";
+		mes "不想與你多說。";
+		next;
+		goto L_InfoStart;
+L_InfoStart:
+	menu "技能是什麼?",L_Info1,"人物屬性是什麼?",L_Info2,"已經夠了",-;
+		mes "[無名者]";
+		mes "那麼開始試驗喔!";
+		mes "請選擇問題。";
+		next;
+		mes "[無名者]";
+		mes "10個問題中要答對9題以上才可以";
+		mes "但是，我不會告訴你哪裡答錯的…";
+		next;
+		mes "[無名者]";
+		mes "咳咳…開始喔…";
+		next;
+		set change_assassin,1;
+		goto L_Test;
+	L_Info1:
+		mes "[無名者]";
+		mes "嗯…技能嗎…";
+		mes "技能的效用是依據世界的變異";
+		mes "一點一點地改變基本構造所存在的東西";
+		mes "我先教你好了。";
+		next;
+		mes "[無名者]";
+		mes "首先「拳刃修練」";
+		mes "提昇刺客裝備拳刃時的攻擊力。";
+		mes "而且，依訓練的程度";
+		mes "攻擊力量也會提升。";
+		next;
+		mes "[無名者]";
+		mes "「左手修練」「右手修練」";
+		mes "刺客雙手都可各別使用武器";
+		mes "也能同時裝備2個武器。";
+		mes "不過如果只有單手裝備著武器的話，";
+		mes "攻擊力就會被削弱。";
+		next;
+		mes "[無名者]";
+		mes "為了補助這種的技能缺點";
+		mes "「左手修練」是將「右手修練」";
+		mes "學習到等級2的話，即可領悟到。";
+		next;
+		mes "[無名者]";
+		mes "「音速投擲」";
+		mes "俐落地做8次的攻擊。";
+		mes "需要相當的技術";
+		mes "以及裝備拳刃的情況下。";
+		mes "想要使用這技術的話，";
+		mes "要把「拳刃修練」";
+                mes "練到等級4即可領悟到。";
+		next;
+		mes "[無名者]";
+		mes "「無影之牙」";
+		mes "被看不到的敵人攻擊會有什麼樣的感覺?";
+		mes "這個技能利用在盜賊時學會「隱匿」";
+		mes "狀態之下才能發動攻擊敵人的技能";
+		next;
+		mes "[無名者]";
+		mes "修練程度越高";
+		mes "就可以攻擊更遠的敵人，";
+		mes "多少也有範圍攻擊效果。";
+                mes "只能「逼不得已」情況下，";
+		mes "必須面對多數的敵人的時候使用。";
+		next;
+		mes "[無名者]";
+		mes "刺客最基本是「偽裝」";
+		mes "是隱藏自己行蹤的技能，";
+		mes "是無影之牙技能的前置點。";
+		mes "至少要把「偽裝」修練到等級2。";
+		next;
+		mes "[無名者]";
+		mes "「偽裝」";
+		mes "把隱匿學到等級2就可習得。";
+		mes "就像我現在一樣可以隱藏自己而行動";
+		mes "但是必須緊貼著牆壁才可以隱藏。";
+		next;
+		mes "[無名者]";
+		mes "「塗毒」";
+		mes "是在武器上塗毒藥的技能。";
+		mes "塗了毒的武器被賦予「毒屬性」";
+		mes "被塗上毒素的武器";
+		mes "會有一定的機率讓敵人中毒。";
+		next;
+		mes "[無名者]";
+		mes "還有往後學到「毒性感染」";
+		mes "會讓你追加攻擊力的上升。";
+		mes "也可以讓你的隊伍的人，";
+		mes "武器上注入毒性有效地使用。";
+		next;
+		mes "[無名者]";
+		mes "「毒性反彈」";
+		mes "受到毒屬性的攻擊會自動反擊";
+		mes "不只可用在自己";
+                mes "也可以使用在別人身上。";
+		next;
+		mes "[無名者]";
+		mes "把塗毒修練到等級3的話就可以領悟到。";
+		next;
+		mes "[無名者]";
+		mes "「毒性散發」";
+		mes "藉由紅色魔力礦石當觸媒";
+		mes "在一個區域內散發毒霧。";
+		mes "修練等級愈高的話";
+		mes "污染範圍的時間越久。";
+		next;
+		mes "[無名者]";
+		mes "把塗毒修練到等級5的話就可以領悟到。";
+		next;
+		mes "[無名者]";
+		mes "「毒性感染」";
+		mes "該敵人已經中毒";
+		mes "且敵人的HP存量只剩下HP";
+		mes "的2/3以下技能才會發動。";
+		mes "經過一段時間";
+		mes "就會爆炸並且對四周散發毒霧。";
+		next;
+		mes "[無名者]";
+		mes "在爆炸的時候會讓周圍";
+		mes "引起損傷就是它的特性。";
+		mes "是最難學習的技能";
+		mes "須把「毒性反彈」、「毒性散發」";
+		mes "修練到等級5以上的話就可以領悟到。";
+		next;
+		mes "[無名者]";
+		mes "以上是刺客所有的技能。";
+		next;
+		goto L_InfoStart;
+	L_Info2:
+		mes "[無名者]";
+		mes "嗯…人物屬性啊…";
+		mes "對刺客而言最重要的屬性是";
+		mes "不管怎樣還是敏捷性…";
+		mes "也就是AGI…";
+		next;
+		mes "[無名者]";
+		mes "在暗殺時為了讓敵人受到更多的損失";
+		mes "「力量」 - STR也不能忽視!";
+		next;
+		mes "[無名者]";
+		mes "確實地擊中要害，";
+		mes "在最有效率下打死敵人「不可或缺」";
+		mes "的決定即是「幸運」-";
+		mes "受到LUK左右很大的影響。";
+		next;
+		mes "[無名者]";
+		mes "關於這方面的話";
+		mes "我也沒有辦法給一個很明確的解答呢!";
+		mes "親自研究之後找出適合自己的比較好。";
+		next;
+		goto L_InfoStart;
+L_Restart:
+	mes "[無名者]";
+	mes "呵呵…還在迷戀它嗎?";
+	next;
+	mes "[無名者]";
+	mes "那麼不喜歡和平又安寧的生活啊!";
+	next;
+	mes "[無名者]";
+	mes "這次也沒能合格的話";
+	mes "就停止成為刺客吧!";
+	next;
+	menu "當一個普通的盜賊活著",L_Exit,"繼續參加轉職考試",-;
+		mes "[無名者]";
+		mes "喀喀喀…";
+		mes "那是條孤獨的旅程";
+		mes "我會觀察下去的…";
+                mes "直到你魂歸兮去。";
+		next;
+		mes "[無名者]";
+		mes "那麼開始試驗了!";
+		mes "是選擇題。";
+		next;
+		mes "[無名者]";
+		mes "10題中答對9題的話就算通過合格。";
+		mes "但是，我不會告訴你哪裡答錯的…";
+		next;
+		mes "[無名者]";
+		mes "這次才是為了合格。";
+		next;
+		goto L_Test;
+	L_Exit:
+		mes "[無名者]";
+		mes "呵…是那樣呀~";
+		mes "夢想中刺客卻得";
+		mes "經常飽嚐孤獨的世界。";
+		next;
+		mes "[無名者]";
+		mes "那、那到外面去吧!";
+		mes "然後趁沒沙漠風暴時走回去吧…";
+		close2;
+		warp "moc_fild16.gat",206,241;
+		end;
+L_Test:
+	set @score,0;
+	set @rand,rand(2);
+	if(@rand == 1) goto L_Test2_1;
+	if(@rand == 2) goto L_Test3_1;
+	L_Test1_1:
+		mes "[無名者]";
+		mes "1. 將盜賊的迴避率增加技能";
+		mes "修練到最大的時候增加數值是?";
+		next;
+		menu "30",-,"40",L_Test1_2,"160",L_Test1_2,"20",L_Test1_2;
+		set @score,@score+10;
+	L_Test1_2:
+		mes "[無名者]";
+		mes "2. 下列中能識破隱匿的魔物是?";
+		next;
+		menu "森靈",L_Test1_3,"白蟻",-,"木乃伊",L_Test1_3,"邪骸士兵",L_Test1_3;
+		set @score,@score+10;
+	L_Test1_3:
+		mes "[無名者]";
+		mes "3. 刺客所使用的雙刀";
+		mes "哪一種武器無法使用?";
+		next;
+		menu "笨拙短劍 + 長柄短劍",L_Test1_4,"雙刃短劍 + 笨拙短劍",L_Test1_4,"卡塔勒拳刃 + 笨拙短劍",-,"大馬士革短劍 + 雙刃短劍",L_Test1_4;
+		set @score,@score+10;
+	L_Test1_4:
+		mes "[無名者]";
+		mes "4. 盜賊轉職所最接近的村落是?";
+		next;
+		menu "普隆德拉",L_Test1_5,"薑餅城",L_Test1_5,"艾爾貝塔",L_Test1_5,"夢羅克",-;
+		set @score,@score+10;
+	L_Test1_5:
+		mes "[無名者]";
+		mes "5. 與AGI無關的卡片是?";
+		next;
+		menu "小巴風特卡片",L_Test1_6,"白幽靈卡片",-,"浮勒盜蟲卡片",L_Test1_6,"瑪勒盜蟲卡片",L_Test1_6;
+		set @score,@score+10;
+	L_Test1_6:
+		mes "[無名者]";
+		mes "6. 刺客比別的職業擅長在哪裡?";
+		next;
+		menu "優越的歌唱力",L_Test1_7,"逼真的演技",L_Test1_7,"華麗的舞技",L_Test1_7,"無比的迴避力",-;
+		set @score,@score+10;
+	L_Test1_7:
+		mes "[無名者]";
+		mes "7. JobLv50的時候，";
+		mes "刺客得到AGI加重?是？";
+		next;
+		menu "7",L_Test1_8,"8",L_Test1_8,"9",L_Test1_8,"10",-;
+		set @score,@score+10;
+	L_Test1_8:
+		mes "[無名者]";
+		mes "8. 刺客無法裝備的物品是?";
+		next;
+		menu "絲質外袍",L_Test1_9,"金屬頭盔",-,"戰士長靴",L_Test1_9,"敏捷別針",L_Test1_9;
+		set @score,@score+10;
+	L_Test1_9:
+		mes "[無名者]";
+		mes "9. 初學者要轉職成盜賊的時候";
+		mes "需要的香菇的是?";
+		next;
+		menu "毒香菇",L_Test1_10,"惡臭香菇",L_Test1_10,"惡臭香菇",-,"毒香菇",L_Test1_10;
+		set @score,@score+10;
+	L_Test1_10:
+		mes "[無名者]";
+		mes "10. 跟刺客比較沒有關係的卡片是";
+		next;
+		menu "白幽靈卡片",L_TestEnd,"長老樹精 卡片",-,"邪骸士兵卡片",L_TestEnd,"犬妖卡片",L_TestEnd;
+		set @score,@score+10;
+		goto L_TestEnd;
+	L_Test2_1:
+		mes "[無名者]";
+		mes "1. 卡塔勒拳刃是由哪個魔物掉落?";
+		next;
+		menu "盜蟲",L_Test2_2,"大嘴鳥",L_Test2_2,"沙漠之狼",-,"大斧犬妖",L_Test2_2;
+		set @score,@score+10;
+	L_Test2_2:
+		mes "[無名者]";
+		mes "2. 有洞拳刃是由哪個魔物掉落?";
+		next;
+		menu "土撥鼠",-,"沙漠之狼",L_Test2_3,"傀儡娃娃",L_Test2_3,"麥斯特",L_Test2_3;
+		set @score,@score+10;
+	L_Test2_3:
+		mes "[無名者]";
+		mes "3. 能製作屬性武器的職業是?";
+		next;
+		menu "商人",L_Test2_4,"鐵匠",-,"盜賊",L_Test2_4,"祭司",L_Test2_4;
+		set @score,@score+10;
+	L_Test2_4:
+		mes "[無名者]";
+		mes "4. 下列哪個不是拳刃系列的武器?";
+		next;
+		menu "秘刃 闇嘯",L_Test2_5,"拳刃",L_Test2_5,"卡塔勒拳刃",L_Test2_5,"長柄短劍",-;
+		set @score,@score+10;
+	L_Test2_5:
+		mes "[無名者]";
+		mes "5. 依斯魯得島的海洞大部份怪物屬性是?";
+		next;
+		menu "水屬性",-,"火屬性",L_Test2_6,"風屬性",L_Test2_6,"地屬性",L_Test2_6;
+		set @score,@score+10;
+	L_Test2_6:
+		mes "[無名者]";
+		mes "6. 下列哪一種魔物不能成為寵物?";
+		next;
+		menu "波波利",L_Test2_7,"羅達蛙",-,"狸貓",L_Test2_7,"毒魔菇",L_Test2_7;
+		set @score,@score+10;
+	L_Test2_7:
+		mes "[無名者]";
+		mes "7. 選擇對火屬性短劍最有效的怪物。";
+		next;
+		menu "刺錘哥布靈",L_Test2_8,"榔頭哥布靈 ",L_Test2_8,"大斧哥布靈",L_Test2_8,"鏈鎚哥布靈",-;
+		set @score,@score+10;
+	L_Test2_8:
+		mes "[無名者]";
+		mes "8. 選擇沒有屬性的拳刃。";
+		next;
+		menu "火靈拳刃",L_Test2_9,"刺藤拳刃",L_Test2_9,"骸靈拳刃",L_Test2_9,"刺殺拳刃",-;
+		set @score,@score+10;
+	L_Test2_9:
+		mes "[無名者]";
+		mes "9. 找出種類不同的怪物。";
+		next;
+		menu "波利",L_Test2_10,"波利之王",L_Test2_10,"幽靈波利",-,"毒魔菇",L_Test2_10;
+		set @score,@score+10;
+	L_Test2_10:
+		mes "[無名者]";
+		mes "10. 下列哪一種魔物屬於是不死性的。";
+		next;
+		menu "海賊之王",L_TestEnd,"邪骸食人魚",L_TestEnd,"毒魔菇",-,"卡利斯格",L_TestEnd;
+		set @score,@score+10;
+		goto L_TestEnd;
+	L_Test3_1:
+		mes "[無名者]";
+		mes "1. 下列什麼不是為了";
+		mes "要學無影之牙的程序?";
+		next;
+		menu "偽裝 Lv 2",L_Test3_2,"音速投擲 Lv 5",L_Test3_2,"拳刃修練 Lv 4",L_Test3_2,"右手修練 Lv 2",-;
+		set @score,@score+10;
+	L_Test3_2:
+		mes "[無名者]";
+		mes "2. 塗毒是在武器上增加屬性的技能。";
+		mes "從下列選擇那個屬性。";
+		next;
+		menu "毒屬性",-,"地屬性",L_Test3_3,"闇屬性",L_Test3_3,"風屬性",L_Test3_3;
+		set @score,@score+10;
+	L_Test3_3:
+		mes "[無名者]";
+		mes "3. 右手修練Lv4的?果是?";
+		next;
+		menu "回復80%的攻擊力",L_Test3_4,"回復90%的攻擊力",-,"增加攻?力90%",L_Test3_4,"增加攻?力100%",L_Test3_4;
+		set @score,@score+10;
+	L_Test3_4:
+		mes "[無名者]";
+		mes "4. 使用毒性散發時所需要的物品是?";
+		next;
+		menu "火靈礦石",L_Test3_5,"藍色魔力礦石",L_Test3_5,"黃色魔力礦石",L_Test3_5,"紅色魔力礦石",-;
+		set @score,@score+10;
+	L_Test3_5:
+		mes "[無名者]";
+		mes "5. 練成塗毒 Lv 5的時候會出現的技能是?";
+		next;
+		menu "施毒",L_Test3_6,"音速投擲",L_Test3_6,"毒性感染",L_Test3_6,"毒性感染",-;
+		set @score,@score+10;
+	L_Test3_6:
+		mes "[無名者]";
+		mes "6. 下列技能中那一種是會隱身而可移動的?";
+		next;
+		menu "隱匿",L_Test3_7,"後退迴避",L_Test3_7,"偽裝",-,"噴砂",L_Test3_7;
+		set @score,@score+10;
+	L_Test3_7:
+		mes "[無名者]";
+		mes "7. 下列何者是不屬於";
+		mes "使用毒性感染的條件?";
+		next;
+		menu "敵人一定要是中毒狀態",-,"紅色魔力礦石",L_Test3_8,"該敵人的HP存量剩下1/3以下",L_Test3_8;
+		set @score,@score+10;
+	L_Test3_8:
+		mes "[無名者]";
+		mes "8. 下列對有加螃蟹卡片";
+		mes "(火屬性對象追加20%傷害)";
+		mes "攻擊的時候，選擇最發揮效果的魔物";
+		next;
+		menu "綠蒼蠅",L_Test3_9,"小惡魔",L_Test3_9,"長老樹精",-,"巴風特",L_Test3_9;
+		set @score,@score+10;
+	L_Test3_9:
+		mes "[無名者]";
+		mes "9. 短刀使用二刀連擊時";
+		mes "所消耗的SP為多少?";
+		next;
+		menu "15",L_Test3_10,"0",-,"10",L_Test3_10,"54",L_Test3_10;
+		set @score,@score+10;
+	L_Test3_10:
+		mes "[無名者]";
+		mes "10. 在依斯魯得島的海洞";
+		mes "最有效率的屬性劍是?";
+		next;
+		menu "風屬笨拙短劍",-,"冰屬笨拙短劍",L_TestEnd,"地屬笨拙短劍",L_TestEnd,"火屬笨拙短劍",L_TestEnd;
+		set @score,@score+10;
+		goto L_TestEnd;
+L_TestEnd:
+	mes "[無名者]";
+	mes "如何?對於問題。";
+	next;
+	if (@score >= 90) goto L_OK;
+	mes "[無名者]";
+	mes "那麼…題數是…";
+	mes " "+@score+"題…";
+	mes "不合格。學習不足啊~";
+	next;
+	mes "[無名者]";
+	mes "那樣還想成為刺客嗎?";
+	mes "回去再考慮看看之後再來吧!";
+	next;
+	mes "[無名者]";
+	mes "向擔任製作轉職申請書的「凱伊」";
+	mes "請教之後再來。";
+	close2;
+	warp "in_moc_16.gat",19,76;
+	end;
+L_OK:
+	mes "[無名者]";
+	mes "那麼…題數是…";
+	mes " "+@score+"題…";
+	mes "嗯、非常好!";
+	mes "試驗合格。";
+	next;
+	mes "[無名者]";
+	mes "不要因為這樣就放心，";
+	mes "還有試驗啊!";
+	mes "進到裡面的話會告訴下一關考試的。";
+	set change_assassin,2;
+	close;
+L_Start:
+	mes "[無名者]";
+	mes "喀喀喀…";
+	close;
+}
+
+//==============================================================================
+
+in_moc_16.gat,19,162,0	script	帕勒卡迪	139,3,1{
+	if (change_assassin >= 3) goto L_Start;
+	if (change_assassin <= 1) goto L_Error;
+	mes "[帕勒卡迪]";
+	mes " "+strcharinfo(0)+"…";
+	mes "筆記考試合格呀…";
+	next;
+	mes "[帕勒卡迪]";
+	mes "嗯…雖然有點想讓你轉職";
+	mes "但是最近太多人連基本都做的不好呢…";
+	next;
+	mes "[帕勒卡迪]";
+	mes "而且我們要堅持我們的自尊心才可以";
+	mes "我們可是「沙漠的利牙」刺客呢!";
+	mes "總有一天我們的時代會來臨";
+	mes "在那之前只能持續地等待……";
+	next;
+	mes "[帕勒卡迪]";
+	mes "最近太多那些精神狀態非常差勁的傢伙呢!";
+	next;
+	mes "[帕勒卡迪]";
+	mes "不曉得他們把刺客的自尊心";
+	mes "以及過去努力的記憶忘記了嗎…";
+	next;
+	mes "[帕勒卡迪]";
+	mes "傷腦筋了……";
+	next;
+	mes "[帕勒卡迪]";
+	mes "如果轉職成功的話";
+	mes "請你堅持下去刺客的自尊心吧!";
+	mes "以你手中的武器發誓…";
+	next;
+	mes "[帕勒卡迪]";
+	mes "那麼，開始考試的說明";
+	mes "暗殺的基本是迅速的判斷。";
+	next;
+	mes "[帕勒卡迪]";
+	mes "即是立刻地辨別敵人和我方";
+	mes "因此…";
+	next;
+	mes "[帕勒卡迪]";
+	mes "考試內容是…";
+	mes "在許多敵人當中找出名字是";
+	mes "「轉職考試用樣品」的魔物打倒。";
+	next;
+	mes "[帕勒卡迪]";
+	mes "「轉職考試用樣品」的數量是6只。";
+	mes "有很多很類似的傢伙";
+	mes "要多加注意的喔!";
+	mes "如果有差錯的話就要從頭開始。";
+	next;
+	mes "[帕勒卡迪]";
+	mes "進入等候室";
+	mes "等候試驗所傳送。";
+	next;
+	mes "[帕勒卡迪]";
+	mes "考試原則是一次只有一個人進行的。";
+	mes "前面有人在進行的話，";
+	mes "你要等到他的轉職考試結束為止。";
+	close;
+L_Start:
+	mes "[帕勒卡迪]";
+	mes "不要因為失敗而放棄。";
+	mes "啊……如果不行了的話我可以幫你送回去的。";
+	mes "怎麼樣?";
+	next;
+	menu "還是放棄",-,"轉職",L_Exit;
+		mes "[帕勒卡迪]";
+		mes "呵呵……";
+		mes "再說一次";
+		mes "必須打倒6只「轉職考試用樣品」";
+		mes "那麼祝你有好運!";
+		close;
+	L_Exit:
+		mes "[帕勒卡迪]";
+		mes "這樣啊~";
+		mes "好好休息之後再來吧!";
+		close2;
+		warp "in_moc_16.gat",19,13;
+		end;
+L_Error:
+	mes "[帕勒卡迪]";
+	mes "去解開考試題目來吧!";
+	mes "竟然忽視基本知識的考試…";
+	close2;
+	warp "in_moc_16.gat",19,76;
+	end;
+}
+
+in_moc_16.gat,21,165,2	script	轉職考試解說員::jobass_wroom	725,{
+	end;
+OnInit:
+	waitingroom "轉職考試等候室",10,"jobass_wroom::OnStart",1;
+	end;
+OnStart:
+	disablewaitingroomevent;
+	warpwaitingpc "in_moc_16.gat",66,151;
+	set $@jobass_pid,$@warpwaitingpc[0];
+	if( attachrid($@jobass_pid)==0 ) goto L_Error;
+	set $@jobass_pname$,strcharinfo(0);
+	set change_assassin,3;
+	killmonsterall "in_moc_16.gat";
+	donpcevent "jobass_test1::OnStart";
+	end;
+L_Error:
+	enablewaitingroomevent;
+	end;
+OnEnable:
+	enablewaitingroomevent;
+	end;
+}
+
+in_moc_16.gat,0,0,0	script	jobass_test1	-1,{
+OnStart:
+	set $@jobass_test,6;
+	hideonnpc "ass_warp1";
+	monster "in_moc_16.gat",62,161,"轉職考試用樣品",1002,1,"jobass_test1::OnKillOK"; 
+	monster "in_moc_16.gat",85,169,"轉職考試用樣品",1063,1,"jobass_test1::OnKillOK";
+	monster "in_moc_16.gat",88,152,"轉職考試用樣品",1002,1,"jobass_test1::OnKillOK";
+	monster "in_moc_16.gat",90,143,"轉職考試用樣品",1113,1,"jobass_test1::OnKillOK";
+	monster "in_moc_16.gat",74,167,"轉職考試用樣品",1031,1,"jobass_test1::OnKillOK";
+	monster "in_moc_16.gat",77,173,"轉職考試用樣品",1002,1,"jobass_test1::OnKillOK";
+	monster "in_moc_16.gat",62,161,"轉職考試用魔物",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",85,169,"轉職考試用魔物",1031,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",79,174,"實際技巧考試用樣品",1113,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",85,156,"轉職考試用魔物",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",74,171,"轉職考試魔物",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",68,173,"轉職考試用假人",1113,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",65,158,"戰鬥考試用樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",60,158,"轉職實驗用樣品",1113,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",64,169,"轉職考試的時候樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",71,173,"轉職考試樣品",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",77,172,"實際技巧考試用樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",76,172,"轉職考試用樣品",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",75,172,"轉職考試用魔物",1113,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",67,167,"實際技巧用樣品",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",86,170,"轉職實驗用樣品",1031,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",86,171,"轉職樣品實驗",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",86,173,"實際技巧考試用樣品",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",85,170,"戰鬥考試魔物",1031,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",89,156,"樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",89,156,"殉職考試用樣品",1113,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",89,156,"戰鬥考試樣品",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",89,156,"考試樣品勇土職業",1113,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",89,156,"轉職考試樣品",1031,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",83,169,"闇神官",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",63,158,"死靈",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",63,157,"轉職考試樣口",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",64,159,"戰鬥準備用樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",63,159,"轉職準備用樣品",1063,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",63,159,"弓手轉職用樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",63,159,"劍士轉職用樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",83,148,"盜賊轉職用樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",82,148,"服事轉職用樣品",1002,1,"jobass_test1::OnKillNG";
+	monster "in_moc_16.gat",84,148,"商人轉職用樣品",1002,1,"jobass_test1::OnKillNG";
+	initnpctimer;
+	end;
+OnKillOK:
+	set $@jobass_test,$@jobass_test-1;
+	if( $@jobass_test > 0 )goto L_NotWin;
+		killmonsterall "in_moc_16.gat";
+		stopnpctimer;
+		hideoffnpc "ass_warp1";
+		mapannounce "in_moc_16.gat","監視者: 好、不錯…合格了!",8;
+		mapannounce "in_moc_16.gat","位於座標: 87 137 的下一個考場的門已經開了!",8;
+		donpcevent "jobass_timer::OnStart";
+		end;
+	L_NotWin:
+		mapannounce "in_moc_16.gat","監視者: 還…要再努力…",8;
+		end;
+OnKillNG:
+	mapannounce "in_moc_16.gat","監視者:  "+$@jobass_pname$+"!! 失手了!送到原來的位置去!",8;
+	areawarp "in_moc_16.gat",60,136,93,177,"in_moc_16.gat",19,161;
+	stopnpctimer;
+	donpcevent "jobass_wroom::OnEnable";
+	end;
+OnTimer1000:
+	mapannounce "in_moc_16.gat","監視者: 試驗開始",8;
+	end;
+OnTimer2000:
+	mapannounce "in_moc_16.gat","監視者: 前面也有說明過，要在無數的怪物中打倒「轉職考試用樣品」",8;
+	end;
+OnTimer3000:
+	mapannounce "in_moc_16.gat","監視者: 考試的目的是在於能夠更迅速正確的判別敵人!",8;
+	end;
+OnTimer4000:
+	mapannounce "in_moc_16.gat","監視者: 那麼，在限定時間3分鐘之內要完成工作!每一分鐘會提醒你的時間。",8;
+	end;
+OnTimer5000:
+	mapannounce "in_moc_16.gat","監視者: 好…3分鐘計時! 開始吧!",8;
+	end;
+OnTimer65000:
+	mapannounce "in_moc_16.gat","監視者: 剩下2分鐘。打倒「轉職考試用樣品」",8;
+	end;
+OnTimer125000:
+	mapannounce "in_moc_16.gat","監視者: 剩下1分鐘",8;
+	end;
+OnTimer180000:
+	mapannounce "in_moc_16.gat","監視者: 考試終了前5秒",8;
+	end;
+OnTimer181000:
+	mapannounce "in_moc_16.gat","監視者: 考試終了前4秒",8;
+	end;
+OnTimer182000:
+	mapannounce "in_moc_16.gat","監視者: - 3 -",8;
+	end;
+OnTimer183000:
+	mapannounce "in_moc_16.gat","監視者: - 2 -",8;
+	end;
+OnTimer184000:
+	mapannounce "in_moc_16.gat","監視者: - 1 -",8;
+	end;
+OnTimer185000:
+	mapannounce "in_moc_16.gat","監視者: 時間到",8;
+	end;
+OnTimer186000:
+	mapannounce "in_moc_16.gat","監視者: 時間到了…沒有通過。下次請努力!",8;
+	areawarp "in_moc_16.gat",60,136,93,177,"in_moc_16.gat",19,161;
+	end;
+OnTimer189000:
+	stopnpctimer;
+	donpcevent "jobass_wroom::OnEnable";
+	end;
+}
+
+in_moc_16.gat,87,137,0	script	ass_warp1	45,2,1,{
+	warp "in_moc_16.gat", 87, 102;
+	end;
+}
+
+function	script	陷阱#assassin	{
+	mapannounce "in_moc_16.gat","監視者:  "+$@jobass_pname$+"跌入陷阱了。",8;
+	warp "in_moc_16.gat",19,161;
+	stopnpctimer "jobass_test1";
+	donpcevent "jobass_wroom::OnEnable";
+	end;
+}
+
+in_moc_16.gat,68,158,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,68,159,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,69,158,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,69,159,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,64,162,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,64,163,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,65,162,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,65,163,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,62,168,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,62,169,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,63,168,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,63,169,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,66,170,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,66,171,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,67,170,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,67,171,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,64,174,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,64,175,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,65,174,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,65,175,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,72,174,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,72,175,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,73,174,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,73,175,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,72,167,0		script	陷阱		139,0,1,{callfunc "陷阱#assassin";}
+in_moc_16.gat,73,167,0		script	陷阱		139,0,1,{callfunc "陷阱#assassin";}
+in_moc_16.gat,72,169,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,73,169,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,78,168,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,78,169,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,79,168,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,79,169,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,81,172,0		script	陷阱		139,1,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,81,173,0		script	陷阱		139,1,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,83,172,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,83,173,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,88,174,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,88,175,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,89,174,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,89,175,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,86,166,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,86,167,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,87,166,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,87,167,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,90,164,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,90,165,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,91,164,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,91,165,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,86,160,0		script	陷阱		139,2,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,86,161,0		script	陷阱		139,2,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,89,160,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,89,161,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,86,154,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,86,155,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,87,154,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,87,155,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,84,150,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,84,151,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,85,150,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,85,151,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,90,150,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,90,151,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,91,150,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,91,151,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+in_moc_16.gat,86,146,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,86,147,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,87,146,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+in_moc_16.gat,87,147,0		script	陷阱		139,0,0,{callfunc "陷阱#assassin";}
+
+//==============================================================================
+
+in_moc_16.gat,89,98,2	script	但丁	118,5,1{
+	end;
+OnTouch:
+	if (change_assassin == 4) goto L_Start;
+	mes "[但丁]";
+	mes "我是負責這個考試的「但丁」";
+	mes "在這次考試裡要考的";
+	mes "就是你的迴避能力。";
+	next;
+	mes "[但丁]";
+	mes "准許適度地使用隱匿的事情。";
+	next;
+	mes "[但丁]";
+	mes "目的是要到達對面";
+	mes "入口「帕勒卡迪」那邊。";
+	mes "要通過這些魔物並且要安全的到達才行。";
+	next;
+	mes "[但丁]";
+	mes "如果在中途昏倒或著";
+	mes "忍不住而逃出來的話就算是失敗。";
+	mes "那麼要開始了，加油吧!";
+	set change_assassin,4;
+	donpcevent "jobass_test2::OnStart";
+	close;
+L_Start:
+	mes "[但丁]";
+	mes "嗯…好像昏過去了呀!";
+	mes "好、幫你回復。";
+	percentheal 100,100;
+	next;
+	mes "[但丁]";
+	mes "但是…真的有到讓你昏過去的程度嗎?";
+	mes "要不考慮下次在挑戰轉職";
+	mes "看起來好像太勉強了。";
+	next;
+	menu "再挑戰",-,"好像太勉強…",L_Exit;
+		mes "[但丁]";
+		mes "要加油喔!";
+		mes "帕勒卡迪就在附近了。";
+		close;
+	L_Exit:
+		mes "[但丁]";
+		mes "這樣啊…那麼再等下個機會囉!";
+		next;
+		mes "[但丁]";
+		mes "回去到村莊的話";
+                mes "別忘了記錄存點。";
+		close2;
+		set change_assassin,2;
+		mapannounce "in_moc_16.gat","但丁:  "+$@jobass_pname$+"已經放棄轉職了，下一位請進。",8;
+		warp "in_moc_16.gat",18,14;
+		donpcevent "jobass_wroom::OnEnable";
+		end;
+}
+
+in_moc_16.gat,0,0,0	script	jobass_test2	-1,{
+OnStart:
+	monster "in_moc_16.gat", 81, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 82, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 83, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 84, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 85, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 86, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 87, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 88, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 89, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 90, 77, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 75, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 77, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 79, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 81, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 83, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 85, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 90, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 92, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 94, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 96, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 98, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 100, 56, "木乃伊", 1041,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 76, 62, "海葵", 1068,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 76, 65, "海葵", 1068,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 79, 62, "海葵", 1068,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 79, 65, "海葵", 1068,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 96, 62, "海葵", 1068,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 96, 65, "海葵", 1068,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 99, 62, "海葵", 1068,1, "jobass_test2::OnMobDead";
+	monster "in_moc_16.gat", 99, 65, "海葵", 1068,1, "jobass_test2::OnMobDead";
+	end;
+OnMobDead:
+	mapannounce "in_moc_16.gat","但丁: 打倒魔物呀~",8;
+	mapannounce "in_moc_16.gat","但丁: 失敗就要重來一次。",8;
+	areawarp "in_moc_16.gat",64,46,111,105,"in_moc_16.gat",87,102;
+	killmonsterall "in_moc_16.gat";
+	donpcevent "jobass_test2::OnStart";
+	end;
+}
+
+//?技試?１???後～?技試?２用登出＆死亡的對策
+in_moc_16.gat,0,0,0	script	jobass_timer	-1,{
+OnStart:
+	initnpctimer;
+	end;
+OnTimer240000:
+	stopnpctimer;
+	areawarp "in_moc_16.gat",60,136,93,177,"in_moc_16.gat",19,161;
+	areawarp "in_moc_16.gat",64,46,111,105,"in_moc_16.gat",19,161;
+	donpcevent "jobass_wroom::OnEnable";
+	end;
+}
+
+in_moc_16.gat,87,48,1	script	帕勒卡迪	725,2,2{
+	end;
+OnTouch:
+	killmonsterall "in_moc_16.gat";
+	mes "[帕勒卡迪]";
+	mes "好、來吧!";
+	mes "最後一項考試了。";
+	close2;
+	set @step,0;
+	warp "in_moc_16.gat",181,183;
+	stopnpctimer "jobass_timer";
+	donpcevent "jobass_wroom::OnEnable";
+	end;
+}
+
+//==============================================================================
+
+in_moc_16.gat,182,169,0	script	ass_warp2	45,1,1,{
+	if (@step >= 2) goto L_Start;
+	set @step,@step+1;
+	warp "in_moc_16.gat", 181, 183;
+	end;
+L_Start:
+	mapannounce "in_moc_16.gat","門員: "+strcharinfo(0)+"進入了公會會長的房間。",8;
+	hideonnpc "修伊#End";
+	hideonnpc "凱伊#End";
+	hideonnpc "無名者#End";
+	hideonnpc "帕勒卡迪#End";
+	hideonnpc "監視者#End";
+	hideonnpc "但丁#End";
+	hideonnpc "補給官 馬洛畢斯#End";
+	savepoint "in_moc_16.gat",167,110;
+	warp "in_moc_16.gat", 167, 113;
+	end;
+}
+
+in_moc_16.gat,167,110,0	script	刺客迷宮	139,3,1{
+	mes "[公會 會長]";
+	mes "喔…來了呀!";
+	mes "這裡是「公會 會長房間」";
+	mes "刺客公會的最裏面。";
+	next;
+	mes "[公會 會長]";
+	mes "其實從你那邊到我這邊";
+	mes "有一個看不見的迷宮。";
+        mes "偶爾因為有侵入者，便這樣做。";
+	mes "雖然算不上是什麼測試…";
+	mes "請你來到我這裡好嗎?";
+	next;
+	mes "[公會 會長]";
+	mes "希望你能瞭解…那麼等一下再見吧!";
+	close;
+}
+
+in_moc_16.gat,170,90,0	script	刺客迷宮	139,1,1{
+	mes "[公會 會長]";
+	mes "那裏是錯綜的道路…";
+	mes "去找找看另外一條路吧!";
+	close;
+}
+
+in_moc_16.gat,160,85,0	script	刺客迷宮	139,1,1{
+	mes "[公會 會長]";
+	mes "那裏是錯綜的道路…";
+	mes "去找找看另外一條路吧!";
+	close;
+}
+
+in_moc_16.gat,180,101,0	script	刺客迷宮	139,1,1{
+	mes "[公會 會長]";
+	mes "不是那邊喔…";
+	close;
+}
+
+in_moc_16.gat,186,107,0	script	刺客迷宮	139,1,1{
+	mes "[公會 會長]";
+	mes "不是那邊喔!…";
+	close;
+}
+
+in_moc_16.gat,149,95,0	script	刺客迷宮	139,1,1{
+	mes "[公會 會長]";
+	mes "嗯~好!";
+	mes "大概找到路了。";
+	close;
+}
+
+in_moc_16.gat,149,95,0	script	刺客迷宮	139,0,0{
+	mes "[公會 會長]";
+	mes "接近囉!";
+	mes "可以覺到你的氣勢。";
+	close;
+}
+
+in_moc_16.gat,175,89,0	script	刺客迷宮	139,1,1{
+	mes "[公會 會長]";
+	mes "那邊是往補給官去的路。";
+	mes "你找補給官有什麼事嗎?";
+	close;
+}
+
+in_moc_16.gat,153,85,0	script	刺客迷宮	139,1,1{
+	mes "[公會 會長]";
+	mes "那邊是無路可走呢…";
+	mes "快到了…再走一段路就好了。";
+	mes "要往一個柱子";
+	mes "轉一個灣進來才行。";
+	close;
+}
+
+in_moc_16.gat,186,81,0	script	公會 補給官	55,{
+	mes "[補給官 馬洛畢斯]";
+	mes "我並不是在做有關於轉職的工作耶!";
+	mes "有關轉職是問對面的公會 會長。";
+	close;
+}
+
+in_moc_16.gat,149,80,4	script	公會 會長	106,1,1,{
+	end;
+OnTouch:
+	mes "[公會 會長]";
+	mes "歡迎你來到此地。";
+        mes "因為路有點複雜讓你辛苦了!";
+	mes "剛剛有看過你的報告書了，";
+	mes "聽說你是個有能力的盜賊。";
+	mes "最近很少有像你這樣";
+	mes "對職業熟練度很高的人才。";
+	next;
+	mes "[公會 會長]";
+	mes "嗯!那麼問你幾個問題";
+	mes "你只要按平常心放輕鬆來回答就好了。";
+	mes "";
+	next;
+	mes "[公會 會長]";
+	mes "首先…對刺客而言最重要的是什麼?";
+	next;
+	menu "強大的力量",L_Menu1,"驕傲(自尊心)",L_Menu2,"不斷的自我修練",L_Menu3;
+	L_Menu1:
+		mes "[公會 會長]";
+		mes "一提到更加強大的力量…確實和盜賊";
+		mes "相比的話刺客可說強很多。";
+		next;
+		mes "[公會 會長]";
+		mes "但是那種強勁到底是什麼呢?";
+		mes "是為了報仇?還是有別的理由嗎?";
+		next;
+		mes "[公會 會長]";
+		mes "以刺客的身份能夠得到力量的話，";
+		mes "你覺得好在哪裡?";
+		next;
+		menu "能實現報仇",L_Menu1_1,"比較容易賺錢",L_Menu1_2,"可以去比較多的地方",L_Menu1_3;
+		L_Menu1_1:
+			mes "[公會 會長]";
+			mes "報仇嗎…";
+			mes "說的也是…我們大部分的人";
+			mes "都對某些人有怨恨。";
+			next;
+			mes "[公會 會長]";
+			mes "但是我們是不能被感情支配的";
+			mes "要徹底的完成任務。";
+			next;
+			mes "[公會 會長]";
+			mes "想成為刺客的話，斷絕感情。";
+			next;
+			goto L_MenuEnd;
+		L_Menu1_2:
+			mes "[公會 會長]";
+			mes "…為了求生的確是需要錢";
+			mes "以刺客而言是不是要避免的事情呢?";
+			next;
+			goto L_MenuEnd;
+		L_Menu1_3:
+			mes "[公會 會長]";
+			mes "是個好點子。";
+			mes "觀察並記住各式各樣的地方";
+			mes "更能提高任務的成功。";
+			next;
+			mes "[公會 會長]";
+			mes "但是，雖然跟一些人";
+			mes "一起旅行是個不錯的方法。";
+			mes "但引人注目是必須要避免的…";
+			next;
+			goto L_MenuEnd;
+	L_Menu2:
+		mes "[公會 會長]";
+		mes "驕傲嗎…";
+		mes "一些長輩刺客是這麼說著嗎?";
+		next;
+		mes "[公會 會長]";
+		mes "嗯…那有任何根據嗎?";
+		mes "不知道你是因為對刺客的";
+		mes "哪一面所吸引住…";
+		next;
+		mes "[公會 會長]";
+		mes "那些人中的大部分都是一起";
+		mes "渡過了過去苦難的夥伴";
+		mes "所以能了解。";
+		mes "那麼…你是對刺客的那一面感到自傲呢?";
+		next;
+		menu "自己的果決",L_Menu2_1,"看起來很容易賺錢",L_Menu2_2,"外表看起來很帥",L_Menu2_3;
+		L_Menu2_1:
+			mes "[公會 會長]";
+			mes "那樣…我們是孤獨的存在…";
+			mes "即使在哪裡也經常是一個人。";
+			next;
+			mes "[公會 會長]";
+			mes "但是，前面也有提過有個叫做…夥伴";
+			mes "與自己可以以心靈來溝通夥伴，";
+			mes "能夠交付自己的背後的夥伴";
+			mes "有好夥伴的話也比較容易達成目標吧…";
+			next;
+			goto L_MenuEnd;
+		L_Menu2_2:
+			mes "[公會 會長]";
+			mes "當然，金錢方面的事情也是重要啦!";
+			mes "但是你不覺得我們刺客應該要追求與眾不同理想不是嗎?";
+			next;
+			goto L_MenuEnd;
+		L_Menu2_3:
+			mes "[公會 會長]";
+			mes "被外表迷戀的話很容易忽略掉它的本質";
+			mes "那樣意志不堅的人是不適合成為刺客。";
+			next;
+			goto L_MenuEnd;
+	L_Menu3:
+		mes "[公會 會長]";
+		mes "修練嗎…";
+		mes "你已經是個很優秀的盜賊";
+		mes "有什麼特別的理由要當刺客嗎?";
+		next;
+		mes "[公會 會長]";
+		mes "盜賊的話是無所謂啦!";
+		mes "但是我們刺客絕不允許輕鬆的態度的。";
+		mes "偶爾也會看到沉淪在力量的";
+		mes "慾望之中無法控制自己的年輕人…";
+		next;
+		mes "[公會 會長]";
+		mes "那麼你對現況的那一部分有不滿";
+		mes "而要鍛練自己呢?";
+		next;
+		menu "技術",L_Menu3_1,"目標",L_Menu3_2,"精神",L_Menu3_3;
+		L_Menu3_1:
+			mes "[公會 會長]";
+			mes "技術是以刺客的身份即可拿到的事情";
+			mes "不能算是最有價值";
+			mes "有可能你成了刺客也滿足不了的不是嗎!";
+			next;
+			goto L_MenuEnd;
+		L_Menu3_2:
+			mes "[公會 會長]";
+			mes "是嗎…不斷的尋找新的目標";
+			mes "也是件很重要的事情的…";
+			mes "雖然現在你滿腦都在想成為刺客，";
+			mes "但是這也不曉得在何時會改變。";
+			next;
+			goto L_MenuEnd;
+		L_Menu3_3:
+			mes "[公會 會長]";
+			mes "是啊!努力想要追求精神上的堅持";
+			mes "是件重要的事情沒有錯。";
+			mes "持續不斷的鍛練身體與精神，";
+			mes "不是件簡單的事情。";
+			next;
+			mes "[公會 會長]";
+			mes "刺客的職業不單只專注在技能上";
+			mes "而能夠克服無數的試練及擺脫慾望的方法";
+			mes "也只有精神上的鍛練!";
+                        mes "否即便得到了技能卻也無法發揮。";
+			next;
+			goto L_MenuEnd;
+L_MenuEnd:
+	mes "[公會 會長]";
+	mes "你別不經思考。";
+	mes "有很多沒有自己想法的人";
+	mes "也說要當刺客的呢…";
+	next;
+	mes "[公會 會長]";
+	mes "引起很多問題的都是那種年輕人呢!";
+	mes "讓我們公會丟臉。";
+	next;
+	mes "[公會 會長]";
+	mes "你也是一樣的，一但成了刺客之後…";
+	mes "再也沒有辦法變回盜賊的。";
+	mes "成為刺客的義務以及責任";
+	mes "全都是自己一個人要承擔的。";
+	next;
+	mes "[公會 會長]";
+	mes "今後成為刺客的話首先做什麼呢?";
+	next;
+	menu "立刻戰鬥",L_Menu_1,"回到等待我的人們的地方",L_Menu_2,"想要多知道一些關於刺客的事情",L_Menu_3;
+	L_Menu_1:
+		mes "[公會 會長]";
+		mes "戰鬥?然後呢?";
+		next;
+		menu "要在短時間內成長",L_Menu_1_1,"想要知道身為刺客的我的技能",L_Menu_1_2,"去一些盜賊無法去的地方",L_Menu_1_3;
+		L_Menu_1_1:
+			mes "[公會 會長]";
+			mes "太焦躁成長的話就基礎鬆懈、";
+			mes "精神面的修練特別會得變粗心大意。";
+			mes "以一剎那的判斷成為致命傷的";
+			mes "刺客才是應該鞏固基礎。";
+			next;
+			goto L_End;
+		L_Menu_1_2:
+			mes "[公會 會長]";
+			mes "自我鍛練是件好事，";
+			mes "對自己增進的能力感到高興是當然的，";
+			mes "但是不要忘了刺客的心。";
+			next;
+			goto L_End;
+		L_Menu_1_3:
+			mes "[公會 會長]";
+			mes "這樣也好。到新世界的旅行";
+			mes "會有新的發現。";
+			mes "但是成為刺客，";
+			mes "也不會改變那個人的本質的。";
+			next;
+			mes "[公會 會長]";
+			mes "初期別太勉強、一點一點地";
+			mes "把範圍擴大就好了。";
+			next;
+			goto L_End;
+	L_Menu_2:
+		mes "[公會 會長]";
+		mes "有人在等你?";
+		next;
+		menu "是夥伴",L_Menu_2_1,"公會的會員們",L_Menu_2_2,"戀人",L_Menu_2_3;
+		L_Menu_2_1:
+			mes "[公會 會長]";
+			mes "是喔!他們應該也看待是自己";
+			mes "的事情而為你高興的吧!";
+			mes "不要忘了在孤獨當中";
+			mes "為夥伴著想的那份心情。";
+			next;
+			goto L_End;
+		L_Menu_2_2:
+			mes "[公會 會長]";
+			mes "能夠一起共生共死夥伴嗎…";
+			mes "這是件很棒的事情呢!";
+			mes "以刺客的身份，找一些能夠為他們可以做的事情。";
+			next;
+			goto L_End;
+		L_Menu_2_3:
+			mes "[公會 會長]";
+			mes "是為了情人啊?";
+			if (Sex == 0) mes "那就成為他的影子…保護他吧!";
+			if (Sex == 1) mes "那就成為她的影子…保護她吧!";
+			next;
+			mes "[公會 會長]";
+			mes "不要改變了你的那份心…";
+			mes "要永遠愛下去!";
+			mes "然而在我們的職業是致命傷。";
+			mes "這是你的人生。別在後悔中度過…";
+			next;
+			goto L_End;
+	L_Menu_3:
+		mes "[公會 會長]";
+		mes "是個好心態。";
+		mes "有什麼想要知道的嗎?";
+		next;
+		menu "知道刺客比較容易行動的地方",L_Menu_3_1,"公會的成長",L_Menu_3_2,"刺客可以賺錢的方法",L_Menu_3_3;
+		L_Menu_3_1:
+			mes "[公會 會長]";
+			mes "這世界上有什麼地方";
+			mes "是輕鬆或不輕鬆的特定地點嗎?";
+			mes "但是刺客即使是極限的環境下";
+			mes "也要巧妙地完成任務。";
+			next;
+			goto L_End;
+		L_Menu_3_2:
+			mes "[公會 會長]";
+			mes "在外面有很多的我們夥伴。";
+			mes "從這當中應該有所學習。";
+			next;
+			mes "[公會 會長]";
+			mes "希望你能夠套用在此所學到";
+			mes "的知識與經驗來展開我們公會的新世界。";
+			mes "然後你到了某一程度之後，";
+			mes "在跟那些長輩一樣把你的事情";
+			mes "要告訴你的晚輩才行喔!";
+			next;
+			goto L_End;
+		L_Menu_3_3:
+			mes "[公會 會長]";
+			mes "……刺客並非為了錢存在的!";
+			mes "稍微了解刺客的職責";
+			mes "再好好想一想吧!";
+			next;
+			goto L_End;
+L_End:
+	mes "[公會 會長]";
+	mes "與你談話非常快樂。";
+	mes "讓我也想起了從前…";
+	next;
+	mes "[公會 會長]";
+	mes "嗯…集合一下那些人吧!";
+	next;
+	mapannounce "in_moc_16.gat","公會 會長: 與"+strcharinfo(0)+"的刺客轉職考試相關人士集合到我這裡吧!",8;
+	mes "[公會 會長]";
+	mes "與"+strcharinfo(0)+"的刺客轉職考試";
+	mes "相關人士集合到我這裡吧!";
+	next;
+	mes "[公會 會長]";
+	mes "立刻來!";
+	next;
+	hideoffnpc "修伊#End";
+	hideoffnpc "凱伊#End";
+	hideoffnpc "無名者#End";
+	hideoffnpc "帕勒卡迪#End";
+	hideoffnpc "監視者#End";
+	hideoffnpc "但丁#End";
+	hideoffnpc "補給官 馬洛畢斯#End";
+	mes "[無名者]";
+	mes "叫我們嗎?";
+	next;
+	mes "[公會 會長]";
+	mes "我想聽聽擔任 "+strcharinfo(0)+" 轉職考試的";
+	mes "你們的意見而叫各位的……";
+	mes "覺得如何?";
+	next;
+	mes "[無名者]";
+	mes "那傢伙的話沒問題。喀喀喀…";
+	next;
+	mes "[公會 會長]";
+	mes "「無名者」是贊成的意思!";
+	mes "那修伊呢?";
+	next;
+	mes "[修伊]";
+	mes "基本上是個不錯的傢伙呢!";
+	mes "我?成。";
+	mes "那麼我要先上去了";
+	mes "必須回到座位…";
+	next;
+	mes "[公會 會長]";
+	mes "嗯~那就去吧!";
+	next;
+	mes "[帕勒卡迪]";
+	mes "那麼「監視者」你覺得呢?";
+	next;
+	donpcevent "修伊#End::OnEffect";
+	hideonnpc "修伊#End";
+	mes "[監視者]";
+	mes "大略上都通過了!所以合格。";
+	next;
+	mes "[公會 會長]";
+	mes "嗯、好像全部都贊成!";
+	mes "我也蠻欣賞這個人的。";
+	next;
+	mes "[公會 會長]";
+	mes "那…刺客孤獨的";
+	mes "訓練即是一生的課題。";
+	mes "帶著堅忍的毅力活下去!";
+	next;
+	mes "[公會 會長]";
+	mes "呃…不知不覺聊了一段時間了";
+	mes "首先接受這個!";
+	next;
+	set change_assassin,5;
+	savepoint "morocc.gat",100,101;
+	set @rand,rand(4);
+	if((@rand == 0) && (JobLevel <= 49)) getitem 1207,1;
+	if((@rand == 1) && (JobLevel <= 49)) getitem 1219,1;
+	if((@rand == 2) && (JobLevel <= 49)) getitem 1250,1;
+	if((@rand == 3) && (JobLevel <= 49)) getitem 1252,1;
+	if((@rand == 0) && (JobLevel >= 50)) getitem 1208,1;
+	if((@rand == 1) && (JobLevel >= 50)) getitem 1220,1;
+	if((@rand == 2) && (JobLevel >= 50)) getitem 1251,1;
+	if((@rand == 3) && (JobLevel >= 50)) getitem 1253,1;
+	getitem 1008,1;
+	mes "[公會 會長]";
+	mes "那麼，給你證明。";
+	mes "去入口處找高手暗殺者 修伊";
+	mes "修伊會幫你轉職的。";
+	next;
+	mes "[公會 會長]";
+	mes "在此 "+strcharinfo(0)+" …";
+	mes "要邁向暗殺者的路…";
+	mes "那條路是個孤獨而且有無數的苦難";
+	mes "希望不要遺忘自己的意志…";
+	next;
+	mes "[公會 會長]";
+	mes "好、大家都回去吧!";
+	mes "你也移動到入口處。";
+	donpcevent "凱伊#End::OnEffect";
+	hideonnpc "凱伊#End";
+	donpcevent "無名者#End::OnEffect";
+	hideonnpc "無名者#End";
+	donpcevent "帕勒卡迪#End::OnEffect";
+	hideonnpc "帕勒卡迪#End";
+	donpcevent "監視者#End::OnEffect";
+	hideonnpc "監視者#End";
+	donpcevent "但丁#End::OnEffect";
+	hideonnpc "但丁#End";
+	donpcevent "補給官 馬洛畢斯#End::OnEffect";
+	hideonnpc "補給官 馬洛畢斯#End";
+	close2;
+	warp "in_moc_16.gat",17,19;
+	end;
+}
+
+in_moc_16.gat,156,87,2	script	修伊#End		55,{
+	end;
+OnEffect:
+	misceffect 16;
+	end;
+}
+in_moc_16.gat,156,85,2	script	凱伊#End		730,{
+	end;
+OnEffect:
+	misceffect 16;
+	end;
+}
+in_moc_16.gat,156,83,2	script	無名者#End		106,{
+	end;
+OnEffect:
+	misceffect 16;
+	end;
+}
+in_moc_16.gat,156,81,2	script	帕勒卡迪#End		725,{
+	end;
+OnEffect:
+	misceffect 16;
+	end;
+}
+in_moc_16.gat,156,79,2	script	監視者#End		118,{
+	end;
+OnEffect:
+	misceffect 16;
+	end;
+}
+in_moc_16.gat,156,77,2	script	但丁#End		118,{
+	end;
+OnEffect:
+	misceffect 16;
+	end;
+}
+in_moc_16.gat,156,75,2	script	補給官 馬洛畢斯#End	55,{
+	end;
+OnEffect:
+	misceffect 16;
+	end;
+}

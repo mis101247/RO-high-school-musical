@@ -1,0 +1,234 @@
+prontera.gat,159,186,5 script 染色員 90,{
+         mes "[染色員]";
+         mes "歡迎光臨!";
+         mes "想扮全身找我就對啦~";
+         mes "需要什麼服務呢??";
+	 next;
+         menu "我要染髮",L_newlook,"我要換新髮型",L_hair,"我要換衣服",L_color;
+
+L_newlook:
+         mes "[染色員]";
+         mes "漂亮的你難道不想染個新髮色嗎？";
+         mes "換個色彩可以換個心情哦。";
+         mes "一次只需800Z~~選擇一下啦。";
+         next;
+         menu "幫我換回原色",Lr01,"溫柔俏皮的黃色",Lr02,"雅致大方的藍色",Lr03,"聰慧健康的綠色",Lr04,"體貼細膩的赤色",Lr05,"高貴典雅的紫色",Lr06,"純潔朦朧的白色",Lr07,"嚴謹莊重的黑色",Lr08,"熱情奔放的紅色",Lr09,"等我再想想~",L_close;
+
+Lr01:
+	callfunc "rf01"; 
+        setlook 6,0;
+	callfunc "rf02"; 
+Lr02:
+	callfunc "rf01"; 
+        setlook 6,1;
+	callfunc "rf02"; 
+Lr03:
+	callfunc "rf01"; 
+        setlook 6,2;
+	callfunc "rf02"; 
+Lr04:
+	callfunc "rf01"; 
+        setlook 6,4;
+	callfunc "rf02"; 
+Lr05:
+	callfunc "rf01"; 
+        setlook 6,3;
+	callfunc "rf02"; 
+Lr06:
+	callfunc "rf01"; 
+        setlook 6,5;
+	callfunc "rf02"; 
+Lr07:
+	callfunc "rf01"; 
+        setlook 6,6;
+	callfunc "rf02"; 
+Lr08:
+	callfunc "rf01"; 
+        setlook 6,7;
+	callfunc "rf02"; 
+Lr09:
+	callfunc "rf01"; 
+        setlook 6,8;
+	callfunc "rf02"; 
+
+L_hair:
+       mes "[染色員]";
+       mes "髮型也是一種極具個性化的藝術。";
+       mes "想要個完美的髮型嗎？";
+       mes "特價優惠每次只需500Z~~";
+       next;
+       menu "A款式",Fx01,"B款式",Fx02,"C款式",Fx03,"D款式",Fx04,"E款式",Fx05,"F款式",Fx06,"G款式",Fx07,"H款式",Fx08,"I款式",Fx09,"J款式",Fx10,"K款式",Fx11,"L款式",Fx12,"M款式",Fx13,"N款式",Fx14,"O款式",Fx15,"P款式",Fx16,"Q款式",Fx17,"R款式",Fx18,"等我再想想~",L_close;
+
+Fx01:
+	callfunc "jf01"; 
+        setlook 1,1;
+	callfunc "jf02"; 
+Fx02:
+	callfunc "jf01"; 
+        setlook 1,2;
+	callfunc "jf02"; 
+Fx03:
+	callfunc "jf01"; 
+        setlook 1,3;
+	callfunc "jf02"; 
+Fx04:
+	callfunc "jf01"; 
+        setlook 1,4;
+	callfunc "jf02"; 
+Fx05:
+	callfunc "jf01"; 
+        setlook 1,5;
+	callfunc "jf02"; 
+Fx06:
+	callfunc "jf01"; 
+        setlook 1,6;
+	callfunc "jf02"; 
+Fx07:
+	callfunc "jf01"; 
+        setlook 1,7;
+	callfunc "jf02"; 
+Fx08:
+	callfunc "jf01"; 
+        setlook 1,8;
+	callfunc "jf02"; 
+Fx09:
+	callfunc "jf01"; 
+        setlook 1,9;
+	callfunc "jf02"; 
+Fx10:
+	callfunc "jf01"; 
+        setlook 1,10;
+	callfunc "jf02"; 
+Fx11:
+	callfunc "jf01"; 
+        setlook 1,11;
+	callfunc "jf02"; 
+Fx12:
+	callfunc "jf01"; 
+        setlook 1,12;
+	callfunc "jf02"; 
+Fx13:
+	callfunc "jf01"; 
+        setlook 1,13;
+	callfunc "jf02"; 
+Fx14:
+	callfunc "jf01"; 
+        setlook 1,14;
+	callfunc "jf02"; 
+Fx15:
+	callfunc "jf01"; 
+        setlook 1,15;
+	callfunc "jf02"; 
+Fx16:
+	callfunc "jf01"; 
+        setlook 1,16;
+	callfunc "jf02"; 
+Fx17:
+	callfunc "jf01"; 
+        setlook 1,17;
+	callfunc "jf02"; 
+Fx18:
+	callfunc "jf01"; 
+        setlook 1,18;
+	callfunc "jf02"; 
+
+L_color:
+mes "[染色員]";
+mes "歡迎光臨~~";
+mes "有很多選擇哦~但是選了就不要後悔";
+mes "每次染衣的費用為1000Z";
+mes "想染成什麼樣呢？";
+next;
+menu "黃色",L0,"蘭色",L1,"紅色",L2,"棕色",L3,"綠色",L4,"橙色",L5,"深綠色",L6,"紫色",L7,"灰色",L8,"黑色",L9,"紫藍色",L10,"等我再想想~",L_close;
+
+L0:
+	setlook 7,0;
+	callfunc "rf"; 
+L1:
+	setlook 7,1; 
+	callfunc "rf"; 
+L2:
+	setlook 7,2;
+	callfunc "rf"; 
+L3:
+	setlook 7,3;
+	callfunc "rf"; 
+L4:
+	setlook 7,4;
+	callfunc "rf"; 
+L5:
+	setlook 7,5;
+	callfunc "rf"; 
+L6:
+	setlook 7,6;
+	callfunc "rf"; 
+L7:
+	setlook 7,7;
+	callfunc "rf"; 
+L8:
+	setlook 7,8;
+	callfunc "rf"; 
+L9:
+	setlook 7,9;
+	callfunc "rf"; 
+L10:
+	setlook 7,10;
+	callfunc "rf"; 
+
+L_close:
+mes "[染色員]";
+mes "好的,想清楚再光臨吧~";
+close; 
+}
+
+function	script	rf01	{
+	if (Zeny < 800) callfunc "L_nomoney";
+        mes "[染色員]";
+        mes "我去準備一下，請稍等。";
+        next;
+        mes "[染色員]";
+        mes "真好看，這色彩太適合您了。";
+	return; 
+}
+
+function	script	rf02	{
+        mes "祝你好心情，下次再見。";
+	set Zeny,Zeny-800;
+	set KF_PIT,KF_PIT+80;
+        close; 
+}
+
+function	script	jf01	{
+	if (Zeny < 500) callfunc "L_nomoney";
+        mes "[染色員]";
+        mes "我去磨刀，別緊張！～～～";
+        mes "只是理髮，換個髮型不會傷害你的。";
+        next;
+        mes "[染色員]";
+        mes "這式樣配合您的身材真是絕對棒。";
+	return; 
+}
+
+function	script	jf02	{
+        mes "祝你好心情，頭髮別弄亂了。";
+	set Zeny,Zeny-500;
+	set KF_PIT,KF_PIT+50;
+        close; 
+}
+
+function	script	rf	{
+	if (Zeny < 1000) callfunc "L_nomoney";
+	mes "[染色員]";
+	mes "好啦.....挺好看的";
+	set Zeny,Zeny-1000;
+	set KF_PIT,KF_PIT+100;
+	close; 
+}
+
+function	script	L_nomoney	{
+mes "[暴怒的務員]";
+mes "沒錢想學人享受??";
+mes "來人哪~";
+mes "落閘放狗!!!!";
+close; 
+}

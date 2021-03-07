@@ -1,0 +1,1764 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 城鎮導遊腳本 -
+//========================================================================================
+//  ■ @compass -> тЯMAP表示ソon/off
+//========================================================================================
+//[導遊 - 普隆德拉]
+prontera.gat,154,187,4	script	導遊#prontera	105,{
+	cutin "prt_soldier",2;
+	mes "[普隆德拉導遊]";
+	mes "歡迎光臨 非常歡迎您們來到盧恩 米德加爾特王國美麗的首都普隆德拉.";
+	mes "我們為了來到普隆德拉的旅客 安排了導遊為您們介紹這個城市 當您們有問題的時候 隨時可以詢問他們.";
+	next;
+	mes "[普隆德拉導遊]";
+	mes "第一次來到這裡的旅客 先按主選單 選擇注意事項 瞭解必須注意的事情.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x01 == 0) {
+				mes "[普隆德拉導遊]";
+				mes "請您選擇想知道的選單。";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x01;
+			}
+			mes "[普隆德拉導遊]";
+			mes "請選擇地點。";
+			while(1) {
+				next;
+				switch (select("劍士工會","^0000FF教堂^000000","騎士團","武器商店","道具商店","旅館",
+							"精練所","酒店","圖書館","研究所","普隆德拉城","辦公室","取消")) {
+				case 1:
+					mes "[普隆德拉導遊]";
+					mes "專門辦理劍士轉職業務的劍士工會已經搬到新城市伊茲魯達普隆德拉現在已經是空屋.";
+					if(@compass&0x01)
+						viewpoint 1,237,41,1,0x00FF00;
+					continue;
+				case 2:
+					mes "[普隆德拉導遊]";
+					mes "專門辦理服事轉職業務的教堂位置在普隆德拉東北方的郊區..";
+					if(@compass&0x01)
+						viewpoint 1,236,316,2,0xFF0000;
+					continue;
+				case 3:
+					mes "[普隆德拉導遊]";
+					mes "保護盧恩米德加爾特王國美麗的首都普隆德拉行政機關的騎士團位在普隆德拉西北方的郊區.";
+					if(@compass&0x01)
+						viewpoint 1,46,345,3,0x00FF00;
+					continue;
+				case 4:
+					mes "[普隆德拉導遊]";
+					mes "武器商店位在以噴水池中心的東北方.";
+					if(@compass&0x01)
+						viewpoint 1,175,220,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[普隆德拉導遊]";
+					mes "道具商店位在以噴水池中心的西北方";
+					if(@compass&0x01)
+						viewpoint 1,134,221,5,0xFF00FF;
+					continue;
+				case 6:
+					mes "[普隆德拉導遊]";
+					mes "旅館位在以噴水池中心的西方和東方各有一間.";
+					if(@compass&0x01) {
+						viewpoint 1,204,214,6,0xFF00FF;
+						viewpoint 1,107,192,7,0xFF00FF;
+					}
+					continue;
+				case 7:
+					mes "[普隆德拉導遊]";
+					mes "精練所位在以噴水池中心的東南方.";
+					if(@compass&0x01)
+						viewpoint 1,179,184,8,0x00FF00;
+					continue;
+				case 8:
+					mes "[普隆德拉導遊]";
+					mes "酒店位在以噴水池中心的東南方就在交易所對面";
+					if(@compass&0x01)
+						viewpoint 1,208,154,9,0x00FF00;
+					continue;
+				case 9:
+					mes "[普隆德拉導遊]";
+					mes "圖書館位在從噴水池開始往北方走看見一塊空地,在空地前的左邊和右邊各有一間.";
+					if(@compass&0x01) {
+						viewpoint 1,120,267,10,0x00FF00;
+						viewpoint 1,192,267,11,0x00FF00;
+					}
+					continue;
+				case 10:
+					mes "[普隆德拉導遊]";
+					mes "研究所位在以噴水池中心的西南方";
+					if(@compass&0x01)
+						viewpoint 1,133,183,12,0x00FF00;
+					continue;
+				case 11:
+					mes "[普隆德拉導遊]";
+					mes "普隆德拉城堡是位在普隆德拉北方的郊區的12點方向.";
+					mes "有一點要注意城堡的後門是和北普隆德拉相鄰在一起的";
+					if(@compass&0x01)
+						viewpoint 1,156,360,13,0x00FF00;
+					continue;
+				case 12:
+					mes "[普隆德拉導遊]";
+					mes "辦公室位在普隆德拉東南方的郊區的7點鐘方向.";
+					if(@compass&0x01)
+						viewpoint 1,75,91,14,0x00FF00;
+					continue;
+				case 13:
+					mes "[普隆德拉導遊]";
+					mes "選擇刪除編輯，即可刪除小地圖上的記號";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			viewpoint 2,237,41,1,0x00FF00;
+			viewpoint 2,236,316,2,0xFF0000;
+			viewpoint 2,46,345,3,0x00FF00;
+			viewpoint 2,175,220,4,0xFF00FF;
+			viewpoint 2,8,134,5,0xFF00FF;
+			viewpoint 2,204,214,6,0xFF00FF;
+			viewpoint 2,107,192,7,0xFF00FF;
+			viewpoint 2,179,184,8,0x00FF00;
+			viewpoint 2,208,154,9,0x00FF00;
+			viewpoint 2,120,267,10,0x00FF00;
+			viewpoint 2,192,267,11,0x00FF00;
+			viewpoint 2,133,183,12,0x00FF00;
+			viewpoint 2,156,360,13,0x00FF00;
+			viewpoint 2,75,91,14,0x00FF00;
+			set @compass,@compass&~0x01;
+			continue;
+		case 3:
+			mes "[普隆德拉導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[普隆德拉導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗內的地圖";
+			mes "微型地圖出現之後 在地圖上按幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[普隆德拉導遊]";
+			mes "那麼祝你有個愉快的旅行";
+			close2;
+			cutin "prt_soldier",255;
+			end;
+		}
+	}
+}
+
+prontera.gat,282,208,2	duplicate(導遊#prontera)	東門-導遊	105
+prontera.gat,29,200,6	duplicate(導遊#prontera)	西門-導遊	105
+prontera.gat,160,29,0	duplicate(導遊#prontera)	南門-導遊	105
+prontera.gat,151,330,4	duplicate(導遊#prontera)	北門-導遊	105
+
+
+//----------------------------------------------------------------------
+//[導遊 - 依斯魯得]
+
+izlude.gat,123,87,6	script	導遊	105,{
+	mes "[依斯魯得 導遊]";
+	mes "歡迎來到新城市依斯魯得 ~~";
+	mes "我是負責介紹依斯魯得 的夥伴. 如果您想知道建築物的位置可以隨時問我.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x02 == 0) {
+				mes "[依斯魯得 導遊]";
+				mes "請您選擇想知道的選單。";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x02;
+			}
+			while(1) {
+				next;
+				switch (select("^FF0000劍士工會^000000","劍士協會","亞雷那","碼頭","武器商店","道具商店","取消")) {
+				case 1:
+					mes "[依斯魯得 導遊]";
+					mes "您要轉職成為劍士嗎?";
+					if(@compass&0x02)
+						viewpoint 1,52,140,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[依斯魯得 導遊]";
+					mes "專門處理劍士事務的劍士協會位在東方.";
+					if(@compass&0x02)
+						viewpoint 1,214,130,2,0x00FF00;
+					continue;
+				case 3:
+					mes "[依斯魯得 導遊]";
+					mes "依斯魯得 最有名之一的亞雷那位在北方郊區 的12點鐘方向.";
+					mes "我哥哥是在那裡的服務人員 他說亞雷那還沒 有開放就算去到那裡也沒有用處.";
+					if(@compass&0x02)
+						viewpoint 1,128,225,3,0x00FF00;
+					continue;
+				case 4:
+					mes "[依斯魯得 導遊]";
+					mes "到艾爾貝塔和百亞蘭島的碼頭是位在東北方 的 1點鐘到 2點鐘方向.";
+					if(@compass&0x02)
+						viewpoint 1,200,180,4,0xFF0000;
+					continue;
+				case 5:
+					mes "[依斯魯得 導遊]";
+					mes "武器商店是位在西北方. 距離很近比較容易找到.";
+					if(@compass&0x02)
+						viewpoint 1,111,149,5,0xFF00FF;
+					continue;
+				case 6:
+					mes "[依斯魯得 導遊]";
+					mes "道具商店是位在東北方. 距離很近比較容易找到.";
+					if(@compass&0x02)
+						viewpoint 1,148,148,6,0xFF00FF;
+					continue;
+				case 7:
+					mes "[依斯魯得 導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號' .";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			mes "[依斯魯得 導遊]";
+			mes "刪除完畢";
+			viewpoint 2,52,140,1,0xFF0000;
+			viewpoint 2,214,130,2,0x00FF00;
+			viewpoint 2,128,225,3,0x00FF00;
+			viewpoint 2,200,180,4,0xFF0000;
+			viewpoint 2,111,149,5,0xFF00FF;
+			viewpoint 2,148,148,6,0xFF00FF;
+			set @compass,@compass&~0x02;
+			continue;
+		case 3:
+			mes "[依斯魯得 導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的。無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[依斯魯得 導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			goto L_START_1;
+			continue;
+		case 4:
+			mes "[依斯魯得 導遊]";
+			mes "祝您旅遊快樂.";
+			close;
+		}
+	}
+}
+
+//----------------------------------------------------------------------
+//[導遊 - 吉芬]
+
+geffen.gat,203,116,0	script	導遊#geffen	705,{
+	cutin "gef_soldier",2;
+	mes "[吉芬導遊]";
+	mes "非常歡迎來到魔幻之都吉芬.";
+	mes "我們為了來到吉芬的旅客 安排了導遊為您們介紹這個城市. 當您們有問題的時候隨時, 可以詢問他們.";
+	mes "第一次來到這裡的旅客  先按選單 '選擇注意事項' 瞭解必須注意的事情.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x04 == 0) {
+				mes "[吉芬導遊]";
+				mes "請您選擇想知道的選單。";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x04;
+			}
+			while(1) {
+				next;
+				switch (select("^FF0000魔法學校^000000","鍛冶屋","武器商店","道具商店","酒店","旅館","取消")) {
+				case 1:
+					mes "[吉芬導遊]";
+					mes "專門辦理魔法師轉職業務的魔法學校.";
+					if(@compass&0x04)
+						viewpoint 1,61,180,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[吉芬導遊]";
+					mes "工具商店位在以微型地圖為中心的東南方.";
+					if(@compass&0x04)
+						viewpoint 1,182,59,2,0x00FF00;
+					continue;
+				case 3:
+					mes "[吉芬導遊]";
+					mes "武器商店位在以微型地圖為中心的西北方.";
+					if(@compass&0x04)
+						viewpoint 1,99,140,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[吉芬導遊]";
+					mes "道具商店位在以微型地圖為中心的西南方.";
+					if(@compass&0x04)
+						viewpoint 1,44,86,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[吉芬導遊]";
+					mes "酒店位在以微型地圖為中心的東北方.";
+					if(@compass&0x04)
+						viewpoint 1,138,138,5,0xFF00FF;
+					continue;
+				case 6:
+					mes "[吉芬導遊]";
+					mes "旅館位在以微型地圖為中心的東北方.";
+					if(@compass&0x04)
+						viewpoint 1,172,174,6,0xFF00FF;
+					continue;
+				case 7:
+					mes "[吉芬導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號' .";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			viewpoint 2,61,180,1,0xFF0000;
+			viewpoint 2,182,59,2,0x00FF00;
+			viewpoint 2,99,140,3,0xFF00FF;
+			viewpoint 2,44,86,4,0xFF00FF;
+			viewpoint 2,138,138,5,0xFF00FF;
+			viewpoint 2,172,174,6,0xFF00FF;
+			set @compass,@compass&~0x04;
+			continue;
+		case 3:
+			mes "[吉芬導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的。無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[吉芬導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[吉芬導遊]";
+			mes "旅途愉快";
+			close2;
+			cutin "gef_soldier",255;
+			end;
+		}
+	}
+}
+
+geffen.gat,118,62,0	duplicate(導遊#geffen)	導遊	705
+
+
+//----------------------------------------------------------------------
+//[導遊 - 裴揚]
+
+payon.gat,162,67,4	script	導遊	708,{
+	cutin "pay_soldier",2;
+	mes "[裴揚導遊]";
+	mes "歡迎光臨  山岳之都裴揚.";
+	mes "我們為了來到裴揚的旅客 安排了導遊為您們介紹這個城市. 當您們有問題的時候隨時, 可以詢問他們.";
+	mes "第一次來到這裡的旅客  先按選單 '選擇注意事項' 瞭解必須注意的事情.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x08 == 0) {
+				mes "[裴揚導遊]";
+				mes "請您選擇想知道的選單。";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x08;
+			}
+			while(1) {
+				next;
+				switch (select("^FF0000弓箭手協會^000000","武器?防御具屋","道具商店","酒店","中央宮",
+									"宮殿的前庭","宮殿的分館","弓箭手房間","精練所","取消")) {
+				case 1:
+					mes "[裴揚導遊]";
+					mes "專門辦理弓箭手轉職業務的弓箭手協會位在經過弓箭手村後最角落的東北方.";
+					if(@compass&0x08)
+						viewpoint 1,228,325,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[裴揚導遊]";
+					mes "武器商店位在以微型地圖為中心的西北方.";
+					if(@compass&0x08)
+						viewpoint 1,138,158,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[裴揚導遊]";
+					mes "道具商店位在經過弓箭手存的西北方.";
+					if(@compass&0x08)
+						viewpoint 1,149,87,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[裴揚導遊]";
+					mes "旅館位在以微型地圖為中心的東方.";
+					if(@compass&0x08)
+						viewpoint 1,220,117,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[裴揚導遊]";
+					mes "中央宮位在以微型地圖為中心北方.";
+					if(@compass&0x08)
+						viewpoint 1,156,243,5,0x00FF00;
+					continue;
+				case 6:
+					mes "[裴揚導遊]";
+					mes "宮殿的前庭在西北方向。";
+					if(@compass&0x08)
+						viewpoint 1,107,320,6,0x00FF00;
+					continue;
+				case 7:
+					mes "[裴揚導遊]";
+					mes "宮殿的分館在西面。";
+					if(@compass&0x08)
+						viewpoint 1,135,194,7,0x00FF00;
+					continue;
+				case 8:
+					mes "[裴揚導遊]";
+					mes "弓箭手房間在北面。";
+					if(@compass&0x08)
+						viewpoint 1,155,324,8,0x00FF00;
+					continue;
+				case 9:
+					mes "[裴揚導遊]";
+					mes "精練所的位置已經標記好。";
+					if(@compass&0x08)
+						viewpoint 1,144,169,9,0x00FF00;
+					continue;
+				case 10:
+					mes "[裴揚導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號' .";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			viewpoint 2,228,325,1,0xFF0000;
+			viewpoint 2,138,158,2,0xFF00FF;
+			viewpoint 2,149,87,3,0xFF00FF;
+			viewpoint 2,220,117,4,0xFF00FF;
+			viewpoint 2,156,243,5,0x00FF00;
+			viewpoint 2,107,320,6,0x00FF00;
+			viewpoint 2,135,194,7,0x00FF00;
+			viewpoint 2,155,324,8,0x00FF00;
+			viewpoint 2,144,169,9,0x00FF00;
+			set @compass,@compass&~0x08;
+			continue;
+		case 3:
+			mes "[裴揚導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的。無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[裴揚導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[裴揚導遊]";
+			mes "祝您旅遊快樂.";
+			close2;
+			cutin "pay_soldier",255;
+			end;
+		}
+	}
+}
+
+pay_arche.gat,85,30,2	script	導遊	708,{
+	mes "[裴揚導遊]";
+	mes "歡迎光臨  山岳之都裴揚.";
+	mes "我們為了來到裴揚的旅客 安排了導遊為您們介紹這個城市. 當您們有問題的時候隨時, 可以詢問他們.";
+	mes "第一次來到這裡的旅客  先按選單 '選擇注意事項' 瞭解必須注意的事情.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x10 == 0) {
+				mes "[裴揚導遊]";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x10;
+			}
+			while(1) {
+				next;
+				switch (select("^FF0000弓箭手協會^000000","道具商店","裴楊 洞穴","取消")) {
+				case 1:
+					mes "[裴揚導遊]";
+					mes "專門辦理弓箭手轉職業務的弓箭手協會.";
+					if(@compass&0x10)
+						viewpoint 1,144,164,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[裴揚導遊]";
+					mes "道具商店位在以微型地圖為中心的西北方.";
+					if(@compass&0x10)
+						viewpoint 1,71,156,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[裴揚導遊]";
+					mes "裴揚密洞位在以微型地圖為中心的西方.";
+					if(@compass&0x10)
+						viewpoint 1,34,132,3,0xFFFFFF;
+					continue;
+				case 4:
+					mes "[裴揚導遊]";
+					mes "要刪掉記號請選取 '刪掉微型地圖上全部的記號' .";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			viewpoint 2,144,164,1,0xFF0000;
+			viewpoint 2,71,156,2,0xFF00FF;
+			viewpoint 2,34,132,3,0xFFFFFF;
+			set @compass,@compass&~0x10;
+			continue;
+		case 3:
+			mes "[裴揚導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的。無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[裴揚導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[裴揚導遊]";
+			mes "祝您旅遊快樂.";
+			close2;
+			cutin "pay_soldier",255;
+			end;
+		}
+	}
+}
+
+//----------------------------------------------------------------------
+//[導遊 - 艾爾貝塔]
+
+alberta.gat,23,238,4	script	導遊#alberta	105,{
+	mes "[艾爾貝塔導遊]";
+	mes "歡迎光臨 港口之都艾爾貝塔.";
+	mes "我們為了來到艾爾貝塔的旅客 安排了導遊為您們介紹這個城市 當您們有問題的時候 隨時可以詢問他們.";
+	mes "第一次來到這裡的旅客 先按主選單 選擇注意事項 瞭解必須注意的事情.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x20 == 0) {
+				mes "[艾爾貝塔導遊]";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x20;
+			}
+			mes "[艾爾貝塔導遊]";
+			mes "請選擇。";
+			while(1) {
+				next;
+				switch (select("^FF0000商人協會^000000","武器商店","道具商店","旅館","取消")) {
+				case 1:
+					mes "[艾爾貝塔導遊]";
+					mes "專門辦理商人轉職業務的商人協會.";
+					if(@compass&0x20)
+						viewpoint 1,33,41,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[艾爾貝塔導遊]";
+					mes "武器商店位於微型地圖中心的南邊.";
+					if(@compass&0x20)
+						viewpoint 1,117,37,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[艾爾貝塔導遊]";
+					mes "道具商店位於微型地圖上的中心處.";
+					if(@compass&0x20)
+						viewpoint 1,98,154,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[艾爾貝塔導遊]";
+					mes "旅館位於微型地圖中心的北邊.";
+					if(@compass&0x20)
+						viewpoint 1,65,233,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[艾爾貝塔導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號' .";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			mes "[艾爾貝塔導遊]";
+			mes "刪除完畢";
+			viewpoint 2,33,41,1,0xFF0000;
+			viewpoint 2,117,37,2,0xFF00FF;
+			viewpoint 2,98,154,3,0xFF00FF;
+			viewpoint 2,65,233,4,0xFF00FF;
+			set @compass,@compass&~0x20;
+			continue;
+		case 3:
+			mes "[艾爾貝塔導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的。無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[艾爾貝塔導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[艾爾貝塔導遊]";
+			mes "再見。";
+			close;
+		}
+	}
+}
+
+alberta.gat,120,60,3	duplicate(導遊#alberta)	導遊	105
+
+
+//----------------------------------------------------------------------
+//[導遊 - 夢羅克]
+
+morocc.gat,153,286,6	script	導遊#morocc	707,{
+	cutin "moc_soldier",2;
+	mes "[夢羅克導遊]";
+	mes "歡迎光臨  邊境之成都  夢羅克.";
+	mes "我們為了來到夢羅克的旅客  安排了導遊為您們介紹這個城市. 當您們有問題的時候, 隨時可以詢問他們.";
+	mes "第一次來到這裡的旅客  先按選單 '選擇注意事項' 瞭解必須注意的事情.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x40 == 0) {
+				mes "[艾爾貝塔導遊]";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x40;
+			}
+			while(1) {
+				next;
+				switch (select("^FF0000盜賊公會^000000","武器商店","旅館","酒店","傭兵工會","取消")) {
+				case 1:
+					mes "[夢羅克導遊]";
+					mes "專門辦理盜賊轉職業務的盜賊協會在金字塔內....";
+					if(@compass&0x40)
+						viewpoint 1,24,297,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[夢羅克導遊]";
+					mes "武器商店位在以微型地圖為中心的東南方.";
+					if(@compass&0x40)
+						viewpoint 1,253,56,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[夢羅克導遊]";
+					mes "旅館位在以微型地圖為中心的東北方和南方各有一間.";
+					if(@compass&0x40)
+						viewpoint 1,197,66,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[夢羅克導遊]";
+					mes "酒店位在以微型地圖為中心的西北方.";
+					if(@compass&0x40)
+						viewpoint 1,52,259,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[夢羅克導遊]";
+					mes "傭兵工會位在以微型地圖為中心的東方.";
+					if(@compass&0x40)
+						viewpoint 1,284,171,5,0x00FF00;
+					continue;
+				case 6:
+					mes "[夢羅克導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號' .";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			viewpoint 2,24,297,1,0xFF0000;
+			viewpoint 2,253,56,2,0xFF00FF;
+			viewpoint 2,197,66,3,0xFF00FF;
+			viewpoint 2,52,259,4,0xFF00FF;
+			viewpoint 2,284,171,5,0x00FF00;
+			set @compass,@compass&~0x40;
+			continue;
+		case 3:
+			mes "[夢羅克導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的。無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[夢羅克導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[夢羅克導遊]";
+			mes "祝您旅遊快樂";
+			close2;
+			cutin "moc_soldier",255;
+			end;
+		}
+	}
+}
+
+morocc.gat,54,97,6	duplicate(導遊#morocc)	導遊	707
+
+
+//----------------------------------------------------------------------
+//[導遊 - 艾爾帕蘭]
+
+aldebaran.gat,139,63,4	script	兵士	105,{
+	cutin "prt_soldier",2;
+	mes "[艾爾帕蘭整備軍]";
+	mes "我可不是什麼負責村莊內安全的小小守衛喔!!";
+	mes "我是艾爾帕蘭守護隊的一員，我擔任導覽服務的工作";
+	mes "隸屬艾爾帕蘭整備隊!! (沒有名字)";
+	mes "那就讓我來為你做一下介紹吧!";
+	next;
+	if(select("接受位置導覽","取消")==1) {
+		viewpoint 1,57,222,1,0xFF6633;
+		viewpoint 1,73,196,2,0x0000FF;
+		viewpoint 1,224,224,3,0x00FFFF;
+		viewpoint 1,233,106,4,0x515151;
+		viewpoint 1,197,71,5,0x3355FF;
+		viewpoint 1,60,60,6,0xFF5555;
+		mes "^FF6633+^000000 -> 卡普拉總公司";
+		mes "^0000FF+^000000 -> 武器商店";
+		mes "^00FFFF+^000000 -> 魔法工會 (Closed)";
+		mes "^515151+^000000 -> 酒店";
+		mes "^3355FF+^000000 -> 道具商店";
+		mes "^FF5555+^000000 -> 鍊金者工會";
+	}
+	else {
+		mes "[艾爾帕蘭整備軍]";
+		mes "我是守衛艾爾帕蘭整備隊的一員!!";
+	}
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}
+
+aldebaran.gat,241,136,2	script	兵士	105,{
+	cutin "prt_soldier",2;
+	mes "[艾爾帕蘭整備軍]";
+	mes "我可不是什麼負責村莊內安全的小小守衛喔!!";
+	mes "我是艾爾帕蘭守護隊的一員，我擔任導覽服務的工作";
+	mes "隸屬艾爾帕蘭整備隊!! (沒有名字)";
+	mes "那就讓我來為你做一下介紹吧!";
+	next;
+	switch (select("卡普拉總公司","武器商店","魔法工會","酒店","道具商店","煉金者工會","取消")) {
+	case 1:
+		viewpoint 1,57,222,1,0xFF6633;
+		mes "^FF6633+^000000 -> 卡普拉總公司";
+		break;
+	case 2:
+		viewpoint 1,73,196,2,0x0000FF;
+		mes "^0000FF+^000000 -> 武器商店";
+		break;
+	case 3:
+		viewpoint 1,224,224,3,0x00FFFF;
+		mes "^00FFFF+^000000 -> 魔法工會 (Closed)";
+		break;
+	case 4:
+		viewpoint 1,233,106,4,0x515151;
+		mes "^515151+^000000 -> 酒店";
+		break;
+	case 5:
+		viewpoint 1,197,71,5,0x3355FF;
+		mes "^3355FF+^000000 -> 道具商店";
+		break;
+	case 6:
+		viewpoint 1,60,60,6,0xFF5555;
+		mes "^FF5555+^000000 -> 煉金者工會";
+		break;
+	case 7:
+		mes "[艾爾帕蘭整備軍]";
+		mes "我是守衛艾爾帕蘭整備隊的一員!!";
+		break;
+	}
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}
+
+//----------------------------------------------------------------------
+//[導遊 - 克魔島]
+comodo.gat,322,178,4	script	克魔島導遊#可可姆	700,{
+	mes "[原住民"+strnpcinfo(2)+"]";
+	mes "歡樂的夜晚，持續24小時的地方";
+	mes "有夢，和幻想的村落!";
+	mes "歡迎來到克魔島!";
+	mes "我會為你服務，幫你帶路.";
+	mes "你想知道位置的話,隨時都可以問我.";
+	next;
+	switch (select("賭博場","呼啦圈舞 舞台 ^3355FF(舞者轉職地)^000000","武器店","道具店",
+				"貝殼商店(特產物)","卡普拉 西部分社","村長之家","酒店 (PUB)","露營村","結束對話")) {
+	case 1:
+		viewpoint 1,140,98,1,0xFF6633;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^FF6633+^000000 -> 賭博場";
+		mes "讓克魔島，更像克魔島!";
+		mes "一個疲憊不堪，旅者們的安息地可是，那是另外一個區域!克魔島 - 賭  博  場 -";
+		break;
+	case 2:
+		viewpoint 1,188,168,2,0x0000FF;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^0000FF+^000000 -> 呼啦圈舞 舞台";
+		mes "呼啦 呼啦 - 呼啦 呼啦 -";
+		mes "若你已經習慣，舞台上的氣氛的話也可以考慮看看，轉職成舞者^3355FF(舞者轉職地)^000000";
+		break;
+	case 3:
+		viewpoint 1,266,70,3,0x00FFFF;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^00FFFF+^000000 -> 武器店";
+		mes "克魔島裡有克魔島的獨特的項目，'克魔島 武器店'";
+		break;
+	case 4:
+		viewpoint 1,86,128,4,0x515151;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^515151+^000000 -> 道具店";
+		mes "克魔島裡有克魔島的獨特的項目'克魔島 道具店'";
+		break;
+	case 5:
+		viewpoint 1,298,124,5,0x3355FF;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^3355FF+^000000 -> 貝殼商店(特產物)";
+		mes "克魔島裡有克魔島的獨特的項目' 克魔島 特產物品店'";
+		break;
+	case 6:
+		viewpoint 1,136,202,6,0xFF5555;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^FF5555+^000000 -> 卡普拉 西部分社";
+		mes "負責米德加茲大陸，西部世上最大的服務處!";
+		mes "卡普拉 西部分社中心在克魔島裡-";
+		break;
+	case 7:
+		viewpoint 1,114,294,7,0xFF5555;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^FF5555+^000000 -> 村長之家";
+		mes "是克魔島村長，所在的地方，你對克魔島有濃厚的興趣的話";
+		mes "試著見一下村長也不錯啊";
+		break;
+	case 8:
+		viewpoint 1,166,298,8,0xFF5555;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^FF5555+^000000 -> 酒店 (PUB)";
+		mes "讓世界各地旅行者的情報，意見交換的地方";
+		mes "克魔島，名俗酒店是更有特別氣氛的地方";
+		break;
+	case 9:
+		viewpoint 1,210,308,9,0xFF5555;
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "^FF5555+^000000 -> 露營村";
+		mes "有時候和家人一起，有時候和戀人一起快樂的時光，讓你記憶猶新的地方";
+		mes "克魔島名俗料理中，有烤乳豬這裡是唯一，可以品嚐的地方!";
+		break;
+	case 10:
+		mes "[原住民"+strnpcinfo(2)+"]";
+		mes "克魔島位置在洞穴裡照不到太陽，24小時一整天都是黑暗";
+		mes "克魔島住民，利用這特性開發觀光商品旅遊來維持生活. .";
+		break;
+	}
+	close;
+}
+
+comodo.gat,176,350,4	duplicate(克魔島導遊#可可姆)	克魔島導遊#呢可可	700
+comodo.gat,37,219,4	duplicate(克魔島導遊#可可姆)	克魔島導遊#帕帕亞	700
+
+
+//----------------------------------------------------------------------
+//[導遊 - 朱諾]
+
+yuno.gat,153,47,4	script	"朱諾導遊"	700,{
+	mes "[朱諾導遊]";
+	mes "瞭解過去";
+	mes "直視現在";
+	mes "預測未來 ..";
+	mes "這裡是賢者們的都市";
+	mes "- 朱 - 諾 -";
+	mes "歡迎您來到朱諾 ";
+	next;
+	switch (select("武器防御具店","道具店","賢者 城堡(賢者 轉職所)","書店街","優配擂 大廣場",
+				"共和國圖書館","修百依蔡樂 魔法學校","魔物博物館","結束對話")) {
+	case 1:
+		viewpoint 1,120,138,1,0xFF3355;
+		mes "[朱諾導遊]";
+		mes "^FF3355+^000000 -> 武器防御具店";
+		break;
+	case 2:
+		viewpoint 1,193,142,2,0x3355FF;
+		mes "[朱諾導遊]";
+		mes "^3355FF+^000000 -> 道具店";
+		break;
+	case 3:
+		viewpoint 1,90,318,3,0x33FF55;
+		mes "[朱諾導遊]";
+		mes "^33FF55+^000000 -> 賢者城堡";
+		mes "(ЙみЖ轉職所)";
+		break;
+	case 4:
+		viewpoint 1,257,102,4,0xFF3355;
+		mes "[朱諾導遊]";
+		mes "^FF3355+^000000 -> 書店街";
+		break;
+	case 5:
+		viewpoint 1,157,170,5,0x3355FF;
+		mes "[朱諾導遊]";
+		mes "^3355FF+^000000 -> 優配擂 大廣場";
+		break;
+	case 6:
+		viewpoint 1,336,204,6,0x33FF55;
+		mes "[朱諾導遊]";
+		mes "^33FF55+^000000 -> 共和國圖書館";
+		break;
+	case 7:
+		viewpoint 1,323,281,7,0xFF3355;
+		mes "[朱諾導遊]";
+		mes "^FF3355+^000000 -> 修百依蔡樂 魔法學校";
+		break;
+	case 8:
+		viewpoint 1,278,288,8,0x3355FF;
+		mes "[朱諾導遊]";
+		mes "^3355FF+^000000 -> 魔物博物館";
+		break;
+	case 9:
+		mes "[朱諾導遊]";
+		mes "謝謝使用.";
+		close;
+	}
+	mes "賢者之城，擁有無窮的知識寶藏";
+	close;
+}
+
+//----------------------------------------------------------------------
+//[導遊 - 天津]
+
+amatsu.gat,207,91,4	script	天津町 導遊::阿瑪姜	758,{
+	if(strnpcinfo(3) == "阿瑪姜") {
+		mes "[阿瑪姜]";
+		mes "歡迎來到總是";
+		mes "盛開著美麗的櫻花";
+		mes "又溫和平靜的天津町";
+		next;
+		mes "[阿瑪姜]";
+		mes "我是 ^0000FF<第13屆 天津町小姐>^000000 冠軍";
+		mes "我叫阿瑪姜，";
+		mes "身為冠軍天津町小姐，";
+		mes "我會好好負責介紹村落";
+		mes "如有什麼疑問";
+		mes "請儘管問我吧";
+	}
+	else {
+		mes "[導遊]";
+		mes "歡迎來到美麗的櫻花城,";
+		mes "這裡一年到頭到處";
+		mes "都盛開著美麗的櫻花"; 
+		next;
+		mes "[導遊]";
+		mes "有什麼需要幫忙的?";
+	}
+	next;
+	switch (select("城","道具店","武器店","酒店")) {
+	case 1:
+		viewpoint 1,85,235,0,0xFF3355;
+		mes "["+strnpcinfo(3)+"]";
+		mes "如果你走到小地圖上有+號標記的地方";
+		mes "你就會發現城堡了";
+		mes "希望你在櫻花城玩的愉快";
+		break;
+	case 2:
+		viewpoint 1,96,118,1,0xCE6300;
+		mes "["+strnpcinfo(3)+"]";
+		mes "如果你走到小地圖上有+號標記的地方";
+		mes "你就會發現道具商店了";
+		mes "希望你在櫻花城玩的愉快";
+		break;
+	case 3:
+		viewpoint 1,132,117,2,0x55FF33;
+		mes "["+strnpcinfo(3)+"]";
+		mes "如果你走到小地圖上有+號標記的地方";
+		mes "你就會發現武器商店了";
+		mes "希望你在櫻花城玩的愉快";
+		break;
+	case 4:
+		viewpoint 1,217,116,3,0x3355FF;
+		mes "["+strnpcinfo(3)+"]";
+		mes "如果你走到小地圖上有+號標記的地方";
+		mes "你就會發現酒館了";
+		mes "希望你在櫻花城玩的愉快";
+		break;
+	}
+	mes "歡迎再來";
+	close;
+}
+
+amatsu.gat,251,283,4	duplicate(阿瑪姜)	導遊	767
+
+
+//----------------------------------------------------------------------
+//[導遊 - 昆侖]
+
+gonryun.gat,163,60,4	script	崑崙導遊	780,{
+	mes "[源治 夏]";
+	mes "歡迎來到總是充滿活力及熱血騰騰,";
+	mes "每天每天都有著人情味的,";
+	mes "崑崙!";
+	next;
+	mes "[源治 夏]";
+	mes "因為職業的關係,";
+	mes "我在介紹村落的位置,";
+	mes "如有疑問盡情問吧";
+	next;
+	switch (select("村長的家","道具商人","武器商人","防御具商人","旅館")) {
+	case 1:
+		viewpoint 1,109,131,0,0xff3355;
+		mes "[源治 夏]";
+		mes "往小地圖上的";
+		mes "^FF0000+^000000 方向走過去";
+		mes "就是黨主的家了,";
+		mes "盡情享受,";
+		mes "我們快樂的崑崙吧!";
+		break;
+	case 2:
+		viewpoint 1,147,84,1,0xce6300;
+		mes "[源治 夏]";
+		mes "往小地圖上的";
+		mes "^996600+^000000 方向走過去";
+		mes "就是道具商人了,";
+		mes "盡情享受,";
+		mes "我們快樂的崑崙吧!";
+		break;
+	case 3:
+		viewpoint 1,174,101,2,0x55ff33;
+		mes "[源治 夏]";
+		mes "往小地圖上的";
+		mes "^00CC00+^000000 方向走過去";
+		mes "就是武器商人了,";
+		mes "盡情享受,";
+		mes "我們快樂的崑崙吧!";
+		break;
+	case 4:
+		viewpoint 1,173,84,3,0x3355ff;
+		mes "[源治 夏]";
+		mes "^333399+^000000 方向走過去";
+		mes "就是防禦具商人了,";
+		mes "盡情享受,";
+		mes "我們快樂的崑崙吧!";
+		break;
+	case 5:
+		viewpoint 1,215,114,4,0xffffff;
+		mes "[源治 夏]";
+		mes "往小地圖上的";
+		mes "^FFFFFF+^000000 方向走過去";
+		mes "就是酒店了,";
+		mes "盡情享受,";
+		mes "我們快樂的崑崙吧!";
+		break;
+	}
+	mes "歡迎再來";
+	close;
+}
+
+//----------------------------------------------------------------------
+//[導遊 - 汶巴拉]
+
+umbala.gat,128,94,4	script	探險家	702,{
+	mes "[探險家]";
+	mes "這裡是一個奇特的地方,";
+	mes "事實上也許因為還沒有開發完全,";
+	mes "道路走起來很危險.";
+	next;
+	mes "[探險家]";
+	mes "還好我已經平安到達了";
+	mes "在這裡待了好一段時間, 我知道這個村莊大部分的事情,";
+	mes "你可以問我你想去的方向.";
+	next;
+	switch (select("開始由導遊說明城市","刪除微型地圖上全部的記號","取消")) {
+	case 1:
+		mes "[探險家]";
+		mes "請選擇";
+		next;
+		switch (select("村長的家","薩滿的家","武器商店","道具商店","高空彈跳台","取消")) {
+			case 1:
+				mes "[探險家]";
+				mes "這個村子的村長就住在 ^FF0000這裡^000000,";
+				mes "只有他聽得懂外國的語言,";
+				mes "建議你們先去找他.";
+				viewpoint 0,66,250,2,0xFF3355;
+				break;
+			case 2:
+				mes "[探險家]";
+				mes "薩滿是一個擁有神秘力量的人,";
+				mes "他所住的房子就在 ^996600這裡^000000,";
+				mes "聽說他能將各種自然元素分解並重新融合.";
+				viewpoint 0,217,186,3,0xCE6300;
+				break;
+			case 3:
+				mes "[探險家]";
+				mes "裝備商店 ^009933就在那兒^000000,";
+				mes "因為這個村子一直受到外面世界的威脅,";
+				mes "所以他們研發出了各種精良的武器";
+				viewpoint 0,126,154,4,0x55FF33;
+				break;
+			case 4:
+				mes "[探險家]";
+				mes "^3333FF那裡^000000 就是道具商店了,";
+				mes "在那裡你可以找到各式各樣有用的道具";
+				mes "繼續你的探險旅途之前最好能去那裡補給一下所需要的東西.";
+				viewpoint 0,136,127,5,0x3355FF;
+				break;
+			case 5:
+				mes "[探險家]";
+				mes "在汶巴拉, 有一個在世界上任何地方都找不到的'高空彈跳台'";
+				mes "你看看吧! 就在 ^66CC33那兒^000000,";
+				mes "如果你有勇氣的話不妨去試試看.";
+				viewpoint 0,139,198,6,0x00FF00;
+				break;
+			case 6:
+				mes "[探險家]";
+				mes "如果要刪除微型地圖上全部的記號";
+				mes "請別忘了再來找我.";
+				break;
+		}
+		close;
+	case 2:
+		viewpoint 2,66,250,2,0x00FF00;
+		viewpoint 2,217,186,3,0x00FF00;
+		viewpoint 2,126,154,4,0x00FF00;
+		viewpoint 2,136,127,5,0x00FF00;
+		viewpoint 2,139,198,6,0x00FF00;
+		mes "[探險家]";
+		mes "所有的記號已經刪除";
+		close;
+	case 3:
+		mes "[探險家]";
+		mes "在這裡探險找出各種小路是件有趣的事, 但一定要小心.";
+		close;
+	}
+}
+
+//----------------------------------------------------------------------
+//[導遊 - 尼芙菲姆]
+
+niflheim.gat,186,190,6	script	遊蕩的人	798,{
+	mes "[利卡爾]";
+	mes "你為什麼會在這個駭人的城市裡? 我猜你也迷路了, 呵!";
+	mes "我被巨大的樹木所吸引來到這裡之後，待了很久都還沒找到路出去...";
+	next;
+	mes "[利卡爾]";
+	mes "可是為了找出口而遊蕩了很久對村落的地理很熟悉";
+	mes "記住村落的地理的話也許對逃生有幫助的";
+	next;
+	switch (select("詢問村落地理","刪除微型地圖上全部的記號","取消")) {
+	case 1:
+		mes "[利卡爾]";
+		mes "你想知道哪裡?";
+		next;
+		switch (select("魔女之城","道具商店","武器商店","酒屋","取消")) {
+			case 1:
+				mes "[利卡爾]";
+				mes "在尼芙菲姆裡住著一位可怕的魔女，";
+				mes "去^FF3366+^000000那邊的話有位魔女住的城，";
+				mes "進去之後太恐怖了就馬上跑出來了";
+				viewpoint 0,253,191,2,0xFF3355;
+				break;
+			case 2:
+				mes "[利卡爾]";
+				mes "道具商店在 ^CC6600+^000000那邊，";
+				mes "那邊有在賣外面世界買不到的物品，不妨去看";
+				viewpoint 0,217,196,3,0xCE6300;
+				break;
+			case 3:
+				mes "[利卡爾]";
+				mes "裝備商店在 ^66FF33+^000000那邊，";
+				mes "那邊有在賣別的地方看不到的物品，不妨去看";
+				viewpoint 0,216,171,4,0x55FF33;
+				break;
+			case 4:
+				mes "[利卡爾]";
+				mes "旅館在 ^3366FF+^000000那邊，";
+				mes "偶而會有死者在那裡舉行派對";
+				viewpoint 0,189,207,5,0x3355FF;
+				break;
+			case 5:
+				mes "[利卡爾]";
+				mes "想要刪掉位置標誌的話，";
+				mes "請點選 '刪掉微型地圖上全部的記號'";
+				break;
+		}
+		close;
+	case 2:
+		viewpoint 2,253,191,2,0x00FF00;
+		viewpoint 2,217,196,3,0x00FF00;
+		viewpoint 2,216,171,4,0x00FF00;
+		viewpoint 2,189,207,5,0x00FF00;
+		mes "[利卡爾]";
+		mes "已刪掉微型地圖上全部的記號了，";
+		mes "想要在微型地圖上重新做記號的話，隨時來找我吧";
+		close;
+	case 3:
+		mes "[利卡爾]";
+		mes "親自去熟悉路況會很危險的...";
+		mes "那麼好好保重吧";
+		close;
+	}
+}
+
+//----------------------------------------------------------------------
+//[導遊 - 龍之城]
+louyang.gat,224,104,4	script	宣傳大使#Lou	818,{
+	mes "["+strnpcinfo(0)+"]";
+	mes "歡迎來到擁有悠久歷史氣息的";
+	mes "洛陽，";
+	mes "這次為了與國外的積極交流，";
+	mes "開拓新的航路，";
+	mes "以便這樣從外地來的人";
+	mes "可以安心的進出";
+	next;
+	mes "["+strnpcinfo(0)+"]";
+	mes "我們洛陽擁有悠久的歷史";
+	mes "及各式各樣的東西，";
+	mes "由於到目前為止";
+	mes "從來沒有交流，";
+	mes "因此也許會有在其他地方";
+	mes "難以見到的東西，";
+	mes "請你慢慢觀賞喔！";
+	next;
+	switch (select("詢問村落的地圖","刪除地圖上的所有標誌","取消")) {
+	case 1:
+		mes "["+strnpcinfo(0)+"]";
+		mes "要我介紹哪裡呢?";
+		next;
+		switch (select("城","醫院","官廳","武器店","道具店","酒店","取消")) {
+			case 1:
+				mes "["+strnpcinfo(0)+"]";
+				mes "城位於^FF3355+^000000，";
+				mes "城裡是城主";
+				mes "及一些高官所居住的地方，";
+				mes "來到了陌生的地方，";
+				mes "向城主打個招呼是基本禮儀吧?";
+				viewpoint 1,218,255,1,0xff0000;
+				break;
+			case 2:
+				mes "["+strnpcinfo(0)+"]";
+				mes "在我們洛陽裡有一座著名醫院";
+				mes "位於^CE6300+^000000，";
+				mes "根據傳說";
+				mes "沒有什麼病是治不好的， ";
+				mes "不過，不知道是不是事實";
+				viewpoint 1,263,93,2,0x8a0000;
+				break;
+			case 3:
+				mes "["+strnpcinfo(0)+"]";
+				mes "這洛陽裡";
+				mes "在^A5BAAD+^000000會有官廳，";
+				mes "如果發生問題或有什麼情況時，";
+				mes "先去官廳看看吧！";
+				viewpoint 1,309,80,3,0x00ff00;
+				break;
+			case 4:
+				mes "["+strnpcinfo(0)+"]";
+				mes "武器店位於^55FF33+^000000，";
+				mes "你將會看到經過長時間冶煉";
+				mes "所鑄造的優秀武器";
+				viewpoint 1,145,174,4,0x00ff00;
+				break;
+			case 5:
+				mes "["+strnpcinfo(0)+"]";
+				mes "道具店位於 ^3355FF+^000000，";
+				mes "知彼知己，百戰百勝!";
+				mes "就是要準備的徹底，";
+				mes "...不要在意成語啦，嘿嘿！";
+				viewpoint 1,136,97,5,0x0000ff;
+				break;
+			case 6:
+				mes "["+strnpcinfo(0)+"]";
+				mes "旅途中累了就去酒店坐坐吧！";
+				mes "酒店位於^00FF00+^000000，";
+				mes "誰知道會從別的旅客中，得知什麼好消息呢！ ";
+				viewpoint 1,280,167,6,0x00ff00;
+				break;
+			case 7:
+				mes "["+strnpcinfo(0)+"]";
+				mes "想要刪除位置標誌的話，";
+				mes "請選擇：";
+				mes "'刪除地圖上的所有標誌'";
+				break;
+		}
+		close;
+	case 2:
+		mes "["+strnpcinfo(0)+"]";
+		mes "已刪除地圖上的所有標誌，";
+		mes "想要重新在地圖上做標誌的話隨時再問我吧！";
+		viewpoint 2,218,255,1,0xff0000;
+		viewpoint 2,263,93,2,0x8a0000;
+		viewpoint 2,309,80,3,0x00ff00;
+		viewpoint 2,145,174,4,0x00ff00;
+		viewpoint 2,136,97,5,0x0000ff;
+		viewpoint 2,280,167,6,0x00ff00;
+		close;
+	case 3:
+		mes "["+strnpcinfo(0)+"]";
+		mes "親自邊逛邊熟悉環境也是蠻有趣的，那麼祝你一路順風！";
+		close;
+	}
+}
+
+louyang.gat,160,175,4	duplicate(宣傳大使#Lou)	士兵	825
+louyang.gat,213,213,4	duplicate(宣傳大使#Lou)	士兵	825
+
+
+//----------------------------------------------------------------------
+//[導遊 - 哎喲泰雅]
+
+ayothaya.gat,203,169,4	script	努伊	839,{
+	mes "[努伊]";
+	mes "您好，歡迎來到哎喲泰雅，這裡哎喲泰雅是由茂密森林和河川相連接，是個很寧靜的村落。";
+	next;
+	mes "[努伊]";
+	mes "由於比鄰海邊，所以這裡也有水產市場，也可以觀看到許多";
+	mes "在別的國家看不到的建築物哦，那麼請你慢慢的逛吧。";
+	next;
+	switch (select("我想請問村落的地理位","刪除微型地圖上全部的記號","結束對話")) {
+	case 1:
+		mes "[努伊]";
+		mes "你想知道那些位置?";
+		next;
+		switch (select("武器商店","道具商店","酒店","神殿","釣魚場","取消")) {
+			case 1:
+				mes "[努伊]";
+				mes "小地圖上的小十字點就是 ^FF0000武器店 ^000000。";
+				viewpoint 1,182,59,2,0x00FF00;
+				break;
+			case 2:
+				mes "[努伊]";
+				mes "小地圖上的小十字點就是 ^FF0000道具店 ^000000";
+				viewpoint 1,129,86,2,0x55FF33;
+				break;
+			case 3:
+				mes "[努伊]";
+				mes "小地圖上的小十字點就是 ^FF0000酒店 ^000000。";
+				viewpoint 1,229,69,2,0x00FF00;
+				break;
+			case 4:
+				mes "[努伊]";
+				mes "小地圖上的小十字點就是 ^FF0000神殿 ^000000。";
+				viewpoint 1,208,283,2,0x00FF00;
+				break;
+			case 5:
+				mes "[努伊]";
+				mes "小地圖上的小十字點就是 ^FF0000釣魚場 ^000000。";
+				viewpoint 1,253,99,2,0x00FF00;
+				break;
+		}
+		close;
+	case 2:
+		viewpoint 2,182,59,2,0x00FF00;
+		viewpoint 2,129,86,2,0x55FF33;
+		viewpoint 2,229,69,2,0x00FF00;
+		viewpoint 2,208,283,2,0x00FF00;
+		viewpoint 2,253,99,2,0x00FF00;
+		mes "[努伊]";
+		mes "選擇刪除編輯，即可刪除小地圖上的記號。";
+		close;
+	case 3:
+		mes "[努伊]";
+		mes "旅行愉快。";
+		close;
+	}
+}
+
+//----------------------------------------------------------------------
+//[服務人員 - 艾音布羅克]
+
+einbroch.gat,72,202,4	script	導遊#einbroch	852,{
+	cutin "ein_soldier",2;
+	mes "[艾音布羅克 服務人員]";
+	mes "歡迎您來到鋼鐵之都艾音布羅克,";
+	mes "我們提供艾音布羅克的旅客們導引解說的服務,歡迎您隨時洽詢我們服務人員,如果你是首次向我們洽詢的話,請您選擇'聽取注意事項'的選單";
+	next;
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x80 == 0) {
+				mes "[艾音布羅克 服務人員]";
+				mes "請你選擇想知道的選單?";
+				mes "要在微型的圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x80;
+			}
+			while(1) {
+				next;
+				switch (select("^FF0000機場^000000","火車站","工廠","廣場","飯店","武器商店",
+							"研究所","鐵匠公會","紀念塔","取消")) {
+				case 1:
+					mes "[艾音布羅克 服務人員]";
+					mes "在'^FF0000機場^000000'可以搭乘修發茲共和國引以為豪的飛空艇,它位於西北邊,若要搭乘飛空艇請先買票,請您注意這一點。";
+					if(@compass&0x80)
+						viewpoint 1,64,207,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[艾音布羅克 服務人員]";
+					mes "'火車站'位於村落的東北邊,目前經營直通'艾音貝赫'的列車。";
+					if(@compass&0x80)
+						viewpoint 1,232,272,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[艾音布羅克 服務人員]";
+					mes "'工廠'是村落最重要的設施,是我們'艾音布羅克'最基本的地方,它位於村落的南邊,並有一間附屬建築物研究所。";
+					if(@compass&0x80)
+						viewpoint 1,140,79,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[艾音布羅克 服務人員]";
+					mes "'廣場'位於'艾音布羅克'中央東邊,並有形成商店街,那比那同時還有飯店,有需要的話去一下也不錯。";
+					if(@compass&0x80)
+						viewpoint 1,230,190,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[艾音布羅克 服務人員]";
+					mes "'飯店'位於'艾音布羅克'廣場的東邊,擁有六星級的最高級設施,住起來會非常舒適呢。";
+					if(@compass&0x80)
+						viewpoint 1,257,199,5,0x00FF00;
+					continue;
+				case 6:
+					mes "[艾音布羅克 服務人員]";
+					mes "'武器店'位於村落廣場稍微偏上端的地方。";
+					if(@compass&0x80)
+						viewpoint 1,216,214,6,0x00FF00;
+					continue;
+				case 7:
+					mes "[艾音布羅克 服務人員]";
+					mes "'研究所'是工廠的附屬設定位於艾音布羅克的西南邊的角落。";
+					if(@compass&0x80)
+						viewpoint 1,51,52,7,0x00FF00;
+					continue;
+				case 8:
+					mes "[艾音布羅克 服務人員]";
+					mes "'鐵匠公會'位於'艾音布羅克'的東南邊,並兼有鍛冶所,請多加利用。";
+					if(@compass&0x80)
+						viewpoint 1,255,107,8,0x00FF00;
+					continue;
+				case 9:
+					mes "[艾音布羅克 服務人員]";
+					mes "'紀念塔'位於'艾音布羅克'的中心位置,在那邊可以把'艾音布羅克'的美景盡收眼底。";
+					if(@compass&0x80)
+						viewpoint 1,175,196,9,0x00FFFF;
+					continue;
+				case 10:
+					mes "[艾音布羅克 服務人員]";
+					mes "如果要刪除標記請選擇'刪除微型地圖上全部的記號'。";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			mes "[艾音布羅克 服務人員]";
+			mes "標記已經刪除。";
+			viewpoint 2,64,207,1,0xFF0000;
+			viewpoint 2,232,272,2,0xFF00FF;
+			viewpoint 2,140,79,3,0xFF00FF;
+			viewpoint 2,230,190,4,0xFF00FF;
+			viewpoint 2,257,199,5,0x00FF00;
+			viewpoint 2,216,214,6,0x00FF00;
+			viewpoint 2,51,52,7,0x00FF00;
+			viewpoint 2,255,107,8,0x00FF00;
+			viewpoint 2,175,196,9,0x00FFFF;
+			set @compass,@compass&~0x80;
+			continue;
+		case 3:
+			mes "[艾音布羅克 服務人員]";
+			mes "擺脫過去功能欠缺的既有類比引導方式,改成今天把想知道的地方標記在微型的圖上,是一種利用廣域定位系統的最數尖端位化的引導系統方式了,完全排除由秀髮茲發德共和國所新發明的魔法力量,純粹是靠自己的技術創造出的廣域定位系統,請您親身體驗它的性能";
+			next;
+			mes "[艾音布羅克 服務人員]";
+			mes "在介紹它之前,請各位務必參考屏幕右上的微型地圖,如果看不見微型地圖的話,請按'ctrl+tab'鍵,或選取基本情報視窗的點入'map'鍵即可,若有看到微型地圖的話,請多點幾次'-'按鍵,直到設定完全的村落都能看到為止";
+			continue;
+		case 4:
+			mes "[艾音布羅克 服務人員]";
+			mes "這裡已經頒布了";
+			mes "「空氣污染警報」";
+			mes "請注意了。";
+			close2;
+			cutin "ein_soldier",255;
+			end;
+		}
+	}
+}
+
+//大氣污染
+einbroch.gat,155,43,4	duplicate(導遊#einbroch)	導遊#einbrochdummy1	852
+einbroch.gat,162,317,4	duplicate(導遊#einbroch)	導遊#einbrochdummy2	852
+
+//----------------------------------------------------------------------
+//[服務人員 - 艾音貝赫]
+
+einbech.gat,67,37,4	script	導遊#einbech	852,{
+	cutin "ein_soldier",2;
+	mes "[艾音貝赫導遊]";
+	mes "歡迎您來到礦山村落艾音貝赫,";
+	mes "我們提供艾音貝赫的旅客們導引解說的服務,歡迎您隨時洽詢我們服務人員,如果你是首次向我們洽詢的話,請您選擇'聽取注意事項'的選單";
+	next;
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			if(@compass&0x100 == 0) {
+				mes "[艾音貝赫導遊]";
+				mes "請你選擇想知道的選單?";
+				mes "要在微型的圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x100;
+			}
+			while(1) {
+				next;
+				switch (select("火車站","酒店","道具商店","劍士公會","礦山","取消")) {
+				case 1:
+					mes "[艾音貝赫導遊]";
+					mes "'火車站'位於'艾音貝赫'的西北邊和東北邊,負責運送貨物和乘客,在火車站有直達艾音布羅克的列車,請多加利用。";
+					if(@compass&0x100)
+						viewpoint 1,43,214,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[艾音貝赫導遊]";
+					mes "'酒店'位於'艾音貝赫'的南邊,不但可以用餐,更是下班後最佳休閒場所。";
+					if(@compass&0x100)
+						viewpoint 1,145,112,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[艾音貝赫導遊]";
+					mes "'道具店'位於'艾音貝赫'的中心位置,販賣著各種的道具。";
+					if(@compass&0x100)
+						viewpoint 1,177,136,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[艾音貝赫導遊]";
+					mes "'劍士公會'位於'艾音貝赫'東邊的外側,由於目前正在內部裝修當中,所以不接受轉職申請。";
+					if(@compass&0x100)
+						viewpoint 1,257,109,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[艾音貝赫導遊]";
+					mes "'礦山'位於'艾音貝赫'德北邊,目前正在如火如荼的進行採礦當中,這裡也生產屬於艾音貝赫產品的礦物,偶爾也會出現一些魔物來阻礙作業的進行。";
+					if(@compass&0x100)
+						viewpoint 1,138,252,5,0x00FF00;
+					continue;
+				case 6:
+					mes "[艾音貝赫導遊]";
+					mes "如果要刪除標記請選擇'刪除微型地圖上全部的記號'。";
+				}
+				break;ペ
+			}
+			continue;
+		case 2:
+			mes "[艾音貝赫導遊]";
+			mes "標記已經刪除。";
+			viewpoint 2,43,214,1,0xFF0000;
+			viewpoint 2,145,112,2,0xFF00FF;
+			viewpoint 2,177,136,3,0xFF00FF;
+			viewpoint 2,257,109,4,0xFF00FF;
+			viewpoint 2,138,252,5,0x00FF00;
+			set @compass,@compass&~0x100;
+			continue;
+		case 3:
+			mes "[艾音貝赫導遊]";
+			mes "擺脫過去功能欠缺的既有類比引導方式,改成今天把想知道的地方標記在微型的圖上,是一種利用廣域定位系統的最數尖端位化的引導系統方式了,完全排除由秀髮茲發德共和國所新發明的魔法力量,純粹是靠自己的技術創造出的廣域定位系統,請您親身體驗它的性能";
+			next;
+			mes "[艾音貝赫導遊]";
+			mes "在介紹它之前,請各位務必參考屏幕右上的微型地圖,如果看不見微型地圖的話,請按'ctrl+tab'鍵,或選取基本情報視窗的點入'map'鍵即可,若有看到微型地圖的話,請多點幾次'-'按鍵,直到設定完全的村落都能看到為止";
+			next;
+			continue;
+		case 4:
+			mes "[艾音貝赫導遊]";
+			mes "祝您旅途愉快。";
+			close2;
+			cutin "ein_soldier",255;
+			end;
+		}
+	}
+}
+
+einbech.gat,48,214,4	duplicate(導遊#einbech)	導遊#einbechdummy	852
+
+//----------------------------------------------------------------------
+//[導遊 - 里希塔樂鎮]
+
+lighthalzen.gat,207,310,5	script	導遊#West_Lhz1	852,{
+	cutin "ein_soldier",2;
+	mes "[里希塔樂鎮 導遊]";
+	mes "這裡是企業之都  里希塔樂鎮，歡迎各位大家的來訪，";
+	mes "我們是對來到里希塔樂鎮的旅客們，為了他們的便利做村落介紹的，隨時像我們導遊人員詢問吧，";
+	mes "第一次接受我們介紹的旅客們，先按選單'選擇注意事項'瞭解必須注意的事情";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市","刪掉微型地圖上全部的記號","聽取注意事項","取消")) {
+		case 1:
+			set '@code$,strcut(strnpcinfo(2),0);	//West or East
+			mes "[里希塔樂鎮 導遊]";
+			if('@code$ == "W") {
+				mes "我是負責里希塔樂鎮'^ff0000左邊區域^000000'的介紹人員，";
+				mes "請您選擇想知道的選單";
+			}
+			if('@code$ == "E") {
+				mes "我是負責里希塔樂鎮'^ff0000右邊區域 - 貧民街^000000'的介紹人員，";
+				mes "請您選擇想知道的選單";
+			}
+			if(@compass&0x200 == 0) {
+				mes "要在微型的圖上留下記號嗎?";
+				next;
+				if(select("要","不要")==1)
+					set @compass,@compass|0x200;
+			}
+			while(1) {
+				next;
+				if('@code$ == "W") {
+					switch (select("^FF0000雷根貝勒^000000","火車站","派出所","銀行","飯店","機場","商人工會","寶石商店","武器店","百貨店","取消")) {
+					case 1:
+						mes "[里希塔樂鎮 導遊]";
+						mes "在村落西北方有秀發茲發德最大的企業 '雷根貝勒'所在的位置，'雷根貝勒'是對秀發茲發德全區域提供飛空艇服務的大規模企業，若有空的話勸你去看看也不錯的";
+						if(@compass&0x200)
+							viewpoint 1,101,248,1,0xFF0000;
+						continue;
+					case 2:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'火車站'位於村落中央的位置，從礦山之都艾音貝赫出發的火車，也連接到里希塔樂鎮這裡";
+						if(@compass&0x200)
+							viewpoint 1,228,163,2,0xFF00FF;
+						continue;
+					case 3:
+						mes "[里希塔樂鎮 導遊]";
+						mes "由中央稍微往北邊走有負責治安的'派出所'，發現有行蹤可疑的人或是有任何困難時請隨時拜訪派出所吧";
+						if(@compass&0x200)
+							viewpoint 1,236,276,3,0x99FFFF;
+						continue;
+					case 4:
+						mes "[里希塔樂鎮 導遊]";
+						mes "由中央稍微往北邊走在派出所對面有'銀行'，是負責相關各種金錢業務的地方";
+						if(@compass&0x200)
+							viewpoint 1,198,257,4,0x0000FF;
+						continue;
+					case 5:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'飯店'是在'里希塔樂鎮'南邊寬廣的中央位置上，是一些有名人士常來使用的飯店，以最好的設備和服務對舒適的旅行有相當大的幫助的";
+						if(@compass&0x200)
+							viewpoint 1,159,33,5,0x00FF00;
+						continue;
+					case 6:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'機場'位於中央大路最低端右邊位置，可以透過飛空艇往各個村落便利的移動";
+						if(@compass&0x200)
+							viewpoint 1,267,75,6,0x00FF00;
+						continue;
+					case 7:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'商人公會'位於'里希塔樂鎮'西南方的位置";
+						if(@compass&0x200)
+							viewpoint 1,73,52,7,0xFF99FF;
+						continue;
+					case 8:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'寶石商店'位於'里希塔樂鎮'西南方，是南方廣場西邊的位置，可以在這裡購買些各種貴金屬的物品";
+						if(@compass&0x200)
+							viewpoint 1,93,110,8,0xFF9900;
+						continue;
+					case 9:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'武器店'位於'里希塔樂鎮'中央大道最低端，販賣項目和規模可算是里希塔樂鎮裡最好的一家";
+						if(@compass&0x200)
+							viewpoint 1,196,46,9,0x330033;
+						continue;
+					case 10:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'百貨店'位於'里希塔樂鎮'中央的位置，有各個商家們密集的最高的採購區域";
+						if(@compass&0x200)
+							viewpoint 1,198,163,10,0xFF00;
+						continue;
+					case 11:
+						break;
+					}
+				}
+				if('@code$ == "E") {
+					switch (select("道具屋","搗碎店","酒店","取消")) {
+					case 1:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'道具店'位於'貧民街' 11點鐘的方向";
+						if(@compass&0x200)
+							viewpoint 1,324,301,11,0xFF0000;
+						continue;
+					case 2:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'搗碎店'位於'貧民街' 1點鐘的方向";
+						if(@compass&0x200)
+							viewpoint 1,365,300,12,0xFF00FF;
+						continue;
+					case 3:
+						mes "[里希塔樂鎮 導遊]";
+						mes "'酒店'位於'貧民街' 南邊的位置";
+						if(@compass&0x200)
+							viewpoint 1,339,240,13,0x99FFFF;
+						continue;
+					case 4:
+						break;
+					}
+				}
+				mes "[里希塔樂鎮 導遊]";
+				mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號'";
+				break;
+			}
+			continue;
+		case 2:
+			viewpoint 2,101,248,1,0xFF0000;
+			viewpoint 2,228,163,2,0xFF00FF;
+			viewpoint 2,236,276,3,0x99FFFF;
+			viewpoint 2,198,257,4,0x0000FF;
+			viewpoint 2,159,33,5,0x00FF00;
+			viewpoint 2,267,75,6,0x00FF00;
+			viewpoint 2,73,52,7,0xFF99FF;
+			viewpoint 2,93,110,8,0xFF9900;
+			viewpoint 2,196,46,9,0x330033;
+			viewpoint 2,198,163,10,0xFF00;
+			viewpoint 2,324,301,11,0xFF0000;
+			viewpoint 2,365,300,12,0xFF00FF;
+			viewpoint 2,339,240,13,0x99FFFF;
+			set @compass,@compass&~0x200;
+			continue;
+		case 3:
+			mes "[里希塔樂鎮 導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[里希塔樂鎮 導遊]";
+			mes "里希塔樂鎮以中央的鐵路為中心分為兩個區域，";
+			mes "為了治安衛兵們隨時的在巡邏中，若有不方便的地方或是疑問的話，請隨時請求我們的協助吧";
+			next;
+			mes "[里希塔樂鎮 導遊]";
+			mes "那麼祝你有個愉快的旅行";
+			close2;
+			cutin "ein_soldier",255;
+			end;
+		}
+	}
+}
+
+lighthalzen.gat,154,100,5	duplicate(導遊#West_Lhz1)	導遊#West_Lhz2	852
+lighthalzen.gat,220,311,3	duplicate(導遊#West_Lhz1)	導遊#East_Lhz1	852
+lighthalzen.gat,307,224,3	duplicate(導遊#West_Lhz1)	導遊#East_Lhz2	852

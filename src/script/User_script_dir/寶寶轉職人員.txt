@@ -1,0 +1,5608 @@
+amatsu.gat,110,161,4	script	強化裝備	715,{
+			mes "[強化裝備]";
+			mes "哈哈!我可以幫你強化裝備";
+			mes "如果要的話看一下你想強化甚麼吧!";
+			next;
+			mes "[強化裝備]";
+			mes "你想要強化哪項裝備?";
+			next;
+                        menu"神裝類",abc,"衣服類",aab,"普通裝",abb,"結晶",acc;
+			
+abc:
+menu "雅典娜的嘆息",aa,"周年",ab,"天使小背包",ac,"飛馬頭盔",ad,"獸人頭",ae,"真金屬頭盔",af;
+aab:
+menu "黑暗冥衣",ba,"雅典娜神聖衣",bb,"天馬座神聖衣",bc,"天龍座神聖衣",bd,"天鵝座神聖衣",be,"仙女座神聖衣",bf,"鳳凰座神聖衣",ca;
+abb:
+menu "水神戰靴",cb,"鋒神斗篷",cc,"狂風暴雨錘",cd,"排雲拳套",ce,"神聖之矛",cf,"音速短劍",da,"光速拳刃",db,"神杖 雷",dc,"地獄琴",dd,"名王之斧",de,"血之鞭",df,"光之書",ea;
+acc:
+menu "劍士系之靈魂結晶",eb,"服事系之靈魂結晶",ec,"法師系之靈魂結晶",ed,"盜賊系之靈魂結晶",ee,"商人系之靈魂結晶",ef,"弓手系之靈魂結晶",fa;
+
+//錢不足-------------------------------------------------------
+NotEnough:
+			mes "[強化裝備]";
+			mes "什麼!? 我要的東西都沒找好!!!";
+			mes "要耍我嗎?!去吃B吧!!";
+close;
+//去收集-------------------------------------------------------			
+bye:
+			mes "[強化裝備]";
+			mes "加油喔!!你一定行的!";
+close;
+//雅典娜的嘆息-----------------------------------------------------			
+aa:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "雅典娜的嘆息x1";
+			mes "真神x1";	
+			mes "強化後all+6000";	
+			next;
+			menu "我要強化!!",buy_1,"好~現在去收集東西",bye;
+
+buy_1:
+			if((countitem(15199) < 1) || (countitem(8062) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 8062,1;
+			getitem 15200,1;
+			mes "[強化裝備]";
+			mes "好了!!!試看看威力吧!!";
+			mes "掰掰";
+close;
+//周年-------------------------------------------------------
+ab:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "周年x1";
+			mes "真神x1";	
+			mes "強化後all+3000";
+			next;
+			menu "東西都有了，我要強化!!",buy_2,"好~現在去收集東西",bye;
+			
+buy_2:
+			if((countitem(15199) < 1) || (countitem(8064) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 8064,1;
+			getitem 15201,1;
+			mes "[強化裝備]";
+			mes "好了!!!真是傑作阿!!";
+			mes "掰掰";
+close;
+//天使小背包--------------------------------------------------
+ac:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "天使小背包x1";
+			mes "真神x1";	
+			mes "強化後all+6000";
+			next;
+			menu "東西都有了，我要強化!",buy_3,"好~現在去收集東西",bye;
+			
+buy_3:
+			if((countitem(15199) < 1) || (countitem(15366) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15366,1;
+			getitem 15202,1;
+			mes "[強化裝備]";
+			mes "做好了!!!哈哈哈!!!我真是天才阿!你說是不是?";
+			mes "掰掰";
+close;
+//飛馬頭盔----------------------------------------------------
+ad:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "飛馬頭盔x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_4,"好~現在去收集東西",bye;
+			
+buy_4:
+			if((countitem(15199) < 1) || (countitem(8071) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 8071,1;
+			getitem 15203,1;
+			mes "[強化裝備]";
+			mes "快看!!!我發覺我自己真是個天才!!";
+			mes "掰掰";
+close;
+//獸人頭-----------------------------------------------------
+ae:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "獸人頭x1";
+			mes "真神x1";	
+			mes "強化後all+6000";
+			next;
+			menu "東西都有了，我要強化!!",buy_5,"好~現在去收集東西",bye;
+			
+buy_5:
+			if((countitem(15199) < 1) || (countitem(8021) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 8021,1;
+			getitem 15204,1;
+			mes "[強化裝備]";
+			mes "好了!!!";
+			mes "掰掰";
+close;
+//真金屬頭盔----------------------------------------------------
+
+af:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "真金屬頭盔x1";
+			mes "真神x2";	
+			mes "強化後all+11000";
+			next;
+			menu "東西都有了，我要強化!!",buy_6,"好~現在去收集東西",bye;
+			
+buy_6:
+			if((countitem(15199) < 2) || (countitem(15011) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,2;
+			delitem 15011,1;
+			getitem 15205,1;
+			mes "[強化裝備]";
+			mes "好了!!!";
+			mes "掰掰";
+close;
+
+//黑暗冥衣---------------------------------------------------
+ba:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "黑暗冥衣x1";
+			mes "真神x1";	
+			mes "強化後all+6000";
+			next;
+			menu "東西都有了，我要強化!!",buy_7,"好~現在去收集東西",bye;
+			
+buy_7:
+			if((countitem(15199) < 1) || (countitem(18013) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 18013,1;
+			getitem 15206,1;
+			mes "[強化裝備]";
+			mes "這可是神器呢!!";
+			mes "掰掰";
+close;
+
+//雅典娜神聖衣---------------------------------------------------
+
+bb:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "雅典娜神聖衣x1";
+			mes "真神x2";	
+			mes "強化後str+10000,其他+5000";
+			next;
+			menu "東西都有了，我要強化!!",buy_8,"好~現在去收集東西",bye;
+			
+buy_8:
+			if((countitem(15199) < 2) || (countitem(18028) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,2;
+			delitem 18028,1;
+			getitem 15207,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//天馬座神聖衣-----------------------------------------------------			
+bc:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "天馬座神聖衣x1";
+			mes "真神x2";	
+			mes "強化後agi+10000,其他+5000";
+			next;
+			menu "東西都有了，我要強化!!",buy_9,"好~現在去收集東西",bye;
+
+buy_9:
+			if((countitem(15199) < 2) || (countitem(18029) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,2;
+			delitem 18029,1;
+			getitem 15208,1;
+			mes "[強化裝備]";
+			mes "好了!!!試看看威力吧!!";
+			mes "掰掰";
+close;
+//天龍座神聖衣-------------------------------------------------------
+bd:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "天龍座神聖衣x1";
+			mes "真神x2";	
+			mes "強化後int+10000,其他+5000";
+			next;
+			menu "東西都有了，我要強化!!",buy_10,"好~現在去收集東西",bye;
+			
+buy_10:
+			if((countitem(15199) < 2) || (countitem(18030) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,2;
+			delitem 18030,1;
+			getitem 15209,1;
+			mes "[強化裝備]";
+			mes "好了!!!真是傑作阿!!";
+			mes "掰掰";
+close;
+//天鵝座神聖衣--------------------------------------------------
+be:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "天鵝座神聖衣x1";
+			mes "真神x2";	
+			mes "強化後dex+10000,其他+5000";
+			next;
+			menu "東西都有了，我要強化!!",buy_11,"好~現在去收集東西",bye;
+			
+buy_11:
+			if((countitem(15199) < 2) || (countitem(15031) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,2;
+			delitem 15031,1;
+			getitem 15210,1;
+			mes "[強化裝備]";
+			mes "好了!!!哈哈哈!!!我真是天才阿!你說是不是?";
+			mes "掰掰";
+close;
+//仙女座神聖衣----------------------------------------------------
+bf:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "仙女座神聖衣x1";
+			mes "真神x2";	
+			mes "強化後vit+10000,其他+5000";
+			next;
+			menu "東西都有了，我要強化!!",buy_12,"好~現在去收集東西",bye;
+			
+buy_12:
+			if((countitem(15199) < 2) || (countitem(15032) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,2;
+			delitem 15032,1;
+			getitem 15211,1;
+			mes "[強化裝備]";
+			mes "快看!!!我發覺我自己真是個天才!!";
+			mes "掰掰";
+close;
+//鳳凰座神聖衣-----------------------------------------------------
+ca:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "鳳凰座神聖衣x1";
+			mes "真神x2";	
+			mes "強化後luk+10000,其他+5000";
+			next;
+			menu "東西都有了，我要強化!!",buy_13,"好~現在去收集東西",bye;
+			
+buy_13:
+			if((countitem(15199) < 2) || (countitem(15033) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,2;
+			delitem 15033,1;
+			getitem 15212,1;
+			mes "[強化裝備]";
+			mes "好了!!!";
+			mes "掰掰";
+close;
+//水神戰靴----------------------------------------------------
+
+cb:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "水神戰靴x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_14,"好~現在去收集東西",bye;
+			
+buy_14:
+			if((countitem(15199) < 1) || (countitem(15028) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[阿達]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15028,1;
+			getitem 15213,1;
+			mes "[強化裝備]";
+			mes "好了!!!";
+			mes "掰掰";
+close;
+
+//鋒神斗篷---------------------------------------------------
+cc:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "鋒神斗篷x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_15,"好~現在去收集東西",bye;
+			
+buy_15:
+			if((countitem(15199) < 1) || (countitem(15029) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化!";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15029,1;
+			getitem 15214,1;
+			mes "[強化裝備]";
+			mes "這可是神器呢!!";
+			mes "掰掰";
+close;
+
+//狂風暴雨錘---------------------------------------------------
+
+cd:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "狂風暴雨錘x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_16,"好~現在去收集東西",bye;
+			
+buy_16:
+			if((countitem(15199) < 1) || (countitem(15030) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15030,1;
+			getitem 15215,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//排雲拳套---------------------------------------------------
+
+ce:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "排雲拳套x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_17,"好~現在去收集東西",bye;
+			
+buy_17:
+			if((countitem(15199) < 1) || (countitem(15031) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15031,1;
+			getitem 15216,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//神聖之矛---------------------------------------------------
+
+cf:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "神聖之矛x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_18,"好~現在去收集東西",bye;
+			
+buy_18:
+			if((countitem(15199) < 1) || (countitem(15032) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15032,1;
+			getitem 15217,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//音速短劍---------------------------------------------------
+
+da:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "音速短劍x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_19,"好~現在去收集東西",bye;
+			
+buy_19:
+			if((countitem(15199) < 1) || (countitem(15045) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15045,1;
+			getitem 15218,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//光速拳刃---------------------------------------------------
+
+db:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "光速拳刃x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_20,"好~現在去收集東西",bye;
+			
+buy_20:
+			if((countitem(15199) < 1) || (countitem(15046) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15046,1;
+			getitem 15219,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//神杖 雷---------------------------------------------------
+
+dc:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "神杖 雷x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_21,"好~現在去收集東西",bye;
+			
+buy_21:
+			if((countitem(15199) < 1) || (countitem(15047) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15047,1;
+			getitem 15220,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//地獄琴---------------------------------------------------
+
+dd:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "地獄琴x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_22,"好~現在去收集東西",bye;
+			
+buy_22:
+			if((countitem(15199) < 1) || (countitem(15083) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15083,1;
+			getitem 15221,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//名王之斧---------------------------------------------------
+
+de:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "名王之斧x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_23,"好~現在去收集東西",bye;
+			
+buy_23:
+			if((countitem(15199) < 1) || (countitem(15089) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15089,1;
+			getitem 15222,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//血之鞭---------------------------------------------------
+
+df:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "血之鞭x1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_24,"好~現在去收集東西",bye;
+			
+buy_24:
+			if((countitem(15199) < 1) || (countitem(15090) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15090,1;
+			getitem 15223,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//光之書---------------------------------------------------
+
+ea:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "光之書1";
+			mes "真神x1";	
+			mes "強化後all+4000";
+			next;
+			menu "東西都有了，我要強化!!",buy_25,"好~現在去收集東西",bye;
+			
+buy_25:
+			if((countitem(15199) < 1) || (countitem(15091) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 15091,1;
+			getitem 15224,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//劍士系之靈魂結晶---------------------------------------------------
+
+eb:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "劍士系之靈魂結晶x1";
+			mes "真神x1";	
+			mes "強化後all+1000";
+			next;
+			menu "東西都有了，我要強化!!",buy_26,"好~現在去收集東西",bye;
+			
+buy_26:
+			if((countitem(15199) < 1) || (countitem(14029) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 14029,1;
+			getitem 15225,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//服事系之靈魂結晶---------------------------------------------------
+
+ec:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "服事系之靈魂結晶x1";
+			mes "真神x1";	
+			mes "強化後all+1000";
+			next;
+			menu "東西都有了，我要強化!!",buy_27,"好~現在去收集東西",bye;
+			
+buy_27:
+			if((countitem(15199) < 1) || (countitem(14030) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 14030,1;
+			getitem 15226,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//法師系之靈魂結晶---------------------------------------------------
+
+ed:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "法師系之靈魂結晶x1";
+			mes "真神x1";	
+			mes "強化後all+1000";
+			next;
+			menu "東西都有了，我要強化!!",buy_28,"好~現在去收集東西",bye;
+			
+buy_28:
+			if((countitem(15199) < 1) || (countitem(14031) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 14031,1;
+			getitem 15227,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//盜賊系之靈魂結晶---------------------------------------------------
+
+ee:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "盜賊系之靈魂結晶x1";
+			mes "真神x1";	
+			mes "強化後all+1000";
+			next;
+			menu "東西都有了，我要強化!!",buy_29,"好~現在去收集東西",bye;
+			
+buy_29:
+			if((countitem(15199) < 1) || (countitem(14032) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 14032,1;
+			getitem 15228,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//商人系之靈魂結晶---------------------------------------------------
+
+ef:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "商人系之靈魂結晶x1";
+			mes "真神x1";	
+			mes "強化後all+1000";
+			next;
+			menu "東西都有了，我要強化!!",buy_30,"好~現在去收集東西",bye;
+			
+buy_30:
+			if((countitem(15199) < 1) || (countitem(14033) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 14033,1;
+			getitem 15229,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+//弓手系之靈魂結晶---------------------------------------------------
+
+fa:
+			mes "[強化裝備]";
+			mes "強化才料：";
+			mes "弓手系之靈魂結晶x1";
+			mes "真神x1";	
+			mes "強化後all+1000";
+			next;
+			menu "東西都有了，我要強化!!",buy_31,"好~現在去收集東西",bye;
+			
+buy_31:
+			if((countitem(15199) < 1) || (countitem(14034) < 1)) goto NotEnough;
+			mes "[強化裝備]";
+			mes "好現在就給你強化";
+			next;
+			mes "[強化裝備]";
+			mes ".................";
+			next;
+			delitem 15199,1;
+			delitem 14034,1;
+			getitem 15230,1;
+			mes "[強化裝備]";
+			mes "好了!!!快試看看!!";
+			mes "掰掰";
+close;
+}
+//仙境傳說賭場近似完整版 (Later Update:2004-6/25 AM 00:21)
+
+老虎機	by 云逝
+賭場職員 	by 云逝
+二十一點	by lightemu (籌碼版 by intela32015)
+飛鏢		by Kevin
+骰子		by Kevin
+比大小	by Kevin
+小鋼珠	by Kevin
+管理員	by Kevin
+*/
+
+cmd_in02.gat,195,102,0	script	賭場管理	111,{
+	if (countitem(7029) == 0) end;
+	mes "[賭場管理]";
+	mes "您好,進行管理中";
+	next;
+	menu "設定變數",L_SET,"開啟賭場",L_OPEN,"關閉賭場",L_CLOSE,"離開",-;
+	close;
+	end;
+L_SET:
+	mes "[賭場管理]";
+	mes "設定變數";
+	next;
+	menu "購買等級",L_BUYLEVEL,
+		"設定倍率",L_BALU;
+	L_CMDMONEY:
+		mes "[賭場管理]";
+		mes "請輸入籌碼的價值(買入賣出)";
+		input $cmdmoney;
+		close;
+
+	L_BUYLEVEL:
+		mes "[賭場管理]";
+		mes "限制玩遊戲及買籌碼的等級";
+		input $buylevel;
+		close;
+
+	L_BALU:
+		mes "[賭場管理]";
+		mes "請選擇遊戲";
+		next;
+		menu "小鋼珠",L_SMAILLBALL,
+			"老虎機",L_TIGER,
+			"比大小",L_BIGSMALL,
+			"飛鏢台",L_RUST,
+			"十八豆仔",L_DICE;
+
+//==================================================//
+		L_SMAILLBALL:
+			mes "[賭場管理]";
+			mes "請選擇倍率設定(小鋼珠)";
+			next;
+			menu "普通倍率",L_SMAILLBALL1,"爆機倍率",L_SMAILLBALL2;
+
+			L_SMAILLBALL1:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $smallball1;
+				close;
+
+			L_SMAILLBALL2:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $smallball2;
+				close;
+//==================================================//
+//==================================================//
+		L_TIGER:
+			mes "[賭場管理]";
+			mes "請選擇倍率設定(老虎機)";
+			next;
+			menu "普通倍率",L_TIGER1,"爆機倍率",L_TIGER2;
+
+			L_TIGER1:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $tiger1;
+				close;
+
+			L_TIGER2:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $tiger2;
+				close;
+//==================================================//
+//==================================================//
+		L_BIGSMALL:
+			mes "[賭場管理]";
+			mes "請選擇倍率設定(比大小)";
+			next;
+			menu "比大",L_BIGSMALL1,"比小",L_BIGSMALL2;
+
+			L_BIGSMALL1:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $bigsmall1;
+				close;
+
+			L_BIGSMALL2:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $bigsmall2;
+				close;
+//==================================================//
+//==================================================//
+		L_RUST:
+			mes "[賭場管理]";
+			mes "請選擇[顆數]設定(飛鏢台)";
+			next;
+			menu "正中紅心",L_RUST1,"紅心周圍",L_RUST2,"板子上",L_RUST3;
+
+			L_RUST1:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $rust1;
+				close;
+
+			L_RUST2:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $rust2;
+				close;
+
+			L_RUST3:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $rust3;
+				close;
+//==================================================//
+//==================================================//
+		L_DICE:
+			mes "[賭場管理]";
+			mes "請選擇倍率設定(十八豆仔)";
+			next;
+			menu "買大",L_DICE1,"買小",L_DICE2,"自訂",L_DICE3;
+
+			L_DICE1:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $dice1;
+				close;
+
+			L_DICE2:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $dice2;
+				close;
+
+			L_DICE3:
+				mes "[賭場管理]";
+				mes "請輸入";
+				input $dice3;
+				close;
+//==================================================//
+
+L_OPEN:
+	mes "[賭場管理]";
+	mes "選擇開啟的遊戲";
+	next;
+	menu "全部",L_O1,
+		"小鋼珠",L_O2,
+		"老虎機",L_O3,
+		"十八豆仔",L_O4,
+		"比大小",L_O5,
+		"二十一點",L_O6,
+		"飛鏢台",L_O7;
+
+L_O1:
+	enablenpc "老虎機#1";
+	enablenpc "老虎機#2";
+	enablenpc "老虎機#3";
+	enablenpc "小鋼珠#1";
+	enablenpc "小鋼珠#2";
+	enablenpc "小鋼珠#3";
+	enablenpc "十八豆仔";
+	enablenpc "比大小";
+	enablenpc "二十一點";
+	enablenpc "飛鏢解說員";
+	enablenpc "飛鏢台#1";
+	enablenpc "飛鏢台#2";
+	donpcevent "老虎機#1::OnOpen";
+	donpcevent "老虎機#2::OnOpen";
+	donpcevent "老虎機#3::OnOpen";
+	donpcevent "小鋼珠#1::OnOpen";
+	donpcevent "小鋼珠#2::OnOpen";
+	donpcevent "小鋼珠#3::OnOpen";
+	donpcevent "十八豆仔#1::OnOpen";
+	donpcevent "十八豆仔#2::OnOpen";
+	donpcevent "十八豆仔#3::OnOpen";
+	donpcevent "十八豆仔#4::OnOpen";
+	donpcevent "比大小#1::OnOpen";
+	donpcevent "比大小#2::OnOpen";
+	donpcevent "比大小#3::OnOpen";
+	donpcevent "二十一點::OnOpen";
+	donpcevent "飛鏢解說員::OnOpen";
+	close;
+L_O2:
+	enablenpc "小鋼珠#1";
+	enablenpc "小鋼珠#2";
+	enablenpc "小鋼珠#3";
+	donpcevent "小鋼珠#1::OnOpen";
+	donpcevent "小鋼珠#2::OnOpen";
+	donpcevent "小鋼珠#3::OnOpen";
+	close;
+L_O3:
+	enablenpc "老虎機#1";
+	enablenpc "老虎機#2";
+	enablenpc "老虎機#3";
+	donpcevent "老虎機#1::OnOpen";
+	donpcevent "老虎機#2::OnOpen";
+	donpcevent "老虎機#3::OnOpen";
+	close;
+L_O4:
+	enablenpc "十八豆仔#1";
+	enablenpc "十八豆仔#2";
+	enablenpc "十八豆仔#3";
+	enablenpc "十八豆仔#4";
+	donpcevent "十八豆仔#1::OnOpen";
+	donpcevent "十八豆仔#2::OnOpen";
+	donpcevent "十八豆仔#3::OnOpen";
+	donpcevent "十八豆仔#4::OnOpen";
+	close;
+L_O5:
+	enablenpc "比大小";
+	donpcevent "比大小::OnOpen";
+	close;
+L_O6:
+	enablenpc "二十一點";
+	donpcevent "二十一點::OnOpen";
+	close;
+L_O7:
+	enablenpc "飛鏢解說員";
+	enablenpc "飛鏢台#1";
+	enablenpc "飛鏢台#2";
+	donpcevent "飛鏢解說員::OnOpen";
+	close;
+
+L_CLOSE:
+	mes "[賭場管理]";
+	mes "選擇關閉的遊戲";
+	next;
+	menu "全部",L_C1,
+		"小鋼珠",L_C2,
+		"老虎機",L_C3,
+		"十八豆仔",L_C4,
+		"比大小",L_C5,
+		"二十一點",L_C6,
+		"飛鏢台",L_C7;
+
+L_C1:
+	disablenpc "老虎機#1";
+	disablenpc "老虎機#2";
+	disablenpc "老虎機#3";
+	disablenpc "小鋼珠#1";
+	disablenpc "小鋼珠#2";
+	disablenpc "小鋼珠#3";
+	disablenpc "十八豆仔";
+	disablenpc "比大小";
+	disablenpc "二十一點";
+	disablenpc "飛鏢解說員";
+	disablenpc "飛鏢台#1";
+	disablenpc "飛鏢台#2";
+	close;
+L_C2:
+	disablenpc "小鋼珠#1";
+	disablenpc "小鋼珠#2";
+	disablenpc "小鋼珠#3";
+	close;
+L_C3:
+	disablenpc "老虎機#1";
+	disablenpc "老虎機#2";
+	disablenpc "老虎機#3";
+	close;
+L_C4:
+	disablenpc "十八豆仔";
+	close;
+L_C5:
+	disablenpc "比大小";
+	close;
+L_C6:
+	disablenpc "二十一點";
+	close;
+L_C7:
+	disablenpc "飛鏢解說員";
+	disablenpc "飛鏢台#1";
+	disablenpc "飛鏢台#2";
+	close;
+
+}
+cmd_in02.gat,210,101,5	script	賭場職員	727,{
+		mes "[賭場職員]";
+		mes "歡迎光臨仙境賭場，我能幫你什麼？";
+		next;
+	menu	"購買籌碼",Lbuy_1,
+		"兌換現金",Lshell,
+		"遊戲講解",Lgame,
+		"賭場說明",Lmes_1;
+
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+Lbuy_1:
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[賭場職員]";
+	mes "每1張優惠可換1個籌碼，您要買多少？一次最多只能買500個";
+	next;
+Lbuy_2:
+	input @a;
+	if (@a < 1) goto Lbuy_2;
+   if (@a > 500) goto Lbuy_2;
+	if (countitem(2916) > 29500) goto Lcmtd;
+	if (countitem(7037) < @a) goto Lnomy;
+	getitem 2916,@a;
+				delitem 7037,@a;
+	mes "[賭場職員]";
+	mes "您購買了"+@a+"個籌碼，祝您玩得愉快，賭得開心。";
+	close;
+Lshell:
+	if (countitem(2916) < 1) goto Lnocm;
+	mes "[賭場職員]";
+	mes "您目前持有"+countitem(2916)+"個籌碼，每個50籌碼可以兌回1張優惠，您要兌換多少？";
+	next;
+Lshell1:
+	input @b;
+	if (@b < 1) goto Lshell1;
+	if (countitem(2916) < @b*50) goto Lnocm;
+	getitem 7037,@b;
+	delitem 2916,@b*50;
+	mes "[賭場職員]";
+	mes "這是您的現金"+@b * $cmdmoney+"Zeny，請清點，歡迎下次來玩。";
+	close;
+Lshell2:
+	mes "[賭場職員]";
+	mes "一次只能換一張(100個籌碼=1張)";
+	mes "這張票可以直通20F和50F";
+	next;
+	if (countitem(2916) < 100) goto Lnocm;
+	getitem 7037,1;
+	delitem 2916,100;
+	mes "[賭場職員]";
+	mes "入場地點在[百關道場管理員對面]";
+	close;
+Lgame:
+	mes "您想瞭解那個遊戲？";
+	next;
+	menu	"老虎機",Llhj,
+		"閤家歡",Lhjh,
+		"三色對",Lssd;
+Llhj:
+	mes "[賭場職員]";
+	mes "老虎機遊戲是一種對號遊戲，可押注1-9注。押注後拉動搖桿轉動數字轉盤；當數字轉盤停下後，有2個符號相同，即獲得3倍押注的籌碼，若有3個符號相同，即獲得9倍押注的籌碼。";
+	next;
+	mes "[賭場職員]";
+	mes "每次遊戲結束後，不管您是否贏得籌碼，都可以立即開始新的遊戲，選[直接開盤]將延續您上一次押注的數目立即啟動老虎機，選[重新押注]則讓你重新輸入押注數額。";
+	next;
+	mes "[賭場職員]";
+	mes "需要注意的是，每台老虎機只能讓一個玩家遊戲，遊戲開始後別的玩家就不能使用了，您在玩老虎機的時候請不要中途離線，這樣會造成老虎機故障，只能等遊戲管理人員（GM）維護了。";
+	next;
+	mes "[賭場職員]";
+	mes "關於10倍機，表示您押1注實際上扣除您10注，您贏了3注會返回您30注，50倍機的原理同前。";
+	close;
+Lhjh:
+	mes "[賭場職員]";
+	mes "閤家歡是一種猜數字遊戲，可押注1-200。每次押注完後，機器將會開出一個號碼，根據你的押注方式和這個號碼判斷您是否獲勝，每種押注贏取的籌碼都不相同，您可選擇自己喜歡的方式。";
+	next;
+	mes "[賭場職員]";
+	mes "押注可選3種猜測方式。押號碼，猜中獲得10倍押注的籌碼。押大小，開出5-9為大，1-5為小，押中獲得3倍押注的籌碼。押單雙，13579為單，2468為雙，押中獲得2倍押注的籌碼。";
+	close;
+Lssd:
+	mes "[賭場職員]";
+	mes "三色對請找三色對莊家，他會給你詳細說明遊戲規則，三色對有1倍，5倍，10倍三種莊，表示押注和賠率是相應的倍數，請按你的喜好選擇。三色對暫不開放玩家對抗。";
+	close;
+Lmes_1:
+	mes "[賭場職員]";
+	mes "仙境賭場是心靈學院校長^FF0000夢想^000000開設的博彩遊戲中心。";
+	mes "玩博彩遊戲必須使用這裡的籌碼，購買1個籌碼需要1優惠。";
+	next;
+	mes "[賭場職員]";
+	mes "您贏得的籌碼也可以在這裡兌換回現金，比例不變。";
+	mes "當然，你也可以把籌碼賣給商人，但是他們只會付您80Zeny。";
+	close;
+Lnomy:
+	mes "[賭場職員]";
+	mes "很抱歉，您所帶的現金不足。";
+	close;
+Lnocm:
+	mes "[賭場職員]";
+	mes "您沒有足夠的籌碼可以兌換現金。";
+	close;
+Lcmtd:
+	mes "[賭場職員]";
+	mes "您無法拿取更多的籌碼。";
+	close;
+}
+
+cmd_in02.gat,189,102,0	script	老虎機#1	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($lhj1 != 0) goto Lin;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請開始";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ ";
+next;
+	menu	"開始遊戲",Lgame,
+		"不玩這個",Lover;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+	Lgame:
+	if ($lhj1 != 0) goto Lin;
+	if (countitem(2916) < 1) goto Lnocm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請投幣";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ １到９";
+next;
+	input @a1;
+	if (@a1 <1) goto Lgame;
+	if (@a1 >9) goto Lgame;
+	Lregame:
+	if ($lhj1 != 0) goto Lin;
+	if (countitem(2916) < @a1) goto Lnocm;
+	delitem 2916,@a1;
+	set $lhj1,1;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請拉動";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆   ";
+		mes "☆^999999│ § │ § │ § │^000000☆   ";
+		mes "☆^555555├──┼──┼──┤^000000☆  ■";
+		mes "☆│ § │ § │ § ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請鬆開";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+	set @c1,rand(1,9);
+	if (@c1 == 1) set $a1$,"★";
+	if (@c1 == 2) set $a1$,"○";
+	if (@c1 == 3) set $a1$,"●";
+	if (@c1 == 4) set $a1$,"◇";
+	if (@c1 == 5) set $a1$,"◆";
+	if (@c1 == 6) set $a1$,"□";
+	if (@c1 == 7) set $a1$,"■";
+	if (@c1 == 8) set $a1$,"△";
+	if (@c1 == 9) set $a1$,"▲";
+	set @d1,rand(1,9);
+	if (@d1 == 1) set $b1$,"★";
+	if (@d1 == 2) set $b1$,"○";
+	if (@d1 == 3) set $b1$,"●";
+	if (@d1 == 4) set $b1$,"◇";
+	if (@d1 == 5) set $b1$,"◆";
+	if (@d1 == 6) set $b1$,"□";
+	if (@d1 == 7) set $b1$,"■";
+	if (@d1 == 8) set $b1$,"△";
+	if (@d1 == 9) set $b1$,"▲";
+	set @e1,rand(1,9);
+	if (@e1 == 1) set $c1$,"★";
+	if (@e1 == 2) set $c1$,"○";
+	if (@e1 == 3) set $c1$,"●";
+	if (@e1 == 4) set $c1$,"◇";
+	if (@e1 == 5) set $c1$,"◆";
+	if (@e1 == 6) set $c1$,"□";
+	if (@e1 == 7) set $c1$,"■";
+	if (@e1 == 8) set $c1$,"△";
+	if (@e1 == 9) set $c1$,"▲";
+	set @b1,1;
+	if (@c1 == @d1) set @b1,@b1+1;
+	if (@d1 == @e1) set @b1,@b1+1;
+	if (@c1 == @e1) set @b1,@b1+1;
+	if (@b1 == 4) goto Lyq_1;
+	if (@b1 == 2) goto Lyq_2;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 沒同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	set $lhj1,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_1:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 三同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger2 == 0) set $tiger2,9;
+	getitem 2916,@a1 * $tiger2;
+	set $lhj1,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_2:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 二同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger1 == 0) set $tiger1,3;
+	getitem 2916,@a1 * $tiger1;
+	set $lhj1,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lnocm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 您的籌";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 碼不足";
+close;
+	Lover:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 歡迎下";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 次再來";
+close;	
+	Lin:
+	if (countitem(7029) != 0) goto Lgm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器已";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 被鎖定";
+close;
+	Lgm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器管";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 理模式";
+next;
+	menu	"解鎖機器",Lunlk;
+	Lunlk:
+	set $lhj1,0;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a1$+" │ "+$b1$+" │ "+$c1$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器解";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 鎖完成";
+close;
+OnOpen:
+	waitingroom "老虎機",0;
+	end;
+OnInit:
+	waitingroom "老虎機",0;
+	end;
+}
+
+cmd_in02.gat,187,102,0	script	老虎機#2	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($lhj2 != 0) goto Lin;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請開始";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ ";
+next;
+	menu	"開始遊戲",Lgame,
+		"不玩這個",Lover;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+	Lgame:
+	if ($lhj2 != 0) goto Lin;
+	if (countitem(2916) < 1) goto Lnocm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請投幣";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ １到９";
+next;
+	input @a2;
+	if (@a2 <1) goto Lgame;
+	if (@a2 >9) goto Lgame;
+	Lregame:
+	if ($lhj2 != 0) goto Lin;
+	if (countitem(2916) < @a2) goto Lnocm;
+	delitem 2916,@a2;
+	set $lhj2,1;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請拉動";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆   ";
+		mes "☆^999999│ § │ § │ § │^000000☆   ";
+		mes "☆^555555├──┼──┼──┤^000000☆  ■";
+		mes "☆│ § │ § │ § ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請鬆開";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+	set @c2,rand(1,9);
+	if (@c2 == 1) set $a2$,"★";
+	if (@c2 == 2) set $a2$,"○";
+	if (@c2 == 3) set $a2$,"●";
+	if (@c2 == 4) set $a2$,"◇";
+	if (@c2 == 5) set $a2$,"◆";
+	if (@c2 == 6) set $a2$,"□";
+	if (@c2 == 7) set $a2$,"■";
+	if (@c2 == 8) set $a2$,"△";
+	if (@c2 == 9) set $a2$,"▲";
+	set @d2,rand(1,9);
+	if (@d2 == 1) set $b2$,"★";
+	if (@d2 == 2) set $b2$,"○";
+	if (@d2 == 3) set $b2$,"●";
+	if (@d2 == 4) set $b2$,"◇";
+	if (@d2 == 5) set $b2$,"◆";
+	if (@d2 == 6) set $b2$,"□";
+	if (@d2 == 7) set $b2$,"■";
+	if (@d2 == 8) set $b2$,"△";
+	if (@d2 == 9) set $b2$,"▲";
+	set @e2,rand(1,9);
+	if (@e2 == 1) set $c2$,"★";
+	if (@e2 == 2) set $c2$,"○";
+	if (@e2 == 3) set $c2$,"●";
+	if (@e2 == 4) set $c2$,"◇";
+	if (@e2 == 5) set $c2$,"◆";
+	if (@e2 == 6) set $c2$,"□";
+	if (@e2 == 7) set $c2$,"■";
+	if (@e2 == 8) set $c2$,"△";
+	if (@e2 == 9) set $c2$,"▲";
+	set @b2,1;
+	if (@c2 == @d2) set @b2,@b2+1;
+	if (@d2 == @e2) set @b2,@b2+1;
+	if (@c2 == @e2) set @b2,@b2+1;
+	if (@b2 == 4) goto Lyq_1;
+	if (@b2 == 2) goto Lyq_2;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 沒同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_1:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 三同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger2 == 0) set $tiger2,9;
+	getitem 2916,@a2 * $tiger2;
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_2:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 二同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger1 == 0) set $tiger1,3;
+	getitem 2916,@a2 * $tiger1;
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lnocm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 您的籌";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 碼不足";
+close;
+	Lover:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 歡迎下";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 次再來";
+close;	
+	Lin:
+	if (countitem(7029) != 0) goto Lgm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器已";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 被鎖定";
+close;
+	Lgm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器管";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 理模式";
+next;
+	menu	"解鎖機器",Lunlk;
+	Lunlk:
+	set $lhj2,0;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器解";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 鎖完成";
+close;
+OnOpen:
+	waitingroom "老虎機",0;
+	end;
+OnInit:
+	waitingroom "老虎機",0;
+	end;
+}
+
+cmd_in02.gat,185,102,0	script	老虎機#3	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($lhj3 != 0) goto Lin;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請開始";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ ";
+next;
+	menu	"開始遊戲",Lgame,
+		"不玩這個",Lover;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+	Lgame:
+	if ($lhj3 != 0) goto Lin;
+	if (countitem(2916) < 1) goto Lnocm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請投幣";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ １到９";
+next;
+	input @a3;
+	if (@a3 <1) goto Lgame;
+	if (@a3 >9) goto Lgame;
+	Lregame:
+	if ($lhj3 != 0) goto Lin;
+	if (countitem(2916) < @a3) goto Lnocm;
+	delitem 2916,@a3;
+	set $lhj3,1;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請拉動";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆   ";
+		mes "☆^999999│ § │ § │ § │^000000☆   ";
+		mes "☆^555555├──┼──┼──┤^000000☆  ■";
+		mes "☆│ § │ § │ § ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請鬆開";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+	set @c3,rand(1,9);
+	if (@c3 == 1) set $a3$,"★";
+	if (@c3 == 2) set $a3$,"○";
+	if (@c3 == 3) set $a3$,"●";
+	if (@c3 == 4) set $a3$,"◇";
+	if (@c3 == 5) set $a3$,"◆";
+	if (@c3 == 6) set $a3$,"□";
+	if (@c3 == 7) set $a3$,"■";
+	if (@c3 == 8) set $a3$,"△";
+	if (@c3 == 9) set $a3$,"▲";
+	set @d3,rand(1,9);
+	if (@d3 == 1) set $b3$,"★";
+	if (@d3 == 2) set $b3$,"○";
+	if (@d3 == 3) set $b3$,"●";
+	if (@d3 == 4) set $b3$,"◇";
+	if (@d3 == 5) set $b3$,"◆";
+	if (@d3 == 6) set $b3$,"□";
+	if (@d3 == 7) set $b3$,"■";
+	if (@d3 == 8) set $b3$,"△";
+	if (@d3 == 9) set $b3$,"▲";
+	set @e3,rand(1,9);
+	if (@e3 == 1) set $c3$,"★";
+	if (@e3 == 2) set $c3$,"○";
+	if (@e3 == 3) set $c3$,"●";
+	if (@e3 == 4) set $c3$,"◇";
+	if (@e3 == 5) set $c3$,"◆";
+	if (@e3 == 6) set $c3$,"□";
+	if (@e3 == 7) set $c3$,"■";
+	if (@e3 == 8) set $c3$,"△";
+	if (@e3 == 9) set $c3$,"▲";
+	set @b3,1;
+	if (@c3 == @d3) set @b3,@b3+1;
+	if (@d3 == @e3) set @b3,@b3+1;
+	if (@c3 == @e3) set @b3,@b3+1;
+	if (@b3 == 4) goto Lyq_1;
+	if (@b3 == 2) goto Lyq_2;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 沒同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	set $lhj3,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_1:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 三同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger2 == 0) set $tiger2,9;
+	getitem 2916,@a3 * $tiger2;
+	set $lhj3,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_2:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 二同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger1 == 0) set $tiger1,3;
+	getitem 2916,@a3 * $tiger1;
+	set $lhj3,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lnocm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 您的籌";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 碼不足";
+close;
+	Lover:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 歡迎下";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 次再來";
+close;	
+	Lin:
+	if (countitem(7029) != 0) goto Lgm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器已";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 被鎖定";
+close;
+	Lgm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器管";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 理模式";
+next;
+	menu	"解鎖機器",Lunlk;
+	Lunlk:
+	set $lhj3,0;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a3$+" │ "+$b3$+" │ "+$c3$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器解";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 鎖完成";
+close;
+OnOpen:
+	waitingroom "老虎機",0;
+	end;
+OnInit:
+	waitingroom "老虎機",0;
+	end;
+}
+
+cmd_in02.gat,171,102,0	script	老虎機#4	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($lhj2 != 0) goto Lin;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請開始";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ ";
+next;
+	menu	"開始遊戲",Lgame,
+		"不玩這個",Lover;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+	Lgame:
+	if ($lhj2 != 0) goto Lin;
+	if (countitem(2916) < 1) goto Lnocm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請投幣";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ １到９";
+next;
+	input @a2;
+	if (@a2 <1) goto Lgame;
+	if (@a2 >9) goto Lgame;
+	Lregame:
+	if ($lhj2 != 0) goto Lin;
+	if (countitem(2916) < @a2) goto Lnocm;
+	delitem 2916,@a2;
+	set $lhj2,1;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請拉動";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆   ";
+		mes "☆^999999│ § │ § │ § │^000000☆   ";
+		mes "☆^555555├──┼──┼──┤^000000☆  ■";
+		mes "☆│ § │ § │ § ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請鬆開";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+	set @c2,rand(1,9);
+	if (@c2 == 1) set $a2$,"★";
+	if (@c2 == 2) set $a2$,"○";
+	if (@c2 == 3) set $a2$,"●";
+	if (@c2 == 4) set $a2$,"◇";
+	if (@c2 == 5) set $a2$,"◆";
+	if (@c2 == 6) set $a2$,"□";
+	if (@c2 == 7) set $a2$,"■";
+	if (@c2 == 8) set $a2$,"△";
+	if (@c2 == 9) set $a2$,"▲";
+	set @d2,rand(1,9);
+	if (@d2 == 1) set $b2$,"★";
+	if (@d2 == 2) set $b2$,"○";
+	if (@d2 == 3) set $b2$,"●";
+	if (@d2 == 4) set $b2$,"◇";
+	if (@d2 == 5) set $b2$,"◆";
+	if (@d2 == 6) set $b2$,"□";
+	if (@d2 == 7) set $b2$,"■";
+	if (@d2 == 8) set $b2$,"△";
+	if (@d2 == 9) set $b2$,"▲";
+	set @e2,rand(1,9);
+	if (@e2 == 1) set $c2$,"★";
+	if (@e2 == 2) set $c2$,"○";
+	if (@e2 == 3) set $c2$,"●";
+	if (@e2 == 4) set $c2$,"◇";
+	if (@e2 == 5) set $c2$,"◆";
+	if (@e2 == 6) set $c2$,"□";
+	if (@e2 == 7) set $c2$,"■";
+	if (@e2 == 8) set $c2$,"△";
+	if (@e2 == 9) set $c2$,"▲";
+	set @b2,1;
+	if (@c2 == @d2) set @b2,@b2+1;
+	if (@d2 == @e2) set @b2,@b2+1;
+	if (@c2 == @e2) set @b2,@b2+1;
+	if (@b2 == 4) goto Lyq_1;
+	if (@b2 == 2) goto Lyq_2;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 沒同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_1:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 三同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger2 == 0) set $tiger2,9;
+	getitem 2916,@a2 * $tiger2;
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_2:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 二同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger1 == 0) set $tiger1,3;
+	getitem 2916,@a2 * $tiger1;
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lnocm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 您的籌";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 碼不足";
+close;
+	Lover:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 歡迎下";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 次再來";
+close;	
+	Lin:
+	if (countitem(7029) != 0) goto Lgm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器已";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 被鎖定";
+close;
+	Lgm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器管";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 理模式";
+next;
+	menu	"解鎖機器",Lunlk;
+	Lunlk:
+	set $lhj2,0;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器解";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 鎖完成";
+close;
+OnOpen:
+	waitingroom "老虎機",0;
+	end;
+OnInit:
+	waitingroom "老虎機",0;
+	end;
+}
+
+cmd_in02.gat,169,102,0	script	老虎機#5	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($lhj2 != 0) goto Lin;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請開始";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ ";
+next;
+	menu	"開始遊戲",Lgame,
+		"不玩這個",Lover;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+	Lgame:
+	if ($lhj2 != 0) goto Lin;
+	if (countitem(2916) < 1) goto Lnocm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請投幣";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ １到９";
+next;
+	input @a2;
+	if (@a2 <1) goto Lgame;
+	if (@a2 >9) goto Lgame;
+	Lregame:
+	if ($lhj2 != 0) goto Lin;
+	if (countitem(2916) < @a2) goto Lnocm;
+	delitem 2916,@a2;
+	set $lhj2,1;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請拉動";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆   ";
+		mes "☆^999999│ § │ § │ § │^000000☆   ";
+		mes "☆^555555├──┼──┼──┤^000000☆  ■";
+		mes "☆│ § │ § │ § ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請鬆開";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+	set @c2,rand(1,9);
+	if (@c2 == 1) set $a2$,"★";
+	if (@c2 == 2) set $a2$,"○";
+	if (@c2 == 3) set $a2$,"●";
+	if (@c2 == 4) set $a2$,"◇";
+	if (@c2 == 5) set $a2$,"◆";
+	if (@c2 == 6) set $a2$,"□";
+	if (@c2 == 7) set $a2$,"■";
+	if (@c2 == 8) set $a2$,"△";
+	if (@c2 == 9) set $a2$,"▲";
+	set @d2,rand(1,9);
+	if (@d2 == 1) set $b2$,"★";
+	if (@d2 == 2) set $b2$,"○";
+	if (@d2 == 3) set $b2$,"●";
+	if (@d2 == 4) set $b2$,"◇";
+	if (@d2 == 5) set $b2$,"◆";
+	if (@d2 == 6) set $b2$,"□";
+	if (@d2 == 7) set $b2$,"■";
+	if (@d2 == 8) set $b2$,"△";
+	if (@d2 == 9) set $b2$,"▲";
+	set @e2,rand(1,9);
+	if (@e2 == 1) set $c2$,"★";
+	if (@e2 == 2) set $c2$,"○";
+	if (@e2 == 3) set $c2$,"●";
+	if (@e2 == 4) set $c2$,"◇";
+	if (@e2 == 5) set $c2$,"◆";
+	if (@e2 == 6) set $c2$,"□";
+	if (@e2 == 7) set $c2$,"■";
+	if (@e2 == 8) set $c2$,"△";
+	if (@e2 == 9) set $c2$,"▲";
+	set @b2,1;
+	if (@c2 == @d2) set @b2,@b2+1;
+	if (@d2 == @e2) set @b2,@b2+1;
+	if (@c2 == @e2) set @b2,@b2+1;
+	if (@b2 == 4) goto Lyq_1;
+	if (@b2 == 2) goto Lyq_2;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 沒同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_1:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 三同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger2 == 0) set $tiger2,9;
+	getitem 2916,@a2 * $tiger2;
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_2:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 二同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger1 == 0) set $tiger1,3;
+	getitem 2916,@a2 * $tiger1;
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lnocm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 您的籌";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 碼不足";
+close;
+	Lover:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 歡迎下";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 次再來";
+close;	
+	Lin:
+	if (countitem(7029) != 0) goto Lgm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器已";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 被鎖定";
+close;
+	Lgm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器管";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 理模式";
+next;
+	menu	"解鎖機器",Lunlk;
+	Lunlk:
+	set $lhj2,0;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器解";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 鎖完成";
+close;
+OnOpen:
+	waitingroom "老虎機",0;
+	end;
+OnInit:
+	waitingroom "老虎機",0;
+	end;
+}
+
+cmd_in02.gat,166,102,0	script	老虎機#6	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($lhj2 != 0) goto Lin;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請開始";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ ";
+next;
+	menu	"開始遊戲",Lgame,
+		"不玩這個",Lover;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+	Lgame:
+	if ($lhj2 != 0) goto Lin;
+	if (countitem(2916) < 1) goto Lnocm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請投幣";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ １到９";
+next;
+	input @a2;
+	if (@a2 <1) goto Lgame;
+	if (@a2 >9) goto Lgame;
+	Lregame:
+	if ($lhj2 != 0) goto Lin;
+	if (countitem(2916) < @a2) goto Lnocm;
+	delitem 2916,@a2;
+	set $lhj2,1;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請拉動";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆   ";
+		mes "☆^999999│ § │ § │ § │^000000☆   ";
+		mes "☆^555555├──┼──┼──┤^000000☆  ■";
+		mes "☆│ § │ § │ § ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 請鬆開";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 把  手";
+next;
+	set @c2,rand(1,9);
+	if (@c2 == 1) set $a2$,"★";
+	if (@c2 == 2) set $a2$,"○";
+	if (@c2 == 3) set $a2$,"●";
+	if (@c2 == 4) set $a2$,"◇";
+	if (@c2 == 5) set $a2$,"◆";
+	if (@c2 == 6) set $a2$,"□";
+	if (@c2 == 7) set $a2$,"■";
+	if (@c2 == 8) set $a2$,"△";
+	if (@c2 == 9) set $a2$,"▲";
+	set @d2,rand(1,9);
+	if (@d2 == 1) set $b2$,"★";
+	if (@d2 == 2) set $b2$,"○";
+	if (@d2 == 3) set $b2$,"●";
+	if (@d2 == 4) set $b2$,"◇";
+	if (@d2 == 5) set $b2$,"◆";
+	if (@d2 == 6) set $b2$,"□";
+	if (@d2 == 7) set $b2$,"■";
+	if (@d2 == 8) set $b2$,"△";
+	if (@d2 == 9) set $b2$,"▲";
+	set @e2,rand(1,9);
+	if (@e2 == 1) set $c2$,"★";
+	if (@e2 == 2) set $c2$,"○";
+	if (@e2 == 3) set $c2$,"●";
+	if (@e2 == 4) set $c2$,"◇";
+	if (@e2 == 5) set $c2$,"◆";
+	if (@e2 == 6) set $c2$,"□";
+	if (@e2 == 7) set $c2$,"■";
+	if (@e2 == 8) set $c2$,"△";
+	if (@e2 == 9) set $c2$,"▲";
+	set @b2,1;
+	if (@c2 == @d2) set @b2,@b2+1;
+	if (@d2 == @e2) set @b2,@b2+1;
+	if (@c2 == @e2) set @b2,@b2+1;
+	if (@b2 == 4) goto Lyq_1;
+	if (@b2 == 2) goto Lyq_2;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 沒同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_1:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 三同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger2 == 0) set $tiger2,9;
+	getitem 2916,@a2 * $tiger2;
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lyq_2:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 二同號";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 續玩？";
+	if ($tiger1 == 0) set $tiger1,3;
+	getitem 2916,@a2 * $tiger1;
+	set $lhj2,0;
+next;
+	menu	"直接開盤",Lregame,
+		"重新投注",Lgame,
+		"不玩了！",Lover;
+	Lnocm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 您的籌";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 碼不足";
+close;
+	Lover:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 歡迎下";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 次再來";
+close;	
+	Lin:
+	if (countitem(7029) != 0) goto Lgm;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器已";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 被鎖定";
+close;
+	Lgm:
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器管";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 理模式";
+next;
+	menu	"解鎖機器",Lunlk;
+	Lunlk:
+	set $lhj2,0;
+		mes "☆^DDDDDD┌══┬══┬══┐^000000☆  ■";
+		mes "☆^999999│ § │ § │ § │^000000☆  ■";
+		mes "☆^555555├──┼──┼──┤^000000☆  ∥";
+		mes "☆│ "+$a2$+" │ "+$b2$+" │ "+$c2$+" ├══┘";
+		mes "☆^555555├──┼──┼──┤^000000☆ ";
+		mes "☆^999999│ § │ § │ § │^000000☆ 機器解";
+		mes "☆^DDDDDD└══┴══┴══┘^000000☆ 鎖完成";
+close;
+OnOpen:
+	waitingroom "老虎機",0;
+	end;
+OnInit:
+	waitingroom "老虎機",0;
+	end;
+}
+
+cmd_in02.gat,178,98,5	script	二十一點	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes"[21點]";
+	mes"這廿一點是用^FF0000 籌碼來玩 ^000000來玩的!!";
+	mes"只要^FF0000 點數在21之內和比電腦大 ^000000就有^FF0000 你下注1倍的代幣 ^000000!!";
+	mes"如果^FF0000 連贏3次 ^000000就有^FF0000 你下注2倍的代幣  ^000000";
+	mes"如果^FF0000 連贏10次 ^000000就會^FF0000 你下注5倍的代幣 ^000000";
+	mes"要玩嗎??";
+	set @lwin,0;
+next;
+	menu "好的",play2,"不用",notplay1;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+play2:
+	input @mo;
+	if (countitem(2916) < 1) goto noerr2;		
+	if (countitem(2916) < @mo) goto noerr2;
+	if (@mo < 1) goto noerr;
+	if (@mo > 2000) goto noerr3;
+	delitem 2916,@mo;
+	goto play1;
+	close;
+	end;
+noerr:
+	mes"輸入錯誤";
+	close;
+	end;
+noerr2:
+	mes"代幣了輸入錯誤";
+	close;
+	end;
+noerr3:
+	mes"輸入過多，最高2000";
+	close;
+	end;
+play1:
+	mes"[你的點數是]";
+	set @NM4 ,rand(4);
+		if (@NM4 ==0) set @NM10,21;
+		if (@NM4 ==1) set @NM10,19;
+		if (@NM4 ==2) set @NM10,18;
+		if (@NM4 ==3) set @NM10,17;
+	set @NM5 ,rand(11);
+		if (@NM5 ==0) set @NM8,1;
+		if (@NM5 ==1) set @NM8,2;
+		if (@NM5 ==2) set @NM8,3;
+		if (@NM5 ==3) set @NM8,4;
+		if (@NM5 ==4) set @NM8,5;
+		if (@NM5 ==5) set @NM8,6;
+		if (@NM5 ==6) set @NM8,7;
+		if (@NM5 ==7) set @NM8,8;
+		if (@NM5 ==8) set @NM8,9;
+		if (@NM5 ==9) set @NM8,10;
+		if (@NM5 ==10) set @NM8,11;
+	set @NM6 ,rand(10);
+		if (@NM6 ==0) set @NM9,1;
+		if (@NM6 ==1) set @NM9,2;
+		if (@NM6 ==2) set @NM9,3;
+		if (@NM6 ==3) set @NM9,4;
+		if (@NM6 ==4) set @NM9,5;
+		if (@NM6 ==5) set @NM9,6;
+		if (@NM6 ==6) set @NM9,7;
+		if (@NM6 ==7) set @NM9,8;
+		if (@NM6 ==8) set @NM9,9;
+		if (@NM6 ==9) set @NM9,10;
+	set @NM7 ,@NM8+@NM9;
+	mes"┌─┐  ┌─┐";
+	mes"│"+ @NM8 +" │和│"+ @NM9 +" │";
+	mes"└─┘  └─┘";
+	mes"共"+ @NM7 +"點";
+	mes"再要牌嗎??";
+	next;
+        menu "好的",upp,"不用",ngup;
+	end;
+
+upp:
+	set @NM6 ,rand(10);
+		if (@NM6 ==0) set @NM9,1;
+		if (@NM6 ==1) set @NM9,2;
+		if (@NM6 ==2) set @NM9,3;
+		if (@NM6 ==3) set @NM9,4;
+		if (@NM6 ==4) set @NM9,5;
+		if (@NM6 ==5) set @NM9,6;
+		if (@NM6 ==6) set @NM9,7;
+		if (@NM6 ==7) set @NM9,8;
+		if (@NM6 ==8) set @NM9,9;
+		if (@NM6 ==9) set @NM9,10;
+	mes"[你的點數是]";
+	mes"┌─┐  ┌─┐";
+	mes"│"+ @NM7 +"│和│"+ @NM9 +"│";
+	mes"└─┘  └─┘";
+	set @NM7 ,@NM7+@NM9;
+	mes"共"+ @NM7 +"點";
+	if (@NM7>21) goto bboo;
+	mes"再要牌嗎??";
+	next;
+        menu "好的",upp,"不用",ngup;
+	end;
+
+ngup:
+	mes"[你的點數是]VS[莊家的點數是]";
+	mes"===┌─┐========┌─┐====";	
+	mes"===│"+ @NM7 +"│========│"+ @NM10 +"│====";
+	mes"===└─┘========└─┘====";
+	next;
+	if (@NM7>@NM10) goto yawin;
+	if (@NM7<@NM10) goto bboo;
+	if (@NM7==@NM10) goto bbo;
+	end;
+
+yawin:
+	mes"[你贏了]";
+	mes"要再玩嗎??";
+	set @lwin,@lwin+1;
+	mes"你連贏了"+ @lwin +"次 ";
+	mes"要再玩嗎??";
+
+next;
+        menu "好的",play1,"不用我拿錢走人= =",notplay1;
+	close;
+	end;
+
+notplay1:
+	if ( countitem(2916)+@mo+@mo >= 20000 ) goto noway;
+	if ( countitem(2916)+@mo+@mo+@mo >= 20000 ) goto noway;
+	if ( countitem(2916)+@mo+@mo+@mo+@mo+@mo+@mo >= 20000 ) goto noway;
+	if (@lwin ==1) 	getitem 2916,@mo+@mo;
+	if (@lwin ==3) 	getitem 2916,@mo+@mo+@mo;
+	if (@lwin ==10)	getitem 2916,@mo+@mo+@mo+@mo+@mo+@mo;
+	mes"太可惜了...!!";
+	mes"下次再見";
+	close;
+	end;
+noway:
+	mes"身上代幣滿了";
+	mes"下次再見";
+	close;
+	end;
+
+bboo:
+	mes"你輸了";
+	mes"下次再見";
+	close;
+	end;
+bbo:
+	mes"[平手]";
+	mes"你連贏了"+ @lwin +"次 ";
+	mes"要再玩嗎??";
+
+next;
+        menu "好的",play1,"不用我拿錢走人= =",notplay1;
+	close;
+	end;
+OnOpen:
+	waitingroom "二十一點",0;
+	end;
+OnInit:
+	waitingroom "二十一點",0;
+	end;
+}
+
+cmd_in02.gat,178,89,0	script	比大小#1	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[比大小]";
+	mes "┌─┐┌─┐";
+	mes "│*1││*2│";
+	mes "└─┘└─┘";
+	mes "這位客官";
+	mes "你要玩比大，還是比小呢?";
+	next;
+	menu "玩比大",L_Big,"玩比小",L_Small,"不玩了",-;
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+L_trY:
+	mes "平手!";
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	getitem 2916,@cont * 1;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+L_Big:
+	mes "[比大]";
+	mes "請輸入您的籌碼數量 (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	set @menumber,rand(1,13);
+	mes "您抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @menumber + "│";
+	mes "└─┘";
+	next;
+	set @computernumber,rand(1,13);
+	mes "對手抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @computernumber + "│";
+	mes "└─┘";
+	next;
+	if (@computernumber > @menumber) mes "您輸了!";
+	if (@computernumber == @menumber) goto L_trY;
+	if (@computernumber < @menumber) mes "您贏了!";	
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	if ($bigsmall1 == 0) set $bigsmall1,6;
+	if (@computernumber < @menumber) getitem 2916,@cont * $bigsmall1;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+
+L_Small:
+	mes "[比小]";
+	mes "請輸入您的籌碼數量 (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	set @menumber,rand(1,13);
+	mes "您抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @menumber + "│";
+	mes "└─┘";
+	next;
+	set @computernumber,rand(1,13);
+	mes "對手抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @computernumber + "│";
+	mes "└─┘";
+	next;
+	if (@computernumber < @menumber) mes "您輸了!";
+	if (@computernumber == @menumber) goto L_trY;
+	if (@computernumber > @menumber) mes "您贏了!";	
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	if ($bigsmall2 == 0) set $bigsmall2,3;
+	if (@computernumber > @menumber) getitem 2916,@cont * $bigsmall2;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+
+L_ERROR:
+	mes "[比大小]";
+	mes "歡迎再次惠顧";
+	close;
+	end;
+Lnocm:
+	mes "[比大小]";
+	mes "您的籌碼不足";
+	close;
+	end;
+OnOpen:
+	waitingroom "比大小",0;
+	end;
+OnInit:
+	waitingroom "比大小",0;
+	end;
+}
+
+cmd_in02.gat,187,93,0	script	十八豆仔#1	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[十八豆仔]";
+	mes "快來玩喔!!";
+	mes "下好離手!!";
+	next;
+	menu "我要玩",L_PLAY,"我不要玩",-;
+	close;
+	end;
+	
+L_PLAY:
+	mes "[十八豆仔]";
+	mes "請押注!! (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	mes "請選擇押注方式";
+	mes "1.買大(10~18)";
+	mes "2.買小(1~9)";
+	mes "3.自訂號碼";
+	next;
+	menu "買大",L_BIG,"買小",L_SMALL,"自選號碼",L_CHANGE;
+	close;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+L_BIG:
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;	
+	mes "[十八豆仔]";
+	if (@dice4 > 9) mes "您贏了";
+	if (@dice4 <= 9) mes "您輸了";
+	if ($dice1 == 0) set $dice1,2;
+	if (@dice4 > 9) getitem 2916,@cont * $dice1;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+L_SMALL:
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;	
+	mes "[十八豆仔]";
+	if (@dice4 <= 10) mes "您贏了";
+	if (@dice4 > 10) mes "您輸了";
+	if ($dice2 == 0) set $dice2,2;
+	if (@dice4 <= 10) getitem 2916,@cont * $dice2;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+L_CHANGE:
+	mes "[十八豆仔]";
+	mes "請輸入您要押注的號碼";
+	mes "最小 3~18 最大";
+	input @change;
+	if (@change > 18) goto L_CHANGE;
+	if (@change < 3) goto L_CHANGE;
+	next;
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;
+	mes "[十八豆仔]";
+	if (@change == @dice4) mes "你贏了";
+	if (@change != @dice4) mes "你輸了";
+	if ($dice3 == 0) set $dice3,10;
+	if (@change == @dice4) getitem 2916,@cont * $dice3;
+	if (@change == @dice4) mapannounce "cmd_in02.gat",strcharinfo(0) + "押中了十八豆仔的號碼,真是神準!!",8;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+Lnocm:
+	mes "[十八豆仔]";
+	mes "您的籌碼不足";
+	close;
+	end;
+
+L_ERROR:
+	mes "[十八豆仔]";
+	mes "籌碼輸入錯誤";
+	close;
+	end;
+OnOpen:
+	waitingroom "十八豆仔",0;
+	end;
+OnInit:
+	waitingroom "十八豆仔",0;
+	end;
+}
+
+cmd_in02.gat,195,117,4	script	飛鏢解說員	725,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[飛鏢解說員]";
+	mes "您好!!";
+	next;
+	menu "買飛鏢",L_BUY,"是的",L_HELP,"不是",-;
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+L_BUY:
+	mes "[飛鏢解說員]";
+	mes "1個籌碼可以換3個飛鏢喔!!";
+	input @buy;
+	next;
+	if (@buy > 50) goto L_Error;
+	if (@buy <= 0) goto L_Error;
+	if (countitem(2916) < @buy) goto L_Error;
+	getitem 7072,@buy * 3;
+	delitem 2916,@buy;
+	close;
+	end;
+
+L_HELP:
+	mes "[飛鏢解說員]";
+	mes "買完飛鏢點飛鏢機就好了";
+	close;
+	end;
+L_Error:
+	mes "[飛鏢解說員]";
+	mes "錯誤";
+	mes "數量不可大於50";
+	mes "你的籌碼不夠";
+	close;
+	end;
+OnOpen:
+	waitingroom "飛鏢台",0;
+	end;
+OnInit:
+	waitingroom "飛鏢台",0;
+	end;
+}
+
+cmd_in02.gat,191,117,0	script	飛鏢台#1	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+L_PLAY2:
+	if (countitem(7072) < 3) goto L_Error;
+	mes "[飛鏢解說員]";
+	mes "開始玩吧!!";
+	next;
+	set @rustrand,0;
+	callfunc "rustset";
+	mes @rust1$ + @rust6$ + @rust11$ + @rust16$ + @rust21$;
+	mes @rust2$ + @rust7$ +"^0000FF"+ @rust12$ +"^000000"+ @rust17$ + @rust22$;
+	mes @rust3$ +"^0000FF"+ @rust8$ +"^000000"+"^FF0000"+ @rust13$ +"^000000"+"^0000FF"+ @rust18$ +"^000000"+ @rust23$;
+	mes @rust4$ + @rust9$ +"^0000FF"+ @rust14$ +"^000000"+ @rust19$ + @rust24$;
+	mes @rust5$ + @rust10$ + @rust15$ + @rust20$ + @rust25$;
+	mes "目前狀態";
+	next;
+	callfunc "rustrand";
+	mes @rust1$ + @rust6$ + @rust11$ + @rust16$ + @rust21$;
+	mes @rust2$ + @rust7$ +"^0000FF"+ @rust12$ +"^000000"+ @rust17$ + @rust22$;
+	mes @rust3$ +"^0000FF"+ @rust8$ +"^000000"+"^FF0000"+ @rust13$ +"^000000"+"^0000FF"+ @rust18$ +"^000000"+ @rust23$;
+	mes @rust4$ + @rust9$ +"^0000FF"+ @rust14$ +"^000000"+ @rust19$ + @rust24$;
+	mes @rust5$ + @rust10$ + @rust15$ + @rust20$ + @rust25$;
+	mes "射中靶子(如沒有€則是設到外面去)";
+	if (@rustrand == 1) set @point,1;
+	if (@rustrand == 2) set @point,1;
+	if (@rustrand == 3) set @point,1;
+	if (@rustrand == 4) set @point,1;
+	if (@rustrand == 5) set @point,1;
+	if (@rustrand == 6) set @point,1;
+	if (@rustrand == 7) set @point,1;
+	if (@rustrand == 8) set @point,2;
+	if (@rustrand == 9) set @point,1;
+	if (@rustrand == 10) set @point,1;
+	if (@rustrand == 11) set @point,1;
+	if (@rustrand == 12) set @point,2;
+	if (@rustrand == 13) set @point,3;
+	if (@rustrand == 13) mapannounce "cmd_in02.gat",strcharinfo(0) + "射中飛鏢靶上的紅心了!!!",8;
+	if (@rustrand == 14) set @point,2;
+	if (@rustrand == 15) set @point,1;
+	if (@rustrand == 16) set @point,1;
+	if (@rustrand == 17) set @point,1;
+	if (@rustrand == 18) set @point,2;
+	if (@rustrand == 19) set @point,1;
+	if (@rustrand == 20) set @point,1;
+	if (@rustrand == 21) set @point,1;
+	if (@rustrand == 22) set @point,1;
+	if (@rustrand == 23) set @point,1;
+	if (@rustrand == 24) set @point,1;
+	if (@rustrand == 25) set @point,1;
+	if (@rustrand == 26) set @point,0;
+	if (@rustrand == 27) set @point,0;
+	if (@rustrand == 28) set @point,0;
+	if (@rustrand == 29) set @point,0;
+	if (@rustrand == 30) set @point,0;
+	if (@rustrand == 31) set @point,0;
+	if (@rustrand == 32) set @point,0;
+	if (@rustrand == 33) set @point,0;
+	if (@rustrand == 34) set @point,0;
+	if (@rustrand == 35) set @point,0;
+	if (@rustrand == 36) set @point,0;
+	if (@rustrand == 37) set @point,0;
+	if (@rustrand == 38) set @point,0;
+	if (@rustrand == 39) set @point,0;
+	if (@rustrand == 40) set @point,0;
+	next;
+	mes "[飛鏢解說員]";
+	if (@point == 3) mes "正中紅心!!";
+	if (@point == 2) mes "差一點點!!";
+	if (@point == 1) mes "還在板上..";
+	if (@point == 0) mes "技術真濫..";
+	if (@point == 3) getitem 2916,20;
+	if (@point == 2) getitem 2916,10;
+	if (@point == 1) getitem 2916,1;
+	delitem 7072,3;
+	next;
+	menu "繼續玩",L_PLAY2,"離開",-;
+	close;
+L_Error:
+	mes "[飛鏢解說員]";
+	mes "你的飛鏢不足";
+	close;
+	end;
+}
+
+cmd_in02.gat,193,117,0	script	飛鏢台#2	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+L_PLAY2:
+	if (countitem(7072) < 3) goto L_Error;
+	mes "[飛鏢解說員]";
+	mes "開始玩吧!!";
+	next;
+	set @rustrand,0;
+	callfunc "rustset";
+	mes @rust1$ + @rust6$ + @rust11$ + @rust16$ + @rust21$;
+	mes @rust2$ + @rust7$ +"^0000FF"+ @rust12$ +"^000000"+ @rust17$ + @rust22$;
+	mes @rust3$ +"^0000FF"+ @rust8$ +"^000000"+"^FF0000"+ @rust13$ +"^000000"+"^0000FF"+ @rust18$ +"^000000"+ @rust23$;
+	mes @rust4$ + @rust9$ +"^0000FF"+ @rust14$ +"^000000"+ @rust19$ + @rust24$;
+	mes @rust5$ + @rust10$ + @rust15$ + @rust20$ + @rust25$;
+	mes "目前狀態";
+	next;
+	callfunc "rustrand";
+	mes @rust1$ + @rust6$ + @rust11$ + @rust16$ + @rust21$;
+	mes @rust2$ + @rust7$ +"^0000FF"+ @rust12$ +"^000000"+ @rust17$ + @rust22$;
+	mes @rust3$ +"^0000FF"+ @rust8$ +"^000000"+"^FF0000"+ @rust13$ +"^000000"+"^0000FF"+ @rust18$ +"^000000"+ @rust23$;
+	mes @rust4$ + @rust9$ +"^0000FF"+ @rust14$ +"^000000"+ @rust19$ + @rust24$;
+	mes @rust5$ + @rust10$ + @rust15$ + @rust20$ + @rust25$;
+	mes "射中靶子(如沒有€則是設到外面去)";
+	if (@rustrand == 1) set @point,1;
+	if (@rustrand == 2) set @point,1;
+	if (@rustrand == 3) set @point,1;
+	if (@rustrand == 4) set @point,1;
+	if (@rustrand == 5) set @point,1;
+	if (@rustrand == 6) set @point,1;
+	if (@rustrand == 7) set @point,1;
+	if (@rustrand == 8) set @point,2;
+	if (@rustrand == 9) set @point,1;
+	if (@rustrand == 10) set @point,1;
+	if (@rustrand == 11) set @point,1;
+	if (@rustrand == 12) set @point,2;
+	if (@rustrand == 13) set @point,3;
+	if (@rustrand == 13) mapannounce "cmd_in02.gat",strcharinfo(0) + "射中飛鏢靶上的紅心了!!!",8;
+	if (@rustrand == 14) set @point,2;
+	if (@rustrand == 15) set @point,1;
+	if (@rustrand == 16) set @point,1;
+	if (@rustrand == 17) set @point,1;
+	if (@rustrand == 18) set @point,2;
+	if (@rustrand == 19) set @point,1;
+	if (@rustrand == 20) set @point,1;
+	if (@rustrand == 21) set @point,1;
+	if (@rustrand == 22) set @point,1;
+	if (@rustrand == 23) set @point,1;
+	if (@rustrand == 24) set @point,1;
+	if (@rustrand == 25) set @point,1;
+	if (@rustrand == 26) set @point,0;
+	if (@rustrand == 27) set @point,0;
+	if (@rustrand == 28) set @point,0;
+	if (@rustrand == 29) set @point,0;
+	if (@rustrand == 30) set @point,0;
+	if (@rustrand == 31) set @point,0;
+	if (@rustrand == 32) set @point,0;
+	if (@rustrand == 33) set @point,0;
+	if (@rustrand == 34) set @point,0;
+	if (@rustrand == 35) set @point,0;
+	if (@rustrand == 36) set @point,0;
+	if (@rustrand == 37) set @point,0;
+	if (@rustrand == 38) set @point,0;
+	if (@rustrand == 39) set @point,0;
+	if (@rustrand == 40) set @point,0;
+	next;
+	mes "[飛鏢解說員]";
+	if (@point == 3) mes "正中紅心!!";
+	if (@point == 2) mes "差一點點!!";
+	if (@point == 1) mes "還在板上..";
+	if (@point == 0) mes "技術真濫..";
+	if ($rust1 == 0) set $rust1,50;
+	if ($rust2 == 0) set $rust2,20;
+	if ($rust3 == 0) set $rust3,1;
+	if (@point == 3) getitem 2916,$rust1;
+	if (@point == 2) getitem 2916,$rust2;
+	if (@point == 1) getitem 2916,$rust3;
+	delitem 7072,3;
+	next;
+	menu "繼續玩",L_PLAY2,"離開",-;
+	close;
+L_Error:
+	mes "[飛鏢解說員]";
+	mes "你的飛鏢不足";
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+}
+
+function	script	rustset	{
+	set @rust1$,"○";
+	set @rust2$,"○";
+	set @rust3$,"○";
+	set @rust4$,"○";
+	set @rust5$,"○";
+	set @rust6$,"○";
+	set @rust7$,"○";
+	set @rust8$,"●";
+	set @rust9$,"○";
+	set @rust10$,"○";
+	set @rust11$,"○";
+	set @rust12$,"●";
+	set @rust13$,"◎";
+	set @rust14$,"●";
+	set @rust15$,"○";
+	set @rust16$,"○";
+	set @rust17$,"○";
+	set @rust18$,"●";
+	set @rust19$,"○";
+	set @rust20$,"○";
+	set @rust21$,"○";
+	set @rust22$,"○";
+	set @rust23$,"○";
+	set @rust24$,"○";
+	set @rust25$,"○";
+	return;
+}
+function	script	rustrand	{
+set @rustrand,rand(1,40);
+	if (@rustrand == 1) goto L_RUST1;
+	if (@rustrand == 2) goto L_RUST2;
+	if (@rustrand == 3) goto L_RUST3;
+	if (@rustrand == 4) goto L_RUST4;
+	if (@rustrand == 5) goto L_RUST5;
+	if (@rustrand == 6) goto L_RUST6;
+	if (@rustrand == 7) goto L_RUST7;
+	if (@rustrand == 8) goto L_RUST8;
+	if (@rustrand == 9) goto L_RUST9;
+	if (@rustrand == 10) goto L_RUST10;
+	if (@rustrand == 11) goto L_RUST11;
+	if (@rustrand == 12) goto L_RUST12;
+	if (@rustrand == 13) goto L_RUST13;
+	if (@rustrand == 14) goto L_RUST14;
+	if (@rustrand == 15) goto L_RUST15;
+	if (@rustrand == 16) goto L_RUST16;
+	if (@rustrand == 17) goto L_RUST17;
+	if (@rustrand == 18) goto L_RUST18;
+	if (@rustrand == 19) goto L_RUST19;
+	if (@rustrand == 20) goto L_RUST20;
+	if (@rustrand == 21) goto L_RUST21;
+	if (@rustrand == 22) goto L_RUST22;
+	if (@rustrand == 23) goto L_RUST23;
+	if (@rustrand == 24) goto L_RUST24;
+	if (@rustrand == 25) goto L_RUST25;
+	if (@rustrand == 26) goto L_RUST26;
+	if (@rustrand == 27) goto L_RUST26;
+	if (@rustrand == 28) goto L_RUST26;
+	if (@rustrand == 29) goto L_RUST26;
+	if (@rustrand == 30) goto L_RUST26;
+	if (@rustrand == 31) goto L_RUST26;
+	if (@rustrand == 32) goto L_RUST26;
+	if (@rustrand == 33) goto L_RUST26;
+	if (@rustrand == 34) goto L_RUST26;
+	if (@rustrand == 35) goto L_RUST26;
+	if (@rustrand == 36) goto L_RUST26;
+	if (@rustrand == 37) goto L_RUST26;
+	if (@rustrand == 38) goto L_RUST26;
+	if (@rustrand == 39) goto L_RUST26;
+	if (@rustrand == 40) goto L_RUST26;
+
+L_RUST1:
+	set @rust1$,"€";
+	return;
+L_RUST2:
+	set @rust2$,"€";
+	return;
+L_RUST3:
+	set @rust3$,"€";
+	return;
+L_RUST4:
+	set @rust4$,"€";
+	return;
+L_RUST5:
+	set @rust5$,"€";
+	return;
+L_RUST6:
+	set @rust6$,"€";
+	return;
+L_RUST7:
+	set @rust7$,"€";
+	return;
+L_RUST8:
+	set @rust8$,"€";
+	return;
+L_RUST9:
+	set @rust9$,"€";
+	return;
+L_RUST10:
+	set @rust10$,"€";
+	return;
+L_RUST11:
+	set @rust11$,"€";
+	return;
+L_RUST12:
+	set @rust12$,"€";
+	return;
+L_RUST13:
+	set @rust13$,"€";
+	return;
+L_RUST14:
+	set @rust14$,"€";
+	return;
+L_RUST15:
+	set @rust15$,"€";
+	return;
+L_RUST16:
+	set @rust16$,"€";
+	return;
+L_RUST17:
+	set @rust17$,"€";
+	return;
+L_RUST18:
+	set @rust18$,"€";
+	return;
+L_RUST19:
+	set @rust19$,"€";
+	return;
+L_RUST20:
+	set @rust20$,"€";
+	return;
+L_RUST21:
+	set @rust21$,"€";
+	return;
+L_RUST22:
+	set @rust22$,"€";
+	return;
+L_RUST23:
+	set @rust23$,"€";
+	return;
+L_RUST24:
+	set @rust24$,"€";
+	return;
+L_RUST25:
+	set @rust25$,"€";
+	return;
+L_RUST26:
+	set @rust26$,"€";
+	return;
+}
+
+cmd_in02.gat,187,108,0	script	小鋼珠#1	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($@rulock1 == 1) goto L_LOCK;
+	mes "┌───────┐";
+	mes "│【新小鋼珠】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	next;
+	menu "開始",L_PLAY,"離開",-;
+	if ($@push1 == 3) goto L_CLOSE;
+	close;
+	end;
+
+L_CLOSE:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	initnpctimer "小鋼珠#1";
+	set $@rulock1,1;
+	close;
+	end;
+L_LOCK:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	next;
+	if (countitem(7029) != 0) goto Lgm;
+	close;
+	end;
+Lgm:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【請繼續操作】│";
+	mes "└───────┘";
+	next;
+	menu "解除鎖定",Lgm2,"維持鎖定",-;
+	close;
+	end;
+Lgm2:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【解除完畢！】│";
+	mes "└───────┘";
+	set $@rulock1,0;
+	close;
+L_PLAY:
+	mes "┌───────┐";
+	mes "│【請投籌碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││∥│∥│∥││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	input @cont;
+	next;
+L_PLAY2:
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	if ($@push1 == 3) goto L_CLOSE;
+	if (@cont == 0) close;
+	if (@cont > 9) goto L_PLAY;
+	if (@cont < 1) goto L_PLAY;
+	if (countitem(2916) < @cont) goto L_NOCM;
+	delitem 2916,@cont;
+	mes "┌───────┐";
+	mes "│【開始拉霸】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	next;
+	callfunc "labaset";
+L_NC1:
+	if (@number1$ == "１") set @777open,@777open+1;
+	if (@number2$ == "１") set @777open,@777open+1;
+	if (@number3$ == "１") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC3;
+	goto L_NC1;
+L_NC3:
+	if (@number1$ == "３") set @777open,@777open+1;
+	if (@number2$ == "３") set @777open,@777open+1;
+	if (@number3$ == "３") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC5;
+	goto L_NC3;
+L_NC5:
+	if (@number1$ == "５") set @777open,@777open+1;
+	if (@number2$ == "５") set @777open,@777open+1;
+	if (@number3$ == "５") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC7;
+	goto L_NC5;
+L_NC7:
+	if (@number1$ == "７") set @777open,@777open+1;
+	if (@number2$ == "７") set @777open,@777open+1;
+	if (@number3$ == "７") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open != 0) goto L_NC7;
+	mes "┌───────┐";
+	mes "│【顯示號碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if (@number1$ == @number2$) mes "2個相同數字";
+	if (@number1$ == @number3$) mes "2個相同數字";
+	if (@number3$ == @number2$) mes "2個相同數字";
+	if ($smallball1 == 0) set $smallball1,3;
+	if (@number1$ == @number2$) getitem 2916,@cont * $smallball1;
+	if (@number1$ == @number3$) getitem 2916,@cont * $smallball1;
+	if (@number3$ == @number2$) getitem 2916,@cont * $smallball1;
+	next;
+	menu "繼續玩",L_PLAY2,"離開",-;
+	close;
+	end;
+L_777:
+	mes "┌───────┐";
+	mes "│【超級大獎】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if ($smallball2 == 0) set $smallball2,50;
+	if (@777open == 3) getitem 2916,@cont * $smallball2;
+	if (@777open == 3) mapannounce "cmd_in02.gat",strcharinfo(0) + "讓小鋼珠爆台嚕!!",8;
+	set @777open,0;
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	next;
+	goto L_CLOSE;
+L_NOCM:
+	mes "┌───────┐";
+	mes "│【籌碼不足】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+OnTimer600000:
+	set $@rulock1,0;
+	set $@push1,0;
+	stopnpctimer "小鋼珠#1";
+	end;
+OnOpen:
+	waitingroom "小鋼珠",0;
+	end;
+OnInit:
+	waitingroom "小鋼珠",0;
+	end;
+}
+
+cmd_in02.gat,185,108,0	script	小鋼珠#2	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($@rulock2 == 1) goto L_LOCK;
+	mes "┌───────┐";
+	mes "│【新小鋼珠】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	next;
+	menu "開始",L_PLAY,"離開",-;
+	if ($@rulock2 == 1) goto L_LOCK;
+	close;
+	end;
+
+L_CLOSE:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	initnpctimer "小鋼珠#2";
+	set $@rulock2,1;
+	close;
+	end;
+L_LOCK:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	next;
+	if (countitem(7029) != 0) goto Lgm;
+	close;
+	end;
+Lgm:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【請繼續操作】│";
+	mes "└───────┘";
+	next;
+	menu "解除鎖定",Lgm2,"維持鎖定",-;
+	close;
+	end;
+Lgm2:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【解除完畢！】│";
+	mes "└───────┘";
+	set $@rulock2,0;
+	close;
+L_PLAY:
+	if ($@rulock2 == 1) goto L_LOCK;
+	mes "┌───────┐";
+	mes "│【請投籌碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││∥│∥│∥││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	input @cont;
+	next;
+L_PLAY2:
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	if ($@rulock2 == 1) goto L_LOCK;
+	if (@cont == 0) close;
+	if (@cont > 9) goto L_PLAY;
+	if (@cont < 1) goto L_PLAY;
+	if (countitem(2916) < @cont) goto L_NOCM;
+	delitem 2916,@cont;
+	mes "┌───────┐";
+	mes "│【開始拉霸】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	next;
+	callfunc "labaset";
+L_NC1:
+	if (@number1$ == "１") set @777open,@777open+1;
+	if (@number2$ == "１") set @777open,@777open+1;
+	if (@number3$ == "１") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC3;
+	goto L_NC1;
+L_NC3:
+	if (@number1$ == "３") set @777open,@777open+1;
+	if (@number2$ == "３") set @777open,@777open+1;
+	if (@number3$ == "３") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC5;
+	goto L_NC3;
+L_NC5:
+	if (@number1$ == "５") set @777open,@777open+1;
+	if (@number2$ == "５") set @777open,@777open+1;
+	if (@number3$ == "５") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC7;
+	goto L_NC5;
+L_NC7:
+	if (@number1$ == "７") set @777open,@777open+1;
+	if (@number2$ == "７") set @777open,@777open+1;
+	if (@number3$ == "７") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open != 0) goto L_NC7;
+	mes "┌───────┐";
+	mes "│【顯示號碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if (@number1$ == @number2$) mes "2個相同數字";
+	if (@number1$ == @number3$) mes "2個相同數字";
+	if (@number3$ == @number2$) mes "2個相同數字";
+	if ($smallball1 == 0) set $smallball1,3;
+	if (@number1$ == @number2$) getitem 2916,@cont * $smallball1;
+	if (@number1$ == @number3$) getitem 2916,@cont * $smallball1;
+	if (@number3$ == @number2$) getitem 2916,@cont * $smallball1;
+	next;
+	menu "繼續玩",L_PLAY2,"離開",-;
+	close;
+	end;
+L_777:
+	mes "┌───────┐";
+	mes "│【超級大獎】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if ($smallball2 == 0) set $smallball2,50;
+	if (@777open == 3) getitem 2916,@cont * $smallball2;
+	if (@777open == 3) mapannounce "cmd_in02.gat",strcharinfo(0) + "讓小鋼珠爆台嚕!!",8;
+	set @777open,0;
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	next;
+	goto L_CLOSE;
+L_NOCM:
+	mes "┌───────┐";
+	mes "│【籌碼不足】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+OnTimer600000:
+	set $@rulock2,0;
+	set $@push2,0;
+	stopnpctimer "小鋼珠#2";
+	end;
+OnOpen:
+	waitingroom "小鋼珠",0;
+	end;
+OnInit:
+	waitingroom "小鋼珠",0;
+	end;
+}
+
+cmd_in02.gat,183,108,0	script	小鋼珠#3	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($@rulock3 == 1) goto L_LOCK;
+	mes "┌───────┐";
+	mes "│【新小鋼珠】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	next;
+	menu "開始",L_PLAY,"離開",-;
+	if ($@rulock3 == 1) goto L_LOCK;
+	close;
+	end;
+
+L_CLOSE:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	initnpctimer "小鋼珠#3";
+	set $@rulock3,1;
+	close;
+	end;
+L_LOCK:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	next;
+	if (countitem(7029) != 0) goto Lgm;
+	close;
+	end;
+Lgm:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【請繼續操作】│";
+	mes "└───────┘";
+	next;
+	menu "解除鎖定",Lgm2,"維持鎖定",-;
+	close;
+	end;
+Lgm2:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【解除完畢！】│";
+	mes "└───────┘";
+	set $@rulock3,0;
+	close;
+
+L_PLAY:
+	if ($@rulock3 == 1) goto L_LOCK;
+	mes "┌───────┐";
+	mes "│【請投籌碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││∥│∥│∥││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	input @cont;
+	next;
+L_PLAY2:
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	if ($@rulock3 == 1) goto L_LOCK;
+	if (@cont == 0) close;
+	if (@cont > 9) goto L_PLAY;
+	if (@cont < 1) goto L_PLAY;
+	if (countitem(2916) < @cont) goto L_NOCM;
+	delitem 2916,@cont;
+	mes "┌───────┐";
+	mes "│【開始拉霸】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	next;
+	callfunc "labaset";
+L_NC1:
+	if (@number1$ == "１") set @777open,@777open+1;
+	if (@number2$ == "１") set @777open,@777open+1;
+	if (@number3$ == "１") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC3;
+	goto L_NC1;
+L_NC3:
+	if (@number1$ == "３") set @777open,@777open+1;
+	if (@number2$ == "３") set @777open,@777open+1;
+	if (@number3$ == "３") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC5;
+	goto L_NC3;
+L_NC5:
+	if (@number1$ == "５") set @777open,@777open+1;
+	if (@number2$ == "５") set @777open,@777open+1;
+	if (@number3$ == "５") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC7;
+	goto L_NC5;
+L_NC7:
+	if (@number1$ == "７") set @777open,@777open+1;
+	if (@number2$ == "７") set @777open,@777open+1;
+	if (@number3$ == "７") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open != 0) goto L_NC7;
+	mes "┌───────┐";
+	mes "│【顯示號碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if (@number1$ == @number2$) mes "2個相同數字";
+	if (@number1$ == @number3$) mes "2個相同數字";
+	if (@number3$ == @number2$) mes "2個相同數字";
+	if ($smallball1 == 0) set $smallball1,3;
+	if (@number1$ == @number2$) getitem 2916,@cont * $smallball1;
+	if (@number1$ == @number3$) getitem 2916,@cont * $smallball1;
+	if (@number3$ == @number2$) getitem 2916,@cont * $smallball1;
+	next;
+	menu "繼續玩",L_PLAY2,"離開",-;
+	close;
+	end;
+L_777:
+	mes "┌───────┐";
+	mes "│【超級大獎】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if ($smallball2 == 0) set $smallball2,50;
+	if (@777open == 3) getitem 2916,@cont * $smallball2;
+	if (@777open == 3) mapannounce "cmd_in02.gat",strcharinfo(0) + "讓小鋼珠爆台嚕!!",8;
+	set @777open,0;
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	next;
+	goto L_CLOSE;
+
+L_NOCM:
+	mes "┌───────┐";
+	mes "│【籌碼不足】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+OnTimer600000:
+	set $@rulock3,0;
+	set $@push3,0;
+	stopnpctimer "小鋼珠#3";
+	end;
+OnOpen:
+	waitingroom "小鋼珠",0;
+	end;
+OnInit:
+	waitingroom "小鋼珠",0;
+	end;
+}
+
+function	script	labaset	{
+	set @number1,rand(1,7);
+	if (@number1 == 1) goto L_DNUMBER11;
+	if (@number1 == 2) goto L_DNUMBER12;
+	if (@number1 == 3) goto L_DNUMBER13;
+	if (@number1 == 4) goto L_DNUMBER14;
+	if (@number1 == 5) goto L_DNUMBER15;
+	if (@number1 == 6) goto L_DNUMBER16;
+	if (@number1 == 7) goto L_DNUMBER17;
+
+L_2:
+	set @number2,rand(1,7);
+	if (@number2 == 1) goto L_DNUMBER21;
+	if (@number2 == 2) goto L_DNUMBER22;
+	if (@number2 == 3) goto L_DNUMBER23;
+	if (@number2 == 4) goto L_DNUMBER24;
+	if (@number2 == 5) goto L_DNUMBER25;
+	if (@number2 == 6) goto L_DNUMBER26;
+	if (@number2 == 7) goto L_DNUMBER27;
+
+L_3:
+	set @number3,rand(1,7);
+	if (@number3 == 1) goto L_DNUMBER31;
+	if (@number3 == 2) goto L_DNUMBER32;
+	if (@number3 == 3) goto L_DNUMBER33;
+	if (@number3 == 4) goto L_DNUMBER34;
+	if (@number3 == 5) goto L_DNUMBER35;
+	if (@number3 == 6) goto L_DNUMBER36;
+	if (@number3 == 7) goto L_DNUMBER37;
+	return;
+
+L_DNUMBER11:
+	set @number1$,"１";
+	goto L_2;
+L_DNUMBER12:
+	set @number1$,"２";
+	goto L_2;
+L_DNUMBER13:
+	set @number1$,"３";
+	goto L_2;
+L_DNUMBER14:
+	set @number1$,"４";
+	goto L_2;
+L_DNUMBER15:
+	set @number1$,"５";
+	goto L_2;
+L_DNUMBER16:
+	set @number1$,"６";
+	goto L_2;
+L_DNUMBER17:
+	set @number1$,"７";
+	goto L_2;
+
+L_DNUMBER21:
+	set @number2$,"１";
+	goto L_3;
+L_DNUMBER22:
+	set @number2$,"２";
+	goto L_3;
+L_DNUMBER23:
+	set @number2$,"３";
+	goto L_3;
+L_DNUMBER24:
+	set @number2$,"４";
+	goto L_3;
+L_DNUMBER25:
+	set @number2$,"５";
+	goto L_3;
+L_DNUMBER26:
+	set @number2$,"６";
+	goto L_3;
+L_DNUMBER27:
+	set @number2$,"７";
+	goto L_3;
+
+L_DNUMBER31:
+	set @number3$,"１";
+	return;
+L_DNUMBER32:
+	set @number3$,"２";
+	return;
+L_DNUMBER33:
+	set @number3$,"３";
+	return;
+L_DNUMBER34:
+	set @number3$,"４";
+	return;
+L_DNUMBER35:
+	set @number3$,"５";
+	return;
+L_DNUMBER36:
+	set @number3$,"６";
+	return;
+L_DNUMBER37:
+	set @number3$,"７";
+	return;
+}
+
+cmd_in02.gat,174,108,0	script	小鋼珠#4	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($@rulock1 == 1) goto L_LOCK;
+	mes "┌───────┐";
+	mes "│【新小鋼珠】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	next;
+	menu "開始",L_PLAY,"離開",-;
+	if ($@push1 == 3) goto L_CLOSE;
+	close;
+	end;
+
+L_CLOSE:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	initnpctimer "小鋼珠#1";
+	set $@rulock1,1;
+	close;
+	end;
+L_LOCK:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	next;
+	if (countitem(7029) != 0) goto Lgm;
+	close;
+	end;
+Lgm:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【請繼續操作】│";
+	mes "└───────┘";
+	next;
+	menu "解除鎖定",Lgm2,"維持鎖定",-;
+	close;
+	end;
+Lgm2:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【解除完畢！】│";
+	mes "└───────┘";
+	set $@rulock1,0;
+	close;
+L_PLAY:
+	mes "┌───────┐";
+	mes "│【請投籌碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││∥│∥│∥││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	input @cont;
+	next;
+L_PLAY2:
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	if ($@push1 == 3) goto L_CLOSE;
+	if (@cont == 0) close;
+	if (@cont > 9) goto L_PLAY;
+	if (@cont < 1) goto L_PLAY;
+	if (countitem(2916) < @cont) goto L_NOCM;
+	delitem 2916,@cont;
+	mes "┌───────┐";
+	mes "│【開始拉霸】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	next;
+	callfunc "labaset";
+L_NC1:
+	if (@number1$ == "１") set @777open,@777open+1;
+	if (@number2$ == "１") set @777open,@777open+1;
+	if (@number3$ == "１") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC3;
+	goto L_NC1;
+L_NC3:
+	if (@number1$ == "３") set @777open,@777open+1;
+	if (@number2$ == "３") set @777open,@777open+1;
+	if (@number3$ == "３") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC5;
+	goto L_NC3;
+L_NC5:
+	if (@number1$ == "５") set @777open,@777open+1;
+	if (@number2$ == "５") set @777open,@777open+1;
+	if (@number3$ == "５") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC7;
+	goto L_NC5;
+L_NC7:
+	if (@number1$ == "７") set @777open,@777open+1;
+	if (@number2$ == "７") set @777open,@777open+1;
+	if (@number3$ == "７") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open != 0) goto L_NC7;
+	mes "┌───────┐";
+	mes "│【顯示號碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if (@number1$ == @number2$) mes "2個相同數字";
+	if (@number1$ == @number3$) mes "2個相同數字";
+	if (@number3$ == @number2$) mes "2個相同數字";
+	if ($smallball1 == 0) set $smallball1,3;
+	if (@number1$ == @number2$) getitem 2916,@cont * $smallball1;
+	if (@number1$ == @number3$) getitem 2916,@cont * $smallball1;
+	if (@number3$ == @number2$) getitem 2916,@cont * $smallball1;
+	next;
+	menu "繼續玩",L_PLAY2,"離開",-;
+	close;
+	end;
+L_777:
+	mes "┌───────┐";
+	mes "│【超級大獎】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if ($smallball2 == 0) set $smallball2,50;
+	if (@777open == 3) getitem 2916,@cont * $smallball2;
+	if (@777open == 3) mapannounce "cmd_in02.gat",strcharinfo(0) + "讓小鋼珠爆台嚕!!",8;
+	set @777open,0;
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	next;
+	goto L_CLOSE;
+L_NOCM:
+	mes "┌───────┐";
+	mes "│【籌碼不足】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+OnTimer600000:
+	set $@rulock1,0;
+	set $@push1,0;
+	stopnpctimer "小鋼珠#1";
+	end;
+OnOpen:
+	waitingroom "小鋼珠",0;
+	end;
+OnInit:
+	waitingroom "小鋼珠",0;
+	end;
+}
+
+cmd_in02.gat,172,108,0	script	小鋼珠#5	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($@rulock1 == 1) goto L_LOCK;
+	mes "┌───────┐";
+	mes "│【新小鋼珠】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	next;
+	menu "開始",L_PLAY,"離開",-;
+	if ($@push1 == 3) goto L_CLOSE;
+	close;
+	end;
+
+L_CLOSE:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	initnpctimer "小鋼珠#1";
+	set $@rulock1,1;
+	close;
+	end;
+L_LOCK:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	next;
+	if (countitem(7029) != 0) goto Lgm;
+	close;
+	end;
+Lgm:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【請繼續操作】│";
+	mes "└───────┘";
+	next;
+	menu "解除鎖定",Lgm2,"維持鎖定",-;
+	close;
+	end;
+Lgm2:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【解除完畢！】│";
+	mes "└───────┘";
+	set $@rulock1,0;
+	close;
+L_PLAY:
+	mes "┌───────┐";
+	mes "│【請投籌碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││∥│∥│∥││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	input @cont;
+	next;
+L_PLAY2:
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	if ($@push1 == 3) goto L_CLOSE;
+	if (@cont == 0) close;
+	if (@cont > 9) goto L_PLAY;
+	if (@cont < 1) goto L_PLAY;
+	if (countitem(2916) < @cont) goto L_NOCM;
+	delitem 2916,@cont;
+	mes "┌───────┐";
+	mes "│【開始拉霸】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	next;
+	callfunc "labaset";
+L_NC1:
+	if (@number1$ == "１") set @777open,@777open+1;
+	if (@number2$ == "１") set @777open,@777open+1;
+	if (@number3$ == "１") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC3;
+	goto L_NC1;
+L_NC3:
+	if (@number1$ == "３") set @777open,@777open+1;
+	if (@number2$ == "３") set @777open,@777open+1;
+	if (@number3$ == "３") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC5;
+	goto L_NC3;
+L_NC5:
+	if (@number1$ == "５") set @777open,@777open+1;
+	if (@number2$ == "５") set @777open,@777open+1;
+	if (@number3$ == "５") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC7;
+	goto L_NC5;
+L_NC7:
+	if (@number1$ == "７") set @777open,@777open+1;
+	if (@number2$ == "７") set @777open,@777open+1;
+	if (@number3$ == "７") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open != 0) goto L_NC7;
+	mes "┌───────┐";
+	mes "│【顯示號碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if (@number1$ == @number2$) mes "2個相同數字";
+	if (@number1$ == @number3$) mes "2個相同數字";
+	if (@number3$ == @number2$) mes "2個相同數字";
+	if ($smallball1 == 0) set $smallball1,3;
+	if (@number1$ == @number2$) getitem 2916,@cont * $smallball1;
+	if (@number1$ == @number3$) getitem 2916,@cont * $smallball1;
+	if (@number3$ == @number2$) getitem 2916,@cont * $smallball1;
+	next;
+	menu "繼續玩",L_PLAY2,"離開",-;
+	close;
+	end;
+L_777:
+	mes "┌───────┐";
+	mes "│【超級大獎】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if ($smallball2 == 0) set $smallball2,50;
+	if (@777open == 3) getitem 2916,@cont * $smallball2;
+	if (@777open == 3) mapannounce "cmd_in02.gat",strcharinfo(0) + "讓小鋼珠爆台嚕!!",8;
+	set @777open,0;
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	next;
+	goto L_CLOSE;
+L_NOCM:
+	mes "┌───────┐";
+	mes "│【籌碼不足】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+OnTimer600000:
+	set $@rulock1,0;
+	set $@push1,0;
+	stopnpctimer "小鋼珠#1";
+	end;
+OnOpen:
+	waitingroom "小鋼珠",0;
+	end;
+OnInit:
+	waitingroom "小鋼珠",0;
+	end;
+}
+
+cmd_in02.gat,170,108,0	script	小鋼珠#6	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	if ($@rulock1 == 1) goto L_LOCK;
+	mes "┌───────┐";
+	mes "│【新小鋼珠】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	next;
+	menu "開始",L_PLAY,"離開",-;
+	if ($@push1 == 3) goto L_CLOSE;
+	close;
+	end;
+
+L_CLOSE:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	initnpctimer "小鋼珠#1";
+	set $@rulock1,1;
+	close;
+	end;
+L_LOCK:
+	mes "┌───────┐";
+	mes "│【機器鎖定】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【因爆台過量】│";
+	mes "└───────┘";
+	next;
+	if (countitem(7029) != 0) goto Lgm;
+	close;
+	end;
+Lgm:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【請繼續操作】│";
+	mes "└───────┘";
+	next;
+	menu "解除鎖定",Lgm2,"維持鎖定",-;
+	close;
+	end;
+Lgm2:
+	mes "┌───────┐";
+	mes "│【機器管理】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││７│７│７││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【解除完畢！】│";
+	mes "└───────┘";
+	set $@rulock1,0;
+	close;
+L_PLAY:
+	mes "┌───────┐";
+	mes "│【請投籌碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││∥│∥│∥││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【≡≡≡≡≡】│";
+	mes "└───────┘";
+	input @cont;
+	next;
+L_PLAY2:
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	if ($@push1 == 3) goto L_CLOSE;
+	if (@cont == 0) close;
+	if (@cont > 9) goto L_PLAY;
+	if (@cont < 1) goto L_PLAY;
+	if (countitem(2916) < @cont) goto L_NOCM;
+	delitem 2916,@cont;
+	mes "┌───────┐";
+	mes "│【開始拉霸】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	next;
+	callfunc "labaset";
+L_NC1:
+	if (@number1$ == "１") set @777open,@777open+1;
+	if (@number2$ == "１") set @777open,@777open+1;
+	if (@number3$ == "１") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC3;
+	goto L_NC1;
+L_NC3:
+	if (@number1$ == "３") set @777open,@777open+1;
+	if (@number2$ == "３") set @777open,@777open+1;
+	if (@number3$ == "３") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC5;
+	goto L_NC3;
+L_NC5:
+	if (@number1$ == "５") set @777open,@777open+1;
+	if (@number2$ == "５") set @777open,@777open+1;
+	if (@number3$ == "５") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open == 0) goto L_NC7;
+	goto L_NC5;
+L_NC7:
+	if (@number1$ == "７") set @777open,@777open+1;
+	if (@number2$ == "７") set @777open,@777open+1;
+	if (@number3$ == "７") set @777open,@777open+1;
+	if (@777open == 3) goto L_777;
+	set @777open,0;
+	if (@777open != 0) goto L_NC7;
+	mes "┌───────┐";
+	mes "│【顯示號碼】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if (@number1$ == @number2$) mes "2個相同數字";
+	if (@number1$ == @number3$) mes "2個相同數字";
+	if (@number3$ == @number2$) mes "2個相同數字";
+	if ($smallball1 == 0) set $smallball1,3;
+	if (@number1$ == @number2$) getitem 2916,@cont * $smallball1;
+	if (@number1$ == @number3$) getitem 2916,@cont * $smallball1;
+	if (@number3$ == @number2$) getitem 2916,@cont * $smallball1;
+	next;
+	menu "繼續玩",L_PLAY2,"離開",-;
+	close;
+	end;
+L_777:
+	mes "┌───────┐";
+	mes "│【超級大獎】§ │";
+	mes "│┌─┬─┬─┐│　●";
+	mes "││"+@number1$+"│"+@number2$+"│"+@number3$+"││　│";
+	mes "│└─┴─┴─┘○─┘";
+	mes "│【○○○○○】│";
+	mes "└───────┘";
+	if ($smallball2 == 0) set $smallball2,50;
+	if (@777open == 3) getitem 2916,@cont * $smallball2;
+	if (@777open == 3) mapannounce "cmd_in02.gat",strcharinfo(0) + "讓小鋼珠爆台嚕!!",8;
+	set @777open,0;
+	set @number1$,"";
+	set @number2$,"";
+	set @number3$,"";
+	next;
+	goto L_CLOSE;
+L_NOCM:
+	mes "┌───────┐";
+	mes "│【籌碼不足】§ │";
+	mes "│┌─┬─┬─┐│";
+	mes "││∥│∥│∥││";
+	mes "│└─┴─┴─┘○─┐";
+	mes "│【≡≡≡≡≡】│　│";
+	mes "└───────┘　●";
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+OnTimer600000:
+	set $@rulock1,0;
+	set $@push1,0;
+	stopnpctimer "小鋼珠#1";
+	end;
+OnOpen:
+	waitingroom "小鋼珠",0;
+	end;
+OnInit:
+	waitingroom "小鋼珠",0;
+	end;
+}
+
+cmd_in02.gat,170,94,0	script	十八豆仔#2	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[十八豆仔]";
+	mes "快來玩喔!!";
+	mes "下好離手!!";
+	next;
+	menu "我要玩",L_PLAY,"我不要玩",-;
+	close;
+	end;
+	
+L_PLAY:
+	mes "[十八豆仔]";
+	mes "請押注!! (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	mes "請選擇押注方式";
+	mes "1.買大(10~18)";
+	mes "2.買小(1~9)";
+	mes "3.自訂號碼";
+	next;
+	menu "買大",L_BIG,"買小",L_SMALL,"自選號碼",L_CHANGE;
+	close;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+L_BIG:
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;	
+	mes "[十八豆仔]";
+	if (@dice4 > 9) mes "您贏了";
+	if (@dice4 <= 9) mes "您輸了";
+	if ($dice1 == 0) set $dice1,2;
+	if (@dice4 > 9) getitem 2916,@cont * $dice1;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+L_SMALL:
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;	
+	mes "[十八豆仔]";
+	if (@dice4 <= 10) mes "您贏了";
+	if (@dice4 > 10) mes "您輸了";
+	if ($dice2 == 0) set $dice2,2;
+	if (@dice4 <= 10) getitem 2916,@cont * $dice2;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+L_CHANGE:
+	mes "[十八豆仔]";
+	mes "請輸入您要押注的號碼";
+	mes "最小 3~18 最大";
+	input @change;
+	if (@change > 18) goto L_CHANGE;
+	if (@change < 3) goto L_CHANGE;
+	next;
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;
+	mes "[十八豆仔]";
+	if (@change == @dice4) mes "你贏了";
+	if (@change != @dice4) mes "你輸了";
+	if ($dice3 == 0) set $dice3,10;
+	if (@change == @dice4) getitem 2916,@cont * $dice3;
+	if (@change == @dice4) mapannounce "cmd_in02.gat",strcharinfo(0) + "押中了十八豆仔的號碼,真是神準!!",8;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+Lnocm:
+	mes "[十八豆仔]";
+	mes "您的籌碼不足";
+	close;
+	end;
+
+L_ERROR:
+	mes "[十八豆仔]";
+	mes "籌碼輸入錯誤";
+	close;
+	end;
+OnOpen:
+	waitingroom "十八豆仔",0;
+	end;
+OnInit:
+	waitingroom "十八豆仔",0;
+	end;
+}
+
+cmd_in02.gat,74,86,0	script	十八豆仔#3	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[十八豆仔]";
+	mes "快來玩喔!!";
+	mes "下好離手!!";
+	next;
+	menu "我要玩",L_PLAY,"我不要玩",-;
+	close;
+	end;
+	
+L_PLAY:
+	mes "[十八豆仔]";
+	mes "請押注!! (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	mes "請選擇押注方式";
+	mes "1.買大(10~18)";
+	mes "2.買小(1~9)";
+	mes "3.自訂號碼";
+	next;
+	menu "買大",L_BIG,"買小",L_SMALL,"自選號碼",L_CHANGE;
+	close;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+L_BIG:
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;	
+	mes "[十八豆仔]";
+	if (@dice4 > 9) mes "您贏了";
+	if (@dice4 <= 9) mes "您輸了";
+	if ($dice1 == 0) set $dice1,2;
+	if (@dice4 > 9) getitem 2916,@cont * $dice1;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+L_SMALL:
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;	
+	mes "[十八豆仔]";
+	if (@dice4 <= 10) mes "您贏了";
+	if (@dice4 > 10) mes "您輸了";
+	if ($dice2 == 0) set $dice2,2;
+	if (@dice4 <= 10) getitem 2916,@cont * $dice2;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+L_CHANGE:
+	mes "[十八豆仔]";
+	mes "請輸入您要押注的號碼";
+	mes "最小 3~18 最大";
+	input @change;
+	if (@change > 18) goto L_CHANGE;
+	if (@change < 3) goto L_CHANGE;
+	next;
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;
+	mes "[十八豆仔]";
+	if (@change == @dice4) mes "你贏了";
+	if (@change != @dice4) mes "你輸了";
+	if ($dice3 == 0) set $dice3,10;
+	if (@change == @dice4) getitem 2916,@cont * $dice3;
+	if (@change == @dice4) mapannounce "cmd_in02.gat",strcharinfo(0) + "押中了十八豆仔的號碼,真是神準!!",8;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+Lnocm:
+	mes "[十八豆仔]";
+	mes "您的籌碼不足";
+	close;
+	end;
+
+L_ERROR:
+	mes "[十八豆仔]";
+	mes "籌碼輸入錯誤";
+	close;
+	end;
+OnOpen:
+	waitingroom "十八豆仔",0;
+	end;
+OnInit:
+	waitingroom "十八豆仔",0;
+	end;
+}
+
+cmd_in02.gat,104,55,0	script	十八豆仔#4	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[十八豆仔]";
+	mes "快來玩喔!!";
+	mes "下好離手!!";
+	next;
+	menu "我要玩",L_PLAY,"我不要玩",-;
+	close;
+	end;
+	
+L_PLAY:
+	mes "[十八豆仔]";
+	mes "請押注!! (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	mes "請選擇押注方式";
+	mes "1.買大(10~18)";
+	mes "2.買小(1~9)";
+	mes "3.自訂號碼";
+	next;
+	menu "買大",L_BIG,"買小",L_SMALL,"自選號碼",L_CHANGE;
+	close;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+L_BIG:
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;	
+	mes "[十八豆仔]";
+	if (@dice4 > 9) mes "您贏了";
+	if (@dice4 <= 9) mes "您輸了";
+	if ($dice1 == 0) set $dice1,2;
+	if (@dice4 > 9) getitem 2916,@cont * $dice1;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+L_SMALL:
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;	
+	mes "[十八豆仔]";
+	if (@dice4 <= 10) mes "您贏了";
+	if (@dice4 > 10) mes "您輸了";
+	if ($dice2 == 0) set $dice2,2;
+	if (@dice4 <= 10) getitem 2916,@cont * $dice2;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+L_CHANGE:
+	mes "[十八豆仔]";
+	mes "請輸入您要押注的號碼";
+	mes "最小 3~18 最大";
+	input @change;
+	if (@change > 18) goto L_CHANGE;
+	if (@change < 3) goto L_CHANGE;
+	next;
+	set @dice1,rand(1,6);
+	set @dice2,rand(1,6);
+	set @dice3,rand(1,6);
+	set @dice4,@dice1+@dice2+@dice3;
+	mes "[十八豆仔]";
+	mes "┌─┐┌─┐┌─┐";
+	mes "│*"+@dice1+"││*"+@dice2+"││*"+@dice3+"│";
+	mes "└─┘└─┘└─┘";
+	mes "共" +@dice4+ "點";
+	next;
+	mes "[十八豆仔]";
+	if (@change == @dice4) mes "你贏了";
+	if (@change != @dice4) mes "你輸了";
+	if ($dice3 == 0) set $dice3,10;
+	if (@change == @dice4) getitem 2916,@cont * $dice3;
+	if (@change == @dice4) mapannounce "cmd_in02.gat",strcharinfo(0) + "押中了十八豆仔的號碼,真是神準!!",8;
+	set @dice1,0;
+	set @dice2,0;
+	set @dice3,0;
+	set @dice4,0;
+	close;
+	end;
+
+Lnocm:
+	mes "[十八豆仔]";
+	mes "您的籌碼不足";
+	close;
+	end;
+
+L_ERROR:
+	mes "[十八豆仔]";
+	mes "籌碼輸入錯誤";
+	close;
+	end;
+OnOpen:
+	waitingroom "十八豆仔",0;
+	end;
+OnInit:
+	waitingroom "十八豆仔",0;
+	end;
+}
+
+cmd_in02.gat,89,50,0	script	比大小#2	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[比大小]";
+	mes "┌─┐┌─┐";
+	mes "│*1││*2│";
+	mes "└─┘└─┘";
+	mes "這位客官";
+	mes "你要玩比大，還是比小呢?";
+	next;
+	menu "玩比大",L_Big,"玩比小",L_Small,"不玩了",-;
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+L_trY:
+	mes "平手!";
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	getitem 2916,@cont * 1;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+L_Big:
+	mes "[比大]";
+	mes "請輸入您的籌碼數量 (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	set @menumber,rand(1,13);
+	mes "您抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @menumber + "│";
+	mes "└─┘";
+	next;
+	set @computernumber,rand(1,13);
+	mes "對手抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @computernumber + "│";
+	mes "└─┘";
+	next;
+	if (@computernumber > @menumber) mes "您輸了!";
+	if (@computernumber == @menumber) goto L_trY;
+	if (@computernumber < @menumber) mes "您贏了!";	
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	if ($bigsmall1 == 0) set $bigsmall1,6;
+	if (@computernumber < @menumber) getitem 2916,@cont * $bigsmall1;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+
+L_Small:
+	mes "[比小]";
+	mes "請輸入您的籌碼數量 (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	set @menumber,rand(1,13);
+	mes "您抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @menumber + "│";
+	mes "└─┘";
+	next;
+	set @computernumber,rand(1,13);
+	mes "對手抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @computernumber + "│";
+	mes "└─┘";
+	next;
+	if (@computernumber < @menumber) mes "您輸了!";
+	if (@computernumber == @menumber) goto L_trY;
+	if (@computernumber > @menumber) mes "您贏了!";	
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	if ($bigsmall2 == 0) set $bigsmall2,3;
+	if (@computernumber > @menumber) getitem 2916,@cont * $bigsmall2;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+
+L_ERROR:
+	mes "[比大小]";
+	mes "歡迎再次惠顧";
+	close;
+	end;
+Lnocm:
+	mes "[比大小]";
+	mes "您的籌碼不足";
+	close;
+	end;
+OnOpen:
+	waitingroom "比大小",0;
+	end;
+OnInit:
+	waitingroom "比大小",0;
+	end;
+}
+
+cmd_in02.gat,43,55,0	script	比大小#3	111,{
+	if (BaseLevel < $buylevel) goto L_NOLEVEL;
+	mes "[比大小]";
+	mes "┌─┐┌─┐";
+	mes "│*1││*2│";
+	mes "└─┘└─┘";
+	mes "這位客官";
+	mes "你要玩比大，還是比小呢?";
+	next;
+	menu "玩比大",L_Big,"玩比小",L_Small,"不玩了",-;
+	close;
+	end;
+L_NOLEVEL:
+	mes "[賭場職員]";
+	mes "您的等級不足";
+	close;
+
+L_trY:
+	mes "平手!";
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	getitem 2916,@cont * 1;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+L_Big:
+	mes "[比大]";
+	mes "請輸入您的籌碼數量 (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	set @menumber,rand(1,13);
+	mes "您抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @menumber + "│";
+	mes "└─┘";
+	next;
+	set @computernumber,rand(1,13);
+	mes "對手抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @computernumber + "│";
+	mes "└─┘";
+	next;
+	if (@computernumber > @menumber) mes "您輸了!";
+	if (@computernumber == @menumber) goto L_trY;
+	if (@computernumber < @menumber) mes "您贏了!";	
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	if ($bigsmall1 == 0) set $bigsmall1,6;
+	if (@computernumber < @menumber) getitem 2916,@cont * $bigsmall1;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+
+L_Small:
+	mes "[比小]";
+	mes "請輸入您的籌碼數量 (1~9)";
+	input @cont;
+	next;
+	if (@cont > 9) goto L_ERROR;
+	if (@cont < 1) goto L_ERROR;
+	if (countitem(2916) < @cont) goto Lnocm;
+	delitem 2916,@cont;
+	next;
+	set @menumber,rand(1,13);
+	mes "您抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @menumber + "│";
+	mes "└─┘";
+	next;
+	set @computernumber,rand(1,13);
+	mes "對手抽到的牌是";
+	mes "┌─┐";
+	mes "│*" + @computernumber + "│";
+	mes "└─┘";
+	next;
+	if (@computernumber < @menumber) mes "您輸了!";
+	if (@computernumber == @menumber) goto L_trY;
+	if (@computernumber > @menumber) mes "您贏了!";	
+	mes"┌─┐  ┌─┐";
+	mes"│*"+ @menumber +"│和│*"+ @computernumber +"│";
+	mes"└─┘  └─┘";
+	if ($bigsmall2 == 0) set $bigsmall2,3;
+	if (@computernumber > @menumber) getitem 2916,@cont * $bigsmall2;
+	set @computernumber,0;
+	set @menumber,0;
+	close;
+	end;
+
+L_ERROR:
+	mes "[比大小]";
+	mes "歡迎再次惠顧";
+	close;
+	end;
+Lnocm:
+	mes "[比大小]";
+	mes "您的籌碼不足";
+	close;
+	end;
+OnOpen:
+	waitingroom "比大小",0;
+	end;
+OnInit:
+	waitingroom "比大小",0;
+	end;
+}
+
+
+
+cmd_in02.gat,210,93,5	script	巴士阿叔	765,{
+	mes "[巴士阿叔]";
+	mes "你好！";
+	mes "回城也是要1優惠";
+	next;
+	menu "　[我要回去]",go,"取消",no;
+
+go:	
+        if(countitem(7037) < 1) goto no;
+        delitem 7037,1;
+        warp "prontera",162,156;    end;
+
+
+no:	mes "[巴士阿叔]";
+	mes "再見！";
+	close;
+}
+
+prontera.gat,162,169,5	script	賭場巴士阿叔	765,{
+	mes "[賭場巴士阿叔]";
+	mes "你好！我是賭場特快小巴司機";
+	mes "我要收取車費為1優惠";
+	next;
+	menu "　[我要去]",go,"取消",no;
+
+go:	
+        if(countitem(7037) < 1) goto no;
+        delitem 7037,1;
+        warp "cmd_in02",213,96;    end;
+
+
+no:	mes "[賭場巴士阿叔]";
+	mes "什麼都沒!去吃B";
+	close;
+OnInit:
+	waitingroom "哪濕違家溼賭博!!!",0;
+	end;
+}
+
+cmd_in02.gat,207,101,4	script	獎品換領員	719,{
+			mes "[獎品換領員]";
+			mes "哈哈!我是賭場的獎品換領員";
+			mes "你想換什麼?";
+			next;
+menu "槍手結晶",aa,"忍者結晶",ab,"超初結晶",ac,"皇帝帽",ba,"水母帽",bb,"青蛙帽",bc,"深淵帽",bd,"真神",be,"獸人頭",ca,"男人寵封印卡",cb,"女人寵封印卡",ad;
+cb:
+menu "男超初封印卡",cc,"男騎士領主(騎鳥)封印卡",cd,"男騎士領主(不騎鳥)封印卡",ce,"男神管封印卡",cf,"男超魔封印卡",da,"男神工匠封印卡",db,"男神射手封印卡",dc,"男十字刺客封印卡",dd,"男聖殿十字軍(騎鳥)封印卡",de,"男武術宗師封印卡",df,"男智者封印卡",ea,"男神行太保封印卡",eb,"男造物者封印卡",ec,"詩人封印卡",ed,"男聖殿十字軍(不騎鳥)封印卡",ee;
+ad:
+menu "女超初封印卡",ef,"女騎士領主(騎鳥)封印卡",fa,"女騎士領主(不騎鳥)封印卡",fb,"女神管封印卡",fc,"女超魔封印卡",fd,"女神工匠封印卡",fe,"女神射手封印卡",ff,"女十字刺客封印卡",ga,"女聖殿十字軍(騎鳥)封印卡",gb,"女武術宗師封印卡",gc,"女智者封印卡",gd,"女神行太保封印卡",ge,"女造物者封印卡",gf,"舞姬封印卡",gg,"女聖殿十字軍(不騎鳥)封印卡",aaa;
+//錢不足-------------------------------------------------------
+NotEnough:
+			mes "[獎品換領員]";
+			mes "什麼!? 我要的籌碼都沒有!!!";
+			mes "要耍我嗎?!去吃B吧!!";
+close;
+//去收集-------------------------------------------------------			
+bye:
+			mes "[獎品換領員]";
+			mes "加油喔!!你一定行的!";
+close;
+//-----------------------------------------------------			
+aa:
+			mes "[獎品換領員]";
+			mes "換取槍手結晶需要500籌碼";	
+			next;
+			menu "我要換",buy_1,"不換了",bye;
+
+buy_1:
+	                if((countitem(2916) < 500)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在就給你換!";
+			delitem 2916,500;
+			getitem 14027,1;
+close;
+//-------------------------------------------------------
+ab:
+			mes "[獎品換領員]";
+			mes "換取忍者結晶需要500籌碼";
+			next;
+			menu "我要換取!!",buy_2,"我不要換",bye;
+			
+buy_2:
+	                if((countitem(2916) < 500)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在就給你換";
+			delitem 2916,500;
+			getitem 14028,1;
+close;
+//--------------------------------------------------
+ac:
+			mes "[獎品換領員]";
+			mes "換取超初結晶需要500籌碼";
+			next;
+			menu "換給我吧",buy_3,"還是不好了",bye;
+			
+buy_3:
+	                if((countitem(2916) < 500)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在就給你換";
+			delitem 2916,500;
+			getitem 14026,1;
+close;
+//----------------------------------------------------
+ba:
+			mes "[獎品換領員]";
+			mes "換取皇帝帽需要10000籌碼";
+			next;
+			menu "快給我換",buy_4,"不換",bye;
+			
+buy_4:
+	                if((countitem(2916) < 10000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在就給你換";
+			delitem 2916,10000;
+			getitem 15367,1;
+close;
+//-----------------------------------------------------
+bb:
+			mes "[獎品換領員]";
+			mes "換取水母帽需要10000籌碼";
+			next;
+			menu "我要換!!",buy_5,"我不換了",bye;
+			
+buy_5:
+	                if((countitem(2916) < 10000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在就給你換";
+			delitem 2916,10000;
+			getitem 15370,1;
+close;
+//----------------------------------------------------
+
+bc:
+			mes "[獎品換領員]";
+			mes "換取青蛙帽需要10000籌碼";
+			next;
+			menu "我要換",buy_6,"我不要換",bye;
+			
+buy_6:
+	                if((countitem(2916) < 10000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,10000;
+			getitem 15369,1;
+close;
+//----------------------------------------------------
+
+bd:
+			mes "[獎品換領員]";
+			mes "換取深淵帽需要10000籌碼";
+			next;
+			menu "我要換",buy_7,"我不要換",bye;
+			
+buy_7:
+	                if((countitem(2916) < 10000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,10000;
+			getitem 15368,1;
+close;
+//----------------------------------------------------
+
+be:
+			mes "[獎品換領員]";
+			mes "換取真神需要30000籌碼";
+			next;
+			menu "我要換",buy_8,"我不要換",bye;
+			
+buy_8:
+	                if((countitem(2916) < 30000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,30000;
+			getitem 15199,1;
+close;
+//----------------------------------------------------
+
+bf:
+			mes "[獎品換領員]";
+			mes "換取天使背包需要30000籌碼";
+			next;
+			menu "我要換",buy_9,"我不要換",bye;
+			
+buy_9:
+	                if((countitem(2916) < 30000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,30000;
+			getitem 15366,1;
+close;
+//----------------------------------------------------
+
+ca:
+			mes "[獎品換領員]";
+			mes "換取獸人頭需要20000籌碼";
+			next;
+			menu "我要換",buy_10,"我不要換",bye;
+			
+buy_10:
+	                if((countitem(2916) < 20000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,20000;
+			getitem 8021,1;
+close;
+//----------------------------------------------------
+
+cc:
+			mes "[獎品換領員]";
+			mes "換取男超初封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_12,"我不要換",bye;
+			
+buy_12:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9622,1;
+close;
+//----------------------------------------------------
+
+cd:
+			mes "[獎品換領員]";
+			mes "換取男騎士領主(騎鳥)封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_13,"我不要換",bye;
+			
+buy_13:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9629,1;
+close;
+//----------------------------------------------------
+
+ce:
+			mes "[獎品換領員]";
+			mes "換取男騎士領主(不騎鳥)封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_14,"我不要換",bye;
+			
+buy_14:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9630,1;
+close;
+//----------------------------------------------------
+
+cf:
+			mes "[獎品換領員]";
+			mes "換取男神管封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_15,"我不要換",bye;
+			
+buy_15:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9631,1;
+close;
+//----------------------------------------------------
+
+da:
+			mes "[獎品換領員]";
+			mes "換取男超魔封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_16,"我不要換",bye;
+			
+buy_16:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9632,1;
+close;
+//----------------------------------------------------
+
+db:
+			mes "[獎品換領員]";
+			mes "換取男神工匠封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_17,"我不要換",bye;
+			
+buy_17:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9633,1;
+close;
+//----------------------------------------------------
+
+dc:
+			mes "[獎品換領員]";
+			mes "換取男神射手封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_18,"我不要換",bye;
+			
+buy_18:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9634,1;
+close;
+//----------------------------------------------------
+
+dd:
+			mes "[獎品換領員]";
+			mes "換取男十字刺客封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_19,"我不要換",bye;
+			
+buy_19:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9635,1;
+close;
+//----------------------------------------------------
+
+de:
+			mes "[獎品換領員]";
+			mes "換取男聖殿十字軍(騎鳥)封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_20,"我不要換",bye;
+			
+buy_20:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9636,1;
+close;
+//----------------------------------------------------
+
+df:
+			mes "[獎品換領員]";
+			mes "換取男武術宗師封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_21,"我不要換",bye;
+			
+buy_21:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9637,1;
+close;
+//----------------------------------------------------
+
+ea:
+			mes "[獎品換領員]";
+			mes "換取男智者封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_22,"我不要換",bye;
+			
+buy_22:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9638,1;
+close;
+//----------------------------------------------------
+
+eb:
+			mes "[獎品換領員]";
+			mes "換取男神行太保封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_23,"我不要換",bye;
+			
+buy_23:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9639,1;
+close;
+//----------------------------------------------------
+
+ec:
+			mes "[獎品換領員]";
+			mes "換取男造物者封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_24,"我不要換",bye;
+			
+buy_24:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9640,1;
+close;
+//----------------------------------------------------
+
+ed:
+			mes "[獎品換領員]";
+			mes "換取詩人封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_25,"我不要換",bye;
+			
+buy_25:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9641,1;
+close;
+//----------------------------------------------------
+
+ee:
+			mes "[獎品換領員]";
+			mes "換取男聖殿十字軍(不騎鳥)封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_26,"我不要換",bye;
+			
+buy_26:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9643,1;
+close;
+//----------------------------------------------------
+
+ef:
+			mes "[獎品換領員]";
+			mes "換取女超初封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_27,"我不要換",bye;
+			
+buy_27:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9667,1;
+close;
+//----------------------------------------------------
+
+fa:
+			mes "[獎品換領員]";
+			mes "換取女騎士領主(騎鳥)封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_28,"我不要換",bye;
+			
+buy_28:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9674,1;
+close;
+//----------------------------------------------------
+
+fb:
+			mes "[獎品換領員]";
+			mes "換取女騎士領主(不騎鳥)封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_29,"我不要換",bye;
+			
+buy_29:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9675,1;
+close;
+//----------------------------------------------------
+
+fc:
+			mes "[獎品換領員]";
+			mes "換取女神管封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_30,"我不要換",bye;
+			
+buy_30:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9676,1;
+close;
+//----------------------------------------------------
+
+fd:
+			mes "[獎品換領員]";
+			mes "換取女超魔封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_31,"我不要換",bye;
+			
+buy_31:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9677,1;
+close;
+//----------------------------------------------------
+
+fe:
+			mes "[獎品換領員]";
+			mes "換取女神工匠封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_32,"我不要換",bye;
+			
+buy_32:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9678,1;
+close;
+//----------------------------------------------------
+
+ff:
+			mes "[獎品換領員]";
+			mes "換取女神射手封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_33,"我不要換",bye;
+			
+buy_33:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9679,1;
+close;
+//----------------------------------------------------
+
+ga:
+			mes "[獎品換領員]";
+			mes "換取女十字刺客封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_34,"我不要換",bye;
+			
+buy_34:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9680,1;
+close;
+//----------------------------------------------------
+
+gb:
+			mes "[獎品換領員]";
+			mes "換取女聖殿十字軍(騎鳥)封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_35,"我不要換",bye;
+			
+buy_35:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9681,1;
+close;
+//----------------------------------------------------
+
+gc:
+			mes "[獎品換領員]";
+			mes "換取女武術宗師封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_36,"我不要換",bye;
+			
+buy_36:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9682,1;
+close;
+//----------------------------------------------------
+
+gd:
+			mes "[獎品換領員]";
+			mes "換取女智者封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_37,"我不要換",bye;
+			
+buy_37:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9683,1;
+close;
+//----------------------------------------------------
+
+ge:
+			mes "[獎品換領員]";
+			mes "換取女神行太保封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_38,"我不要換",bye;
+			
+buy_38:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9684,1;
+close;
+//----------------------------------------------------
+
+gf:
+			mes "[獎品換領員]";
+			mes "換取女造物者封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_39,"我不要換",bye;
+			
+buy_39:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9685,1;
+close;
+//----------------------------------------------------
+
+gg:
+			mes "[獎品換領員]";
+			mes "換取舞姬封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_40,"我不要換",bye;
+			
+buy_40:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9642,1;
+close;
+//----------------------------------------------------
+
+aaa:
+			mes "[獎品換領員]";
+			mes "換取女聖殿十字軍(不騎鳥)封印卡需要5000籌碼";
+			next;
+			menu "我要換",buy_41,"我不要換",bye;
+			
+buy_41:
+	                if((countitem(2916) < 5000)) goto NotEnough;
+			mes "[獎品換領員]";
+			mes "好現在給你換";
+			delitem 2916,5000;
+			getitem 9686,1;
+close;
+
+}

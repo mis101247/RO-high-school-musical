@@ -1,0 +1,339 @@
+prt_in.gat,164,105,4	script	神之轉職	871,{
+
+	mes "[神之轉職]";
+	mes "請選擇下列的的職業";
+next;
+menu	"初心者",abb,"超級初心者",LLordkingho,"劍士",Lordkinght,"盜賊",Paladin,"商人",HighWizard,"法師",Professor,"服事",HighPriest,"弓箭手",Champion,"騎士",LLordkinght,"十字軍",LPaladin,"魔導師",LHighWizard,"智者",LProfessor,"神官",LHighPriest,"武術宗師",LChampion,"神工匠",LWhiteSmith,"創造者",LCreator,"十字刺客",LAssasinCross,"神行太保",LStalker,"狙擊手",LSniper,"搞笑藝人",LClown,"冷艷舞姬",LGypsy,"不想轉",LCancel;
+
+LCancel:
+	mes "[神之轉職]";
+	mes "下次在來!";
+	set JobLevel,99;	resetskill;	close;
+
+abb:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+
+	menu	"普通",a01,"寶寶",a02;
+
+		a01:
+		jobchange 0,1;
+		set StatusPoint,29500;
+		set JobLevel,99;	resetskill;	close;
+	
+		a02:
+		jobchange 0,2;
+		set JobLevel,99;	resetskill;	close;
+
+LLordkingho:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+
+	menu	"普通",b01,"寶寶",b02;
+
+	b01:
+	jobchange 23,1;	
+        set JobLevel,99;	resetskill;	close;
+
+	b03:
+	jobchange 23,2;	
+        set JobLevel,99;	resetskill;	close;
+
+LLordkinght:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+
+	menu	"轉生",c01,"未轉生",c02,"寶寶",c03;
+
+	c01:
+	jobchange 7,1;	
+        set JobLevel,99;	resetskill;	close;
+
+	c02:
+	jobchange 7,0;
+        set JobLevel,99;	resetskill;	close;
+
+	c03:
+	jobchange 7,2;	
+        set JobLevel,99;	resetskill;	close;
+
+LPaladin:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+
+	menu	"轉生",d01,"未轉生",d02,"寶寶",d03;
+
+	d01:
+	jobchange 14,1;	
+        set JobLevel,99;	resetskill;	close;
+	
+	d02:
+	jobchange 14,0;
+        set JobLevel,99;	resetskill;	close;
+	
+	d03:
+	jobchange 14,2;	
+        set JobLevel,99;	resetskill;	close;
+
+
+LHighWizard:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+
+	menu	"轉生",e01,"未轉生",e02,"寶寶",e03;
+
+	
+	e01:
+	jobchange 9,1;	
+        set JobLevel,99;	resetskill;	close;
+	
+	e02:
+	jobchange 9,0;
+        set JobLevel,99;	resetskill;	close;
+	
+	e03:
+	jobchange 9,2;	
+        set JobLevel,99;	resetskill;	close;
+
+    LProfessor:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",f01,"未轉生",f02,"寶寶",f03;
+
+f01:
+	jobchange 16,1;	
+        set JobLevel,99;	resetskill;	close;
+f02:
+	jobchange 16,0;
+        set JobLevel,99;	resetskill;	close;
+f03:
+	jobchange 16,2;	
+        set JobLevel,99;	resetskill;	close;
+
+    LHighPriest:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",g01,"未轉生",g02,"寶寶",g03;
+
+g01:
+	jobchange 8,1;	
+        set JobLevel,99;	resetskill;	close;
+g02:
+	jobchange 8,0;
+        set JobLevel,99;	resetskill;	close;
+g03:
+	jobchange 8,2;	
+        set JobLevel,99;	resetskill;	close;
+
+    LChampion:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",h01,"未轉生",h02,"寶寶",h03;
+
+h01:
+	jobchange 15,1;	
+        set JobLevel,99;	resetskill;	close;
+h02:
+	jobchange 15,0;
+        set JobLevel,99;	resetskill;	close;
+h03:
+	jobchange 15,2;	
+        set JobLevel,99;	resetskill;	close;
+
+    LWhiteSmith:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",i01,"未轉生",i02,"寶寶",i03;
+
+i01:
+	jobchange 10,1;	
+        set JobLevel,99;	resetskill;	close;
+i02:
+	jobchange 10,0;
+        set JobLevel,99;	resetskill;	close;
+i03:
+	jobchange 10,2;	
+        set JobLevel,99;	resetskill;	close;
+
+    LCreator:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",j01,"未轉生",j02,"寶寶",j03;
+
+j01:
+	jobchange 18,1;	
+        set JobLevel,99;	resetskill;	close;
+j02:
+	jobchange 18,0;
+        set JobLevel,99;	resetskill;	close;
+j03:
+	jobchange 18,2;	
+        set JobLevel,99;	resetskill;	close;
+
+
+    LAssasinCross:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",k01,"未轉生",k02,"寶寶",k03;
+
+k01:
+	jobchange 12,1;	
+        set JobLevel,99;	resetskill;	close;
+k02:
+	jobchange 12,0;
+        set JobLevel,99;	resetskill;	close;
+k03:
+	jobchange 12,2;	
+        set JobLevel,99;	resetskill;	close;
+
+    LStalker:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",v01,"未轉生",v02,"寶寶",v03;
+
+v01:
+	jobchange 17,1;	
+        set JobLevel,99;	resetskill;	close;
+v02:
+	jobchange 17,0;
+        set JobLevel,99;	resetskill;	close;
+v03:
+	jobchange 17,2;	
+        set JobLevel,99;	resetskill;	close;
+
+
+    LSniper:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",m01,"未轉生",m02,"寶寶",m03;
+
+m01:
+	jobchange 11,1;	
+        set JobLevel,99;	resetskill;	close;
+m02:
+	jobchange 11,0;
+        set JobLevel,99;	resetskill;	close;
+m03:
+	jobchange 11,2;	
+        set JobLevel,99;	resetskill;	close;
+
+    LClown:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",n01,"未轉生",n02,"寶寶",n03;
+
+n01:
+	jobchange 19,1;	
+        set JobLevel,99;	resetskill;	close;
+n02:
+	jobchange 19,0;
+        set JobLevel,99;	resetskill;	close;
+n03:
+	jobchange 19,2;	
+        set JobLevel,99;	resetskill;	close;
+
+
+    LGypsy:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"轉生",o01,"未轉生",o02,"寶寶",o03;
+
+o01:
+	jobchange 20,1;	
+        set JobLevel,99;	resetskill;	close;
+o02:
+	jobchange 20,0;
+        set JobLevel,99;	resetskill;	close;
+o03:
+	jobchange 20,2;	
+        set JobLevel,99;	resetskill;	close;
+
+    Lordkinght:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+
+menu	"普通",p01,"寶寶",p02;
+next;
+p01:
+	jobchange 1,1;	
+        set JobLevel,99;	resetskill;	close;
+p02:
+	jobchange 1,2;
+        set JobLevel,99;	resetskill;	close;
+
+    Paladin:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"普通",q01,"寶寶",q02;
+
+q01:
+	jobchange 6,1;	
+        set JobLevel,99;	resetskill;	close;
+q02:
+	jobchange 6,2;
+        set JobLevel,99;	resetskill;	close;
+
+    HighWizard:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"普通",r01,"寶寶",r02;
+
+r01:
+	jobchange 5,1;	
+        set JobLevel,99;	resetskill;	close;
+r02:
+	jobchange 5,2;
+        set JobLevel,99;	resetskill;	close;
+
+    Professor:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"普通",s01,"寶寶",s02;
+
+s01:
+	jobchange 2,1;	
+        set JobLevel,99;	resetskill;	close;
+s02:
+	jobchange 2,2;
+        set JobLevel,99;	resetskill;	close;
+
+    HighPriest:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"普通",t01,"寶寶",t02;
+
+t01:
+	jobchange 4,1;	
+        set JobLevel,99;	resetskill;	close;
+t02:
+	jobchange 4,2;
+        set JobLevel,99;	resetskill;	close;
+
+    Champion:
+	mes "[神之轉職]";
+	mes "選擇轉生模式!";
+next;
+menu	"普通",u01,"寶寶",u02;
+
+u01:
+	jobchange 3,1;	
+        set JobLevel,99;	resetskill;	close;
+u02:
+	jobchange 3,2;
+        set JobLevel,99;	resetskill;	close;
+
+}

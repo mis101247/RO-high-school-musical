@@ -1,0 +1,192 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 旅館服務生 腳本 -
+//========================================================================================
+function	script	TownInn	{
+	next;
+	switch (select("儲存！","休息 - 5000z","不用了")) {
+	case 1:
+		savepoint getarg(2),getarg(3),getarg(4);
+		mes "["+getarg(1)+"]";
+		switch(getarg(0)) {
+			case 0:
+				mes "我會在這裡儲存的！";
+				mes "下次再見～";
+				return;
+			case 1:
+				mes "我會在這裡儲存的！";
+				mes "下次再見～";
+				break;
+			case 2:
+				mes "我會在這裡儲存的！";
+				mes "下次再見～";
+				break;
+			case 3:
+				mes "我會在這裡儲存的！";
+				mes "下次再見～";
+				return;
+		}
+		next;	//1,2クんnextウサ拔んペ
+		break;
+	case 2:
+		if(Zeny<5000) {
+			mes "["+getarg(1)+"]";
+			switch(getarg(0)) {
+			case 0:
+				mes "旅館費用是5000z！";
+				return;
+			case 1:
+				mes "旅館費用是5000z！";
+				return;
+			case 2:
+				mes "旅館費用是5000z！";
+				return;
+			case 3:
+				mes "旅館費用是5000z！";
+				return;
+			}
+		}
+		mes "["+getarg(1)+"]";
+		switch(getarg(0)) {
+			case 0: mes "好好的休息吧。"; 	break;
+			case 1: mes "好好的休息吧。"; 		break;
+			case 2: mes "好好的休息吧。"; 	break;
+			case 3: mes "好好的休息吧。"; 	break;
+		}
+		close2;
+		set Zeny,Zeny-5000;
+		warp getarg(2),getarg(5),getarg(6);
+		percentheal 100,100;
+		end;
+	}
+	//「ビバペ」スヘfall through
+	switch(getarg(0)) {
+		case 0:
+			break;
+		case 1:
+		case 2:
+			mes "["+getarg(1)+"]";
+			mes "歡迎再來";
+			break;
+		case 3:
+			mes "[旅館服務生]";
+			mes "歡迎再來。";
+			break;
+	}
+	return;
+}
+
+// к①⑦Ъь
+prt_in.gat,244,135,0	script	旅館服務生	53,{
+	mes "[服務生 阿瑪]";
+	mes "歡迎光臨！～歡迎光臨'內卡拉司'旅館我能為您服務什麼？";
+	callfunc "TownInn",1,"服務生 阿瑪","prt_in.gat",238,131,247,104;
+	close;
+}
+
+prt_in.gat,61,141,4	script	旅館服務生	94,{
+	mes "[服務生 阿爾瑪]";
+	mes "歡迎光臨！～歡迎光臨'內卡拉司'旅館我能為您服務什麼？";
+	callfunc "TownInn",2,"服務生 阿爾瑪","prt_in.gat",63,136,60,166;
+	close;
+}
+
+// ヤユ⑦й①Чヱ
+ein_in01.gat,206,224,3	script	旅館服務生	855,{
+	mes "[旅館服務生]";
+	mes "歡迎光臨。";
+	mes "本旅館，清潔，親切，";
+	mes "為顧客提供最好的休息，";
+	if(EIN_2QUE == 4) {	//船員ソ過去ヱリЗЬザ發行
+		next;
+		mes "[旅館服務生]";
+		mes "請稍等。";
+		next;
+		mes "[旅館服務生]";
+		mes "弧光先生是201號房間";
+		mes "歡迎光臨。";
+		next;
+		mes "[旅館服務生]";
+		mes "美好的一天。";
+		close;
+	}
+	callfunc "TownInn",3,"旅館服務生","ein_in01.gat",201,223,272,167;
+	close;
+}
+
+// 艾爾帕蘭
+aldeba_in.gat,92,58,2	script	旅館服務生	53,{
+	mes "[服務生璐璐姆]";
+	mes "歡迎光臨！";
+	callfunc "TownInn",0,"服務生璐璐姆","aldeba_in.gat",93,50,92,112;
+	close;
+}
+
+// (新)斐揚
+payon_in01.gat,132,62,2	script	旅館服務生	53,{
+	mes "[服務生安岐]";
+	mes "歡迎光臨！";
+	callfunc "TownInn",0,"服務生安岐","payon_in01.gat",135,62,132,11;
+	close;
+}
+
+// 夢羅克
+morocc_in.gat,147,141,2	script	旅館服務生	53,{
+	mes "[服務生哈斯娜]";
+	mes "歡迎光臨！";
+	callfunc "TownInn",0,"服務生哈斯娜","morocc_in.gat",142,139,173,135;
+	close;
+}
+
+// 艾爾貝塔
+alberta_in.gat,32,142,2	script	旅館服務生	53,{
+	mes "[服務生珍妮]";
+	mes "歡迎光臨！";
+	callfunc "TownInn",0,"服務生珍妮","alberta_in.gat",25,142,16,105;
+	close;
+}
+
+// 吉分
+geffen_in.gat,70,64,3	script	旅館服務生	53,{
+	mes "[服務生賽娜]";
+	mes "歡迎光臨。";
+	mes "要做家務助理什麼呢？";
+	callfunc "TownInn",0,"服務生賽娜","geffen_in.gat",70,60,31,31;
+	close;
+}
+
+// 艾音布羅克
+//　functionゾ使マスゆ
+lhz_in02.gat,230,284,4	script	旅館服務生	86,{
+	mes "[旅館服務生]";
+	mes "歡迎光臨。";
+	mes "請問有什麼需要幫忙的呢";
+	next;
+	switch(select("儲存","休息 - 5000z","結束")) {
+	case 1:
+		savepoint "lhz_in02.gat",232,273;
+		mes "[旅館服務生]";
+		mes "已為您儲存好了！謝謝";
+		close;
+	case 2:
+		if(Zeny<5000) {
+			mes "[旅館服務生]";
+			mes "旅館費用是5000z！";
+			close;
+		}
+		mes "[旅館服務生]";
+		mes "好好的休息吧。";
+		close2;
+		sc_start 10,240000,10;	//SC_BLESSING
+		set Zeny,Zeny-5000;
+		warp "lhz_in02",220,150;
+		percentheal 100,100;
+		end;
+	case 3:
+		mes "[旅館服務生]";
+		mes "歡迎再來。";
+		close;
+	}
+}

@@ -1,0 +1,1043 @@
+//==================================================================================
+// Dungeon Warp Point Script   2005-06-28(mod by kia)
+//==================================================================================
+// gefenia04.gat	¸¯Ìn¥§¨È
+// gefenia03.gat	¸¯Ìn¥§¨È
+// gefenia02.gat	¸¯Ìn¥§¨È
+// gefenia01.gat	¸¯Ìn¥§¨È
+// -----
+//==============================================================
+
+
+
+//==============================================================
+// xmas_dun01.gat	ª±¨ã¤u¼t­Ü®w
+// xmas_dun02.gat	ª±¨ã¤ÀÃþ³õ
+// -----
+// xmas.gat	¥Õ³·§ø¸¨ Á¤»æ«°
+//==============================================================
+xmas_dun01.gat,205,13,0		warp	xmaswarp0101		1,1,xmas.gat,143,311
+
+xmas_dun01.gat,129,130,0	warp	xmaswarp4001		1,1,xmas_dun02.gat,131,130
+xmas_dun02.gat,129,130,0	warp	xmaswarp4002		1,1,xmas_dun01.gat,132,130
+
+
+
+//==============================================================
+// anthell01.gat	¿ÂÃÆ ¦aº» ±K¥ÞÇ¼ÇïÇ´ÇãÇï B1F
+// anthell02.gat	¿ÂÃÆ ¦aº» ±K¥ÞÇ¼ÇïÇ´ÇãÇï B2F
+// -----
+// moc_fild01.gat	Ä¬§J©Ô¯S ¨Fºz 01 ¡ã 19
+//
+//==============================================================
+//anthell01.gat,35,267,0	warp	anthellwarp0501		1,1,moc_fild04.gat,213,327
+//anthell02.gat,171,169,0	warp	anthellwarp0502		1,2,moc_fild04.gat,213,327
+
+anthell01.gat,35,267,0		script	#anthellwarp0501	45,1,1,{
+	if(ANTHELL_FLAG)
+		warp "moc_fild15.gat",251,248;
+	else
+		warp "moc_fild04.gat",213,327;
+	end;
+}
+anthell02.gat,171,169,0		script	#anthellwarp0502	45,1,2,{
+	if(ANTHELL_FLAG)
+		warp "moc_fild04.gat",213,327;
+	else
+		warp "moc_fild15.gat",251,248;
+	end;
+}
+
+anthell01.gat,253,32,0		warp	anthellwarp4001		2,1,anthell02.gat,34,263
+anthell02.gat,32,267,0		warp	anthellwarp4001		2,2,anthell01.gat,253,35
+
+
+
+//==============================================================
+// gef_dun00.gat	¦Nªâ ¦a¤U ±K¥ÞÇ¼ÇïÇ´ÇãÇï B1F
+// gef_dun01.gat	¦Nªâ ¦a¤U ±K¥ÞÇ¼ÇïÇ´ÇãÇï B2F
+// gef_dun02.gat	¸¯Ìn¥§¨È ±K¥Þ
+// gef_dun03.gat	¸¯Ìn¥§¨È ±K¥Þ
+// -----
+// moc_fild01.gat	Ä¬§J©Ô¯S ¨Fºz 01 ¡ã 19
+//==============================================================
+gef_dun00.gat,104,103,0		warp	geffenwarp0101		3,3,gef_tower.gat,153,31
+
+gef_dun00.gat,107,169,0		warp	geffenwarp4001		2,1,gef_dun01.gat,115,236
+gef_dun01.gat,115,240,0		warp	geffenwarp4002		2,2,gef_dun00.gat,107,165
+gef_dun01.gat,197,38,0		warp	geffenwarp4003		2,1,gef_dun02.gat,106,132
+gef_dun02.gat,106,134,0		warp	geffenwarp4004		2,1,gef_dun01.gat,197,40
+gef_dun02.gat,215,67,0		warp	geffenwarp4005		2,1,gef_dun03.gat,203,200
+gef_dun03.gat,203,204,0		warp	geffenwarp4006		2,1,gef_dun02.gat,215,63
+
+
+
+//==============================================================
+// iz_dun00.gat		®ü©³ ¬}¸]
+// iz_dun01.gat		®ü©³ ¬}¸]
+// iz_dun02.gat		®ü©³ ¬}¸]
+// iz_dun03.gat		®ü©³ ¬}¸]
+// iz_dun04.gat		®ü©³ ¬}¸]
+// iz_dun05.gat		®ü©³ ¬}¸]
+// -----
+// izlu2dun.gatt	½Ã¬P³£¥« ¨Ì´µ¾|±o®q(±o¨Ì¨ÈÄõ®q)
+//==============================================================
+iz_dun00.gat,168,173,0		warp	izludewarp0501		3,3,izlu2dun.gat,108,88
+
+iz_dun00.gat,352,342,0		warp	izludewarp4001		5,2,iz_dun01.gat,253,252
+iz_dun01.gat,253,258,0		warp	izludewarp4002		2,2,iz_dun00.gat,352,337
+iz_dun00.gat,39,41,0		warp	izludewarp4003		5,2,iz_dun01.gat,41,37
+iz_dun01.gat,41,32,0		warp	izludewarp4004		2,2,iz_dun00.gat,39,46
+iz_dun01.gat,118,170,0		warp	izludewarp4005		5,2,iz_dun02.gat,236,204
+iz_dun02.gat,236,198,0		warp	izludewarp4006		5,3,iz_dun01.gat,118,165
+iz_dun02.gat,339,331,0		warp	izludewarp4007		2,2,iz_dun03.gat,32,63
+iz_dun03.gat,29,63,0		warp	izludewarp4008		2,2,iz_dun02.gat,339,328
+iz_dun03.gat,264,245,0		warp	izludewarp4009		1,2,iz_dun04.gat,26,27
+iz_dun04.gat,26,24,0		warp	izludewarp4010		2,2,iz_dun03.gat,261,245
+
+
+
+//==============================================================
+// in_sphinx1.gat	¥vªâ§J´µ ±K¥ÞB1F
+// in_sphinx2.gat	¥vªâ§J´µ ±K¥ÞB2F
+// in_sphinx3.gat	¥vªâ§J´µ ±K¥ÞB3F
+// in_sphinx4.gat	¥vªâ§J´µ ±K¥ÞB4F
+// in_sphinx5.gat	¥vªâ§J´µ ±K¥ÞB5F
+// -----
+// moc_fild01.gat	Ä¬§J©Ô¯S ¨Fºz 01 ¡ã 19
+//==============================================================
+in_sphinx1.gat,288,6,0		warp	sphinxwarp0501		5,1,moc_fild19.gat,100,99
+
+in_sphinx1.gat,80,191,0		warp	sphinxwarp4001		2,1,in_sphinx2.gat,149,81
+in_sphinx2.gat,149,77,0		warp	sphinxwarp4002		3,2,in_sphinx1.gat,80,189
+in_sphinx2.gat,276,272,0	warp	sphinxwarp4003		1,3,in_sphinx3.gat,210,54
+in_sphinx3.gat,210,57,0		warp	sphinxwarp4004		4,1,in_sphinx2.gat,274,272
+in_sphinx3.gat,35,227,0		warp	sphinxwarp4005		2,4,in_sphinx3.gat,62,227
+in_sphinx3.gat,60,227,0		warp	sphinxwarp4006		1,4,in_sphinx3.gat,32,227
+in_sphinx3.gat,70,111,0		warp	sphinxwarp4007		1,1,in_sphinx3.gat,70,81
+in_sphinx3.gat,70,83,0		warp	sphinxwarp4008		4,1,in_sphinx3.gat,70,113
+in_sphinx3.gat,12,69,0		warp	sphinxwarp4009		4,1,in_sphinx4.gat,10,222
+in_sphinx4.gat,10,224,0		warp	sphinxwarp4010		2,1,in_sphinx3.gat,12,71
+in_sphinx4.gat,120,113,0	warp	sphinxwarp4011		4,2,in_sphinx5.gat,100,99
+in_sphinx5.gat,100,96,0		warp	sphinxwarp4012		4,2,in_sphinx4.gat,120,116
+in_sphinx5.gat,11,16,0		warp	sphinxwarp4013		3,1,in_sphinx5.gat,189,181
+in_sphinx5.gat,11,183,0		warp	sphinxwarp4014		3,1,in_sphinx5.gat,11,18
+in_sphinx5.gat,189,16,0		warp	sphinxwarp4015		3,1,in_sphinx5.gat,11,181
+in_sphinx5.gat,16,188,0		warp	sphinxwarp4016		1,3,in_sphinx5.gat,181,188
+in_sphinx5.gat,16,10,0		warp	sphinxwarp4017		1,3,in_sphinx5.gat,181,10
+in_sphinx5.gat,183,10,0		warp	sphinxwarp4018		1,3,in_sphinx5.gat,18,188
+in_sphinx5.gat,183,188,0	warp	sphinxwarp4019		1,3,in_sphinx5.gat,18,10
+in_sphinx5.gat,189,183,0	warp	sphinxwarp4020		3,1,in_sphinx5.gat,189,18
+
+
+
+//==============================================================
+// moc_pryd01.gat	ª÷¦r¶ð °g®c1F
+// moc_pryd02.gat	ª÷¦r¶ð °g®c2F
+// moc_pryd03.gat	ª÷¦r¶ð °g®c3F
+// moc_pryd04.gat	ª÷¦r¶ð °g®c4F
+// moc_pryd05.gat	ª÷¦r¶ð °g®cB2F
+// moc_pryd06.gat	ª÷¦r¶ð °g®cB3F
+// -----
+// moc_ruins.gat	¨Fºz¤§³£ ¹ÚÃ¹§JÇÅ©PÃä
+// moc_prydb1.gat	µs¸é ¤u·|
+//==============================================================
+moc_pryd01.gat,195,9,0		warp	pyramidwarp0101		2,5,moc_ruins.gat,60,161
+moc_pryd05.gat,94,98,0		warp	pyramidwarp0601		2,1,moc_prydb1.gat,100,57
+
+moc_pryd01.gat,10,195,0		warp	pyramidwarp4001		5,2,moc_pryd02.gat,10,192
+moc_pryd02.gat,10,195,0		warp	pyramidwarp4002		5,2,moc_pryd01.gat,10,192
+moc_pryd01.gat,90,109,0		warp	pyramidwarp4003		1,2,moc_prydb1.gat,100,185
+moc_prydb1.gat,100,191,0	warp	pyramidwarp4004		2,2,moc_pryd01.gat,90,105
+moc_pryd02.gat,100,99,0		warp	pyramidwarp4005		3,2,moc_pryd03.gat,100,92
+moc_pryd03.gat,100,97,0		warp	pyramidwarp4006		3,2,moc_pryd02.gat,100,92
+moc_pryd03.gat,12,15,0		warp	pyramidwarp4007		3,2,moc_pryd04.gat,12,18
+moc_pryd04.gat,12,15,0		warp	pyramidwarp4008		3,2,moc_pryd03.gat,12,18
+moc_pryd03.gat,15,187,0		warp	pyramidwarp4009		2,3,moc_pryd04.gat,18,187
+moc_pryd04.gat,15,187,0		warp	pyramidwarp4010		2,3,moc_pryd03.gat,18,187
+moc_pryd03.gat,184,11,0		warp	pyramidwarp4011		2,3,moc_pryd04.gat,181,11
+moc_pryd04.gat,184,11,0		warp	pyramidwarp4012		2,3,moc_pryd03.gat,181,11
+moc_pryd03.gat,188,184,0	warp	pyramidwarp4013		3,2,moc_pryd04.gat,188,181
+moc_pryd04.gat,188,184,0	warp	pyramidwarp4014		3,2,moc_pryd03.gat,188,181
+moc_pryd05.gat,223,9,0		warp	pyramidwarp4015		2,2,moc_pryd06.gat,192,10
+moc_pryd06.gat,195,10,0		warp	pyramidwarp4016		2,3,moc_pryd05.gat,220,9
+
+
+
+//==============================================================
+// mjo_dun01.gat	§®°Ç¥§ ¼o±óÄq³õ B1F
+// mjo_dun02.gat	§®°Ç¥§ ¼o±óÄq³õ B2F
+// mjo_dun03.gat	§®°Ç¥§ ¼o±óÄq³õ B3F
+// -----
+// mjolnir_01.gat	§®°Ç¥§ ¤s¯ß 01 ¡ã 12
+//==============================================================
+mjo_dun01.gat,52,14,0		warp	mjolnirwarp0501		4,2,mjolnir_02.gat,79,363
+
+mjo_dun01.gat,14,283,0		warp	mjolnirwarp4001		2,4,mjo_dun02.gat,381,343
+mjo_dun02.gat,384,343,0		warp	mjolnirwarp4002		2,4,mjo_dun01.gat,17,283
+mjo_dun02.gat,31,21,0		warp	mjolnirwarp4003		1,1,mjo_dun03.gat,302,262
+mjo_dun03.gat,302,264,0		warp	mjolnirwarp4004		1,1,mjo_dun02.gat,31,23
+mjo_dun02.gat,39,21,0		warp	mjolnirwarp4005		1,1,mjo_dun03.gat,308,262
+mjo_dun03.gat,308,264,0		warp	mjolnirwarp4006		1,1,mjo_dun02.gat,39,23
+
+
+
+//==============================================================
+// orcsdun01.gat	Ç¦ÆãÇ«¦a¤U¬}¸]
+// orcsdun02.gat	Ç¦ÆãÇ«¦a¤U¬}¸]
+// -----
+// in_orcs01.gat	Ç¦ÆãÇ«§øÇU«Ç¤º
+//==============================================================
+orcsdun01.gat,32,172,0		warp	orcswarp0101		3,1,in_orcs01.gat,30,180
+orcsdun02.gat,180,15,0		warp	orcswarp0102		2,1,in_orcs01.gat,108,112
+
+orcsdun01.gat,183,8,0		warp	orcswarp4001		4,2,orcsdun02.gat,21,185
+orcsdun02.gat,21,188,0		warp	orcswarp4002		8,2,orcsdun01.gat,183,11
+
+
+
+//==============================================================
+// pay_dun00.gat	ÇÑÇ£Ç~ÇäÇï¦a¤U¬}¸] B1F
+// pay_dun01.gat	ÇÑÇ£Ç~ÇäÇï¦a¤U¬}¸] B2F
+// pay_dun02.gat	ÇÑÇ£Ç~ÇäÇï¦a¤U¬}¸] B3F
+// pay_dun03.gat	ÇÑÇ£Ç~ÇäÇï¦a¤U¦x°|
+// pay_dun04.gat	ÇÑÇ£Ç~ÇäÇï¦a¤U¦x°|
+// -----
+// pay_arche.gat	¤s©¨¤§³£ ´´´­
+//==============================================================
+pay_dun00.gat,21,186,0		warp	payonwarp0101		2,2,pay_arche.gat,39,131
+
+pay_dun00.gat,184,33,0		warp	payonwarp4001		2,7,pay_dun01.gat,19,33
+pay_dun01.gat,15,33,0		warp	payonwarp4002		2,6,pay_dun00.gat,181,33
+pay_dun01.gat,286,25,0		warp	payonwarp4003		2,7,pay_dun02.gat,19,63
+pay_dun02.gat,16,63,0		warp	payonwarp4004		2,7,pay_dun01.gat,283,28
+pay_dun02.gat,137,128,0		warp	payonwarp4005		4,1,pay_dun03.gat,155,159
+pay_dun03.gat,155,161,0		warp	payonwarp4006		2,1,pay_dun02.gat,137,126
+//pay_dun03.gat,127,62,0	warp	payonwarp4007		1,2,pay_dun04.gat,201,204
+
+pay_dun03.gat,127,62,4		script	#payonwarp4008		45,1,2,{
+	switch(rand(4)) {
+		case 0:	warp "pay_dun04.gat",201,204; end;
+		case 1:	warp "pay_dun04.gat",189,43;  end;
+		case 2:	warp "pay_dun04.gat",43,40;   end;
+		case 3:	warp "pay_dun04.gat",34,202;  end;
+	}
+}
+pay_dun04.gat,40,37,0		warp	payonwarp4009		2,2,pay_dun03.gat,125,62
+pay_dun04.gat,191,41,0		warp	payonwarp4010		1,1,pay_dun03.gat,125,62
+pay_dun04.gat,202,206,0		warp	payonwarp4011		1,1,pay_dun03.gat,125,62
+pay_dun04.gat,32,204,0		warp	payonwarp4012		2,1,pay_dun03.gat,125,62
+
+
+
+//==============================================================
+// prt_sewb1.gat	ÇÓÇéÇïÇÂÇå¦a¤U¤ô¸ô B1F
+// prt_sewb2.gat	ÇÓÇéÇïÇÂÇå¦a¤U¤ô¸ô B2F
+// prt_sewb3.gat	ÇÓÇéÇïÇÂÇå¦a¤U¤ô¸ô B3F
+// prt_sewb4.gat	ÇÓÇéÇïÇÂÇå¦a¤U¤ô¸ô B4F
+// -----
+// prt_fild00.gat	ÇÓÇéÇïÇÂÇåÇÑÇ}ÆãÇçÇÅ 00 ¡ã 11
+//==============================================================
+prt_sewb1.gat,135,248,0		warp	sewbwarp0501		2,2,prt_fild05.gat,274,208
+
+prt_sewb1.gat,188,247,0		warp	sewbwarp5001		1,3,prt_sewb2.gat,19,19
+prt_sewb2.gat,19,12,0		warp	sewbwarp5002		2,2,prt_sewb1.gat,192,247
+prt_sewb2.gat,100,176,0		warp	sewbwarp5003		4,2,prt_sewb2.gat,140,28
+prt_sewb2.gat,140,24,0		warp	sewbwarp5004		4,2,prt_sewb2.gat,100,172
+prt_sewb2.gat,180,24,0		warp	sewbwarp5005		4,2,prt_sewb3.gat,180,169
+prt_sewb3.gat,180,173,0		warp	sewbwarp5006		4,2,prt_sewb2.gat,180,28
+prt_sewb2.gat,19,175,0		warp	sewbwarp5007		4,2,prt_sewb2.gat,60,28
+prt_sewb2.gat,60,24,0		warp	sewbwarp5008		4,2,prt_sewb2.gat,19,171
+prt_sewb3.gat,20,185,0		warp	sewbwarp5009		3,2,prt_sewb4.gat,100,92
+prt_sewb4.gat,100,96,0		warp	sewbwarp5010		3,2,prt_sewb3.gat,19,180
+
+
+
+//==============================================================
+// treasure01.gat	¨H¨S²î1¼h
+// treasure02.gat	¨H¨S²î2¼h
+// -----
+// alb2trea.gat		¨H¨S²îÇU¥IªñÇU®q
+//==============================================================
+treasure01.gat,69,22,0		warp	treasurewarp0501	4,1,alb2trea.gat,85,107
+
+treasure01.gat,112,164,0	warp	treasurewarp4001	1,4,treasure01.gat,97,164
+treasure01.gat,99,164,0		warp	treasurewarp4002	1,4,treasure01.gat,114,164
+treasure01.gat,125,161,0	warp	treasurewarp4003	1,3,treasure01.gat,144,161
+treasure01.gat,142,161,0	warp	treasurewarp4004	1,3,treasure01.gat,123,161
+treasure01.gat,164,114,0	warp	treasurewarp4005	3,1,treasure01.gat,164,88
+treasure01.gat,164,91,0		warp	treasurewarp4006	5,1,treasure01.gat,164,116
+treasure01.gat,27,164,0		warp	treasurewarp4007	1,4,treasure01.gat,40,164
+treasure01.gat,38,164,0		warp	treasurewarp4008	1,4,treasure01.gat,25,164
+treasure01.gat,41,111,0		warp	treasurewarp4009	1,3,treasure01.gat,63,111
+treasure01.gat,61,111,0		warp	treasurewarp4010	1,3,treasure01.gat,39,111
+treasure01.gat,41,37,0		warp	treasurewarp4011	1,3,treasure01.gat,61,37
+treasure01.gat,58,37,0		warp	treasurewarp4012	1,3,treasure01.gat,39,37
+treasure01.gat,69,75,0		warp	treasurewarp4013	2,1,treasure01.gat,69,106
+treasure01.gat,69,102,0		warp	treasurewarp4014	2,1,treasure01.gat,69,77
+treasure01.gat,69,125,0		warp	treasurewarp4015	4,1,treasure01.gat,69,142
+treasure01.gat,69,140,0		warp	treasurewarp4016	4,1,treasure01.gat,69,123
+treasure01.gat,79,37,0		warp	treasurewarp4017	1,3,treasure01.gat,98,37
+treasure01.gat,96,37,0		warp	treasurewarp4018	1,3,treasure01.gat,77,37
+treasure01.gat,76,111,0		warp	treasurewarp4019	1,3,treasure01.gat,100,111
+treasure01.gat,98,111,0		warp	treasurewarp4020	1,3,treasure01.gat,74,111
+treasure01.gat,69,177,0		warp	treasurewarp4021	3,1,treasure02.gat,102,27
+treasure02.gat,102,24,0		warp	treasurewarp4022	3,1,treasure01.gat,69,179
+treasure02.gat,102,103,0	warp	treasurewarp4023	5,1,treasure02.gat,102,120
+treasure02.gat,102,118,0	warp	treasurewarp4024	5,1,treasure02.gat,102,101
+treasure02.gat,123,72,0		warp	treasurewarp4025	1,4,treasure02.gat,140,72
+treasure02.gat,138,72,0		warp	treasurewarp4026	1,4,treasure02.gat,121,72
+treasure02.gat,155,99,0		warp	treasurewarp4027	1,1,treasure02.gat,155,130
+treasure02.gat,155,128,0	warp	treasurewarp4028	1,1,treasure02.gat,155,97
+treasure02.gat,49,128,0		warp	treasurewarp4029	1,1,treasure02.gat,49,97
+treasure02.gat,49,99,0		warp	treasurewarp4030	1,1,treasure02.gat,49,130
+treasure02.gat,65,72,0		warp	treasurewarp4031	1,4,treasure02.gat,82,72
+treasure02.gat,80,72,0		warp	treasurewarp4032	1,4,treasure02.gat,63,72
+
+
+
+//==============================================================
+// izlu2dun.gat		ÇÌÇ~ÇåÇï®q
+// -----
+// iz_dun00.gat		Ç~Ç¶ÇçÆãÇÅ®ü©³¬}¸]1¼h
+//==============================================================
+izlu2dun.gat,108,83,0		warp	izludewarp0401		3,2,iz_dun00.gat,168,168
+
+
+
+
+//==============================================================
+// alde_dun01.gat	Ç|ÇçÇÃÇÌÇåÇï®É­p¶ð¦a¤U 1F ¡ã 4F
+// c_tower1.gat		Ç|ÇçÇÃÇÌÇåÇï®É­p¶ð¦a¤W 1F ¡ã 4F
+// -----
+// aldebaran.gat	
+//==============================================================
+c_tower1.gat,200,157,0		warp	clockwarp0101		1,1,aldebaran.gat,139,131
+
+c_tower1.gat,235,226,0		warp	clockwarp4001		1,1,c_tower2.gat,268,26
+c_tower1.gat,123,22,0		warp	clockwarp4002		1,1,alde_dun01.gat,297,25
+c_tower2.gat,142,283,0		warp	clockwarp4003		1,1,c_tower3.gat,65,147
+c_tower2.gat,24,24,0		warp	clockwarp4004		1,1,alde_dun03.gat,277,178
+c_tower2.gat,273,26,0		warp	clockwarp4005		1,1,c_tower1.gat,235,223
+//random 2-1
+c_tower2.gat,13,288,4		script	#clockwarp4006		45,1,1,{
+	switch(rand(3)) {
+		case 0:	warp "c_tower2.gat",13,282;    end;
+		case 1:	warp "alde_dun03.gat",175,131; end;
+		case 2:	warp "c_tower3.gat",235,7;     end;
+	}
+}
+//random 2-2
+c_tower2.gat,223,267,4		script	#clockwarp4007		45,1,1,{
+	switch(rand(3)) {
+		case 0:	warp "c_tower2.gat",228,267;   end;
+		case 1:	warp "alde_dun03.gat",130,130; end;
+		case 2:	warp "c_tower3.gat",252,29;    end;
+	}
+}
+c_tower3.gat,60,147,0		warp	clockwarp4009		1,1,c_tower2.gat,148,283
+c_tower3.gat,212,159,0		warp	clockwarp4010		1,1,alde_dun03.gat,276,53
+c_tower3.gat,7,39,0 		warp	clockwarp4011		1,1,alde_dun01.gat,171,158
+c_tower3.gat,42,41,0		warp	clockwarp4012		1,1,alde_dun02.gat,127,169
+c_tower3.gat,146,8,0		warp	clockwarp4013		1,1,c_tower1.gat,235,223
+//random3-1
+c_tower3.gat,163,252,4		script	#clockwarp4014		45,1,1,{
+	switch(rand(2)) {
+		case 0:	warp "c_tower3.gat",168,252;  end;
+		case 1:	warp "alde_dun02.gat",262,41; end;
+	}
+}
+//random3-2
+c_tower3.gat,240,7,4		script	#clockwarp4015		45,1,1,{
+	switch(rand(3)) {
+		case 0:	warp "c_tower2.gat",13,282;    end;
+		case 1:	warp "alde_dun03.gat",175,131; end;
+		case 2:	warp "c_tower3.gat",235,7;     end;
+	}
+}
+//random3-3
+c_tower3.gat,252,24,4		script	#clockwarp4016		45,1,1,{
+	switch(rand(3)) {
+		case 0:	warp "c_tower2.gat",228,267;   end;
+		case 1:	warp "alde_dun03.gat",130,130; end;
+		case 2:	warp "c_tower3.gat",252,29;    end;
+	}
+}
+c_tower4.gat,37,70,0		warp	clockwarp4017		1,1,alde_dun03.gat,277,54
+c_tower4.gat,51,156,0		warp	clockwarp4018		1,1,alde_dun01.gat,171,158
+c_tower4.gat,68,46,0		warp	clockwarp4019		1,1,c_tower4.gat,73,154
+c_tower4.gat,70,19,0		warp	clockwarp4020		2,2,c_tower3.gat,151,8
+c_tower4.gat,79,49,0		warp	clockwarp4021		2,2,c_tower4.gat,204,60
+c_tower4.gat,133,202,0		warp	clockwarp4022		1,1,c_tower4.gat,140,149
+c_tower4.gat,153,107,0		warp	clockwarp4023		1,1,c_tower2.gat,228,267
+c_tower4.gat,171,179,0		warp	clockwarp4024		1,1,alde_dun03.gat,276,53
+c_tower4.gat,198,59,0		warp	clockwarp4025		1,1,c_tower4.gat,152,98
+c_tower4.gat,204,57,0		warp	clockwarp4026		1,1,c_tower4.gat,65,77
+
+c_tower4.gat,75,156,4		script	#clockwarp4027		45,0,0,{
+	switch(rand(4)) {
+		case 0:	warp "c_tower3.gat",168,252;  end;
+		case 1:	warp "alde_dun02.gat",262,41; end;
+		case 2:	warp "c_tower4.gat",73,154;   end;
+		case 3:	warp "c_tower4.gat",140,149;  end;
+	}
+}
+c_tower4.gat,68,79,4		script	#clockwarp4028		45,0,0,{
+	switch(rand(4)) {
+		case 0:	warp "c_tower2.gat",13,282;    end;
+		case 1:	warp "alde_dun03.gat",175,131; end;
+		case 2:	warp "c_tower3.gat",235,7;     end;
+		case 3:	warp "c_tower4.gat",65,77;     end;
+	}
+}
+c_tower4.gat,142,151,4		script	#clockwarp4029		45,0,0,{
+	switch(rand(4)) {
+		case 0:	warp "c_tower3.gat",168,252;  end;
+		case 1:	warp "alde_dun02.gat",262,41; end;
+		case 2:	warp "c_tower4.gat",73,154;   end;
+		case 3: warp "c_tower4.gat",140,149;  end;
+	}
+}
+c_tower4.gat,151,96,4		script	#clockwarp4030		45,0,0,{
+	switch(rand(4)) {
+		case 0:	warp "c_tower2.gat",228,267;   end;
+		case 1:	warp "alde_dun03.gat",130,130; end;
+		case 2:	warp "c_tower3.gat",252,29;    end;
+		case 3:	warp "c_tower4.gat",152,95;    end;
+	}
+}
+c_tower4.gat,189,40,4		script	#clockwarp4031		45,2,2,{
+	switch(rand(4)) {
+		case 0:	warp "c_tower2.gat",228,267;   end;
+		case 1:	warp "alde_dun03.gat",130,130; end;
+		case 2:	warp "c_tower3.gat",252,29;    end;
+		case 3:	warp "c_tower4.gat",152,95;    end;
+	}
+}
+
+alde_dun01.gat,292,306,0	warp	clockwarp4101		2,1,alde_dun02.gat,43,24
+alde_dun01.gat,167,158,0	warp	clockwarp4102		2,2,c_tower2.gat,148,283
+alde_dun01.gat,302,25,0		warp	clockwarp4103		2,2,c_tower1.gat,125,22
+alde_dun02.gat,43,20,0		warp	clockwarp4104		1,1,alde_dun01.gat,292,300
+alde_dun02.gat,279,250,0	warp	clockwarp4105		2,2,alde_dun03.gat,18,267
+alde_dun02.gat,122,169,0	warp	clockwarp4106		2,2,c_tower3.gat,47,41
+alde_dun02.gat,187,234,0	warp	clockwarp4107		2,2,c_tower3.gat,65,147
+//randomB2
+alde_dun02.gat,267,41,4		script	#clockwarp4108		45,1,1,{
+	switch(rand(2)) {
+		case 0:	warp "c_tower3.gat",168,252;   end;
+		case 1:	warp "alde_dun02.gat",262,141; end;
+	}
+}
+alde_dun03.gat,12,267,0		warp	clockwarp4109		2,2,alde_dun02.gat,273,250
+alde_dun03.gat,277,183,0	warp	clockwarp4110		2,2,c_tower2.gat,27,27
+alde_dun03.gat,191,31,0		warp	clockwarp4111		2,2,c_tower3.gat,217,159
+alde_dun03.gat,276,48,0		warp	clockwarp4112		2,2,c_tower1.gat,235,223
+//7(npc)
+//alde_dun03.gat,264,16,0	warp	clockwarp4113		2,2,alde_dun04.gat,80,268
+//randomB3-1
+alde_dun03.gat,130,125,4	script	#clockwarp4114		45,1,1,{
+	switch(rand(3)) {
+		case 0:	warp "c_tower2.gat",228,267;   end;
+		case 1:	warp "alde_dun03.gat",130,130; end;
+		case 2:	warp "c_tower3.gat",252,29;    end;
+	}
+}
+//random3-2
+alde_dun03.gat,171,127,4	script	#clockwarp4115		45,1,1,{
+	switch(rand(3)) {
+		case 0:	warp "c_tower2.gat",13,282;    end;
+		case 1:	warp "alde_dun03.gat",175,131; end;
+		case 2:	warp "c_tower3.gat",235,7;     end;
+	}
+}
+alde_dun04.gat,80,273,0		warp	clockwarp4116		2,2,alde_dun03.gat,263,26
+alde_dun04.gat,207,225,0	warp	clockwarp4117		1,1,c_tower3.gat,7,34
+alde_dun04.gat,215,192,0	warp	clockwarp4118		1,1,c_tower2.gat,148,283
+alde_dun04.gat,32,74,0		warp	clockwarp4119		1,1,alde_dun02.gat,187,239
+alde_dun04.gat,208,58,0		warp	clockwarp4120		2,2,alde_dun04.gat,268,74
+alde_dun04.gat,272,74,0		warp	clockwarp4121		2,2,alde_dun04.gat,204,62
+
+alde_dun04.gat,80,34,4		script	#clockwarp4122		45,1,1,{
+	switch(rand(4)) {
+		case 0:	warp "c_tower2.gat",13,282;    end;
+		case 1:	warp "alde_dun03.gat",175,131; end;
+		case 2:	warp "c_tower3.gat",235,7;     end;
+		case 3:	warp "alde_dun04.gat",84,36;   end;
+	}
+}
+
+
+
+//==============================================================
+// gl_cas01.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ¥j«° 1F
+// gl_cas02.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ¥j«° 2F
+// gl_church.gat	Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ ­×¹D°|
+// gl_chyard.gat	Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ Ç§Ç»Ç¯ÇïÇÕ
+// gl_dun01.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ ³Ì¤U¼h ¦a¤U¬}¸]
+// gl_dun02.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ ³Ì¤U¼h ¦a¤U¬}¸]
+// gl_in01.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ «Ç¤º
+// gl_knt01.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ ÃM¤h¹Î¤º
+// gl_knt02.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ ÃM¤h¹Î¤º
+// gl_prison.gat	Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ ¦a¤UºÊº»
+// gl_prison1.gat	Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ ¦a¤UºÊº»
+// gl_sew01.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ¦a¤U¤ô¸ô
+// gl_sew02.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ¦a¤U¤ô¸ô
+// gl_sew03.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ¦a¤U¤ô¸ô
+// gl_sew04.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ¦a¤U¤ô¸ô
+// gl_step.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ ¶¥¬qÇ¼ÇïÇ´ÇãÇï
+// -----
+// glast_01.gat		Ç¬ÇåÇµÇÄÇÔÇ~ÇÜ¥j«°
+//==============================================================
+// Glast Heim
+
+gl_step.gat,8,7,0		warp	glastwarp0101		1,1,glast_01.gat,54,108
+gl_knt01.gat,150,6,0		warp	glastwarp0102		2,2,glast_01.gat,74,193
+gl_in01.gat,81,68,0		warp	glastwarp0103		1,1,glast_01.gat,165,330
+gl_in01.gat,83,174,0		warp	glastwarp0104		1,1,glast_01.gat,181,357
+gl_in01.gat,106,125,0		warp	glastwarp0105		1,1,glast_01.gat,219,357
+gl_in01.gat,118,59,0		warp	glastwarp0106		1,1,glast_01.gat,234,330
+gl_cas01.gat,200,18,0		warp	glastwarp0107		2,2,glast_01.gat,200,294
+gl_cas02.gat,104,193,0		warp	glastwarp0108		1,1,glast_01.gat,199,325
+gl_church.gat,156,4,0		warp	glastwarp0109		1,1,glast_01.gat,200,134
+
+gl_cas01.gat,200,165,0		warp	glastwarp4001		1,1,gl_cas02.gat,104,25
+gl_cas02.gat,104,15,0		warp	glastwarp4002		1,1,gl_cas01.gat,200,160
+gl_church.gat,16,299,0		warp	glastwarp4003		1,1,gl_chyard.gat,147,284
+gl_chyard.gat,147,287,0		warp	glastwarp4004		1,1,gl_church.gat,16,295
+gl_church.gat,301,46,0		warp	glastwarp4005		1,1,gl_chyard.gat,147,15
+gl_chyard.gat,147,12,0		warp	glastwarp4006		1,1,gl_church.gat,295,46
+gl_dun01.gat,225,18,0		warp	glastwarp4007		1,1,gl_dun02.gat,224,274
+gl_dun02.gat,224,277,0		warp	glastwarp4008		1,1,gl_dun01.gat,225,22
+gl_knt01.gat,12,148,0		warp	glastwarp4009		1,1,gl_knt02.gat,15,140
+gl_knt02.gat,10,138,0		warp	glastwarp4010		1,1,gl_knt01.gat,7,148
+gl_knt01.gat,104,204,0		warp	glastwarp4011		1,1,gl_knt01.gat,123,292
+gl_knt01.gat,128,292,0		warp	glastwarp4012		1,1,gl_knt01.gat,104,199
+gl_knt01.gat,150,291,0		warp	glastwarp4013		1,1,gl_knt02.gat,157,287
+gl_knt02.gat,157,292,0		warp	glastwarp4014		1,1,gl_knt01.gat,150,286
+gl_knt01.gat,287,144,0		warp	glastwarp4015		1,1,gl_knt02.gat,283,140
+gl_knt02.gat,289,138,0		warp	glastwarp4016		1,1,gl_knt01.gat,292,144
+gl_prison.gat,149,183,0		warp	glastwarp4017		1,1,gl_prison1.gat,150,14
+gl_prison1.gat,150,10,0		warp	glastwarp4018		1,1,gl_prison.gat,149,178
+gl_sew01.gat,19,21,0		warp	glastwarp4019		1,1,gl_sew02.gat,108,291
+gl_sew02.gat,109,294,0		warp	glastwarp4020		1,1,gl_sew01.gat,19,24
+gl_sew01.gat,258,258,0		warp	glastwarp4021		1,1,gl_prison1.gat,61,183
+gl_prison1.gat,62,187,0		warp	glastwarp4022		1,1,gl_sew01.gat,258,255
+gl_sew02.gat,299,294,0		warp	glastwarp4023		1,1,gl_sew03.gat,171,283
+gl_sew03.gat,171,286,0		warp	glastwarp4024		1,1,gl_sew02.gat,295,294
+gl_sew02.gat,30,273,0		warp	glastwarp4025		1,1,gl_chyard.gat,15,149
+gl_chyard.gat,12,149,0		warp	glastwarp4026		1,1,gl_sew02.gat,29,270
+gl_sew02.gat,290,156,0		warp	glastwarp4027		1,1,gl_step.gat,117,124
+gl_step.gat,120,124,0		warp	glastwarp4028		1,1,gl_sew02.gat,285,158
+gl_sew02.gat,296,18,0		warp	glastwarp4029		1,1,gl_knt01.gat,231,192
+gl_knt01.gat,231,197,0		warp	glastwarp4030		1,1,gl_sew02.gat,296,22
+gl_sew02.gat,16,26,0		warp	glastwarp4031		1,1,gl_prison1.gat,61,183
+
+gl_prison.gat,10,70,4		script	#glastwarp4032		45,1,1,{
+	switch(rand(2)) {
+		case 0:	warp "gl_cas01.gat",237,192; end;
+		case 1:	warp "gl_cas01.gat",368,301; end;
+	}
+}
+gl_sew03.gat,64,10,0		warp	glastwarp4033		1,1,gl_sew04.gat,68,277
+gl_sew04.gat,68,280,0		warp	glastwarp4034		1,1,gl_sew03.gat,64,13
+gl_sew04.gat,104,78,0		warp	glastwarp4035		1,1,gl_dun01.gat,133,271
+gl_dun01.gat,133,277,0		warp	glastwarp4036		1,1,gl_sew04.gat,101,78
+gl_cas01.gat,135,40,0		warp	glastwarp4037		1,1,gl_cas01.gat,144,314
+gl_cas01.gat,149,314,0		warp	glastwarp4038		1,1,gl_prison.gat,14,70
+gl_cas01.gat,167,191,0		warp	glastwarp4039		1,1,gl_prison.gat,14,70
+gl_cas01.gat,234,192,0		warp	glastwarp4040		1,1,gl_prison.gat,14,70
+gl_cas01.gat,371,301,0		warp	glastwarp4041		1,1,gl_prison.gat,14,70
+gl_cas01.gat,185,236,0		warp	glastwarp4042		1,1,gl_cas01.gat,163,191
+gl_cas01.gat,215,236,0		warp	glastwarp4043		1,1,gl_cas01.gat,238,192
+gl_cas01.gat,372,39,0		warp	glastwarp4044		1,1,gl_cas01.gat,367,301
+
+
+
+//---JP2.0 °l¥[ÇÚÇ¿ÇÓ---
+
+
+//==============================================================
+// beach_dun.gat	¦è¬}¸] Ç§Çç
+// beach_dun2.gat	¥_¬}¸] ÇçÇëÇïÇ¼
+// beach_dun3.gat	ªF¬}¸] ÇÚÇ¦
+// -----
+// comodo.gat		¤Û·QÇU®qÇ¯ÇÞÇÅ
+// um_fild01.gat	ÇçÇçÇ§´Ë
+// cmd_fild01.gat	ÇÍÇÓÇ½Ç§´Ë
+//==============================================================
+beach_dun.gat,276,67,0		warp	beachwarp0101		1,1,comodo.gat,31,215
+beach_dun2.gat,154,13,0		warp	beachwarp0102		2,1,comodo.gat,176,353
+beach_dun3.gat,17,265,0		warp	beachwarp0103		1,1,comodo.gat,328,175
+
+beach_dun2.gat,258,244,0	warp	beachwarp0501		1,1,um_fild01.gat,35,276
+beach_dun3.gat,286,57,0		warp	beachwarp0502		1,1,cmd_fild01.gat,30,317
+
+//beach_dun.gat,89,28,0		warp	beachwarp4001		3,3,beach_dun2.gat,15,182
+//beach_dun2.gat,13,182,0	warp	beachwarp4002		3,3,beach_dun.gat,89,30
+
+
+
+//---JP2.5 °l¥[ÇÚÇ¿ÇÓ---
+
+
+//==============================================================
+// gld_dun01.gat	ÇªÇçÇÅÇ¼ÇïÇ´ÇãÇï ÇÑÇ£Ç~ÇäÇï
+// gld_dun02.gat	ÇªÇçÇÅÇ¼ÇïÇ´ÇãÇï Ç|ÇçÇÃÇÌÇåÇï
+// gld_dun03.gat	ÇªÇçÇÅÇ¼ÇïÇ´ÇãÇï ÇÓÇéÇïÇÂÇå
+// gld_dun04.gat	ÇªÇçÇÅÇ¼ÇïÇ´ÇãÇï Ç®ÇÑÇ£Çï
+// -----
+// pay_gld.gat		Ç½ÇáÇïÇæÇÜ´ò
+// alde_gld.gat		Ç|ÇçÇÃÇÌÇåÇï½Ã¬P³£¥«ÇçÇ~ÆãÇÆ
+// prt_gld.gat		ÇðÇ{ÇçÇ©ÇæÆãÇèÇçÇÜ
+// gef_fild13.gat	ÇÒÇæÇÄÇÇÇ|
+//==============================================================
+gld_dun01.gat,119,14,0		warp	gldwarp0201		1,1,pay_gld.gat,53,141
+gld_dun02.gat,180,112,0		warp	gldwarp0202		1,1,alde_gld.gat,242,121
+gld_dun02.gat,20,160,0		warp	gldwarp0203		1,1,alde_gld.gat,229,185
+gld_dun03.gat,42,30,0		warp	gldwarp0204		1,1,prt_gld.gat,63,66
+gld_dun03.gat,238,274,0		warp	gldwarp0205		1,1,prt_gld.gat,252,247
+gld_dun04.gat,37,230,0		warp	gldwarp0501		1,1,gef_fild13.gat,42,331
+gld_dun04.gat,110,20,0		warp	gldwarp0501		1,1,gef_fild13.gat,373,62
+
+
+
+//==============================================================
+// tur_dun01.gat	Ç»ÆãÇÄÇçÇ|Ç~ÇåÇïÇÅ
+// tur_dun02.gat	Ç»ÆãÇÄÇçÇ|Ç~ÇåÇïÇÅÇ¼ÇïÇ´ÇãÇï
+// tur_dun03.gat	Ç»ÆãÇÄÇçÇ|Ç~ÇåÇïÇÅ ¶§©~§ø
+// tur_dun04.gat	Ç»ÆãÇÄÇçÇ|Ç~ÇåÇïÇÅ ¤[¶§®c
+// tur_dun05.gat	¦a¤UÀã¦a±a
+// tur_dun06.gat	¦a¤UÀã¦a±a
+// -----
+//==============================================================
+tur_dun01.gat,154,241,0		warp	turtlewarp4001		1,1,tur_dun02.gat,148,264
+tur_dun02.gat,148,268,0		warp	turtlewarp4002		1,1,tur_dun01.gat,154,237
+tur_dun02.gat,167,19,0		warp	turtlewarp4003		1,1,tur_dun03.gat,132,189
+tur_dun03.gat,132,193,0		warp	turtlewarp4004		1,1,tur_dun02.gat,167,23
+tur_dun03.gat,217,71,0		warp	turtlewarp4005		1,1,tur_dun04.gat,100,192
+tur_dun04.gat,100,196,0		warp	turtlewarp4006		1,1,tur_dun03.gat,215,75
+tur_dun05.gat,89,69,0		warp	turtlewarp4007		1,1,tur_dun02.gat,148,264
+tur_dun05.gat,9,45,0		warp	turtlewarp4008		1,1,tur_dun01.gat,154,237
+
+
+
+//---JP3.0 °l¥[ÇÚÇ¿ÇÓ---
+
+
+//==============================================================
+// mag_dun01.gat	ÇÊÆãÇ¬ÇéÆãÇÅ 1¼h
+// mag_dun02.gat	ÇÊÆãÇ¬ÇéÆãÇÅ 2¼h
+// -----
+// yuno_fild03.gat	Ç¤ÇçÇÝÇµÇÓÇèÆãÇÄ
+//==============================================================
+mag_dun01.gat,126,66,0		warp	nogloadwarp0501		1,1,yuno_fild03.gat,36,139
+
+mag_dun01.gat,242,241,0		warp	nogloadwarp4001		1,1,mag_dun02.gat,47,31
+mag_dun02.gat,47,28,0		warp	nogloadwarp4002		1,1,mag_dun01.gat,240,238
+
+
+
+//---Ç|ÇÚÇÀ°l¥[ÇÚÇ¿ÇÓ---
+
+
+//==============================================================
+// ama_dun01.gat	Å|ÇU°g®c
+// ama_dun02.gat	¦a¤U¾Ô³õ¸ñ
+// ama_dun03.gat	Ç|ÇÚÇÀ¦a¤U¯«ªÀ
+// ama_test.gat		ÇÞÇÞÇ»ÇéÅéÅçÀ]
+// -----
+//==============================================================
+ama_dun01.gat,235,144,0		warp	amatsuwarp0401		1,1,ama_dun02.gat,33,40
+ama_dun02.gat,30,40,0		warp	amatsuwarp0402		1,1,ama_dun01.gat,232,144
+ama_dun02.gat,196,123,0		warp	amatsuwarp0403		1,1,ama_dun03.gat,120,12
+ama_dun03.gat,120,9,0		warp	amatsuwarp0404		1,1,ama_dun02.gat,196,120
+
+
+
+//---Ç¯ÇïÇéÇï°l¥[ÇÚÇ¿ÇÓ---
+
+
+//==============================================================
+// gon_dun01.gat	¦è¤ý¥À¯«·µ
+// gon_dun02.gat	¯«¥PÇUùÖ½L
+// gon_dun03.gat	ªZ³®®ç·½
+// gon_test.gat		®æ°«³õ
+// -----
+// gonryun.gat		¯«¥PÇU®qÇ¯ÇïÇéÇï
+//==============================================================
+//1F
+gon_dun01.gat,153,45,0		warp	gonryunwarp0101		1,1,gonryun.gat,159,198
+
+//2F
+gon_dun01.gat,162,273,0		warp	gonryunwarp4001		1,1,gon_dun02.gat,17,113
+gon_dun02.gat,14,113,0		warp	gonryunwarp4002		1,1,gon_dun01.gat,162,270
+//2FùÖ½L°g¸ô°p
+//¥ª¤j¦a
+gon_dun02.gat,56,119,0		warp	gonryunwarp4003		1,1,gon_dun02.gat,47,210	/*¬Û¤¬F*/
+//¥ª¤W¤jùÖ½L
+gon_dun02.gat,92,190,0		warp	gonryunwarp4004		1,1,gon_dun02.gat,199,20	/*¬Û¤¬E*/
+gon_dun02.gat,44,213,0		warp	gonryunwarp4005		1,1,gon_dun02.gat,51,119	/*¬Û¤¬F*/
+gon_dun02.gat,44,166,0		warp	gonryunwarp4006		1,1,gon_dun02.gat,97,121	/*½T©w*/
+//¥ª¯u¤¤¤pùÖ½L
+gon_dun02.gat,94,118,0		warp	gonryunwarp4007		1,1,gon_dun02.gat,177,189	/*½T©w*/
+//¥ª¯u¤¤©t®q
+gon_dun02.gat,76,100,0		warp	gonryunwarp4008		1,1,gon_dun02.gat,145,62	/*½T©w*/
+//¥ª¤UùÖ½L
+gon_dun02.gat,63,66,0		warp	gonryunwarp4009		1,1,gon_dun02.gat,203,94	/*¬Û¤¬A*/
+gon_dun02.gat,86,44,0		warp	gonryunwarp4010		1,1,gon_dun02.gat,145,233	/*½T©w*/
+//¤¤¥¡¤WùÖ½L
+gon_dun02.gat,148,236,0		warp	gonryunwarp4011		1,1,gon_dun02.gat,234,194	/*¬Û¤¬D*/
+gon_dun02.gat,171,258,0		warp	gonryunwarp4012		1,1,gon_dun02.gat,76,96		/*½T©w*/
+//¤¤¥¡¤pùÖ½L/*µL¥Û*/
+gon_dun02.gat,180,189,0		warp	gonryunwarp4013		1,1,gon_dun02.gat,170,164	/*½T©w*/
+gon_dun02.gat,165,189,0		warp	gonryunwarp4014		1,1,gon_dun02.gat,235,135	/*¬Û¤¬C*/
+//¯uÇz¤¤¤Y«¬¤j¦a
+gon_dun02.gat,170,161,0		warp	gonryunwarp4015		1,1,gon_dun02.gat,89,41		/*½T©w*/
+//¤¤¥¡¤UùÖ½L
+gon_dun02.gat,168,92,0		warp	gonryunwarp4016		1,1,gon_dun02.gat,273,76	/*¬Û¤¬B*/
+gon_dun02.gat,145,66,0		warp	gonryunwarp4017		1,1,gon_dun02.gat,199,20	/*½T©w*/
+//¥k¤W¤j¦a
+gon_dun02.gat,234,191,0		warp	gonryunwarp4018		1,1,gon_dun02.gat,145,233	/*¬Û¤¬D*/
+//¥k¤UùÖ½L
+gon_dun02.gat,235,138,0		warp	gonryunwarp4019		1,1,gon_dun02.gat,168,189	/*¬Û¤¬C*/
+gon_dun02.gat,199,94,0		warp	gonryunwarp4020		1,1,gon_dun02.gat,60,70		/*¬Û¤¬A*/
+gon_dun02.gat,276,76,0		warp	gonryunwarp4021		1,1,gon_dun02.gat,163,87	/*¬Û¤¬B*/
+//¥k¤U¸­
+gon_dun02.gat,196,20,0		warp	gonryunwarp4022		1,1,gon_dun02.gat,95,190	/*¬Û¤¬E*/
+//3F
+gon_dun02.gat,251,268,0		warp	gonryunwarp4023		1,1,gon_dun03.gat,68,9
+gon_dun03.gat,68,6,0		warp	gonryunwarp4024		1,1,gon_dun02.gat,251,265
+
+
+
+//==============================================================
+// sec_pri.gat		ÇðÇ{ÇçÇËÇå®cºÊº»
+// sec_in01.gat		ÇðÇ{ÇçÇËÇå®c¤º³¡
+// sec_in02.gat		ÇðÇ{ÇçÇËÇå®c¤º³¡
+// -----
+//==============================================================
+
+
+
+//---Ç¢ÇïÇÌÇå°l¥[ÇÚÇ¿ÇÓ
+
+
+//==============================================================
+// um_dun01.gat		¤j¾ðÇU¹D
+// um_dun02.gat		²`¶øÇU±KªL
+// -----
+// umbala.gat		Ç¢ÆãÇ»Çï±ÚÇU§øÇ¢ÇïÇÌÇå
+// yggdrasil01.gat	ÇÑÇÕÇçÇ®ÇçÇÛÇçÇU¬u(Ç~Ç¬ÇÅÇåÇ³ÇçÇU·F)
+//==============================================================
+um_dun01.gat,42,27,0		warp	umbalawarp0101		1,1,umbala.gat,109,284
+um_dun02.gat,126,162,0		warp	umbalawarp0501		1,1,yggdrasil01.gat,39,63
+
+//D1F ? D2F
+um_dun01.gat,149,198,0		warp	umbalawarp4001		1,1,um_dun02,52,22
+um_dun02.gat,55,18,0		warp	umbalawarp4002		1,1,um_dun01,152,198
+//2FLink A
+um_dun02.gat,64,79,0		warp	umbalawarp4003		1,1,um_dun02,219,261
+um_dun02.gat,222,259,0		warp	umbalawarp4004		1,1,um_dun02,67,77
+//2FLink B
+um_dun02.gat,169,38,0		warp	umbalawarp4005		1,1,um_dun02,215,88
+um_dun02.gat,215,85,0		warp	umbalawarp4006		1,1,um_dun02,166,38
+//2FLink C
+um_dun02.gat,32,249,0		warp	umbalawarp4007		1,1,um_dun02,117,208
+um_dun02.gat,113,208,0		warp	umbalawarp4008		1,1,um_dun02,35,252
+//2FLink D
+um_dun02.gat,177,38,0		warp	umbalawarp4009		1,1,um_dun02,100,208
+um_dun02.gat,103,208,0		warp	umbalawarp4010		1,1,um_dun02,180,38
+//2FLink E
+um_dun02.gat,231,255,0		warp	umbalawarp4011		1,1,um_dun02,25,241
+um_dun02.gat,24,244,0		warp	umbalawarp4012		1,1,um_dun02,233,253
+//2FLink F
+um_dun02.gat,215,77,0		warp	umbalawarp4013		1,1,um_dun02,60,92
+um_dun02.gat,60,89,0		warp	umbalawarp4014		1,1,um_dun02,215,74
+
+
+
+//---ÇÇÇÒÇçÇÔÇ~ÇÜ°l¥[ÇÚÇ¿ÇÓ
+
+
+//==============================================================
+// valkyrie.gat		ÇðÇ{ÇçÇ©ÇæÆã¯«·µ
+// -----
+//==============================================================
+
+
+
+//---Às¤§«°°l¥[ÇÚÇ¿ÇÓ
+
+
+//==============================================================
+// lou_dun01.gat	¤ý³®
+// lou_dun02.gat	¤ý³® ¤º³¡
+// lou_dun03.gat	¥Õ¦Ï®c
+// -----
+// louyang.gat		¥j³£ Às¤§«°
+//==============================================================
+lou_dun01.gat,221,195,0		warp	louyangwarp0101		1,1,louyang.gat,40,273
+
+// Lou_dun01 -> Lou_dun02
+lou_dun01.gat,40,201,0		warp	louyangwarp1001		1,1,lou_dun02.gat,285,18
+lou_dun02.gat,288,18,0		warp	louyangwarp1002		1,2,lou_dun01.gat,38,203
+// Lou_dun02 -> Lou_dun03
+lou_dun02.gat,165,269,0		warp	louyangwarp1003		1,1,lou_dun03.gat,165,38
+lou_dun03.gat,165,35,0		warp	louyangwarp1004		1,1,lou_dun02.gat,165,266
+
+
+
+//---¯«¾¹Ç«Ç¤ÇµÇÄ°l¥[ÇÚÇ¿ÇÓ
+
+
+//==============================================================
+// que_god01.gat	¯«¾¹Ç«Ç¤ÇµÇÄMap01
+// que_god02.gat	¯«¾¹Ç«Ç¤ÇµÇÄMap02
+// -----
+//==============================================================
+
+
+
+//---Ç|ÇâÇ»Çà°l¥[ÇÚÇ¿ÇÓ
+
+
+//==============================================================
+// ayo_dun01.gat	¥j¥N¯«·µ°g®c
+// ayo_dun02.gat	¥j¥N¯«·µ¤º³¡
+// -----
+//==============================================================
+ayo_dun01.gat,274,14,0	warp	ayothayawarp0501	1,1,ayo_fild02.gat,279,150
+
+// Ayo_dun02 -> Ayo_dun01
+ayo_dun02.gat,23,22,0	warp	ayothayawarp1001	1,1,ayo_dun01.gat,24,280
+ayo_dun02.gat,275,22,0	warp	ayothayawarp1002	1,1,ayo_dun01.gat,24,280
+
+
+
+
+//---Ç|ÇçÇÃÇÌÇåÇïÇ»ÆãÇØÇÄÇåÇ¿Ç«°l¥[ÇÚÇ¿ÇÓ
+
+
+//---¿ûÅK¤§³£Ç|Ç~ÇïÇÒÇéÇ¿Ç«°l¥[ÇÚÇ¿ÇÓ
+
+
+//==============================================================
+// ----- Einbroch Ç|Ç~ÇïÇÒÇéÇ¿Ç« -----
+// ein_dun01.gat	Äq¤sÇ¼ÇïÇ´ÇãÇï
+// ein_dun02.gat	Äq¤sÇ¼ÇïÇ´ÇãÇï
+// -----
+// einbech.gat		±ÄÄqÇU§øÇ|Ç~ÇïÇÕÇÑ
+//==============================================================
+//Äq¤sÇ¼ÇïÇ´ÇãÇï?±ÄÄqÇU§øÇ|Ç~ÇïÇÕÇÑ
+ein_dun01.gat,22,11,0	warp	einbrochwarp0101	1,1,einbech.gat,138,249
+//Äq¤sÇ¼ÇïÇ´ÇãÇï¢°?Äq¤sÇ¼ÇïÇ´ÇãÇï¢±
+ein_dun01.gat,261,255,0	warp	einbrochwarp4001	1,1,ein_dun02.gat,291,292
+ein_dun02.gat,286,292,0	warp	einbrochwarp4002	1,1,ein_dun01.gat,261,258
+//Äq¤sÇ¼ÇïÇ´ÇãÇï¢±
+ein_dun02.gat,210,225,0	warp	einbrochwarp4003	1,1,ein_dun02.gat,216,207
+ein_dun02.gat,216,210,0	warp	einbrochwarp4004	1,1,ein_dun02.gat,208,228
+ein_dun02.gat,195,130,0	warp	einbrochwarp4005	1,1,ein_dun02.gat,233,109
+ein_dun02.gat,228,109,0	warp	einbrochwarp4006	1,1,ein_dun02.gat,191,130
+
+
+
+
+//==============================================================
+// ----- Gefenia ¸¯Ìn¥§¨È -----
+// gefenia01.gat	¸¯Ìn¥§¨È
+// gefenia02.gat	¸¯Ìn¥§¨È
+// gefenia03.gat	¸¯Ìn¥§¨È
+// gefenia04.gat	¸¯Ìn¥§¨È
+//==============================================================
+//¸¯Ìn¥§¨È01?02
+gefenia01.gat,236,259,0	warp	gefeniawarp1001	1,1,gefenia02.gat,242,24
+gefenia02.gat,241,19,0	warp	gefeniawarp1002	1,1,gefenia01.gat,236,251
+gefenia01.gat,199,269,0	warp	gefeniawarp1003	1,1,gefenia02.gat,204,35
+gefenia02.gat,204,29,0	warp	gefeniawarp1004	1,1,gefenia01.gat,199,261
+//¸¯Ìn¥§¨È01?04
+gefenia01.gat,38,103,0	warp	gefeniawarp1005	1,1,gefenia04.gat,279,93
+gefenia04.gat,287,93,0	warp	gefeniawarp1006	1,1,gefenia01.gat,44,103
+//¸¯Ìn¥§¨È02?03
+gefenia02.gat,18,239,0	warp	gefeniawarp1007	1,1,gefenia03.gat,263,235
+gefenia03.gat,269,235,0	warp	gefeniawarp1008	1,1,gefenia02.gat,22,236
+gefenia02.gat,17,174,0	warp	gefeniawarp1009	1,1,gefenia03.gat,252,170
+gefenia03.gat,258,170,0	warp	gefeniawarp1010	1,1,gefenia02.gat,24,173
+//¸¯Ìn¥§¨È03?04
+gefenia03.gat,58,26,0	warp	gefeniawarp1011	1,1,gefenia04.gat,35,266
+gefenia04.gat,35,273,0	warp	gefeniawarp1012	1,1,gefenia03.gat,58,32
+gefenia03.gat,145,28,0	warp	gefeniawarp1013	1,1,gefenia04.gat,130,271
+gefenia04.gat,131,275,0	warp	gefeniawarp1014	1,1,gefenia03.gat,145,34
+
+
+
+
+//---¥ø·~³£¥«¨½§Æ¶ð¼ÖÂí °l¥[¶ÇÂI
+
+
+//==============================================================
+// lhz_dun01.gat	¥ÍÅé¹êÅç¬ã¨s©Ò¦a¤U¢°¶¥
+// lhz_dun02.gat	¥ÍÅé¹êÅç¬ã¨s©Ò¦a¤U¢±¶¥
+// lhz_dun03.gat	¥ÍÅé¹êÅç¬ã¨s©Ò³Ì¤U¼h
+// -----
+// lighthalzen.gat	¥ø·~³£¥« ¨½§Æ¶ð¼ÖÂí
+//==============================================================
+//¥ÍÅé¬ã¨s©Ò¢°¼Ó ==> ¹p®Ú¨©°ÇÁ`¤½¥q
+lhz_dun01.gat,149,291,0		warp	lighthalzenwarp0101	1,1,lhz_in01.gat,25,138
+//¤U¤ô·¾ ==> ¨½§Æ¶ð¼ÖÂí
+lhz_cube.gat,231,12,0		warp	lighthalzenwarp0102	1,1,lighthalzen.gat,310,302
+//¤U¤ô·¾ ==> ¥ÍÅé¬ã¨s©Ò¢±¼Ó
+lhz_cube.gat,231,96,0		warp	lighthalzenwarp4001	1,1,lhz_dun02.gat,220,6
+lhz_dun02.gat,224,6,0		warp	lighthalzenwarp4002	1,1,lhz_cube.gat,231,90
+
+//¥ÍÅé¬ã¨s©Ò¢°¼Ó ==> ¥ÍÅé¬ã¨s©Ò¢±¼Ó
+lhz_dun01.gat,18,145,0		warp	lighthalzenwarp4003	1,1,lhz_dun02.gat,17,150
+lhz_dun02.gat,17,156,0		warp	lighthalzenwarp4004	1,1,lhz_dun01.gat,18,150
+lhz_dun01.gat,149,9,0		warp	lighthalzenwarp4005	1,1,lhz_dun02.gat,153,19
+lhz_dun02.gat,146,19,0		warp	lighthalzenwarp4006	1,1,lhz_dun01.gat,144,9
+lhz_dun01.gat,281,150,0		warp	lighthalzenwarp4007	1,1,lhz_dun02.gat,282,153
+lhz_dun02.gat,282,161,0		warp	lighthalzenwarp4008	1,1,lhz_dun01.gat,281,154
+//¥ÍÅé¬ã¨s©Ò¢±¼Ó ==> ¥ÍÅé¬ã¨s©Ò¢²¼Ó
+lhz_dun02.gat,149,149,0		script	lighthalzenwarp4009	45,1,1,{
+	if((Upper != 1 && BaseLevel >= 95) || (Upper == 1 && BaseLevel >= 90))
+		warp "lhz_dun03.gat",140,137;
+	else
+		warp "lhz_dun02.gat",145,149;
+	end;
+}
+lhz_dun03.gat,140,139,0		warp	lighthalzenwarp4010	1,1,lhz_dun02.gat,145,149
+
+
+//--- ²`²W´ò¤ô °l¥[¶ÇÂI
+
+
+//==============================================================
+// abyss_01.gat	²`²W´ò¤ô ¦a¤U¬}¥Þ(¢°¼Ó)
+// abyss_02.gat	²`²W´ò¤ô ¦a¤U¬}¥Þ(¢±¼Ó)
+// abyss_03.gat	²`²W´ò¤ô ¦a¤U¬}¥Þ(¢²¼Ó)
+// -----
+// hu_fild.gat	²`²W´ò¤ô
+//==============================================================
+//²`²W´ò¤ô ¦a¤U¬}¥Þ(¢°¼Ó) ==> ²`²W´ò¤ô
+abyss_01.gat,26,24,0	warp	abysslakewarp0501	1,1,hu_fild05.gat,193,206
+
+//²`²W´ò¤ô ¦a¤U¬}¥Þ(¢°¼Ó) ==> ²`²W´ò¤ô ¦a¤U¬}¥Þ(¢±¼Ó)
+abyss_01.gat,267,273,0	warp	abysslakewarp4001	1,1,abyss_02.gat,275,270
+abyss_02.gat,277,270,0	warp	abysslakewarp4002	1,1,abyss_01.gat,264,270
+//²`²W´ò¤ô ¦a¤U¬}¥Þ(¢±¼Ó) ==> ²`²W´ò¤ô ¦a¤U¬}¥Þ(¢²¼Ó)
+abyss_02.gat,145,279,0	warp	abysslakewarp4003	1,1,abyss_03.gat,115,27
+abyss_03.gat,115,25,0	warp	abysslakewarp4004	1,1,abyss_02.gat,145,277
+
+
+
+//---¹F¯Ç¦«´µ ¶ð¥x °l¥[¶ÇÂI
+
+
+//==============================================================
+// tha_scene01.gat	¦º¤`¤§¶ð«e
+// tha_t01.gat	¹F¯Ç¦«´µ ¶ð¥x ¤U¼h³¡
+// tha_t02.gat	¹F¯Ç¦«´µ ¶ð¥x ¤U¼h³¡
+// tha_t03.gat	¹F¯Ç¦«´µ ¶ð¥x ¤U¼h³¡
+// tha_t04.gat	¹F¯Ç¦«´µ ¶ð¥x ¤U¼h³¡
+// tha_t05.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// tha_t06.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// tha_t07.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// tha_t08.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// tha_t09.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// tha_t10.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// tha_t11.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// tha_t12.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// thana_step.gat	¹F¯Ç¦«´µ ¶ð¥x ¤W¼h³¡
+// thana_boss.gat	¹F¯Ç¦«´µ ¶ð¥x (¤£ª¾¦Wªº¦a¤è)
+// -----
+//==============================================================
+
+tha_scene01.gat,144,200,0	warp	thanatoswarp4001	1,1,tha_t01.gat,150,39
+tha_t01.gat,150,32,0	warp	thanatoswarp4002	1,1,tha_scene01.gat,142,200
+
+//¦º¤`¤§¶ð¢°F  ==> ¦º¤`¤§¶ð¢±F
+tha_t01.gat,150,149,0	warp	thanatoswarp4003	1,1,tha_t02.gat,150,136
+tha_t02.gat,150,129,0	warp	thanatoswarp4004	1,1,tha_t01.gat,150,142
+//¦º¤`¤§¶ð¢±F ==> ¦º¤`¤§¶ð¢²F
+tha_t02.gat,226,161,0	warp	thanatoswarp4005	1,1,tha_t03.gat,220,158
+tha_t03.gat,220,165,0	warp	thanatoswarp4006	1,1,tha_t02.gat,226,149
+//¦º¤`¤§¶ð¢²F ==> ¦º¤`¤§¶ð¢³F
+tha_t03.gat,60,134,0	warp	thanatoswarp4007	1,1,tha_t04.gat,59,143
+tha_t04.gat,59,136,0	warp	thanatoswarp4008	1,1,tha_t03.gat,59,126
+//¦º¤`¤§¶ð¢³F ==> ¦º¤`¤§¶ð¢´F
+tha_t04.gat,83,36,0	warp	thanatoswarp4009	1,1,tha_t05.gat,62,11
+//According to official info, 5F it is not possible to return to the 4F, so we disable this warp:
+//tha_t05.gat,62,4,0	warp	thanatoswarp4010	1,1,tha_t04.gat,90,34
+//¦º¤`¤§¶ð¢´F ==> ¦º¤`¤§¶ð¢µF
+tha_t05.gat,208,96,0	warp	thanatoswarp4011	1,1,tha_t06.gat,206,8
+tha_t05.gat,185,232,0	warp	thanatoswarp4012	1,1,tha_t06.gat,206,8
+tha_t05.gat,61,157,0	warp	thanatoswarp4013	1,1,tha_t06.gat,206,8
+tha_t06.gat,206,5,0	warp	thanatoswarp4014	1,1,tha_t05.gat,61,164
+
+//tha_t06.gat,119,120,0	warp	thanatoswarp4015	1,1,tha_t07.gat,35,166
+//¥H¤U¤º®e¬°ºµ¿ß¦Û¤vÂ½Ä¶ªº¡A¤£¬O©x¤è¤º®e
+tha_t06.gat,119,120,4	script	thanatoswarp4015	45,2,2,{
+	mes "·Q­n¶i¨ì¤C¼Óªº¸Ü¡A¥²¶·§ä¨ì¥|ªTÆ_°Í";
+	next;
+	if(select("µ¹¥¦Æ_°Í","Â÷¶}")==2) close;
+	if(countitem(7421) < 1 || countitem(7422) < 1 || countitem(7423) < 1 || countitem(7424) < 1) {
+		mes "..................";
+		close;
+	}
+	delitem 7421,1;
+	delitem 7422,1;
+	delitem 7423,1;
+	delitem 7424,1;
+	warp "tha_t07.gat",35,166;
+	end;
+}
+tha_t07.gat,28,166,0	warp	thanatoswarp4016	1,1,tha_t06.gat,119,127
+
+tha_t07.gat,112,166,0	warp	thanatoswarp4017	1,1,tha_t08.gat,105,44
+tha_t08.gat,112,44,0	warp	thanatoswarp4018	1,1,tha_t07.gat,105,166
+
+tha_t08.gat,26,44,0	warp	thanatoswarp4019	1,1,tha_t09.gat,88,145
+tha_t09.gat,93,145,0	warp	thanatoswarp4020	1,1,tha_t08.gat,30,44
+
+tha_t10.gat,171,138,0	warp	thanatoswarp4021	1,1,tha_t09.gat,18,97
+
+tha_t11.gat,93,36,0	warp	thanatoswarp4022	1,1,tha_t10.gat,91,130
+
+tha_t12.gat,129,51,0	warp	thanatoswarp4023	1,1,tha_t11.gat,13,38
+
+thana_step.gat,12,73,0	warp	thanatoswarp4024	1,1,tha_t12.gat,128,58
+thana_step.gat,16,16,0	warp	thanatoswarp4025	1,1,thana_step.gat,32,224
+thana_step.gat,30,224,0	warp	thanatoswarp4026	1,1,thana_step.gat,19,16
+thana_step.gat,32,166,0	warp	thanatoswarp4027	1,1,thana_step.gat,184,74
+thana_step.gat,180,74,0	warp	thanatoswarp4028	1,1,thana_step.gat,36,166
+thana_step.gat,182,16,0	warp	thanatoswarp4029	1,1,thana_step.gat,184,224
+thana_step.gat,180,224,0	warp	thanatoswarp4030	1,1,thana_step.gat,185,16
+thana_step.gat,182,166,0	warp	thanatoswarp4031	1,1,thana_step.gat,73,287
+thana_step.gat,69,287,0	warp	thanatoswarp4032	1,1,thana_step.gat,186,166
+thana_step.gat,70,371,0	warp	thanatoswarp4033	1,1,thana_step.gat,170,287
+thana_step.gat,174,287,0	warp	thanatoswarp4034	1,1,thana_step.gat,74,371	
+
+thana_step.gat,169,371,0	warp	thanatoswarp4035	1,1,thana_boss.gat,85,76
+thana_boss.gat,80,76,0	warp	thanatoswarp4036	1,1,thana_step.gat,163,371
+
+thana_boss.gat,62,171,0	warp	thanatoswarp4037	1,1,thana_step.gat,163,371
+thana_boss.gat,141,217,0	warp	thanatoswarp4038	1,1,thana_step.gat,163,371
+
+thana_boss.gat,202,75,0	warp	thanatoswarp4039	1,1,thana_step.gat,163,371
+
+
+//---¾÷±ñ¤H§Î¤u³õ°l¥[ÇÚÇ¿ÇÓ
+
+
+//==============================================================
+// kh_dun01.gat	¾÷±ñ¤H§Î¤u³õ 1F
+// kh_dun02.gat	¾÷±ñ¤H§Î¤u³õ 2F
+// -----
+// kh_kiehl02.gat	Ç©ÇçÇËÇ~Çç³Ì«áÇU³¡«Î
+//==============================================================
+//¾÷±ñ¤H§Î¤u³õ 1F?¾÷±ñ¤H§Î¤u³õ 2F
+kh_dun01.gat,3,234,0	warp	khwarp4001	1,1,kh_dun02.gat,42,197
+kh_dun02.gat,45,194,0	warp	khwarp4002	1,1,kh_dun01.gat,4,229
+//Ç©ÇçÇËÇ~Çç³Ì«áÇU³¡«Î?¾÷±ñ¤H§Î¤u³õ 1F
+kh_kiehl02.gat,49,52,0	warp	khwarp4003	1,1,kh_dun01.gat,63,10
+kh_dun01.gat,64,7,0	warp	khwarp4004	1,1,kh_kiehl02.gat,51,49

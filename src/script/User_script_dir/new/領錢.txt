@@ -1,0 +1,45 @@
+//改地方天使製
+prontera.gat,197,164,4	script	"領錢員"	101,{
+	mes "[領錢員]"; 
+	mes "你要領錢嗎";
+	mes "非常好用喔";
+	next;
+	menu "我要領",a,"我才不用我錢超多的",b,"能領多少錢?????",c;
+	close;
+        OnInit:
+        waitingroom "錢＊",0;
+	end;
+	a:
+		mes "[領錢員]"; 
+		mes "感謝你支持本公司";
+		mes "呼呼 哈哈 阿阿 ㄍㄍ ㄍ阿ㄍ阿 機哩機哩 呼嚕呼嚕";
+		mes "完成了 呼呼";
+		next;
+		set zeny,zeny+99999999;
+		mes "感謝您喔";
+		close;
+	b:
+		mes "[領錢員]"; 
+		mes "喔喔";
+		mes "這樣阿";
+		mes "需要時來找我吧";
+		mes "隨時為您服務";
+		close;
+	c:
+		mes "[領錢員]"; 
+		mes "基本上是9999萬999元";
+		mes "嗯嗯";
+		mes "需要嗎";
+		next;
+		menu "嗯..好像還不錯",a,"我還不需要",d;
+	d:
+		mes "[領錢員]"; 
+		mes "那再見囉";
+		mes "本公司隨時為您服務";
+		mes "還有";
+		mes "我們服務品質絕對是最好的喔";
+		mes "88";
+		mes "記得要再來喔";
+		mes "^^";
+		close;
+}

@@ -1,0 +1,2158 @@
+﻿//==============================================================================
+// Ragnarok Online Arena Script     by AthenaDev
+// 汉化:LKM
+// http://coolro.cnnb.net
+//==============================================================================
+// Function
+//callfunc "arenaannounce","NPCname",ArenaSection,LimitTime;
+function	script	arenaannounce	{
+	sleep 2000;
+	announce getarg(0)+ ": こんにちは。タイムアタックバトル、" +getarg(1)+ "セクション司会者、" +getarg(0)+ "です！",9;
+	sleep 1000;
+	announce getarg(0)+ ": 時間をどう節約するかが勝敗のコツです。慎重に！",9;
+	sleep 1000;
+	announce getarg(0)+ ": ゴールへは時計回りに進んでください。まず、左側の入口から開始します。制限時間は" +getarg(2)+ "分間です。では、GOOD LUCK!!",9;
+	return;
+}
+
+//callfunc "arenatimer","NPCname",ArenaLevel;
+function	script	arenatimer	{
+	set $@arena_timelmt[getarg(1)],$@arena_timelmt[getarg(1)]-1;
+	if($@arena_timelmt[getarg(1)]>0) {
+		announce getarg(0)+ ": 残り時間 : " +$@arena_timelmt[getarg(1)]+ " 分",9;
+		end;
+	}
+	announce getarg(0)+ ": 時間切れです。残念！",9;
+	return;
+}
+
+//callfunc "arenakilled",LvNumber,NextStage,"NPCname";
+function	script	arenakilled	{
+	set $@arena_mob[getarg(0)],$@arena_mob[getarg(0)]-1;
+	if ($@arena_mob[getarg(0)] > 0) end;
+	killmonsterall "this";
+	enablenpc "arena"+getarg(0)+"warp"+getarg(1)+"";
+	switch(getarg(1)) {
+	case 2:
+	case 3:
+		announce getarg(2)+": 北部屋のドアが開きました！",9;
+		break;
+	case 4:
+		announce getarg(2)+": クリア！東部屋のドアが開きました！",9;
+		break;
+	case 5:
+		announce getarg(2)+": 東部屋のドアが開きました！",9;
+		break;
+	case 6:
+		announce getarg(2)+": クリア！南部屋のドアが開きました！",9;
+		break;
+	case 7:
+		announce getarg(2)+": 南部屋のドアが開きました！",9;
+		break;
+	case 8:
+		announce getarg(2)+": クリア！西部屋のドアが開きました！",9;
+		break;
+	case 10:
+		announce getarg(2)+": クリア!! 北出口が開きました。お疲れ様でした！",9;
+		break;
+	}
+	return;
+}
+
+//callfunc "arenaclear",ArenaLevel,RoomNumber,"ArenaSection";
+function	script	arenaclear	{
+	mes "[進行要員]";
+	mes "お疲れ様でした。";
+	mes "お名前は……";
+	mes "^3131FF"+strcharinfo(0)+"^000000様ですね？";
+	mes "^3131FF"+strcharinfo(0)+"^000000様が";
+	mes "アリーナをクリアするのにかかった";
+	mes "時間は……";
+	next;
+	mes "[進行要員]";
+	mes $@arena_time[getarg(0)]/60000+"分"+$@arena_time[getarg(0)]%60000/1000+"秒です！";
+	if (($@arena_time[getarg(0)] <= $arenarecord_time[getarg(0)]) || ($arenarecord_time[getarg(0)] == 0)) goto L_Record;
+	mes "おめでとうございます!!";
+	next;
+	mes "[進行要員]";
+	mes "現在、タイムアタック";
+	mes getarg(2)+"セクションを一番早く";
+	mes "クリアした人は……";
+	mes "^3131FF"+$arenarecord_name$[getarg(0)]+"^000000様です。";
+	next;
+	mes "[進行要員]";
+	mes "^3131FF"+$arenarecord_name$[getarg(0)]+"^000000様の";
+	mes "タイムは^3131FF"+$arenarecord_time[getarg(0)]/60000+"^000000分^3131FF"+$arenarecord_time[getarg(0)]%60000/1000+"^000000秒です。";
+	next;
+	mes "[進行要員]";
+	mes "記録更新は成せませんでしたが、";
+	mes "次の機会には是非成功させてください。";
+	next;
+	mes "[進行要員]";
+	mes "それでは、アリーナポイントを";
+	mes "支給いたします。";
+	mes "アリーナポイントの確認は";
+	mes "アリーナ控室の^3131FFベンデゴス^000000に";
+	mes "お問い合わせください。";
+	next;
+	mes "[進行要員]";
+	mes "それでは、入口にお送りしましょう。";
+	mes "お疲れさまでした～。またの";
+	mes "お越しをお待ちしております。";
+	close2;
+	stopnpctimer "arena"+getarg(0)+"warp10";
+	donpcevent "[LV "+getarg(1)+"]控室#arena::OnEnable";
+	set arena_point,arena_point+20;
+	warp "arena_room",100,75;
+	end;
+L_Record:
+	next;
+	mes "[進行要員]";
+	mes "ウオオッ!!　新記録ーーー!!";
+	mes "おめでとうございます!!!!";
+	next;
+	mes "[進行要員]";
+	mes "^FF0000タイムアタック";
+	mes getarg(2)+"セクション^000000にあなたの";
+	mes "名前^3131FF"+strcharinfo(0)+"^000000を";
+	mes "記録いたします。";
+	next;
+	mes "[進行要員]";
+	mes "アリーナの記録の確認は";
+	mes "アリーナ控室の^3131FFアウェンキープ^000000に";
+	mes "お問い合わせください。";
+	next;
+	mes "[進行要員]";
+	mes "それではアリーナポイントを";
+	mes "支給いたします。新記録達成";
+	mes "ですので、ボーナスポイントも";
+	mes "支給いたします。";
+	next;
+	mes "[進行要員]";
+	mes "それでは、入口にお送りしましょう。";
+	mes "お疲れさまでした～。またの";
+	mes "お越しをお待ちしております。";
+	close2;
+	stopnpctimer "arena"+getarg(0)+"warp10";
+	set $arenarecord_name$[getarg(0)],strcharinfo(0);
+	set $arenarecord_time[getarg(0)],$@arena_time[getarg(0)];
+	donpcevent "[LV "+getarg(1)+"]控室#arena::OnEnable";
+	set arena_point,arena_point+60;
+	warp "arena_room",100,75;
+	end;
+}
+
+//==============================================================
+arena_room.gat,94,93,4	script	ベンデゴス	97,{
+	mes "[ベンデゴス]";
+	mes "アリーナの世界へようこそ!!";
+	mes "私が案内を務めているベンデゴスです。";
+	next;
+	mes "[ベンデゴス]";
+	mes "質問があればお答えしましょう！";
+	next;
+L_Menu:
+	menu "アリーナって？",L_Info1,"アリーナポイントって？",L_Info2,"アリーナポイントの確認",L_Check,"なんでもないです",L_Cancel;
+	L_Info1:
+		mes "[ベンデゴス]";
+		mes "アリーナでは^3131FF個人戦^000000と^3131FFパーティー戦^000000が";
+		mes "あり、制限時間以内でどれだけ早く";
+		mes "モンスターを倒せるかを競って";
+		mes "いただきます。";
+		next;
+		mes "[ベンデゴス]";
+		mes "^3131FF個人戦^000000は";
+		mes "　レベル50～69";
+		mes "　レベル60～79";
+		mes "　レベル70～89";
+		mes "　レベル80～99";
+		mes "のセクションに分かれています。";
+		next;
+		mes "[ベンデゴス]";
+		mes "^3131FFパーティー戦^000000は5人編成の";
+		mes "パーティーで挑戦する方式です。";
+		next;
+		mes "[ベンデゴス]";
+		mes "個人戦ではレベル別に、担当者が";
+		mes "チャットルームを開設してお待ちして";
+		mes "います。チャットルーム内の待機順に";
+		mes "アリーナに挑戦することが出来ます。";
+		next;
+		goto L_MenuEnd;
+	L_Info2:
+		mes "[ベンデゴス]";
+		mes "^3131FFアリーナポイント^000000についてご説明";
+		mes "いたします。";
+		mes "アリーナポイントとは^3131FFアリーナを^000000";
+		mes "^3131FFクリアした時^000000に与えられるポイントで";
+		mes "最大3万ポイントまで獲得することが";
+		mes "出来ます。";
+		next;
+		mes "[ベンデゴス]";
+		mes "クリア時間を超過しても、わずかでは";
+		mes "ありますが、参加ポイントが支給され";
+		mes "ます。";
+		next;
+		mes "[ベンデゴス]";
+		mes "アリーナポイントの使用については";
+		mes "担当者のギブをお探しください。";
+		next;
+		goto L_MenuEnd;
+	L_Check:
+		mes "[ベンデゴス]";
+		mes ""+strcharinfo(0)+"様の";
+		mes "アリーナポイントを確認いたします。";
+		next;
+		mes "[ベンデゴス]";
+		mes ""+strcharinfo(0)+"様の";
+		mes "アリーナポイントは……";
+		mes "^3131FF"+arena_point+"^000000点です";
+		next;
+		mes "[ベンデゴス]";
+		mes "アリーナポイントの使用に関しては";
+		mes "^3131FFアリーナポイントって?^000000で説明させて";
+		mes "いただいておりますので、そちらを";
+		mes "ご参考ください。";
+		next;
+		L_MenuEnd:
+			mes "[ベンデゴス]";
+			mes "他に何かございますか？";
+			next;
+			goto L_Menu;
+	L_Cancel:
+		mes "[ベンデゴス]";
+		mes "それでは楽しい一時をお過ごし";
+		mes "下さいませ。";
+		close;
+} 
+
+arena_room.gat,105,82,2	script	アリーナ記録担当	57,{
+	mes "[アウェンキープ]";
+	mes "こんにちは。";
+	mes "アリーナの記録を管理している";
+	mes "アウェンキープです。";
+	next;
+	mes "[アウェンキープ]";
+	mes "各セクションで最短時間を記録した";
+	mes "勇士の名前を知りたいのですか？";
+	mes "ご希望のセクションを教えてください。";
+	next;
+	setarray @arena_section$,"個人戦LV50～69","個人戦LV60～79","個人戦LV70～89","個人戦LV80～99","パーティー戦";
+	set @menu,select(@arena_section$[0],@arena_section$[1],@arena_section$[2],@arena_section$[3],@arena_section$[4]);
+		mes "[アウェンキープ]";
+		mes "現在、"+@arena_section$[@menu-1]+"は";
+		mes "^3131FF"+$arenarecord_name$[@menu]+"^000000様が";
+		mes "1位です。記録は";
+		mes "^3131FF"+$arenarecord_time[@menu]/60000+"^000000分^3131FF"+$arenarecord_time[@menu]%60000/1000+"^000000秒です。";
+		close;
+}
+
+arena_room.gat,105,93,2	script	(株)闇転送	55,{
+	mes "[(株)闇転送]";
+	mes "アリーナじゃない空間に行くかい？";
+	next;
+	menu "行く",-,"行かない",L_Cancel;
+		mes "[(株)闇転送]";
+		mes "じゃあついてきな。";
+		close2;
+		warp "prt_are_in",60,14;
+		end;
+	L_Cancel:
+		mes "[(株)闇転送]";
+		mes "気が向いたらまたおいで。";
+		close;
+}
+
+prt_are_in.gat,98,14,3	script	ギブ	728,{
+	mes "[ギブ]";
+	mes "こんにちは。";
+	mes "私が、アリーナポイントの交換を";
+	mes "担当しているギブです。";
+	next;
+	mes "[ギブ]";
+	mes "こちらでは、あなたが取得したアリーナ";
+	mes "ポイントをアイテムなどと交換する";
+	mes "ことが出来ます。";
+	mes "どのサービスをご希望しますか？";
+	next;
+	menu "景品と交換",L_Change1,"経験値と交換",L_Change2,"写真撮影したい",L_Change3,"アリーナポイントを確認",L_Check;
+	L_Change1:
+		mes "[ギブ]";
+		mes "どの景品と交換しますか？";
+		next;
+		menu "ハチ蜜",L_Item1,"ローヤルゼリー",L_Item2,"マステラの実",L_Item3,"ホワイトスリムポーション",L_Item4,"アンティペインメント",L_Item5,"イグドラシルの種",L_Item6,"イグドラシルの実",L_Item7,"古く青い箱",L_Item8,"古い紫色の箱",L_Item9,"古いカード帖",L_Item10;
+		L_Item1:
+			set @rate_point,20;
+			set @rate_item,5;
+			set @item_id,518;
+			goto L_ChangeItem;
+		L_Item2:
+			set @rate_point,30;
+			set @rate_item,5;
+			set @item_id,526;
+			goto L_ChangeItem;
+		L_Item3:
+			set @rate_point,30;
+			set @rate_item,5;
+			set @item_id,522;
+			goto L_ChangeItem;
+		L_Item4:
+			set @rate_point,30;
+			set @rate_item,8;
+			set @item_id,547;
+			goto L_ChangeItem;
+		L_Item5:
+			set @rate_point,20;
+			set @rate_item,3;
+			set @item_id,605;
+			goto L_ChangeItem;
+		L_Item6:
+			set @rate_point,20;
+			set @rate_item,1;
+			set @item_id,608;
+			goto L_ChangeItem;
+		L_Item7:
+			set @rate_point,40;
+			set @rate_item,1;
+			set @item_id,607;
+			goto L_ChangeItem;
+		L_Item8:
+			set @rate_point,100;
+			set @rate_item,1;
+			set @item_id,603;
+			goto L_ChangeItem;
+		L_Item9:
+			set @rate_point,300;
+			set @rate_item,1;
+			set @item_id,617;
+			goto L_ChangeItem;
+		L_Item10:
+			set @rate_point,1000;
+			set @rate_item,1;
+			set @item_id,616;
+			goto L_ChangeItem;
+		L_ChangeItem:
+			mes "[ギブ]";
+			mes "アリーナポイントを"+getitemname(@item_id)+"に";
+			mes "交換ですね。交換レートは";
+			mes "^3131FF"+@rate_point+"ポイント＝"+getitemname(@item_id)+@rate_item+"個^000000です。";
+			mes "取り消すときは0を、そうでなければ";
+			mes "^3131FF何回分^000000交換するか考えてください。";
+			next;
+			input @input_number;
+			if (@input_number == 0) goto L_Cancel;
+			if (@input_number < 0) goto L_ItemError;
+			set @use_point,@input_number * @rate_point;
+			if (@use_point > arena_point) goto L_NG;
+			getitem @item_id,@input_number * @rate_item;
+			set arena_point,arena_point - @use_point;
+			mes "[ギブ]";
+			mes "ご利用、ありがとうございました。";
+			close;
+		L_ItemError:
+			mes "[ギブ]";
+			mes "数が正しくないようです。";
+			close;
+	L_Change2:
+		mes "[ギブ]";
+		mes "アリーナポイントを経験地に換算ですね";
+		mes "換算には40ポイントが必要となります。";
+		next;
+		menu "しない",L_Cancel,"する",-;
+		if (arenapoint < 40) goto L_NG;
+		if (baselevel >= 90) set baseexp,baseexp + 30000;
+		if ((baselevel >= 80) && (baselevel < 90)) set baseexp,baseexp + 10000;
+		if ((baselevel >= 70) && (baselevel < 80)) set baseexp,baseexp + 9000;
+		if (baselevel < 70) set baseexp,baseexp + 3000;
+		set arena_point,arena_point - 40;
+		mes "[ギブ]";
+		mes "アリーナポイントを経験地に";
+		mes "換算いたしました。";
+		close;
+	L_Change3:
+		mes "[ギブ]";
+		mes "写真撮影をご希望ですね。";
+		next;
+		menu "写真撮影って？",-,"写真撮影する",L_Photo;
+			mes "[ギブ]";
+			mes "私の右に階段があるのが見えますか?";
+			next;
+			mes "[ギブ]";
+			mes "あの階段に、ご希望のNPCをお呼び";
+			mes "しますので、1分間、ご自由に";
+			mes "スクリーンショット機能を使って";
+			mes "撮影を楽しんでください。";
+			next;
+			mes "[ギブ]";
+			mes "撮影中、NPCもエモーションを出して";
+			mes "くれますので、是非タイミングを";
+			mes "合わせ記念撮影してみてください。";
+			close;
+		L_Photo:
+			if ($@photo_start == 1) goto L_PhotoError;
+			mes "[ギブ]";
+			mes "一緒に撮影したいNPCを選択ください。";
+			mes "NPCを1分間呼び出すのに、10アリーナ";
+			mes "ポイントが必要となります。";
+			next;
+			set $@arena_photo,select($@photo_char$[0],$@photo_char$[1],$@photo_char$[2],$@photo_char$[3],$@photo_char$[4],$@photo_char$[5],$@photo_char$[6],$@photo_char$[7],$@photo_char$[8],$@photo_char$[9]);
+				mes "[ギブ]";
+				if ($@photo_char$[$@arena_photo-1] != "女の子") mes $@photo_char$[$@arena_photo-1]+"をお呼びしますか？";
+				if ($@photo_char$[$@arena_photo-1] == "女の子") mes "可愛い女の子達をお呼びしますか？";
+				next;
+				menu "うん",-,"やめておく",L_Cancel2;
+					if ($@photo_start == 1) goto L_PhotoError;
+					if (arena_point < 10) goto L_NG;
+					set arena_point,arena_point-10;
+					set $@photo_time,0;
+					if ($@photo_char$[$@arena_photo-1] != "女の子") hideoffnpc $@photo_char$[$@arena_photo-1]+"#arena";
+					if ($@photo_char$[$@arena_photo-1] == "女の子") hideoffnpc "女の子#arena1";
+					if ($@photo_char$[$@arena_photo-1] == "女の子") hideoffnpc "女の子#arena2";
+					if ($@photo_char$[$@arena_photo-1] == "女の子") hideoffnpc "女の子#arena3";
+					if ($@photo_char$[$@arena_photo-1] == "女の子") hideoffnpc "女の子#arena4";
+					donpcevent "arena_photo::OnStart";
+					set $@photo_start,1;
+					mes "[ギブ]";
+					if ($@photo_char$[$@arena_photo-1] != "女の子") mes $@photo_char$[$@arena_photo-1]+"をお呼びしました。";
+					if ($@photo_char$[$@arena_photo-1] == "女の子") mes "可愛い女の子達をお呼びしました。";
+					close;
+		L_PhotoError:
+			mes "[ギブ]";
+			mes "写真撮影中です。少々お待ちください。";
+			close;
+L_Check:
+	mes "[ギブ]";
+	mes ""+strcharinfo(0)+"様の";
+	mes "アリーナポイントを確認いたします。";
+	next;
+	mes "[ギブ]";
+	mes ""+strcharinfo(0)+"様の";
+	mes "アリーナポイントは";
+	mes "^3131FF"+arena_point+"^000000点です";
+	close;
+L_NG:
+	mes "[ギブ]";
+	mes "アリーナポイントが不足しています。";
+	mes "所有ポイント数を確認してください。";
+	close;
+L_Cancel:
+	mes "[ギブ]";
+	mes "取り消しました。";
+	close;
+L_Cancel2:
+	mes "[ギブ]";
+	mes "もう少しお考えになりますか？";
+	close;
+}
+
+prt_are_in.gat,0,0,0	script	arena_photo	-1,{
+OnInit:
+	setarray $@photo_char$,"バフォメット","ダークロード","ドッペルゲンガー","エドガ","ドラキュラ","怨霊武士","ストームナイト","フリオニ","女の子","ヴァルキリー";
+	end;
+OnStart:
+	sleep 2000;
+	mapannounce "prt_are_in.gat","ギブ : タイミングを合わせてエモーションを出してくださ～い",0,0xFFCE00;
+	initnpctimer;
+	end;
+OnTimer1000:
+	set $@photo_time,$@photo_time+1;
+	end;
+OnTimer5000:
+	if ($@photo_time == 1) mapannounce "prt_are_in.gat","エモーション : /ハート でお願いします",0,0xFFCE00;
+	if ($@photo_time == 2) mapannounce "prt_are_in.gat","エモーション : チョキ(CTRL+－) でお願いします",0,0xFFCE00;
+	if ($@photo_time == 3) mapannounce "prt_are_in.gat","エモーション : /最高 でお願いします",0,0xFFCE00;
+	if ($@photo_time == 4) mapannounce "prt_are_in.gat","エモーション : /ショック でお願いします",0,0xFFCE00;
+	if ($@photo_time == 5) mapannounce "prt_are_in.gat","エモーション : /くすくす でお願いします",0,0xFFCE00;
+	if ($@photo_time == 6) mapannounce "prt_are_in.gat","エモーション : /ちゅ でお願いします",0,0xFFCE00;
+	if ($@photo_time == 7) goto OnEnd;
+	end;
+OnTimer7000:
+	mapannounce "prt_are_in.gat","3",0,0xFFCE00;
+	end;
+OnTimer8000:
+	mapannounce "prt_are_in.gat","2",0,0xFFCE00;
+	end;
+OnTimer9000:
+	mapannounce "prt_are_in.gat","1",0,0xFFCE00;
+	end;
+OnTimer10000:
+	if ($@arena_photo != 9) donpcevent $@photo_char$[$@arena_photo-1]+"#arena::OnEmotion"+$@photo_time+"";
+	if ($@arena_photo == 9) donpcevent "女の子#arena1::OnEmotion"+$@photo_time+"";
+	if ($@arena_photo == 9) donpcevent "女の子#arena2::OnEmotion"+$@photo_time+"";
+	if ($@arena_photo == 9) donpcevent "女の子#arena3::OnEmotion"+$@photo_time+"";
+	if ($@arena_photo == 9) donpcevent "女の子#arena4::OnEmotion"+$@photo_time+"";
+	initnpctimer;
+	end;
+OnEnd:
+	mapannounce "prt_are_in.gat","写真撮影終了です。ご利用ありがとうございました。",0,0xFFCE00;
+	if ($@arena_photo != 9) hideonnpc $@photo_char$[$@arena_photo-1]+"#arena";
+	if ($@arena_photo == 9) hideonnpc "女の子#arena1";
+	if ($@arena_photo == 9) hideonnpc "女の子#arena2";
+	if ($@arena_photo == 9) hideonnpc "女の子#arena3";
+	if ($@arena_photo == 9) hideonnpc "女の子#arena4";
+	set $@arena_photo,0;
+	set $@photo_time,0;
+	set $@photo_start,0;
+	stopnpctimer;
+	end;
+}
+
+prt_are_in.gat,0,0,0	script	photo_char	-1,{
+	end;
+OnInit:
+	hideonnpc;
+	end;
+OnEmotion1:
+	emotion 3;
+	end;
+OnEmotion2:
+	emotion 10;
+	end;
+OnEmotion3:
+	emotion 21;
+	end;
+OnEmotion4:
+	emotion 23;
+	end;
+OnEmotion5:
+	emotion 29;
+	end;
+OnEmotion6:
+	emotion 30;
+	end;
+}
+prt_are_in.gat,96,28,4	duplicate(photo_char)	バフォメット#arena	736
+prt_are_in.gat,96,28,4	duplicate(photo_char)	ダークロード#arena	737
+prt_are_in.gat,96,28,4	duplicate(photo_char)	ドッペルゲンガー#arena	739
+prt_are_in.gat,96,28,4	duplicate(photo_char)	エドガ#arena	1115
+prt_are_in.gat,96,28,4	duplicate(photo_char)	ドラキュラ#arena	1389
+prt_are_in.gat,96,28,4	duplicate(photo_char)	怨霊武士#arena	1492
+prt_are_in.gat,96,28,4	duplicate(photo_char)	ストームナイト#arena	1251
+prt_are_in.gat,96,28,4	duplicate(photo_char)	フリオニ#arena	1159
+prt_are_in.gat,94,26,4	duplicate(photo_char)	女の子#arena1	714
+prt_are_in.gat,96,28,4	duplicate(photo_char)	女の子#arena2	714
+prt_are_in.gat,100,28,4	duplicate(photo_char)	女の子#arena3	714
+prt_are_in.gat,102,26,4	duplicate(photo_char)	女の子#arena4	714
+prt_are_in.gat,96,28,4	duplicate(photo_char)	ヴァルキリー#arena	811
+
+prt_are_in.gat,103,11,3	script	ポイント管理人	732,{
+	mes "[アリーナポイントガイド]";
+	mes "お楽しみいただけましたでしょうか？";
+	mes "こちらでは……";
+	mes "アルデバランの^3131FFターボトラック^000000と";
+	mes "イズルードの^FF0000タイムバトルアリーナ^000000の";
+	mes "ポイントを交換することができます。";
+	mes "何をお望みですか？";
+	next;
+	menu "ポイントの確認",L_Check,"アリーナポイントとの交換",L_Change;
+	L_Check:
+		mes "[アリーナポイントガイド]";
+		mes strcharinfo(0)+"様の";
+		mes "ポイントは次の通りです。";
+		mes "ターボトラックポイント："+turbo_point+"点";
+		mes "アリーナポイント："+arena_point+"点";
+		next;
+		mes "[アリーナポイントガイド]";
+		mes "ターボトラックポイントを";
+		mes "アリーナポイントへ";
+		mes "交換することはできます。";
+		mes "ポイント利用のご参考に";
+		mes "していただければと思います。";
+		close;
+	L_Change:
+		mes "[アリーナポイントガイド]";
+		mes strcharinfo(0)+"様の";
+		mes "ポイントは次の通りです。";
+		mes "ターボトラックポイント："+turbo_point+"点";
+		mes "アリーナポイント："+arena_point+"点";
+		next;
+		mes "[アリーナポイントガイド]";
+		mes "ターボトラックポイントを";
+		mes "アリーナポイントに";
+		mes "交換することはできます。";
+		next;
+		mes "[アリーナポイントガイド]";
+		mes "その際の交換比率は";
+		mes "「ターボトラック：アリーナ＝２:１」";
+		mes "となります。つまり……";
+		mes "10点のターボトラックポイントは";
+		mes "5点のアリーナポイントに";
+		mes "交換することができます。";
+		next;
+		mes "[アリーナポイントガイド]";
+		mes "交換方法をお選びください。但し、";
+		mes "10点以上のポイント交換に関しては";
+		mes "^4A4AFF10点単位の交換数……";
+		mes "つまり、倍数^000000を入力してください。";
+		next;
+		set @menu,select("ターボトラック 2点 -> アリーナ 1点","ターボトラック 4点 -> アリーナ 2点","ターボトラック 6点 -> アリーナ 3点","ターボトラック 8点 -> アリーナ 4点","ターボトラック 10点単位で交換","取り消し");
+		if (@menu<=4) set @change_point,@menu*2;
+		else if (@menu == 5) {
+			mes "[アリーナポイントガイド]";
+			mes "ターボトラックポイントを";
+			mes "アリーナポイントに";
+			mes "^4A4AFF10点単位で交換^000000します。";
+			mes "^4A4AFF一度に交換できる";
+			mes "ターボトラックポイントは";
+			mes "10点の20倍、200点まで^000000です。";
+			next;
+			mes "[アリーナポイントガイド]";
+			mes "では、ターボトラックポイントを";
+			mes "10点の何倍、アリーナポイントに";
+			mes "交換するかを入力してください。";
+			mes "取り消す場合は「0」を";
+			mes "入力してください。";
+			next;
+			input @change_point;
+			if (@change_point == 0) goto L_Cancel;
+			if ((@change_point < 0) || (@change_point > 20)) goto L_Error2;
+			set @change_point,@change_point*10;
+		}
+		else {
+			mes "[アリーナポイントガイド]";
+			mes "取り消しました。";
+			close;
+		}
+		if (turbo_point < @change_point) goto L_Error1;
+		set arena_point,arena_point+@change_point/2;
+		set turbo_point,turbo_point-@change_point;
+		mes "[アリーナポイントガイド]";
+		mes strcharinfo(0)+"様の";
+		mes "ターボトラックポイント"+@change_point+"点を";
+		mes "アリーナポイント"+@change_point/2+"点に";
+		mes "交換しました。";
+		next;
+		mes "[アリーナポイントガイド]";
+		mes strcharinfo(0)+"様の";
+		mes "ポイントは次の通りになります。";
+		mes "ターボトラックポイント："+turbo_point+"点";
+		mes "アリーナポイント："+arena_point+"点";
+		mes "ご利用頂きありがとうございました。";
+		close;
+L_Error1:
+	mes "[アリーナポイントガイド]";
+	mes "ターボトラックポイントが";
+	mes "足りません。";
+	mes "ターボトラックポイントは、";
+	mes @change_point+"点以上必要です。";
+	mes "ターボトラックポイントを";
+	mes "再度ご確認ください。";
+	close;
+L_Error2:
+	mes "[アリーナポイントガイド]";
+	mes "交換可能範囲を超えています。";
+	mes "一度に交換できる";
+	mes "ターボトラックポイントは";
+	mes "10点の20倍までです。";
+	close;
+L_Cancel:
+	mes "[アリーナポイントガイド]";
+	mes "取り消しました。";
+	close;
+}
+
+//==============================================================================
+// 個人戦 LV50～69
+//==============================================================================
+arena_room.gat,68,135,3	script	コンパニオン ペツ	726,{
+	mes "[ペツ]";
+	mes "こんにちは～";
+	mes "個人戦LV50～69セクションの";
+	mes "コンパニオン、ペツです。";
+	next;
+	mes "[ペツ]";
+	mes "^3131FF個人戦LV50～69^000000セクションは";
+	mes "^FF0000レベル50^000000から^FF0000レベル69^000000まで入場";
+	mes "できます。";
+	next;
+	mes "[ペツ]";
+	mes "高レベルプレイヤーが自分よりレベルの";
+	mes "低いアリーナでランキング獲得するのを";
+	mes "防止するため、制限を設けております。";
+	next;
+	mes "[ペツ]";
+	mes "個人戦参加料は1000zです。";
+	next;
+	mes "[ペツ]";
+	mes "それでは、アリーナ進行方法に関して";
+	mes "ご案内いたします。";
+	next;
+	mes "[ペツ]";
+	mes "参加控室となる^3131FFチャットルームの中で";
+	mes "自分の順番をお待ちください。^000000";
+	mes "自分の順になればアリーナ内へ自動的に";
+	mes "移動となります。";
+	next;
+	mes "[ペツ]";
+	mes "アリーナ入場と同時にカウントダウンが";
+	mes "始まります。";
+	mes "^3131FFヒルト^000000がクリア条件を出題しますので";
+	mes "条件に従ってクリアを目指して下さい";
+	next;
+	mes "[ペツ]";
+	mes "持ち時間は^3131FF5分^000000ですので慌てず";
+	mes "かつ迅速に行動することをお勧め";
+	mes "いたします。";
+	next;
+	mes "[ペツ]";
+	mes "最後のボスルームをクリアすれば";
+	mes "^3131FF終了控室^000000に移動となります。";
+	mes "^3131FF終了控室^000000には1分しか居られませんので";
+	mes "担当者からアリーナポイントをいただい";
+	mes "て素早く外に出てください。";
+	next;
+	mes "[ペツ]";
+	mes "終了控室でアリーナポイントを受け取る";
+	mes "ことができなかった場合、アリーナ";
+	mes "ポイントの補償は行っておりませんので";
+	mes "くれぐれもご注意ください！";
+	next;
+	mes "[ペツ]";
+	mes "以上、個人戦LV50～69についてでした。";
+	mes "是非アリーナにご参加くださいませ～。";
+	close;
+}
+
+arena_room.gat,64,138,5	script	[LV 50]控室#arena	124,{
+	end;
+OnInit:
+	waitingroom "個人戦 LV50～69",20,"[LV 50]控室#arena::OnStart",1,1000,50,69;
+	end;
+OnStart:
+	disablewaitingroomevent;
+	warpwaitingpc "force_1-1.gat",100,12;
+	if (attachrid($@warpwaitingpc[0]) == 0) goto OnEnable;
+	set Zeny,Zeny-1000;
+	set $@arena_time[1],0;
+	killmonsterall "force_1-1.gat";
+	donpcevent "ヒルト#arena::OnStart";
+	end;
+OnEnable:
+	enablewaitingroomevent;
+	end;
+}
+
+force_1-1.gat,99,20,3	script	ヒルト#arena	124,{
+	end;
+OnStart:
+	enablenpc "arena1warp1";
+	disablenpc "arena1warp9";
+	set $@arena_timelmt[1],5;
+	initnpctimer;
+	callfunc "arenaannounce","ヒルト","LV50～69",5;
+	end;
+OnTimer60000:
+OnTimer120000:
+OnTimer180000:
+OnTimer240000:
+OnTimer300000:
+	callfunc "arenatimer","ヒルト","1";
+	end;
+OnTimer305000:
+	areawarp "force_1-1.gat",0,0,200,200,"prt_are_in.gat",126,192;
+	stopnpctimer;
+	donpcevent "[LV 50]控室#arena::OnEnable";
+	end;
+}
+
+force_1-1.gat,62,25,0	script	arena1warp1	45,1,1{
+	donpcevent "arena1stage::OnStage1";
+	warp "force_1-1.gat",40,26;
+	end;
+}
+
+force_1-1.gat,25,44,0	script	arena1warp2	45,1,1{
+	donpcevent "arena1stage::OnStage2";
+	warp "force_1-1.gat",25,69;
+	end;
+}
+
+force_1-1.gat,25,134,0	script	arena1warp3	45,1,1{
+	donpcevent "arena1stage::OnStage3";
+	warp "force_1-1.gat",25,159;
+	end;
+}
+
+force_1-1.gat,44,173,0	script	arena1warp4	45,1,1{
+	donpcevent "arena1stage::OnStage4";
+	warp "force_1-1.gat",69,174;
+	end;
+}
+
+force_1-1.gat,134,173,0	script	arena1warp5	45,1,1{
+	donpcevent "arena1stage::OnStage5";
+	warp "force_1-1.gat",159,174;
+	end;
+}
+
+force_1-1.gat,174,155,0	script	arena1warp6	45,1,1{
+	donpcevent "arena1stage::OnStage6";
+	warp "force_1-1.gat",174,130;
+	end;
+}
+
+force_1-1.gat,174,65,0	script	arena1warp7	45,1,1{
+	donpcevent "arena1stage::OnStage7";
+	warp "force_1-1.gat",174,40;
+	end;
+}
+
+force_1-1.gat,155,26,0	script	arena1warp8	45,1,1{
+	disablenpc "arena1warp1";
+	enablenpc "arena1warp9";
+	warp "force_1-1.gat",132,26;
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: 北出口から脱出してください！",0;
+	end;
+}
+
+force_1-1.gat,99,54,0	script	arena1warp9	45,1,1{
+	donpcevent "arena1stage::OnStage8";
+	warp "force_1-1.gat",99,86;
+	end;
+}
+
+force_1-1.gat,99,123,0	script	arena1warp10	45,1,1{
+	stopnpctimer "ヒルト#arena";
+	initnpctimer;
+	warp "prt_are_in.gat",22,192;
+	end;
+OnTimer2000:
+	mapannounce "prt_are_in.gat","タイムアタックLV50～69に関する案内放送です。",0,0xFFCE00;
+	end;
+OnTimer3000:
+	mapannounce "prt_are_in.gat","円滑な進行のため、クリア後控室の滞在は1分とさせていただいています。",0,0xFFCE00;
+	end;
+OnTimer4000:
+	mapannounce "prt_are_in.gat","アリーナポイントの受け取りは速やかにお済ませください。",0,0xFFCE00;
+	end;
+OnTimer60000:
+	stopnpctimer "arena1warp10";
+	areawarp "prt_are_in.gat",14,178,29,195,"arena_room",100,75;
+	donpcevent "[LV 50]控室#arena::OnEnable";
+	end;
+}
+
+force_1-1.gat,0,0,0	script	arena1stage	-1,{
+OnStage1:
+	disablenpc "arena1warp2";
+	set $@arena_mob[1],5;
+	areamonster "force_1-1.gat",14,14,33,37,"スモーキー",1561,5,"arena1stage::OnStage1OK";
+	areamonster "force_1-1.gat",14,14,33,37,"大口蛙",1556,10;
+	areamonster "force_1-1.gat",14,14,33,37,"ドロップス",1572,10;
+	monster "force_1-1.gat",35,21,"ヒドラ",1579,1;
+	monster "force_1-1.gat",35,25,"ヒドラ",1579,1;
+	monster "force_1-1.gat",35,28,"ヒドラ",1579,1;
+	monster "force_1-1.gat",35,31,"ヒドラ",1579,1;
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: クリア条件 : スモーキーを全て退治してください",0;
+	end;
+OnStage1OK:
+	callfunc "arenakilled",1,2,"ヒルト";
+	end;
+OnStage2:
+	monster "force_1-1.gat",24,76,"ファミリアー",1419,1;
+	monster "force_1-1.gat",28,76,"ファミリアー",1419,1;
+	monster "force_1-1.gat",24,86,"ファミリアー",1419,1;
+	monster "force_1-1.gat",28,79,"マミー",1393,1;
+	monster "force_1-1.gat",23,87,"マミー",1393,1;
+	monster "force_1-1.gat",28,96,"マミー",1393,1;
+	monster "force_1-1.gat",24,126,"マミー",1393,1;
+	monster "force_1-1.gat",27,126,"マミー",1393,1;
+	monster "force_1-1.gat",26,86,"グール",1423,1;
+	monster "force_1-1.gat",23,101,"グール",1423,1;
+	monster "force_1-1.gat",26,111,"グール",1423,1;
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: クリア条件 : モンスターを避けて北出口から脱出してください！",0;
+	end;
+OnStage3:
+	set $@arena_mob[1],5;
+	disablenpc "arena1warp4";
+	areamonster "force_1-1.gat",14,162,37,185,"カラ傘",1544,5,"arena1stage::OnStage3OK";
+	areamonster "force_1-1.gat",14,162,37,185,"マルス",1551,5;
+	monster "force_1-1.gat",21,173,"ヒドラ",1579,1;
+	monster "force_1-1.gat",26,173,"ヒドラ",1579,1;
+	monster "force_1-1.gat",31,173,"ヒドラ",1579,1;
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: クリア条件 : カラ傘を全て退治してください",0;
+	end;
+OnStage3OK:
+	callfunc "arenakilled",1,4,"ヒルト";
+	end;
+OnStage4:
+	set $@arena_mob[1],3;
+	disablenpc "arena1warp5";
+	monster "force_1-1.gat",118,175,"コボルド",1545,1,"arena1stage::OnStage4OK";
+	monster "force_1-1.gat",80,172,"コボルド",1546,1,"arena1stage::OnStage4OK";
+	monster "force_1-1.gat",99,175,"コボルド",1546,1,"arena1stage::OnStage4OK";
+	areamonster "force_1-1.gat",75,169,124,178,"ファミリアー",1419,9;
+	monster "force_1-1.gat",105,178,"フローラ",1575,1;
+	monster "force_1-1.gat",110,172,"フローラ",1575,1;
+	monster "force_1-1.gat",115,172,"フローラ",1575,1;
+	monster "force_1-1.gat",120,172,"フローラ",1575,1;
+	monster "force_1-1.gat",125,172,"フローラ",1575,1;
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: クリア条件 : コボルドを全て退治してください",0;
+	end;
+OnStage4OK:
+	callfunc "arenakilled",1,5,"ヒルト";
+	end;
+OnStage5:
+	set $@arena_mob[1],6;
+	disablenpc "arena1warp6";
+	areamonster "force_1-1.gat",162,162,185,185,"オークレディ",1452,2,"arena1stage::OnStage5OK";
+	areamonster "force_1-1.gat",162,162,185,185,"ゴーレム",1540,1,"arena1stage::OnStage5OK";
+	monster "force_1-1.gat",171,170,"ヒドラ",1579,1,"arena1stage::OnStage5OK";
+	monster "force_1-1.gat",173,166,"ヒドラ",1579,1,"arena1stage::OnStage5OK";
+	monster "force_1-1.gat",177,170,"ヒドラ",1579,1,"arena1stage::OnStage5OK";
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: クリア条件 : 最初からいるモンスターを全て退治してください",0;
+	end;
+OnStage5OK:
+	set $@arena_mob[1],$@arena_mob[1]-1;
+	if(rand(2) == 0) areamonster "force_1-1.gat",169,169,178,178,"ゼロム",1470,1;
+	else areamonster "force_1-1.gat",169,169,178,178,"デザートウルフ",1432,1;
+	if ($@arena_mob[1] > 0) end;
+	killmonsterall "force_1-1.gat";
+	enablenpc "arena1warp6";
+	mapannounce "force_1-1.gat","ヒルト: クリア！南部屋のドアが開きました！",0;
+	end;
+OnStage6:
+	set $@arena_mob[1],5;
+	disablenpc "arena1warp7";
+	monster "force_1-1.gat",171,118,"ドロップス",1572,1,"arena1stage::OnStage6OK";
+	monster "force_1-1.gat",175,88,"ドロップス",1572,1,"arena1stage::OnStage6OK";
+	monster "force_1-1.gat",173,78,"ドロップス",1572,1,"arena1stage::OnStage6OK";
+	monster "force_1-1.gat",171,68,"ドロップス",1572,1,"arena1stage::OnStage6OK";
+	monster "force_1-1.gat",175,68,"ドロップス",1572,1,"arena1stage::OnStage6OK";
+	monster "force_1-1.gat",175,98,"スケルワーカー",1469,1;
+	monster "force_1-1.gat",175,78,"スケルワーカー",1469,1;
+	monster "force_1-1.gat",171,108,"ゴーレム",1540,1;
+	monster "force_1-1.gat",171,88,"ゴーレム",1540,1;
+	monster "force_1-1.gat",175,108,"サンドマン",1558,1;
+	monster "force_1-1.gat",171,98,"サンドマン",1558,1;
+	monster "force_1-1.gat",175,118,"スコーピオン",1559,1;
+	monster "force_1-1.gat",171,78,"スコーピオン",1559,1;
+	monster "force_1-1.gat",173,118,"スモーキー",1561,1;
+	monster "force_1-1.gat",173,108,"スモーキー",1561,1;
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: クリア条件 : ドロップスを全て退治してください",0;
+	end;
+OnStage6OK:
+	callfunc "arenakilled",1,7,"ヒルト";
+	end;
+OnStage7:
+	set $@arena_mob[1],1;
+	disablenpc "arena1warp8";
+	monster "force_1-1.gat",174,25,"赤い草",1078,1,"arena1stage::OnStage7OK";
+	areamonster "force_1-1.gat",155,14,160,37,"パンク",1481,2;
+	monster "force_1-1.gat",163,16,"ヒドラ",1579,1;
+	monster "force_1-1.gat",163,20,"ヒドラ",1579,1;
+	monster "force_1-1.gat",163,24,"ヒドラ",1579,1;
+	monster "force_1-1.gat",163,28,"ヒドラ",1579,1;
+	monster "force_1-1.gat",163,32,"ヒドラ",1579,1;
+	monster "force_1-1.gat",163,36,"ヒドラ",1579,1;
+	monster "force_1-1.gat",167,16,"ヒドラ",1579,1;
+	monster "force_1-1.gat",167,36,"ヒドラ",1579,1;
+	monster "force_1-1.gat",171,16,"ヒドラ",1579,1;
+	monster "force_1-1.gat",171,36,"ヒドラ",1579,1;
+	monster "force_1-1.gat",175,16,"ヒドラ",1579,1;
+	monster "force_1-1.gat",175,36,"ヒドラ",1579,1;
+	monster "force_1-1.gat",179,16,"ヒドラ",1579,1;
+	monster "force_1-1.gat",179,36,"ヒドラ",1579,1;
+	monster "force_1-1.gat",183,16,"ヒドラ",1579,1;
+	monster "force_1-1.gat",183,20,"ヒドラ",1579,1;
+	monster "force_1-1.gat",183,24,"ヒドラ",1579,1;
+	monster "force_1-1.gat",183,28,"ヒドラ",1579,1;
+	monster "force_1-1.gat",183,32,"ヒドラ",1579,1;
+	monster "force_1-1.gat",183,36,"ヒドラ",1579,1;
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: クリア条件 : ヒドラの攻撃を避けながら、中央の赤い草を駆除してください",0;
+	end;
+OnStage7OK:
+	callfunc "arenakilled",1,8,"ヒルト";
+	end;
+OnStage8:
+	set $@arena_mob[1],1;
+	disablenpc "arena1warp10";
+	monster "force_1-1.gat",99,98,"ボーカル",1581,1,"arena1stage::OnStage8OK";
+	monster "force_1-1.gat",89,89,"ファミリアー",1419,2;
+	monster "force_1-1.gat",89,110,"ファミリアー",1419,2;
+	monster "force_1-1.gat",94,94,"ファミリアー",1419,2;
+	monster "force_1-1.gat",94,105,"ファミリアー",1419,2;
+	monster "force_1-1.gat",105,94,"ファミリアー",1419,2;
+	monster "force_1-1.gat",105,105,"ファミリアー",1419,2;
+	monster "force_1-1.gat",110,90,"ファミリアー",1419,2;
+	monster "force_1-1.gat",110,110,"ファミリアー",1419,2;
+	sleep 500;
+	mapannounce "force_1-1.gat","ヒルト: クリア条件 : ボスモンスター、ボーカル出現！ボーカルを倒してください",0;
+	end;
+OnStage8OK:
+	set $@arena_time[1],getnpctimer(0,"ヒルト#arena");
+	callfunc "arenakilled",1,10,"ヒルト";
+	end;
+}
+
+prt_are_in.gat,25,187,3	script	進行要員	67,{
+	callfunc "arenaclear",1,50,"LV50～69";
+	end;
+}
+
+prt_are_in.gat,129,187,3	script	進行要員#arenafailed	67,{
+	mes "[進行要員]";
+	mes "お疲れ様でした。";
+	mes "タイムアタックは失敗でしたが、";
+	mes "アリーナポイントを支給いたします。";
+	next;
+	mes "[進行要員]";
+	mes "今日はお疲れ様でした。";
+	mes "それでは、またのお越しを、";
+	mes "お待ちしております。";
+	close2;
+	set arena_point,arena_point+1;
+	warp "arena_room",100,75;
+	end;
+}
+
+//==============================================================================
+// 個人戦 LV60～79
+//==============================================================================
+arena_room.gat,41,93,5	script	コンパニオン ベン	750,{
+	mes "[ベン]";
+	mes "ようこそ。";
+	mes "個人戦LV60～79セクションの";
+	mes "コンパニオン、ベンと申します。";
+	next;
+	mes "[ベン]";
+	mes "^3131FF個人戦LV60～79^000000は";
+	mes "^FF0000レベル60^000000から^FF0000レベル79^000000まで入場";
+	mes "可能となっております。";
+	next;
+	mes "[ベン]";
+	mes "高レベルプレイヤーによる、低レベル";
+	mes "アリーナでのランキング獲得防止のため";
+	mes "レベル制限を設けております。";
+	mes "ご了承くださいませ。";
+	next;
+	mes "[ベン]";
+	mes "個人戦参加料は1000zです。";
+	next;
+	mes "[ベン]";
+	mes "それでは、アリーナ進行方法に関して";
+	mes "ご案内いたします。";
+	next;
+	mes "[ベン]";
+	mes "参加控室となる^3131FFチャットルームの中で";
+	mes "自分の順番をお待ちください。^000000";
+	mes "自分の順になればアリーナ内へ自動的に";
+	mes "移動となります。";
+	next;
+	mes "[ベン]";
+	mes "アリーナ入場と同時にカウントダウンが";
+	mes "開始いたします。";
+	mes "司会担当の^3131FFミロ^000000がクリア条件を提示";
+	mes "します。その条件に従ってクリアを目指";
+	mes "して下さい。";
+	next;
+	mes "[ベン]";
+	mes "持ち時間は^3131FF6分^000000です。";
+	mes "トップスコアを狙うなら、時間調節が";
+	mes "重要となります。";
+	next;
+	mes "[ベン]";
+	mes "最後のボスルームをクリアすれば";
+	mes "^3131FF終了控室^000000に移動となります。";
+	mes "^3131FF終了控室^000000には1分しか居られませんので";
+	mes "担当者からアリーナポイントをいただい";
+	mes "て素早く外に出てください。";
+	next;
+	mes "[ベン]";
+	mes "終了控室でアリーナポイントを受け取る";
+	mes "ことができなかった場合、アリーナ";
+	mes "ポイントの補償は行っておりません。";
+	next;
+	mes "[ベン]";
+	mes "以上、個人戦LV60～79についての案内を";
+	mes "終了いたします。アリーナ参加のご参";
+	mes "考になれば幸いと存じます。";
+	close;
+}
+
+arena_room.gat,38,87,6	script	[LV 60]控室#arena	124,{
+	end;
+OnInit:
+	waitingroom "個人戦 LV60～79",20,"[LV 60]控室#arena::OnStart",1,1000,60,79;
+	end;
+OnStart:
+	disablewaitingroomevent;
+	warpwaitingpc "force_2-1.gat",100,12;
+	if (attachrid($@warpwaitingpc[0]) == 0) goto OnEnable;
+	set Zeny,Zeny-1000;
+	set $@arena_time[2],0;
+	killmonsterall "force_2-1.gat";
+	donpcevent "ミロ#arena::OnStart";
+	end;
+OnEnable:
+	enablewaitingroomevent;
+	end;
+}
+
+force_2-1.gat,99,20,3	script	ミロ#arena	124,{
+	end;
+OnStart:
+	enablenpc "arena2warp1";
+	disablenpc "arena2warp9";
+	set $@arena_timelmt[1],6;
+	initnpctimer;
+	callfunc "arenaannounce","ミロ","LV60～79",6;
+	end;
+OnTimer60000:
+OnTimer120000:
+OnTimer180000:
+OnTimer240000:
+OnTimer300000:
+OnTimer360000:
+	callfunc "arenatimer","ミロ","2";
+	end;
+OnTimer365000:
+	areawarp "force_2-1.gat",0,0,200,200,"prt_are_in.gat",126,140;
+	stopnpctimer;
+	donpcevent "[LV 60]控室#arena::OnEnable";
+	end;
+}
+
+force_2-1.gat,62,25,0	script	arena2warp1	45,1,1{
+	donpcevent "arena2stage::OnStage1";
+	warp "force_2-1.gat",40,26;
+	end;
+}
+
+force_2-1.gat,25,44,0	script	arena2warp2	45,1,1{
+	donpcevent "arena2stage::OnStage2";
+	warp "force_2-1.gat",25,69;
+	end;
+}
+
+force_2-1.gat,25,134,0	script	arena2warp3	45,1,1{
+	donpcevent "arena2stage::OnStage3";
+	warp "force_2-1.gat",25,159;
+	end;
+}
+
+force_2-1.gat,44,173,0	script	arena2warp4	45,1,1{
+	donpcevent "arena2stage::OnStage4";
+	warp "force_2-1.gat",69,174;
+	end;
+}
+
+force_2-1.gat,134,173,0	script	arena2warp5	45,1,1{
+	donpcevent "arena2stage::OnStage5";
+	warp "force_2-1.gat",159,174;
+	end;
+}
+
+force_2-1.gat,174,155,0	script	arena2warp6	45,1,1{
+	donpcevent "arena2stage::OnStage6";
+	warp "force_2-1.gat",174,130;
+	end;
+}
+
+force_2-1.gat,174,65,0	script	arena2warp7	45,1,1{
+	donpcevent "arena2stage::OnStage7";
+	warp "force_2-1.gat",174,40;
+	end;
+}
+
+force_2-1.gat,155,26,0	script	arena2warp8	45,1,1{
+	disablenpc "arena2warp1";
+	enablenpc "arena2warp9";
+	warp "force_2-1.gat",132,26;
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: 北出口から脱出してください！",0;
+	end;
+}
+
+force_2-1.gat,99,54,0	script	arena2warp9	45,1,1{
+	donpcevent "arena2stage::OnStage8";
+	warp "force_2-1.gat",99,86;
+	end;
+}
+
+force_2-1.gat,99,123,0	script	arena2warp10	45,1,1{
+	stopnpctimer "ミロ#arena";
+	initnpctimer;
+	warp "prt_are_in.gat",22,140;
+	end;
+OnTimer2000:
+	mapannounce "prt_are_in.gat","タイムアタックLV60～79に関する案内放送です。",0,0xFFCE00;
+	end;
+OnTimer3000:
+	mapannounce "prt_are_in.gat","円滑な進行のため、クリア後控室の滞在は1分とさせていただいています。",0,0xFFCE00;
+	end;
+OnTimer4000:
+	mapannounce "prt_are_in.gat","アリーナポイントの受け取りは速やかにお済ませください。",0,0xFFCE00;
+	end;
+OnTimer60000:
+	stopnpctimer "arena2warp10";
+	areawarp "prt_are_in.gat",14,126,29,143,"arena_room",100,75;
+	donpcevent "[LV 60]控室#arena::OnEnable";
+	end;
+}
+
+force_2-1.gat,0,0,0	script	arena2stage	-1,{
+OnStage1:
+	disablenpc "arena2warp2";
+	set $@arena_mob[2],5;
+	areamonster "force_2-1.gat",14,14,37,37,"ゴブリン",1534,2,"arena2stage::OnStage1OK";
+	areamonster "force_2-1.gat",14,14,37,37,"ゴブリン",1535,1,"arena2stage::OnStage1OK";
+	areamonster "force_2-1.gat",14,14,37,37,"ゴブリン",1536,4,"arena2stage::OnStage1OK";
+	areamonster "force_2-1.gat",14,14,37,37,"ゴブリンアーチャー",1577,2,"arena2stage::OnStage1OK";
+	areamonster "force_2-1.gat",18,18,33,33,"ロータージャイロ",1557,1;
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: クリア条件 : ロータージャイロを避けながら、ゴブリンを5体以上退治してください",0;
+	end;
+OnStage1OK:
+	callfunc "arenakilled",2,2,"ミロ";
+	end;
+OnStage2:
+	monster "force_2-1.gat",24,76,"ドレインリアー",1434,3;
+	monster "force_2-1.gat",28,76,"ドレインリアー",1434,3;
+	areamonster "force_2-1.gat",19,85,32,105,"ドレインリアー",1434,2;
+	areamonster "force_2-1.gat",19,120,32,134,"マーター",1460,3;
+	monster "force_2-1.gat",23,76,"レクイエム",1468,1;
+	monster "force_2-1.gat",27,76,"レクイエム",1468,1;
+	areamonster "force_2-1.gat",19,85,32,105,"レクイエム",1468,1;
+	monster "force_2-1.gat",28,79,"ゼロム",1470,1;
+	areamonster "force_2-1.gat",19,85,32,105,"ゼロム",1470,1;
+	areamonster "force_2-1.gat",19,100,32,134,"ゼロム",1470,2;
+	areamonster "force_2-1.gat",19,85,32,134,"グール",1423,5;
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: クリア条件 : モンスターを避けて北出口から脱出してください",0;
+	end;
+OnStage3:
+	set $@arena_mob[2],4;
+	disablenpc "arena2warp4";
+	areamonster "force_2-1.gat",14,162,37,185,"マンティス",1457,4,"arena2stage::OnStage3OK";
+	areamonster "force_2-1.gat",14,162,37,185,"オボンヌ",1425,4;
+	monster "force_2-1.gat",21,173,"ヒドラ",1579,1;
+	monster "force_2-1.gat",21,178,"ヒドラ",1579,1;
+	monster "force_2-1.gat",26,173,"ヒドラ",1579,1;
+	monster "force_2-1.gat",26,178,"ヒドラ",1579,1;
+	monster "force_2-1.gat",31,173,"ヒドラ",1579,1;
+	monster "force_2-1.gat",31,178,"ヒドラ",1579,1;
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: クリア条件 : マンティスを全て退治してください",0;
+	end;
+OnStage3OK:
+	callfunc "arenakilled",2,4,"ミロ";
+	end;
+OnStage4:
+	set $@arena_mob[2],2;
+	disablenpc "arena2warp5";
+	monster "force_2-1.gat",79,174,"ゴーレム",1540,1,"arena2stage::OnStage4OK";
+	monster "force_2-1.gat",120,174,"マルス",1551,1,"arena2stage::OnStage4OK";
+	areamonster "force_2-1.gat",85,167,105,180,"サスカッチ",1442,1;
+	areamonster "force_2-1.gat",105,167,170,180,"サスカッチ",1442,1;
+	monster "force_2-1.gat",75,174,"ドケビ",1491,1;
+	monster "force_2-1.gat",100,174,"ドケビ",1491,1;
+	areamonster "force_2-1.gat",110,167,134,180,"コウ",1524,2;
+	monster "force_2-1.gat",99,174,"チェペット",1444,1;
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: クリア条件 : アクティブモンスターを避けて非アクティブモンスターを全て退治してください",0;
+	end;
+OnStage4OK:
+	callfunc "arenakilled",2,5,"ミロ";
+	end;
+OnStage5:
+	set $@arena_mob[2],5;
+	disablenpc "arena2warp6";
+	areamonster "force_2-1.gat",162,162,185,185,"ドレインリアー",1434,1,"arena2stage::OnStage5OK";
+	areamonster "force_2-1.gat",162,162,185,185,"レグルロ",1445,1,"arena2stage::OnStage5OK";
+	areamonster "force_2-1.gat",162,162,185,185,"オークスケルトン",1462,2,"arena2stage::OnStage5OK";
+	areamonster "force_2-1.gat",162,162,185,185,"ミスト",1553,1,"arena2stage::OnStage5OK";
+	areamonster "force_2-1.gat",174,162,185,185,"河童",1543,1;
+	monster "force_2-1.gat",168,177,"ヒドラ",1579,1;
+	monster "force_2-1.gat",170,168,"ヒドラ",1579,1;
+	monster "force_2-1.gat",170,179,"ヒドラ",1579,1;
+	monster "force_2-1.gat",173,173,"ヒドラ",1579,1;
+	monster "force_2-1.gat",173,174,"ヒドラ",1579,1;
+	monster "force_2-1.gat",174,173,"ヒドラ",1579,1;
+	monster "force_2-1.gat",174,174,"ヒドラ",1579,1;
+	monster "force_2-1.gat",177,168,"ヒドラ",1579,1;
+	monster "force_2-1.gat",177,179,"ヒドラ",1579,1;
+	monster "force_2-1.gat",179,170,"ヒドラ",1579,1;
+	monster "force_2-1.gat",179,177,"ヒドラ",1579,1;
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: クリア条件 : ヒドラと河童を除いた全てのモンスターを退治してください",0;
+	end;
+OnStage5OK:
+	callfunc "arenakilled",2,6,"ミロ";
+	end;
+OnStage6:
+	set $@arena_mob[2],2;
+	disablenpc "arena2warp7";
+	monster "force_2-1.gat",173,80,"雅人形",1552,1,"arena2stage::OnStage6OK";
+	monster "force_2-1.gat",173,110,"雅人形",1552,1,"arena2stage::OnStage6OK";;
+	monster "force_2-1.gat",169,70,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,75,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,80,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,85,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,90,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,95,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,100,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,105,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,110,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,115,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,120,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,125,"天下大将軍",1541,1;
+	monster "force_2-1.gat",169,130,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,70,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,75,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,80,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,85,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,90,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,95,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,100,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,105,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,110,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,115,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,120,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,125,"天下大将軍",1541,1;
+	monster "force_2-1.gat",178,130,"天下大将軍",1541,1;
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: クリア条件 : 雅人形を全て退治してください",0;
+	end;
+OnStage6OK:
+	set $@arena_mob[2],$@arena_mob[2]-1;
+	set $@arena2_rand,Rand(3);
+	if ($@arena2_rand == 0) areamonster "force_2-1.gat",169,75,178,125,"サイドワインダー",1424,1;
+	if ($@arena2_rand == 1) areamonster "force_2-1.gat",169,75,178,125,"クルーザー",1443,1;
+	if ($@arena2_rand == 2) areamonster "force_2-1.gat",169,75,178,125,"老人参",1565,1;
+	if ($@arena_mob[2] > 0) end;
+	killmonsterall "force_2-1.gat";
+	enablenpc "arena2warp7";
+	mapannounce "force_2-1.gat","ミロ: 南部屋のドアが開きました！",0;
+	end;
+OnStage7:
+	set $@arena_mob[2],4;
+	disablenpc "arena2warp8";
+	areamonster "force_2-1.gat",162,14,185,37,"イシス",1421,1,"arena2stage::OnStage7OK";
+	areamonster "force_2-1.gat",162,14,185,37,"ジャック",1436,2,"arena2stage::OnStage7OK";
+	areamonster "force_2-1.gat",162,14,185,37,"ミスト",1553,1,"arena2stage::OnStage7OK";
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: クリア条件 : モンスターを全て退治してください",0;
+	end;
+OnStage7OK:
+	callfunc "arenakilled",2,8,"ミロ";
+	end;
+OnStage8:
+	set $@arena_mob[2],1;
+	disablenpc "arena2warp10";
+	monster "force_2-1.gat",100,99,"ゴブリンリーダー",1539,1,"arena2stage::OnStage8OK";
+	monster "force_2-1.gat",93,100,"ホロン",1578,1;
+	monster "force_2-1.gat",97,100,"ホロン",1578,1;
+	monster "force_2-1.gat",100,100,"ホロン",1578,1;
+	monster "force_2-1.gat",105,100,"ホロン",1578,1;
+	monster "force_2-1.gat",86,103,"天下大将軍",1541,1;
+	monster "force_2-1.gat",86,105,"天下大将軍",1541,1;
+	monster "force_2-1.gat",86,107,"天下大将軍",1541,1;
+	monster "force_2-1.gat",86,109,"天下大将軍",1541,1;
+	monster "force_2-1.gat",86,111,"天下大将軍",1541,1;
+	monster "force_2-1.gat",86,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",88,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",90,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",92,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",94,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",96,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",103,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",105,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",107,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",109,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",111,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",113,113,"天下大将軍",1541,1;
+	monster "force_2-1.gat",113,103,"天下大将軍",1541,1;
+	monster "force_2-1.gat",113,105,"天下大将軍",1541,1;
+	monster "force_2-1.gat",113,107,"天下大将軍",1541,1;
+	monster "force_2-1.gat",113,109,"天下大将軍",1541,1;
+	monster "force_2-1.gat",113,111,"天下大将軍",1541,1;
+	sleep 500;
+	mapannounce "force_2-1.gat","ミロ: クリア条件 : ボスモンスター、ゴブリンリーダー出現！ゴブリンリーダーを倒してください",0;
+	end;
+OnStage8OK:
+	set $@arena_time[2],getnpctimer(0,"ミロ#arena");
+	callfunc "arenakilled",2,10,"ミロ";
+	end;
+}
+
+prt_are_in.gat,25,135,3	script	進行要員	67,{
+	callfunc "arenaclear",2,60,"LV60～79";
+	end;
+}
+
+prt_are_in.gat,129,135,3	duplicate(進行要員#arenafailed)	進行要員	67
+
+//==============================================================================
+// 個人戦 LV70～89
+//==============================================================================
+arena_room.gat,53,48,2	script	コンパニオン ビショス	730,{
+	mes "[ビショス]";
+	mes "……どうも。";
+	mes "個人戦LV70～89セクションの";
+	mes "コンパニオン、ビショスだ。";
+	mes "(……どうして俺がこんなことを)";
+	mes "(……ブツブツ……)";
+	next;
+	mes "[ビショス]";
+	mes "^3131FF個人戦LV70～89^000000は";
+	mes "^FF0000レベル70^000000から^FF0000レベル89^000000まで入場";
+	mes "できる。";
+	next;
+	mes "[ビショス]";
+	mes "レベルが高いプレイヤーが自分より低い";
+	mes "レベルのアリーナで威張りちらして";
+	mes "ランクを横取りしないように制限を";
+	mes "つくった。";
+	next;
+	mes "[ビショス]";
+	mes "個人戦参加料は1000zだ。";
+	next;
+	mes "[ビショス]";
+	mes "それじゃ、アリーナ進行について";
+	mes "教えてやる。";
+	next;
+	mes "[ビショス]";
+	mes "参加控室の^3131FFチャットルームに入って";
+	mes "自分の順番を待っていればいい。^000000";
+	mes "自分の順になれば勝手にアリーナに";
+	mes "移動される。";
+	next;
+	mes "[ビショス]";
+	mes "アリーナに入った瞬間にカウントが";
+	mes "始まってるからな。";
+	mes "^3131FFキャラック^000000がクリア条件を出すから";
+	mes "その通りに戦っていけ。";
+	next;
+	mes "[ビショス]";
+	mes "持ち時間は^3131FF7分^000000だ。";
+	mes "たいして長くないから、集中して効率を";
+	mes "考えないと無理だろうよ。";
+	next;
+	mes "[ビショス]";
+	mes "最後のボスルームをクリアすれば";
+	mes "^3131FF終了控室^000000に移動だ。";
+	mes "^3131FF終了控室^000000の滞在時間は";
+	mes "1分だけだ。担当者からさっさとアリー";
+	mes "ナポイントをもらって、さっさと外に";
+	mes "出ることだな。";
+	next;
+	mes "[ビショス]";
+	mes "終了控室でアリーナポイントを受け取れ";
+	mes "なくても、補償はしてないからな。";
+	mes "泣いたって知らねぇぜ。";
+	next;
+	mes "[ビショス]";
+	mes "俺が教えられるのはここまでだ。";
+	mes "わかったか？";
+	close;
+}
+
+arena_room.gat,52,42,7	script	[LV 70]控室#arena	124,{
+	end;
+OnInit:
+	waitingroom "個人戦 LV70～89",20,"[LV 70]控室#arena::OnStart",1,1000,70,89;
+	end;
+OnStart:
+	disablewaitingroomevent;
+	warpwaitingpc "force_3-1.gat",100,12;
+	if (attachrid($@warpwaitingpc[0]) == 0) goto OnEnable;
+	set Zeny,Zeny-1000;
+	set $@arena_time[3],0;
+	killmonsterall "force_3-1.gat";
+	donpcevent "キャラック#arena::OnStart";
+	end;
+OnEnable:
+	enablewaitingroomevent;
+	end;
+}
+
+force_3-1.gat,99,20,3	script	キャラック#arena	124,{
+	end;
+OnStart:
+	enablenpc "arena3warp1";
+	disablenpc "arena3warp9";
+	set $@arena_timelmt[3],7;
+	initnpctimer;
+	callfunc "arenaannounce","キャラック","LV70～89",7;
+	end;
+OnTimer60000:
+OnTimer120000:
+OnTimer180000:
+OnTimer240000:
+OnTimer300000:
+OnTimer360000:
+OnTimer420000:
+	callfunc "arenatimer","キャラック","3";
+	end;
+OnTimer425000:
+	areawarp "force_3-1.gat",0,0,200,200,"prt_are_in.gat",126,88;
+	stopnpctimer;
+	donpcevent "[LV 70]控室#arena::OnEnable";
+	end;
+}
+
+force_3-1.gat,62,25,0	script	arena3warp1	45,1,1{
+	donpcevent "arena3stage::OnStage1";
+	warp "force_3-1.gat",40,26;
+	end;
+}
+
+force_3-1.gat,25,44,0	script	arena3warp2	45,1,1{
+	donpcevent "arena3stage::OnStage2";
+	warp "force_3-1.gat",25,69;
+	end;
+}
+
+force_3-1.gat,25,134,0	script	arena3warp3	45,1,1{
+	donpcevent "arena3stage::OnStage3";
+	warp "force_3-1.gat",25,159;
+	end;
+}
+
+force_3-1.gat,44,173,0	script	arena3warp4	45,1,1{
+	donpcevent "arena3stage::OnStage4";
+	warp "force_3-1.gat",69,174;
+	end;
+}
+
+force_3-1.gat,134,173,0	script	arena3warp5	45,1,1{
+	donpcevent "arena3stage::OnStage5";
+	warp "force_3-1.gat",159,174;
+	end;
+}
+
+force_3-1.gat,174,155,0	script	arena3warp6	45,1,1{
+	donpcevent "arena3stage::OnStage6";
+	warp "force_3-1.gat",174,130;
+	end;
+}
+
+force_3-1.gat,174,65,0	script	arena3warp7	45,1,1{
+	donpcevent "arena3stage::OnStage7";
+	warp "force_3-1.gat",174,40;
+	end;
+}
+
+force_3-1.gat,155,26,0	script	arena3warp8	45,1,1{
+	disablenpc "arena3warp1";
+	enablenpc "arena3warp9";
+	warp "force_3-1.gat",132,26;
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: 北出口から脱出してください！",0;
+	end;
+}
+
+force_3-1.gat,99,54,0	script	arena3warp9	45,1,1{
+	donpcevent "arena3stage::OnStage8";
+	warp "force_3-1.gat",99,86;
+	end;
+}
+
+force_3-1.gat,99,123,0	script	arena3warp10	45,1,1{
+	stopnpctimer "キャラック#arena";
+	initnpctimer;
+	warp "prt_are_in.gat",22,88;
+	end;
+OnTimer2000:
+	mapannounce "prt_are_in.gat","タイムアタックLV70～89に関する案内放送です。",0,0xFFCE00;
+	end;
+OnTimer3000:
+	mapannounce "prt_are_in.gat","円滑な進行のため、クリア後控室の滞在は1分とさせていただいています。",0,0xFFCE00;
+	end;
+OnTimer4000:
+	mapannounce "prt_are_in.gat","アリーナポイントの受け取りは速やかにお済ませください。",0,0xFFCE00;
+	end;
+OnTimer60000:
+	stopnpctimer "arena3warp10";
+	areawarp "prt_are_in.gat",14,74,29,91,"arena_room",100,75;
+	donpcevent "[LV 70]控室#arena::OnEnable";
+	end;
+}
+
+force_3-1.gat,0,0,0	script	arena3stage	-1,{
+OnStage1:
+	disablenpc "arena3warp2";
+	set $@arena_mob[3],5;
+	areamonster "force_3-1.gat",14,14,37,37,"コボルド",1545,2,"arena3stage::OnStage1OK";
+	areamonster "force_3-1.gat",14,14,37,37,"コボルド",1546,1,"arena3stage::OnStage1OK";
+	areamonster "force_3-1.gat",14,14,37,37,"コボルド",1547,2,"arena3stage::OnStage1OK";
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: クリア条件 : コボルドを全て退治してください",0;
+	end;
+OnStage1OK:
+	callfunc "arenakilled",3,2,"キャラック";
+	end;
+OnStage2:
+	set $@arena_mob[3],2;
+	disablenpc "arena3warp3";
+	areamonster "force_3-1.gat",19,77,32,132,"ホロン",1578,2,"arena3stage::OnStage2OK";
+	areamonster "force_3-1.gat",19,77,32,132,"マミー",1393,4;
+	areamonster "force_3-1.gat",19,77,32,132,"アーチャースケルトン",1420,3;
+	areamonster "force_3-1.gat",19,77,32,132,"グール",1423,4;
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: クリア条件 : ホロンを全て退治してください",0;
+	end;
+OnStage2OK:
+	set $@arena_mob[3],$@arena_mob[3]-1;
+	if ($@arena_mob[3] > 0) end;
+	enablenpc "arena3warp3";
+	mapannounce "force_3-1.gat","キャラック: 北部屋のドアが開きました！",0;
+	end;
+OnStage3:
+	set $@arena_mob[3],3;
+	disablenpc "arena3warp4";
+	areamonster "force_3-1.gat",14,162,37,185,"パピヨン",1526,1,"arena3stage::OnStage3OK";
+	areamonster "force_3-1.gat",14,162,37,185,"フェアリーフ",1555,2,"arena3stage::OnStage3OK";
+	areamonster "force_3-1.gat",14,162,37,185,"人面桃樹",1550,2;
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: クリア条件 : 人面桃樹を除いたモンスターを全て退治してください",0;
+	end;
+OnStage3OK:
+	callfunc "arenakilled",3,4,"キャラック";
+	end;
+OnStage4:
+	set $@arena_mob[3],3;
+	disablenpc "arena3warp5";
+	areamonster "force_3-1.gat",75,169,124,178,"ステムワーム",1440,3,"arena3stage::OnStage4OK";
+	areamonster "force_3-1.gat",75,169,124,178,"バースリー",1525,3;
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: クリア条件 : バースリーを避けながらステムワームを退治してください",0;
+	end;
+OnStage4OK:
+	callfunc "arenakilled",3,5,"キャラック";
+	end;
+OnStage5:
+	set $@arena_mob[3],5;
+	disablenpc "arena3warp6";
+	areamonster "force_3-1.gat",162,162,185,185,"アルギオペ",1429,5,"arena3stage::OnStage5OK";
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: クリア条件 : アルギオペを全て退治してください",0;
+	end;
+OnStage5OK:
+	set $@arena_mob[3],$@arena_mob[3]-1;
+	set $@arena3_rand,Rand(2);
+	if(rand(2) == 0) areamonster "force_3-1.gat",169,169,178,178,"マンティス",1457,1;
+	else areamonster "force_3-1.gat",169,169,178,178,"ライドワード",1478,1;
+	if ($@arena_mob[3] > 0) end;
+	killmonsterall "force_3-1.gat";
+	enablenpc "arena3warp6";
+	mapannounce "force_3-1.gat","キャラック: クリア！南部屋のドアが開きました！",0;
+	end;
+OnStage6:
+	set $@arena_mob[3],3;
+	disablenpc "arena3warp7";
+	areamonster "force_3-1.gat",169,75,178,124,"ゴブリン",1536,3,"arena3stage::OnStage6OK";
+	areamonster "force_3-1.gat",169,75,178,124,"ゴブリン",1534,3;
+	areamonster "force_3-1.gat",169,75,178,124,"ゴブリン",1535,3;
+	areamonster "force_3-1.gat",169,75,178,124,"ゴブリン",1537,3;
+	areamonster "force_3-1.gat",169,75,178,124,"ゴブリン",1538,3;
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: クリア条件 : ゴブリンの中からゴブリン(斧)だけを倒してください",0;
+	end;
+OnStage6OK:
+	callfunc "arenakilled",3,7,"キャラック";
+	end;
+OnStage7:
+	set $@arena_mob[3],1;
+	disablenpc "arena3warp8";
+	areamonster "force_3-1.gat",162,14,185,37,"アリス",1521,1,"arena3stage::OnStage7OK";
+	areamonster "force_3-1.gat",162,14,185,37,"ファミリアー",1419,8;
+	areamonster "force_3-1.gat",162,14,185,37,"ナイトメア",1427,4;
+	areamonster "force_3-1.gat",162,14,185,37,"レイドリック",1467,1;
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: クリア条件 : アリスを倒してください",0;
+	end;
+OnStage7OK:
+	callfunc "arenakilled",3,8,"キャラック";
+	end;
+OnStage8:
+	set $@arena_mob[3],5;
+	disablenpc "arena3warp10";
+	monster "force_3-1.gat",99,98,"コボルドリーダー",1548,1,"arena3stage::OnStage8OK";
+	monster "force_3-1.gat",96,95,"コボルド",1545,1,"arena3stage::OnStage8OK";
+	monster "force_3-1.gat",102,101,"コボルド",1545,1,"arena3stage::OnStage8OK";
+	monster "force_3-1.gat",96,101,"コボルド",1546,1,"arena3stage::OnStage8OK";
+	monster "force_3-1.gat",102,95,"コボルド",1546,1,"arena3stage::OnStage8OK";
+	monster "force_3-1.gat",94,94,"ファミリアー",1419,2;
+	monster "force_3-1.gat",94,105,"ファミリアー",1419,2;
+	monster "force_3-1.gat",89,100,"ファミリアー",1419,2;
+	monster "force_3-1.gat",99,110,"ファミリアー",1419,2;
+	monster "force_3-1.gat",105,94,"ファミリアー",1419,2;
+	monster "force_3-1.gat",105,100,"ファミリアー",1419,2;
+	monster "force_3-1.gat",105,105,"ファミリアー",1419,2;
+	sleep 500;
+	mapannounce "force_3-1.gat","キャラック: クリア条件 : ボスモンスター、コボルドリーダー出現！コボルドリーダーとコボルドを倒してください",0;
+	end;
+OnStage8OK:
+	set $@arena_time[3],getnpctimer(0,"キャラック#arena");
+	callfunc "arenakilled",3,10,"キャラック";
+	end;
+}
+
+prt_are_in.gat,25,83,3	script	進行要員	67,{
+	callfunc "arenaclear",3,70,"LV70～89";
+	end;
+}
+
+prt_are_in.gat,129,83,3	duplicate(進行要員#arenafailed)	進行要員	67
+
+//==============================================================================
+// 個人戦 LV80～99
+//==============================================================================
+arena_room.gat,147,49,2	script	コンパニオン エピン	727,{
+	mes "[エピン]";
+	mes "こんにちは～?";
+	mes "個人戦LV80～99のコンパニオンやって";
+	mes "ま～す。名前は～、エピンで～す?";
+	mes "趣味は読書で、年は……";
+	mes "……ぇ、聞きたくない？";
+	next;
+	emotion 28;
+	mes "[エピン]";
+	mes "ぐっすん、わかりました……";
+	mes "……つまらないよ～……";
+	next;
+	mes "[エピン]";
+	mes "^3131FF個人戦LV80～99^000000セクションは";
+	mes "^FF0000レベル80^000000から^FF0000レベル99^000000まで入場";
+	mes "できま～す。";
+	next;
+	mes "[エピン]";
+	mes "参加料は1000zですよ。";
+	next;
+	mes "[エピン]";
+	mes "アリーナの進めかたは～";
+	mes "参加控室の^3131FFチャットルーム内で";
+	mes "自分の順番を待っててね。^000000";
+	mes "自分の順になればアリーナに自動的に";
+	mes "移動できちゃいます。";
+	next;
+	mes "[エピン]";
+	mes "アリーナに入るとカウントSTART!!";
+	mes "^3131FFアトス^000000がクリア条件を教えてくれるから";
+	mes "その通りにモンスターをボコボコに";
+	mes "すればOKよ。";
+	next;
+	mes "[エピン]";
+	mes "持ち時間は^3131FF8分^000000だから";
+	mes "うま～く時間を使ってね。";
+	mes "思ってるほど簡単じゃないわよ～。";
+	next;
+	mes "[エピン]";
+	mes "最後のボスルームをクリアすると";
+	mes "^3131FF終了控室^000000に移動します。";
+	mes "^3131FF終了控室^000000には1分しか居られない";
+	mes "から担当者からチャッチャとアリーナ";
+	mes "ポイントをもらってね。";
+	next;
+	mes "[エピン]";
+	mes "もし、終了控室でアリーナポイントを";
+	mes "受け取れなかったら、ごめんね。";
+	mes "アリーナポイントの補償はしてないの。";
+	mes "だから絶対！気をつけてね。";
+	next;
+	mes "[エピン]";
+	mes "以上で～す。わかったかな？";
+	mes "ランクインするといいね。";
+	mes "ファイト～!!";
+	close;
+}
+
+arena_room.gat,147,42,1	script	[LV 80]控室#arena	124,{
+	end;
+OnInit:
+	waitingroom "個人戦 LV80～99",20,"[LV 80]控室#arena::OnStart",1,1000,80,99;
+	end;
+OnStart:
+	disablewaitingroomevent;
+	warpwaitingpc "force_4-1.gat",100,12;
+	if (attachrid($@warpwaitingpc[0]) == 0) goto OnEnable;
+	set Zeny,Zeny-1000;
+	set $@arena_time[4],0;
+	killmonsterall "force_4-1.gat";
+	donpcevent "アトス#arena::OnStart";
+	end;
+OnEnable:
+	enablewaitingroomevent;
+	end;
+}
+
+force_4-1.gat,99,20,3	script	アトス#arena	124,{
+	end;
+OnStart:
+	enablenpc "arena4warp1";
+	disablenpc "arena4warp9";
+	set $@arena_timelmt[4],8;
+	initnpctimer;
+	callfunc "arenaannounce","アトス","LV80～99",5;
+	end;
+OnTimer60000:
+OnTimer120000:
+OnTimer180000:
+OnTimer240000:
+OnTimer300000:
+OnTimer360000:
+OnTimer420000:
+OnTimer480000:
+	callfunc "arenatimer","アトス","4";
+	end;
+OnTimer485000:
+	areawarp "force_4-1.gat",0,0,200,200,"prt_are_in.gat",178,192;
+	stopnpctimer;
+	donpcevent "[LV 80]控室#arena::OnEnable";
+	end;
+}
+
+force_4-1.gat,62,25,0	script	arena4warp1	45,1,1{
+	donpcevent "arena4stage::OnStage1";
+	warp "force_4-1.gat",40,26;
+	end;
+}
+
+force_4-1.gat,25,44,0	script	arena4warp2	45,1,1{
+	donpcevent "arena4stage::OnStage2";
+	warp "force_4-1.gat",25,69;
+	end;
+}
+
+force_4-1.gat,25,134,0	script	arena4warp3	45,1,1{
+	donpcevent "arena4stage::OnStage3";
+	warp "force_4-1.gat",25,159;
+	end;
+}
+
+force_4-1.gat,44,173,0	script	arena4warp4	45,1,1{
+	donpcevent "arena4stage::OnStage4";
+	warp "force_4-1.gat",69,174;
+	end;
+}
+
+force_4-1.gat,134,173,0	script	arena4warp5	45,1,1{
+	donpcevent "arena4stage::OnStage5";
+	warp "force_4-1.gat",159,174;
+	end;
+}
+
+force_4-1.gat,174,155,0	script	arena4warp6	45,1,1{
+	donpcevent "arena4stage::OnStage6";
+	warp "force_4-1.gat",174,130;
+	end;
+}
+
+force_4-1.gat,174,65,0	script	arena4warp7	45,1,1{
+	donpcevent "arena4stage::OnStage7";
+	warp "force_4-1.gat",174,40;
+	end;
+}
+
+force_4-1.gat,155,26,0	script	arena4warp8	45,1,1{
+	disablenpc "arena4warp1";
+	enablenpc "arena4warp9";
+	warp "force_4-1.gat",132,26;
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: 北出口から脱出してください！",0;
+	end;
+}
+
+force_4-1.gat,99,54,0	script	arena4warp9	45,1,1{
+	donpcevent "arena4stage::OnStage8";
+	warp "force_4-1.gat",99,86;
+	end;
+}
+
+force_4-1.gat,99,123,0	script	arena4warp10	45,1,1{
+	stopnpctimer "アトス#arena";
+	initnpctimer;
+	warp "prt_are_in.gat",74,192;
+	end;
+OnTimer2000:
+	mapannounce "prt_are_in.gat","タイムアタックLV80～99に関する案内放送です。",0,0xFFCE00;
+	end;
+OnTimer3000:
+	mapannounce "prt_are_in.gat","円滑な進行のため、クリア後控室の滞在は1分とさせていただいています。",0,0xFFCE00;
+	end;
+OnTimer4000:
+	mapannounce "prt_are_in.gat","アリーナポイントの受け取りは速やかにお済ませください。",0,0xFFCE00;
+	end;
+OnTimer60000:
+	stopnpctimer "arena4warp10";
+	areawarp "prt_are_in.gat",66,178,81,195,"arena_room",100,75;
+	donpcevent "[LV 80]控室#arena::OnEnable";
+	end;
+}
+
+force_4-1.gat,0,0,0	script	arena4stage	-1,{
+OnStage1:
+	disablenpc "arena4warp2";
+	set $@arena_mob[4],4;
+	areamonster "force_4-1.gat",14,14,37,37,"ナイトメア",1427,4,"arena4stage::OnStage1OK";
+	areamonster "force_4-1.gat",14,14,37,37,"ハンターフライ",1422,4;
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: クリア条件 : ナイトメアを全て退治してください",0;
+	end;
+OnStage1OK:
+	callfunc "arenakilled",4,2,"アトス";
+	end;
+OnStage2:
+	set $@arena_mob[4],15;
+	disablenpc "arena4warp3";
+	areamonster "force_4-1.gat",19,77,32,132,"ゾンビ",1394,6,"arena4stage::OnStage2OK";
+	areamonster "force_4-1.gat",19,77,32,132,"マリオネット",1459,3,"arena4stage::OnStage2OK";
+	areamonster "force_4-1.gat",19,77,32,132,"スケルプリズナー",1479,4,"arena4stage::OnStage2OK";
+	monster "force_4-1.gat",25,80,"デビルチ",1433,1,"arena4stage::OnStage2OK";
+	monster "force_4-1.gat",25,125,"レイドリックアーチャー",1453,1,"arena4stage::OnStage2OK";
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: クリア条件 : モンスターを全て退治してください",0;
+	end;
+OnStage2OK:
+	callfunc "arenakilled",4,3,"アトス";
+	end;
+OnStage3:
+	set $@arena_mob[4],2;
+	disablenpc "arena4warp4";
+	areamonster "force_4-1.gat",14,162,37,185,"アサルトタートル",1364,2,"arena4stage::OnStage3OK";
+	areamonster "force_4-1.gat",14,162,37,185,"マリオネット",1459,4;
+	areamonster "force_4-1.gat",21,169,30,178,"時計塔管理者",1527,2;
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: クリア条件 : アサルトタートルを全て退治してください",0;
+	end;
+OnStage3OK:
+	callfunc "arenakilled",4,4,"アトス";
+	end;
+OnStage4:
+	set $@arena_mob[4],4;
+	disablenpc "arena4warp5";
+	monster "force_4-1.gat",78,174,"九尾狐",1471,1,"arena4stage::OnStage4OK";
+	monster "force_4-1.gat",88,174,"九尾狐",1471,1,"arena4stage::OnStage4OK";
+	monster "force_4-1.gat",108,171,"九尾狐",1471,1,"arena4stage::OnStage4OK";
+	monster "force_4-1.gat",118,174,"九尾狐",1471,1,"arena4stage::OnStage4OK";
+	monster "force_4-1.gat",93,173,"アーチャースケルトン",1420,1;
+	monster "force_4-1.gat",98,178,"アーチャースケルトン",1420,1;
+	monster "force_4-1.gat",108,177,"アーチャースケルトン",1420,1;
+	monster "force_4-1.gat",113,169,"アーチャースケルトン",1420,1;
+	monster "force_4-1.gat",93,169,"ミノタウロス",1461,1;
+	monster "force_4-1.gat",103,176,"パサナ",1464,1;
+	monster "force_4-1.gat",103,171,"ラーヴァゴーレム",1549,1;
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: クリア条件 : 九尾狐を全て退治してください",0;
+	end;
+OnStage4OK:
+	callfunc "arenakilled",4,5,"アトス";
+	end;
+OnStage5:
+	set $@arena_mob[4],4;
+	disablenpc "arena4warp6";
+	areamonster "force_4-1.gat",162,162,185,185,"プティット",1465,4,"arena4stage::OnStage5OK";
+	areamonster "force_4-1.gat",162,162,185,185,"プティット",1466,4;
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: クリア条件 : プティット地を全て退治してください",0;
+	end;
+OnStage5OK:
+	set $@arena_mob[4],$@arena_mob[4]-1;
+	if ($@arena_mob[4] > 0) areamonster "force_4-1.gat",169,169,178,178,"プティット",1466,2;
+	if ($@arena_mob[4] > 0) end;
+	killmonsterall "force_4-1.gat";
+	enablenpc "arena4warp6";
+	mapannounce "force_4-1.gat","アトス: クリア！南部屋のドアが開きました！",0;
+	end;
+OnStage6:
+	set $@arena_mob[4],6;
+	disablenpc "arena4warp7";
+	monster "force_4-1.gat",172,119,"バフォメットJr.",1431,1,"arena4stage::OnStage6OK";
+	monster "force_4-1.gat",172,89,"バフォメットJr.",1431,1,"arena4stage::OnStage6OK";
+	monster "force_4-1.gat",172,109,"デビルチ",1433,1,"arena4stage::OnStage6OK";
+	monster "force_4-1.gat",175,89,"デビルチ",1433,1,"arena4stage::OnStage6OK";
+	monster "force_4-1.gat",175,119,"アリス",1521,1,"arena4stage::OnStage6OK";
+	monster "force_4-1.gat",172,79,"アリス",1521,1,"arena4stage::OnStage6OK";
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: クリア条件 : モンスターを全て退治してください",0;
+	end;
+OnStage6OK:
+	callfunc "arenakilled",4,7,"アトス";
+	end;
+OnStage7:
+	set $@arena_mob[4],3;
+	disablenpc "arena4warp8";
+	areamonster "force_4-1.gat",162,14,185,37,"オットー",1533,3,"arena4stage::OnStage7OK";
+	areamonster "force_4-1.gat",162,14,185,37,"半漁人",1451,2;
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: クリア条件 : オットーを全て退治してください",0;
+	end;
+OnStage7OK:
+	callfunc "arenakilled",4,8,"アトス";
+	end;
+OnStage8:
+	set $@arena_mob[4],1;
+	disablenpc "arena4warp10";
+	monster "force_4-1.gat",100,97,"エンシェントマミー",1522,1,"arena4stage::OnStage8OK";
+	monster "force_4-1.gat",99,97,"アルゴス",1430,1;
+	monster "force_4-1.gat",96,103,"アルゴス",1430,1;
+	monster "force_4-1.gat",90,100,"アルゴス",1430,1;
+	monster "force_4-1.gat",92,100,"アルゴス",1430,1;
+	sleep 500;
+	mapannounce "force_4-1.gat","アトス: クリア条件 : ボスモンスター、エンシェントマミー出現！エンシェントマミーを倒してください",0;
+	end;
+OnStage8OK:
+	set $@arena_time[4],getnpctimer(0,"アトス#arena");
+	callfunc "arenakilled",4,10,"アトス";
+	end;
+}
+
+prt_are_in.gat,77,187,3	script	進行要員	67,{
+	callfunc "arenaclear",4,80,"LV80～99";
+	end;
+}
+
+prt_are_in.gat,181,187,3	duplicate(進行要員#arenafailed)	進行要員	67
+
+//==============================================================================
+// パーティー戦
+//==============================================================================
+arena_room.gat,158,93,4	script	コンパニオン ルーク	828,{
+	mes "[ルーク]";
+	mes "こんにちは。";
+	mes "パーティー戦の説明を担当してます、";
+	mes "ルークです。";
+	mes "パーティー戦は個人戦とかなり違うので";
+	mes "ちゃんと聞いてください。";
+	next;
+	mes "[ルーク]";
+	mes "^3131FFパーティー戦^000000は、";
+	mes "^FF0000レベル10^000000から^FF0000レベル99^000000まで";
+	mes "入場可能です。";
+	next;
+	mes "[ルーク]";
+	mes "5人でパーティーを組んでいれば";
+	mes "参加できます。";
+	mes "入場料は、お1人1000zです。";
+	next;
+	mes "[ルーク]";
+	mes "それでは、アリーナ進行に関して";
+	mes "説明します。";
+	next;
+	mes "[ルーク]";
+	mes "まず、^3131FF仲間とパーティーを組んで^000000";
+	mes "控室の^3131FFチャットルームで^000000順番を待って";
+	mes "ください。いいですか、^3131FF必ず^000000パーティー";
+	mes "を組んでご参加ください。パーティーを";
+	mes "組まないでの参加でトラブルが起こって";
+	mes "も、こちらは対応いたしかねます。";
+	next;
+	mes "[ルーク]";
+	mes "チャットルームには、パーティーを";
+	mes "組んだ^3131FF5人全員^000000で入ってください。";
+	next;
+	mes "[ルーク]";
+	mes "ここで注意ですが、チャットルーム内の";
+	mes "順番に、パーティーメンバー以外の方が";
+	mes "途中交じっていると、その方も一緒に";
+	mes "転送されてしまいます。";
+	mes "気をつけてください。";
+	next;
+	mes "[ルーク]";
+	mes "チャットルームで待機中、順番になれば";
+	mes "担当コンパニオンがいるマップに移動";
+	mes "します。パーティーがそろわないまま";
+	mes "移動してしまった場合、マップ下の";
+	mes "ワープで控室のある場所に戻れます。";
+	next;
+	mes "[ルーク]";
+	mes "パーティー戦を開始する時は、担当者に";
+	mes "話しかけると進行できます。担当者には";
+	mes "該当マップにいる^FF0000誰か1人^000000が";
+	mes "話しかければ大丈夫です。";
+	next;
+	mes "[ルーク]";
+	mes "パーティー戦を開始すると、その場に";
+	mes "いる全員がアリーナ内に移動しますが";
+	mes "^3131FF入場料が足りない方^000000は入場出来ません。";
+	next;
+	mes "[ルーク]";
+	mes "アリーナ前の控室の時間は^FF00001分^000000ですので";
+	mes "ご注意ください。";
+	next;
+	mes "[ルーク]";
+	mes "アリーナ入場と同時にカウントが";
+	mes "始まります。";
+	mes "^3131FFスルラン^000000がクリア条件を出題します。";
+	mes "その条件をクリアして、ゴールを";
+	mes "目指してください。";
+	next;
+	mes "[ルーク]";
+	mes "待ち時間は^3131FF10分^000000です。";
+	mes "無駄にできる時間はありませんから";
+	mes "注意してください。";
+	next;
+	mes "[ルーク]";
+	mes "最後のボスルームをクリアすれば";
+	mes "^3131FF終了控室^000000に移動します。";
+	mes "^3131FF終了控室^000000には1分しか居られませんから";
+	mes "素早く、担当者からアリーナポイントを";
+	mes "もらってください。";
+	next;
+	mes "[ルーク]";
+	mes "終了控室でアリーナポイントを受け取る";
+	mes "ことができなかった場合、アリーナ";
+	mes "ポイントの補償は行っておりませんので";
+	mes "くれぐれもご注意ください。";
+	next;
+	mes "[ルーク]";
+	mes "パーティーが新記録を達成した場合、";
+	mes "^3131FFパーティー名^000000を殿堂に";
+	mes "記録することが出来ます。";
+	next;
+	mes "[ルーク]";
+	mes "クリア時にパーティーメンバーが欠けて";
+	mes "いると^FF0000正常な記録が出来ません^000000ので";
+	mes "必ず開始前に5人パーティーを組み、";
+	mes "全員で参加するようお願いします。";
+	next;
+	mes "[ルーク]";
+	mes "パーティー戦については以上です。";
+	mes "あなたのご参加、お待ちしています。";
+	close;
+}
+
+arena_room.gat,158,82,0	script	コンパニオン ロニ	828,{
+	emotion 21;
+	mes "[ロニ]";
+	mes "ヨッシャーッ！";
+	mes "ロニに、お任せですよーッ!!";
+	next;
+	mes "[ロニ]";
+	mes "今、中に人が居るか居ないか";
+	mes "わからなくて不安なんでしょ？";
+	mes "よーし、ロニが教えてあげましょうーッ";
+	next;
+	mes "[ロニ]";
+	mes "どーれどれ……";
+	next;
+	emotion 25;
+	mes "[ロニ]";
+	mes " N O - !!!!!!!";
+	mes "誰も居ないッ。よし、出陣だーッ?";
+	close;
+L_Wait:
+	emotion 24;
+	mes "[ロニ]";
+	mes " Y E S - !!";
+	mes "誰か中に居るみたい～";
+	next;
+	mes "[ロニ]";
+	mes "もうちょっと待つと良い～って";
+	mes "感じ、かな。";
+	close;
+}
+
+arena_room.gat,162,88,2	script	ポノ#arena	124,{
+	end;
+}

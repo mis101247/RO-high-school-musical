@@ -1,0 +1,105 @@
+//========================================================================================
+// [神] The Japanda Project [習]
+// http://opensvn.csie.org/Japanda
+// ---------------------------------------------------------------------------------------
+// - 精煉所 腳本 -
+//========================================================================================
+alberta_in.gat,28,58,4	script	弗雷德利	85,{
+	callfunc "refine1","弗雷德利",18,4;
+}
+prt_in.gat,63,60,0	script	忽克連	85,{
+	callfunc "refine1","忽克連",21,23;
+}
+morocc_in.gat,73,38,4	script	亞拉甘	99,{
+	callfunc "refine3","亞拉甘",30,16;
+}
+payon.gat,144,173,5	script	安東尼奧	88,{
+	callfunc "refine2","安東尼奧",0,32;
+}
+
+yuno_in01.gat,171,21,4	script	尤思特	85,{
+	callfunc "refine2","尤思特",9,0;
+}
+ein_in01.gat,24,87,5	script	曼塔斯曼	826,{
+	callfunc "refine1","曼塔斯曼",18,4;
+}
+lhz_in02.gat,282,20,7	script	福樂	869,{
+	callfunc "refine4","福樂",18,4;
+}
+//====================================================================
+// 購買強化金屬NPC
+//====================================================================
+alberta_in.gat,13,71,4	script	卡拉曼莉斯	86,{
+	callfunc "buystone","卡拉曼莉斯";
+}
+prt_in.gat,56,68,4	script	普勒越	86,{
+	callfunc "buystone","普勒越";
+}
+morocc_in.gat,63,32,0	script	沙德	99,{
+	callfunc "buystone","沙德";
+}
+payon.gat,145,178,4	script	伯克納德	88,{
+	callfunc "buystone","伯克納德";
+}
+yuno_in01.gat,171,27,4	script	艾爾來特	86,{
+	callfunc "buystone","艾爾來特";
+}
+ein_in01.gat,15,87,4	script	迪樂意哈斯	86,{
+	callfunc "buystone","迪樂意哈斯";
+}
+lhz_in02.gat,278,24,4	script	客勒柯	86,{
+	callfunc "buystone","客勒柯";
+}
+//====================================================================
+// 鍛鍊神之金屬、大鋁NPC
+//====================================================================
+alberta_in.gat,21,63,5	script	智諾普	84,{
+	callfunc "chgstone","智諾普";
+}
+prt_in.gat,63,69,4	script	帝特立西	84,{
+	callfunc "chgstone","帝特立西";
+}
+morocc_in.gat,72,32,0	script	亞度拉	99,{
+	callfunc "chgstone","亞度拉";
+}
+payon.gat,137,178,5	script	夏金	88,{
+	callfunc "chgstone","夏金";
+}
+yuno_in01.gat,164,27,4	script	湯馬思	84,{
+	callfunc "chgstone","湯馬思";
+}
+ein_in01.gat,18,82,5	script	馬帝修塔音	84,{
+	callfunc "chgstone","馬帝修塔音";
+}
+lhz_in02.gat,281,24,5	script	葡魯依	84,{
+	callfunc "chgstone","葡魯依";
+}
+
+//====================================================================
+// 修理工NPC
+//====================================================================
+alberta_in.gat,31,65,4	script	修理工	84,{
+	callfunc "repairer";
+}
+prt_in.gat,63,54,2	script	修理工	86,{
+	callfunc "repairer";
+}
+morocc_in.gat,71,41,4	script	修理工	99,{
+	callfunc "repairer";
+}
+payon.gat,143,165,7	script	修理工	88,{
+	callfunc "repairer";
+}
+geffen_in.gat,34,166,2	script	修理工	86,{
+	callfunc "repairer";
+}
+aldeba_in.gat,38,60,2	script	修理工	86,{
+	callfunc "repairer";
+}
+yuno_in01.gat,175,28,2	script	修理工	86,{
+	callfunc "repairer";
+}
+lhz_in02.gat,284,14,4	script	修理工	86,{
+	callfunc "repairer";
+}
+//====================================================================

@@ -1,0 +1,17 @@
+amatsu.gat,115,162,4        script        商店街傳送員        757,{
+mes "[商店街傳送員]";
+mes "你要血拼了嗎？";
+next;
+menu
+"是",Ltrans,
+"否",Lcon;
+Ltrans:        
+		savepoint "amatsu",116,199;
+warp "amatsu.gat",116,199;        end;
+Lcon:
+mes "[商店街傳送員]";
+mes "有需要在來。";
+close;
+}
+
+amatsu.gat	mapflag	noskill	dummy

@@ -1,0 +1,413 @@
+//by 爽快
+
+prontera.gat,159,180,4 script 等級排行員 778,{
+mes "[等級排行員]";
+mes "您好，我是仙境傳說玩家等級排行員";
+mes "我將對登記成功的玩家進行等級排名";
+mes "排名順序將會依據玩家等級與經驗值";
+mes "同一玩家等級未提升前只能登記一次";
+next;
+menu
+    "我要登記", LVplace_RECORD,
+    "觀看排名", LVplace_VIEW,
+    "取消", LVplace_CANCEL;
+LVplace_RECORD:
+set @Llvtemp, Llv;
+set @LVplace_LVtemp, baselevel;
+set @LVplace_EXPtemp, baseexp;
+set @LVplace_Nametemp$, strcharinfo(0);
+if (@LVplace_Uppertemp == 2) goto LVplace_COMPOUT2;
+if (@LVplace_Nametemp$ == $LVplace_Name10$) goto LVplace_SAME10;
+if (@LVplace_Nametemp$ == $LVplace_Name9$) goto LVplace_SAME09;
+if (@LVplace_Nametemp$ == $LVplace_Name8$) goto LVplace_SAME08;
+if (@LVplace_Nametemp$ == $LVplace_Name7$) goto LVplace_SAME07;
+if (@LVplace_Nametemp$ == $LVplace_Name6$) goto LVplace_SAME06;
+if (@LVplace_Nametemp$ == $LVplace_Name5$) goto LVplace_SAME05;
+if (@LVplace_Nametemp$ == $LVplace_Name4$) goto LVplace_SAME04;
+if (@LVplace_Nametemp$ == $LVplace_Name3$) goto LVplace_SAME03;
+if (@LVplace_Nametemp$ == $LVplace_Name2$) goto LVplace_SAME02;
+if (@LVplace_Nametemp$ == $LVplace_Name1$) goto LVplace_SAME01;
+if (@Llvtemp < $Llv10) goto LVplace_COMPOUT;
+if (@Llvtemp == $Llv10 && @LVplace_LVtemp < $LVplace_LV10) goto LVplace_COMPOUT;
+    if (@Llvtemp == $Llv10 && @LVplace_LVtemp == $LVplace_LV10 && @LVplace_EXPtemp <= $LVplace_EXP10) goto LVplace_COMPOUT;
+        set $Llv10, @Llvtemp;
+        set $LVplace_LV10, @LVplace_LVtemp;
+        set $LVplace_EXP10, @LVplace_EXPtemp;
+        set $LVplace_Name10$, @LVplace_Nametemp$;
+LVplace_COMP09:
+if ($Llv10 < $Llv9) goto LVplace_COMPOK;
+    if ($Llv10 == $Llv9 && $LVplace_LV10 < $LVplace_LV9) goto LVplace_COMPOK;
+        if ($Llv10 == $Llv9 && $LVplace_LV10 == $LVplace_LV9 && $LVplace_EXP10 <= $LVplace_EXP9) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv9;
+            set @LVplace_LVtemp, $LVplace_LV9;
+            set @LVplace_EXPtemp, $LVplace_EXP9;
+            set @LVplace_Nametemp$, $LVplace_Name9$;
+            set $Llv9, $Llv10;
+            set $LVplace_LV9, $LVplace_LV10;
+            set $LVplace_EXP9, $LVplace_EXP10;
+            set $LVplace_Name9$, $LVplace_Name10$;
+            set $Llv10, @Llvtemp;
+            set $LVplace_LV10, @LVplace_LVtemp;
+            set $LVplace_EXP10, @LVplace_EXPtemp;
+            set $LVplace_Name10$, @LVplace_Nametemp$;
+LVplace_COMP08:
+if ($Llv9 < $Llv8) goto LVplace_COMPOK;
+    if ($Llv9 == $Llv8 && $LVplace_LV9 < $LVplace_LV8) goto LVplace_COMPOK;
+        if ($Llv9 == $Llv8 && $LVplace_LV9 == $LVplace_LV8 && $LVplace_EXP9 <= $LVplace_EXP8) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv8;
+            set @LVplace_LVtemp, $LVplace_LV8;
+            set @LVplace_EXPtemp, $LVplace_EXP8;
+            set @LVplace_Nametemp$, $LVplace_Name8$;
+            set $Llv8, $Llv9;
+            set $LVplace_LV8, $LVplace_LV9;
+            set $LVplace_EXP8, $LVplace_EXP9;
+            set $LVplace_Name8$, $LVplace_Name9$;
+            set $Llv9, @Llvtemp;
+            set $LVplace_LV9, @LVplace_LVtemp;
+            set $LVplace_EXP9, @LVplace_EXPtemp;
+            set $LVplace_Name9$, @LVplace_Nametemp$;
+LVplace_COMP07:
+if ($Llv8 < $Llv7) goto LVplace_COMPOK;
+    if ($Llv8 == $Llv7 && $LVplace_LV8 < $LVplace_LV7) goto LVplace_COMPOK;
+        if ($Llv8 == $Llv7 && $LVplace_LV8 == $LVplace_LV7 && $LVplace_EXP8 <= $LVplace_EXP7) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv7;
+            set @LVplace_LVtemp, $LVplace_LV7;
+            set @LVplace_EXPtemp, $LVplace_EXP7;
+            set @LVplace_Nametemp$, $LVplace_Name7$;
+            set $Llv7, $Llv8;
+            set $LVplace_LV7, $LVplace_LV8;
+            set $LVplace_EXP7, $LVplace_EXP8;
+            set $LVplace_Name7$, $LVplace_Name8$;
+            set $Llv8, @Llvtemp;
+            set $LVplace_LV8, @LVplace_LVtemp;
+            set $LVplace_EXP8, @LVplace_EXPtemp;
+            set $LVplace_Name8$, @LVplace_Nametemp$;
+LVplace_COMP06:
+if ($Llv7 < $Llv6) goto LVplace_COMPOK;
+    if ($Llv7 == $Llv6 && $LVplace_LV7 < $LVplace_LV6) goto LVplace_COMPOK;
+        if ($Llv7 == $Llv6 && $LVplace_LV7 == $LVplace_LV6 && $LVplace_EXP7 <= $LVplace_EXP6) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv6;
+            set @LVplace_LVtemp, $LVplace_LV6;
+            set @LVplace_EXPtemp, $LVplace_EXP6;
+            set @LVplace_Nametemp$, $LVplace_Name6$;
+            set $Llv6, $Llv7;
+            set $LVplace_LV6, $LVplace_LV7;
+            set $LVplace_EXP6, $LVplace_EXP7;
+            set $LVplace_Name6$, $LVplace_Name7$;
+            set $Llv7, @Llvtemp;
+            set $LVplace_LV7, @LVplace_LVtemp;
+            set $LVplace_EXP7, @LVplace_EXPtemp;
+            set $LVplace_Name7$, @LVplace_Nametemp$;
+LVplace_COMP05:
+if ($Llv6 < $Llv5) goto LVplace_COMPOK;
+    if ($Llv6 == $Llv5 && $LVplace_LV6 < $LVplace_LV5) goto LVplace_COMPOK;
+        if ($Llv6 == $Llv5 && $LVplace_LV6 == $LVplace_LV5 && $LVplace_EXP6 <= $LVplace_EXP5) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv5;
+            set @LVplace_LVtemp, $LVplace_LV5;
+            set @LVplace_EXPtemp, $LVplace_EXP5;
+            set @LVplace_Nametemp$, $LVplace_Name5$;
+            set $Llv5, $Llv6;
+            set $LVplace_LV5, $LVplace_LV6;
+            set $LVplace_EXP5, $LVplace_EXP6;
+            set $LVplace_Name5$, $LVplace_Name6$;
+            set $Llv6, @Llvtemp;
+            set $LVplace_LV6, @LVplace_LVtemp;
+            set $LVplace_EXP6, @LVplace_EXPtemp;
+            set $LVplace_Name6$, @LVplace_Nametemp$;
+LVplace_COMP04:
+if ($Llv5 < $Llv4) goto LVplace_COMPOK;
+    if ($Llv5 == $Llv4 && $LVplace_LV5 < $LVplace_LV4) goto LVplace_COMPOK;
+        if ($Llv5 == $Llv4 && $LVplace_LV5 == $LVplace_LV4 && $LVplace_EXP5 <= $LVplace_EXP4) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv4;
+            set @LVplace_LVtemp, $LVplace_LV4;
+            set @LVplace_EXPtemp, $LVplace_EXP4;
+            set @LVplace_Nametemp$, $LVplace_Name4$;
+            set $Llv4, $Llv5;
+            set $LVplace_LV4, $LVplace_LV5;
+            set $LVplace_EXP4, $LVplace_EXP5;
+            set $LVplace_Name4$, $LVplace_Name5$;
+            set $Llv5, @Llvtemp;
+            set $LVplace_LV5, @LVplace_LVtemp;
+            set $LVplace_EXP5, @LVplace_EXPtemp;
+            set $LVplace_Name5$, @LVplace_Nametemp$;
+LVplace_COMP03:
+if ($Llv4 < $Llv3) goto LVplace_COMPOK;
+    if ($Llv4 == $Llv3 && $LVplace_LV4 < $LVplace_LV3) goto LVplace_COMPOK;
+        if ($Llv4 == $Llv3 && $LVplace_LV4 == $LVplace_LV3 && $LVplace_EXP4 <= $LVplace_EXP3) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv3;
+            set @LVplace_LVtemp, $LVplace_LV3;
+            set @LVplace_EXPtemp, $LVplace_EXP3;
+            set @LVplace_Nametemp$, $LVplace_Name3$;
+            set $Llv3, $Llv4;
+            set $LVplace_LV3, $LVplace_LV4;
+            set $LVplace_EXP3, $LVplace_EXP4;
+            set $LVplace_Name3$, $LVplace_Name4$;
+            set $Llv4, @Llvtemp;
+            set $LVplace_LV4, @LVplace_LVtemp;
+            set $LVplace_EXP4, @LVplace_EXPtemp;
+            set $LVplace_Name4$, @LVplace_Nametemp$;
+LVplace_COMP02:
+if ($Llv3 < $Llv2) goto LVplace_COMPOK;
+    if ($Llv3 == $Llv2 && $LVplace_LV3 < $LVplace_LV2) goto LVplace_COMPOK;
+        if ($Llv3 == $Llv2 && $LVplace_LV3 == $LVplace_LV2 && $LVplace_EXP3 <= $LVplace_EXP2) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv2;
+            set @LVplace_LVtemp, $LVplace_LV2;
+            set @LVplace_EXPtemp, $LVplace_EXP2;
+            set @LVplace_Nametemp$, $LVplace_Name2$;
+            set $Llv2, $Llv3;
+            set $LVplace_LV2, $LVplace_LV3;
+            set $LVplace_EXP2, $LVplace_EXP3;
+            set $LVplace_Name2$, $LVplace_Name3$;
+            set $Llv3, @Llvtemp;
+            set $LVplace_LV3, @LVplace_LVtemp;
+            set $LVplace_EXP3, @LVplace_EXPtemp;
+            set $LVplace_Name3$, @LVplace_Nametemp$;
+LVplace_COMP01:
+if ($Llv2 < $Llv1) goto LVplace_COMPOK;
+    if ($Llv2 == $Llv1 && $LVplace_LV2 < $LVplace_LV1) goto LVplace_COMPOK;
+        if ($Llv2 == $Llv1 && $LVplace_LV2 == $LVplace_LV1 && $LVplace_EXP2 <= $LVplace_EXP1) goto LVplace_COMPOK;
+            set @Llvtemp, $Llv1;
+            set @LVplace_LVtemp, $LVplace_LV1;
+            set @LVplace_EXPtemp, $LVplace_EXP1;
+            set @LVplace_Nametemp$, $LVplace_Name1$;
+            set $Llv1, $Llv2;
+            set $LVplace_LV1, $LVplace_LV2;
+            set $LVplace_EXP1, $LVplace_EXP2;
+            set $LVplace_Name1$, $LVplace_Name2$;
+            set $Llv2, @Llvtemp;
+            set $LVplace_LV2, @LVplace_LVtemp;
+            set $LVplace_EXP2, @LVplace_EXPtemp;
+            set $LVplace_Name2$, @LVplace_Nametemp$;
+            goto LVplace_COMPOK;
+LVplace_SAME10:
+    if (@Llvtemp <= $Llv10 && @LVplace_LVtemp <= $LVplace_LV10) goto LVplace_SAMEOK;
+        set $Llv10, @Llvtemp;
+        set $LVplace_LV10, @LVplace_LVtemp;
+        set $LVplace_EXP10, @LVplace_EXPtemp;
+        set $LVplace_Name10$, @LVplace_Nametemp$;
+        goto LVplace_COMP09;
+LVplace_SAME09:
+    if (@Llvtemp <= $Llv9 && @LVplace_LVtemp <= $LVplace_LV9) goto LVplace_SAMEOK;
+        set $Llv9, @Llvtemp;
+        set $LVplace_LV9, @LVplace_LVtemp;
+        set $LVplace_EXP9, @LVplace_EXPtemp;
+        set $LVplace_Name9$, @LVplace_Nametemp$;
+        goto LVplace_COMP08;
+LVplace_SAME08:
+    if (@Llvtemp <= $Llv8 && @LVplace_LVtemp <= $LVplace_LV8) goto LVplace_SAMEOK;
+        set $Llv8, @Llvtemp;
+        set $LVplace_LV8, @LVplace_LVtemp;
+        set $LVplace_EXP8, @LVplace_EXPtemp;
+        set $LVplace_Name8$, @LVplace_Nametemp$;
+        goto LVplace_COMP07;
+LVplace_SAME07:
+    if (@Llvtemp <= $Llv7 && @LVplace_LVtemp <= $LVplace_LV7) goto LVplace_SAMEOK;
+        set $Llv7, @Llvtemp;
+        set $LVplace_LV7, @LVplace_LVtemp;
+        set $LVplace_EXP7, @LVplace_EXPtemp;
+        set $LVplace_Name7$, @LVplace_Nametemp$;
+        goto LVplace_COMP06;
+LVplace_SAME06:
+    if (@Llvtemp <= $Llv6 && @LVplace_LVtemp <= $LVplace_LV6) goto LVplace_SAMEOK;
+        set $Llv6, @Llvtemp;
+        set $LVplace_LV6, @LVplace_LVtemp;
+        set $LVplace_EXP6, @LVplace_EXPtemp;
+        set $LVplace_Name6$, @LVplace_Nametemp$;
+        goto LVplace_COMP05;
+LVplace_SAME05:
+    if (@Llvtemp <= $Llv5 && @LVplace_LVtemp <= $LVplace_LV5) goto LVplace_SAMEOK;
+        set $Llv5, @Llvtemp;
+        set $LVplace_LV5, @LVplace_LVtemp;
+        set $LVplace_EXP5, @LVplace_EXPtemp;
+        set $LVplace_Name5$, @LVplace_Nametemp$;
+        goto LVplace_COMP04;
+LVplace_SAME04:
+    if (@Llvtemp <= $Llv4 && @LVplace_LVtemp <= $LVplace_LV4) goto LVplace_SAMEOK;
+        set $Llv4, @Llvtemp;
+        set $LVplace_LV4, @LVplace_LVtemp;
+        set $LVplace_EXP4, @LVplace_EXPtemp;
+        set $LVplace_Name4$, @LVplace_Nametemp$;
+        goto LVplace_COMP03;
+LVplace_SAME03:
+    if (@Llvtemp <= $Llv3 && @LVplace_LVtemp <= $LVplace_LV3) goto LVplace_SAMEOK;
+        set $Llv3, @Llvtemp;
+        set $LVplace_LV3, @LVplace_LVtemp;
+        set $LVplace_EXP3, @LVplace_EXPtemp;
+        set $LVplace_Name3$, @LVplace_Nametemp$;
+        goto LVplace_COMP02;
+LVplace_SAME02:
+    if (@Llvtemp <= $Llv2 && @LVplace_LVtemp <= $LVplace_LV2) goto LVplace_SAMEOK;
+        set $Llv2, @Llvtemp;
+        set $LVplace_LV2, @LVplace_LVtemp;
+        set $LVplace_EXP2, @LVplace_EXPtemp;
+        set $LVplace_Name2$, @LVplace_Nametemp$;
+        goto LVplace_COMP01;
+LVplace_SAME01:
+    if (@Llvtemp <= $Llv1 && @LVplace_LVtemp <= $LVplace_LV1) goto LVplace_SAMEOK;
+        set $Llv1, @Llvtemp;
+        set $LVplace_LV1, @LVplace_LVtemp;
+        set $LVplace_EXP1, @LVplace_EXPtemp;
+        set $LVplace_Name1$, @LVplace_Nametemp$;
+        goto LVplace_COMPOK;
+LVplace_COMPOK:
+    mes "[等級排行員]";
+    mes "恭喜你刷新等級排行榜";
+    announce "仙境傳說玩家等級排行榜已被刷新了", 15;
+    set $LVplace_announce,1;
+    addtimer 5000,"LVplace_Timer01";
+    close;
+    end;
+LVplace_SAMEOK:
+    mes "[等級排行員]";
+    mes "同一個人等級未提升前只能登記一次";
+    close;
+    end;
+LVplace_COMPOUT:
+    mes "[等級排行員]";
+    mes "很抱歉，你的等級與經驗值排不上排行榜";
+    close;
+    end;
+LVplace_COMPOUT2:
+    mes "[等級排行員]";
+    mes "很抱歉，目前不開放被認養的職業登記。";
+    close;
+    end;
+LVplace_VIEW:
+    mes "[等級排行員]";
+    mes "仙境傳說玩家等級排行榜：";
+    mes "第一名是 " + $LVplace_Name1$;
+    mes "第一名等級 " +  $LVplace_LV1 + "，轉生次數 " +  $Llv1;
+    mes "第二名是 " + $LVplace_Name2$;
+    mes "第二名等級 " +  $LVplace_LV2 + "，轉生次數 " +  $Llv2;
+    mes "第三名是 " + $LVplace_Name3$;
+    mes "第三名等級 " +  $LVplace_LV3 + "，轉生次數 " +  $Llv3;
+    mes "第四名是 " + $LVplace_Name4$;
+    mes "第四名等級 " +  $LVplace_LV4 + "，轉生次數 " +  $Llv4;
+    mes "第五名是 " + $LVplace_Name5$;
+    mes "第五名等級 " +  $LVplace_LV5 + "，轉生次數 " +  $Llv5;
+    mes "第六名是 " + $LVplace_Name6$;
+    mes "第六名等級 " +  $LVplace_LV6 + "，轉生次數 " +  $Llv6;
+    mes "第七名是 " + $LVplace_Name7$;
+    mes "第七名等級 " +  $LVplace_LV7 + "，轉生次數 " +  $Llv7;
+    mes "第八名是 " + $LVplace_Name8$;
+    mes "第八名等級 " +  $LVplace_LV8 + "，轉生次數 " +  $Llv8;
+    mes "第九名是 " + $LVplace_Name9$;
+    mes "第九名等級 " +  $LVplace_LV9 + "，轉生次數 " +  $Llv9;
+    mes "第十名是 " + $LVplace_Name10$;
+    mes "第十名等級 " +  $LVplace_LV10 + "，轉生次數 " +  $Llv10;
+    close;
+    end;
+LVplace_CANCEL:
+    mes "[等級排行員]";
+    mes "希望下次能見到您來登記排行榜喔";
+    close;
+    end;
+}
+
+prontera.gat,161,187,0 script LVplace_Timer01 -1,{
+    if ($LVplace_announce != 1) end; 
+    set $LVplace_announce,2;
+    addtimer 5000,"LVplace_Timer02";
+    announce "玩家等級排行榜：第一名等級 " +  $LVplace_LV1 + "，轉生次數 " +  $Llv1 + " - " + $LVplace_Name1$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer02 -1,{
+    if ($LVplace_announce != 2) end; 
+    set $LVplace_announce,3;
+    addtimer 5000,"LVplace_Timer03";
+    announce "玩家等級排行榜：第二名等級 " +  $LVplace_LV2 + "，轉生次數 " +  $Llv2 + " - " + $LVplace_Name2$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer03 -1,{
+    if ($LVplace_announce != 3) end; 
+    set $LVplace_announce,4;
+    addtimer 5000,"LVplace_Timer04";
+    announce "玩家等級排行榜：第三名等級 " +  $LVplace_LV3 + "，轉生次數 " +  $Llv3 + " - " + $LVplace_Name3$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer04 -1,{
+    if ($LVplace_announce != 4) end; 
+    set $LVplace_announce,5;
+    addtimer 5000,"LVplace_Timer05";
+    announce "玩家等級排行榜：第四名等級 " +  $LVplace_LV4 + "，轉生次數 " +  $Llv4 + " - " + $LVplace_Name4$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer05 -1,{
+    if ($LVplace_announce != 5) end; 
+    set $LVplace_announce,6;
+    addtimer 5000,"LVplace_Timer06";
+    announce "玩家等級排行榜：第五名等級 " +  $LVplace_LV5 + "，轉生次數 " +  $Llv5 + " - " + $LVplace_Name5$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer06 -1,{
+    if ($LVplace_announce != 6) end; 
+    set $LVplace_announce,7;
+    addtimer 5000,"LVplace_Timer07";
+    announce "玩家等級排行榜：第六名等級 " +  $LVplace_LV6 + "，轉生次數 " +  $Llv6 + " - " + $LVplace_Name6$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer07 -1,{
+    if ($LVplace_announce != 7) end; 
+    set $LVplace_announce,8;
+    addtimer 5000,"LVplace_Timer08";
+    announce "玩家等級排行榜：第七名等級 " +  $LVplace_LV7 + "，轉生次數 " +  $Llv7 + " - " + $LVplace_Name7$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer08 -1,{
+    if ($LVplace_announce != 8) end; 
+    set $LVplace_announce,9;
+    addtimer 5000,"LVplace_Timer09";
+    announce "玩家等級排行榜：第八名等級 " +  $LVplace_LV8 + "，轉生次數 " +  $Llv8 + " - " + $LVplace_Name8$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer09 -1,{
+    if ($LVplace_announce != 9) end; 
+    set $LVplace_announce,10;
+    addtimer 5000,"LVplace_Timer10";
+    announce "玩家等級排行榜：第九名等級 " +  $LVplace_LV9 + "，轉生次數 " +  $Llv9 + " - " + $LVplace_Name9$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Timer10 -1,{
+    if ($LVplace_announce != 10) end; 
+    announce "玩家等級排行榜：第十名等級 " +  $LVplace_LV10 + "，轉生次數 " +  $Llv10 + " - " + $LVplace_Name10$, 15;
+    end;
+}
+prontera.gat,161,187,0 script LVplace_Event -1,{
+    OnMinute05:
+    set $LVplace_announce,1;
+    initnpctimer;
+    end;
+    OnTimer5000:
+    announce "玩家等級排行榜：第一名等級 " +  $LVplace_LV1 + "，轉生次數 " +  $Llv1 + " - " + $LVplace_Name1$, 15;
+    end;
+    OnTimer10000:
+    announce "玩家等級排行榜：第二名等級 " +  $LVplace_LV2 + "，轉生次數 " +  $Llv2 + " - " + $LVplace_Name2$, 15;
+    end;
+    OnTimer15000:
+    announce "玩家等級排行榜：第三名等級 " +  $LVplace_LV3 + "，轉生次數 " +  $Llv3 + " - " + $LVplace_Name3$, 15;
+    end;
+    OnTimer20000:
+    announce "玩家等級排行榜：第四名等級 " +  $LVplace_LV4 + "，轉生次數 " +  $Llv4 + " - " + $LVplace_Name4$, 15;
+    end;
+    OnTimer25000:
+    announce "玩家等級排行榜：第五名等級 " +  $LVplace_LV5 + "，轉生次數 " +  $Llv5 + " - " + $LVplace_Name5$, 15;
+    end;
+    OnTimer30000:
+    announce "玩家等級排行榜：第六名等級 " +  $LVplace_LV6 + "，轉生次數 " +  $Llv6 + " - " + $LVplace_Name6$, 15;
+    end;
+    OnTimer35000:
+    announce "玩家等級排行榜：第七名等級 " +  $LVplace_LV7 + "，轉生次數 " +  $Llv7 + " - " + $LVplace_Name7$, 15;
+    end;
+    OnTimer40000:
+    announce "玩家等級排行榜：第八名等級 " +  $LVplace_LV8 + "，轉生次數 " +  $Llv8 + " - " + $LVplace_Name8$, 15;
+    end;
+    OnTimer45000:
+    announce "玩家等級排行榜：第九名等級 " +  $LVplace_LV9 + "，轉生次數 " +  $Llv9 + " - " + $LVplace_Name9$, 15;
+    end;
+    OnTimer50000:
+    announce "玩家等級排行榜：第十名等級 " +  $LVplace_LV10 + "，轉生次數 " +  $Llv10 + " - " + $LVplace_Name10$, 15;
+    end;
+    stopnpctimer "LVplace_Event";
+    end;
+    end;
+}
